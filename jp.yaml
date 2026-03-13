@@ -1,0 +1,22 @@
+name: Dragon Quest II
+md5: [604ebaf033b95464c1db931844f48aa9]
+mapper: MMC1
+header: yes
+splits:
+  prg:
+    - bank: 0
+    - bank: 1
+    - bank: 2
+    - bank: 3
+    - bank: 4
+    - bank: 5
+    - bank: 6
+    - bank: 7
+    - bank: 8
+    - bank: 9
+    - bank: 0xA
+    - bank: 0xB
+    - bank: 0xC
+    - bank: 0xD
+    - bank: 0xE
+    - bank: 0xF

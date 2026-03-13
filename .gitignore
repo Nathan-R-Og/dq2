@@ -1,0 +1,10 @@
+*.nes
+*.deb
+split/
+disasm/
+build_artifacts/
+linked.txt
+linked_m.dbg
+*.o
+__pycache__
+tools/outputs

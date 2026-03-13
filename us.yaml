@@ -1,0 +1,105 @@
+name: Dragon Warrior II
+md5: [3aef63a01d6f57e3bf2c865a1d919d13, 3188792f0e6baee937a9859542c8c155]
+mapper: MMC1
+header: yes
+splits:
+  prg:
+    - bank: 0
+      splits:
+      - [0]
+      - [0x3e2, gfx/hargon_header]
+      - [0x3ea, gfx/hargon]
+      - [0x44a, gfx/dragonlords_grandson_header]
+      - [0x452, gfx/dragonlords_grandson]
+      - [0x4b2, gfx/gremlin_header]
+      - [0x4bb, gfx/gremlin]
+      - [0x66b, gfx/kid_header]
+      - [0x675, gfx/kid]
+      - [0x725, gfx/healer_header]
+      - [0x72d, gfx/healer]
+      - [0x8ed, gfx/moonbrooke_king_header]
+      - [0x8f1, gfx/moonbrooke_king]
+      - [0xaf1, gfx/party_dead_header]
+      - [0xaf7, gfx/party_dead]
+      - [0xbb7, gfx/guard_dead_header]
+      - [0xbbd, gfx/guard_dead]
+      - [0xbfd, gfx/moonebrooke_king_dead_header]
+      - [0xc03, gfx/moonebrooke_king_dead]
+      - [0xc43, gfx/WorldMap]
+      - [0x1193, gfx/Town]
+      - [0x1833, gfx/Cave]
+      - [0x1c43, gfx/Tower]
+      - [0x2043, gfx/Npc]
+      - [0x3043, gfx/ui]
+      - [0x34AB, gfx/credits]
+      - [0x3774]
+    - bank: 1
+    - bank: 2
+    - bank: 3
+    - bank: 4
+    - bank: 5
+    - bank: 6
+    - bank: 7
+    - bank: 8
+      splits:
+      - [0]
+      - [0x6f7, gfx/intro/cannock_1_1]
+      - [0x737, gfx/intro/cannock_1_2]
+      - [0x777, gfx/intro/cannock_1_3]
+      - [0x7b7, gfx/intro/cannock_2_1]
+      - [0x807, gfx/intro/cannock_2_2]
+      - [0x857, gfx/intro/cannock_2_3]
+      - [0x8a7, gfx/intro/cannock_3_1]
+      - [0x927, gfx/intro/cannock_3_2]
+      - [0x9a7, gfx/intro/cannock_3_3]
+      - [0xa27, gfx/intro/cannock_4_1]
+      - [0xac7, gfx/intro/cannock_4_2]
+      - [0xb67, gfx/intro/cannock_4_3]
+      - [0xc07, gfx/intro/cannock_5_1]
+      - [0xd07, gfx/intro/cannock_5_2]
+      - [0xe07, gfx/intro/cannock_5_3]
+      - [0xf07, gfx/intro/cannock_6_1]
+      - [0x1007, gfx/intro/cannock_6_2]
+      - [0x11e7, gfx/intro/cannock_6_3]
+      - [0x1357, gfx/intro/cannock_unused_1]
+      - [0x14a7, gfx/intro/cannock_unused_2]
+      - [0x15f7, gfx/intro/moonbrooke_1_1]
+      - [0x1637, gfx/intro/moonbrooke_1_2]
+      - [0x1677, gfx/intro/moonbrooke_1_3]
+      - [0x16b7, gfx/intro/moonbrooke_2_1]
+      - [0x1707, gfx/intro/moonbrooke_2_2]
+      - [0x1757, gfx/intro/moonbrooke_2_3]
+      - [0x17a7, gfx/intro/moonbrooke_3_1]
+      - [0x1827, gfx/intro/moonbrooke_3_2]
+      - [0x18a7, gfx/intro/moonbrooke_3_3]
+      - [0x1927, gfx/intro/moonbrooke_4_1]
+      - [0x19d7, gfx/intro/moonbrooke_4_2]
+      - [0x1a67, gfx/intro/moonbrooke_4_3]
+      - [0x1b17, gfx/intro/moonbrooke_5_1]
+      - [0x1c27, gfx/intro/moonbrooke_5_2]
+      - [0x1d37, gfx/intro/moonbrooke_5_3]
+      - [0x1e47, gfx/intro/moonbrooke_6_1]
+      - [0x1fe7, gfx/intro/moonbrooke_6_2]
+      - [0x2177, gfx/intro/moonbrooke_6_3]
+      - [0x2317, gfx/intro/moonbrooke_unused_1]
+      - [0x2477, gfx/intro/moonbrooke_unused_2]
+      - [0x25e7]
+    - bank: 9
+      splits:
+      - [0]
+      - [0x7e4, gfx/end]
+      - [0x1dd4]
+    - bank: 0xA
+      splits:
+      - [0]
+      - [0x227, gfx/title_splash]
+      - [0xf87]
+    - bank: 0xB
+      splits:
+      - [0]
+      - [0x4ce, gfx/title]
+      - [0x242e]
+    - bank: 0xC
+    - bank: 0xD
+    - bank: 0xE
+    - bank: 0xF
