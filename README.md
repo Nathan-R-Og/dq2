@@ -33,12 +33,12 @@ Note that if you are running on Windows, when it asks you to run a script, run t
   - If running on a supported Linux distribution, run `./install` to download and set up cc65.
   - If running on another platform (ex. Windows), it can be obtained from https://cc65.github.io/.
   - If cc65 was not built from source, add the bin folder to your system `PATH` under `Environment Variables`. (like python)
-2. Drop MOTHER (J) and/or Earthbound Beginnings (U) ROMs into this directory.
+2. Drop Dragon Quest II (J) and/or Dragon Warrior II (U) ROMs into this directory.
 3. Run `./configure` to split banks from supported roms
   - Each rom will be scanned for in the root of this repository, and will split their own unique assets.
-4. Run `./build` to make a new Earthbound Beginnings (U) ROM from assembly
-  - Note that the output path will be `mother_rebuilt.nes`
-5. Run `./build -j` to make a new MOTHER (J) rom
+4. Run `./build` to make a new Dragon Warrior II (U) ROM from assembly
+  - Note that the output path will be `dq2_rebuilt.nes`
+5. Run `./build -j` to make a new Dragon Quest II (J) rom
 
 The newly built rom will be compared to the destination version's checksum, to see if it is byte matching. Make sure both US and JP are byte matching before opening a PR!
 
