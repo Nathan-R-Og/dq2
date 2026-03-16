@@ -983,7 +983,6 @@ B08_83FD:
 .incbin "../../split/us/gfx/intro/moonbrooke_unused_1.bin"
 .incbin "../../split/us/gfx/intro/moonbrooke_unused_2.bin"
 
-fuck1922:
 ; chr -> code
 ; control flow target (from $8135, $815B, $A65B)
     pha

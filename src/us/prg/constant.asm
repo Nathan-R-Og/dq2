@@ -11891,26 +11891,20 @@ B0F_F618:
     lda #$FE
     rts
 
+B0F_F61B:
 ; display shop menu item list for shop ID given in A, returning selected item (with Jailor's Key replaced by blank) in A
 ; external control flow target (from $06:$82DE, $06:$83CA)
     sta $60AF ; shop ID
 
     lda #$1B ; Menu ID #$1B: Shop menu: current gold
-
     jsr $EB89 ; open menu specified by A
-
     lda #$16 ; Menu ID #$16: Shop menu: Item BUY list
-
     jsr $EB89 ; open menu specified by A
-
     cmp #$FF
     beq B0F_F638
     sta $60AC ; menu list index
-
     jsr $F27C ; given shop ID in $60AF and menu list index in $60AC, set A to the corresponding item ID
-
     cmp #$39 ; Item ID #$39: Jailor’s Key
-
     bne B0F_F638
     lda #$00
 ; control flow target (from $F62A, $F634)

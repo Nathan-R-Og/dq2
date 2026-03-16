@@ -2,59 +2,72 @@
 ;if a better method is found (escapes dont work), deprecate this.
 .feature loose_string_term
 
-.charmap $41, $C1 ;A == $C1
-.charmap $42, $C2 ;B == $C2
-.charmap $43, $C3 ;C == $C3
-.charmap $44, $C4 ;D == $C4
-.charmap $45, $C5 ;E == $C5
-.charmap $46, $C6 ;F == $C6
-.charmap $47, $C7 ;G == $C7
-.charmap $48, $C8 ;H == $C8
-.charmap $49, $C9 ;I == $C9
-.charmap $4A, $CA ;J == $CA
-.charmap $4B, $CB ;K == $CB
-.charmap $4C, $CC ;L == $CC
-.charmap $4D, $CD ;M == $CD
-.charmap $4E, $CE ;N == $CE
-.charmap $4F, $CF ;O == $CF
-.charmap $50, $D0 ;P == $D0
-.charmap $51, $D1 ;Q == $D1
-.charmap $52, $D2 ;R == $D2
-.charmap $53, $D3 ;S == $D3
-.charmap $54, $D4 ;T == $D4
-.charmap $55, $D5 ;U == $D5
-.charmap $56, $D6 ;V == $D6
-.charmap $57, $D7 ;W == $D7
-.charmap $58, $D8 ;X == $D8
-.charmap $59, $D9 ;Y == $D9
-.charmap $5A, $DA ;Z == $DA
+;numbers
+.charmap $30, $00 ;0 == $00
+.charmap $31, $01 ;1 == $01
+.charmap $32, $02 ;2 == $02
+.charmap $33, $03 ;3 == $03
+.charmap $34, $04 ;4 == $04
+.charmap $35, $05 ;5 == $05
+.charmap $36, $06 ;6 == $06
+.charmap $37, $07 ;7 == $07
+.charmap $38, $08 ;8 == $08
+.charmap $39, $09 ;9 == $09
 
-.charmap $61, $E1 ;a == $E1
-.charmap $62, $E2 ;b == $E2
-.charmap $63, $E3 ;c == $E3
-.charmap $64, $E4 ;d == $E4
-.charmap $65, $E5 ;e == $E5
-.charmap $66, $E6 ;f == $E6
-.charmap $67, $E7 ;g == $E7
-.charmap $68, $E8 ;h == $E8
-.charmap $69, $E9 ;i == $E9
-.charmap $6A, $EA ;j == $EA
-.charmap $6B, $EB ;k == $EB
-.charmap $6C, $EC ;l == $EC
-.charmap $6D, $ED ;m == $ED
-.charmap $6E, $EE ;n == $EE
-.charmap $6F, $EF ;o == $EF
-.charmap $70, $F0 ;p == $F0
-.charmap $71, $F1 ;q == $F1
-.charmap $72, $F2 ;r == $F2
-.charmap $73, $F3 ;s == $F3
-.charmap $74, $F4 ;t == $F4
-.charmap $75, $F5 ;u == $F5
-.charmap $76, $F6 ;v == $F6
-.charmap $77, $F7 ;w == $F7
-.charmap $78, $F8 ;x == $F8
-.charmap $79, $F9 ;y == $F9
-.charmap $7A, $FA ;z == $FA
+
+.charmap $61, $E1 ;a == $0a
+.charmap $62, $E2 ;b == $0b
+.charmap $63, $E3 ;c == $0c
+.charmap $64, $E4 ;d == $0d
+.charmap $65, $E5 ;e == $0e
+.charmap $66, $E6 ;f == $0f
+.charmap $67, $E7 ;g == $10
+.charmap $68, $E8 ;h == $11
+.charmap $69, $E9 ;i == $12
+.charmap $6A, $EA ;j == $13
+.charmap $6B, $EB ;k == $14
+.charmap $6C, $EC ;l == $15
+.charmap $6D, $ED ;m == $16
+.charmap $6E, $EE ;n == $17
+.charmap $6F, $EF ;o == $18
+.charmap $70, $F0 ;p == $19
+.charmap $71, $F1 ;q == $1a
+.charmap $72, $F2 ;r == $1b
+.charmap $73, $F3 ;s == $1c
+.charmap $74, $F4 ;t == $1d
+.charmap $75, $F5 ;u == $1e
+.charmap $76, $F6 ;v == $1f
+.charmap $77, $F7 ;w == $20
+.charmap $78, $F8 ;x == $21
+.charmap $79, $F9 ;y == $22
+.charmap $7A, $FA ;z == $23
+
+.charmap $41, $C1 ;A == $24
+.charmap $42, $C2 ;B == $25
+.charmap $43, $C3 ;C == $26
+.charmap $44, $C4 ;D == $27
+.charmap $45, $C5 ;E == $28
+.charmap $46, $C6 ;F == $29
+.charmap $47, $C7 ;G == $2a
+.charmap $48, $C8 ;H == $2b
+.charmap $49, $C9 ;I == $2c
+.charmap $4A, $CA ;J == $2d
+.charmap $4B, $CB ;K == $2e
+.charmap $4C, $CC ;L == $2f
+.charmap $4D, $CD ;M == $30
+.charmap $4E, $CE ;N == $31
+.charmap $4F, $CF ;O == $32
+.charmap $50, $D0 ;P == $33
+.charmap $51, $D1 ;Q == $34
+.charmap $52, $D2 ;R == $35
+.charmap $53, $D3 ;S == $36
+.charmap $54, $D4 ;T == $37
+.charmap $55, $D5 ;U == $38
+.charmap $56, $D6 ;V == $39
+.charmap $57, $D7 ;W == $3a
+.charmap $58, $D8 ;X == $3b
+.charmap $59, $D9 ;Y == $3c
+.charmap $5A, $DA ;Z == $3d
 
 ;symbols
 
@@ -78,17 +91,6 @@
 .charmap $3E, $FF ;> == $FF (is technically ▶, but can't be typed/is too big)
 ;also, > is specifically hardcoded for enemy CHECK listings. otherwise i wouldnt have put it here
 
-;numbers
-.charmap $30, $B0 ;0 == $B0
-.charmap $31, $B1 ;1 == $B1
-.charmap $32, $B2 ;2 == $B2
-.charmap $33, $B3 ;3 == $B3
-.charmap $34, $B4 ;4 == $B4
-.charmap $35, $B5 ;5 == $B5
-.charmap $36, $B6 ;6 == $B6
-.charmap $37, $B7 ;7 == $B7
-.charmap $38, $B8 ;8 == $B8
-.charmap $39, $B9 ;9 == $B9
 
 
 ;manual defines

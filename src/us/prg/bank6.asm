@@ -775,19 +775,17 @@ B06_829C:
 .byte $0C,$0C,$0C
 .byte $0F
 .byte $0C
+
+DoWeaponShop:
 ; data -> code
 ; handler for dialogue IDs #$14-#$1B (Weapon Shops)
 ; control flow target (from $81D4)
     sta $49 ; object hero/target/item/string ID $49
-
     cmp #$18 ; Weapon Shop ID #04, Map ID #$0F: Osterfair
-
     bne B06_82C3
     lda $05C0 ; NPC #$10 motion nybble + direction nybble
-
     and #$03
     cmp #$01 ; Right
-
     beq B06_82C3 ; talking to the shopkeeper from behind the counter, use a different string
 
 ; call to code in a different bank ($0F:$F6F6)
@@ -850,12 +848,12 @@ B06_82D5:
     sbc #$14 ; convert to Shop ID
 
 ; call to code in a different bank ($0F:$F61B)
-    jsr $F61B ; display shop menu item list for shop ID given in A, returning selected item (with Jailor's Key replaced by blank) in A
+    jsr B0F_F61B ; display shop menu item list for shop ID given in A, returning selected item (with Jailor's Key replaced by blank) in A
 
     cmp #$FF
     beq B06_82CE ; finish weapon transaction
 
-    jsr $8D4D ; given item ID in A, save it to $96 and set $8F-$90 to purchase price of item, accounting for possible Golden Card discount; decrease party gold by that amount and SEC if possible, CLC otherwise
+    jsr B06_8D4D ; given item ID in A, save it to $96 and set $8F-$90 to purchase price of item, accounting for possible Golden Card discount; decrease party gold by that amount and SEC if possible, CLC otherwise
 
     bcs B06_82F1 ; branch if price of item was deducted from party gold
 
@@ -1145,55 +1143,28 @@ B06_83B2:
 ; call to code in a different bank ($0F:$FA2E)
 B06_83C4:
     jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $67
-; data -> code
+    .byte $67
     lda $49 ; object hero/target/item/string ID $49
-
-; call to code in a different bank ($0F:$F61B)
-    jsr $F61B ; display shop menu item list for shop ID given in A, returning selected item (with Jailor's Key replaced by blank) in A
-
+    ; display shop menu item list for shop ID given in A, returning selected item (with Jailor's Key replaced by blank) in A
+    jsr B0F_F61B
     cmp #$FF
     beq B06_83B2 ; finish item transaction
-
     cmp #$00 ; Jailor's Key converted to #$00
-
     bne B06_83E2
-; call to code in a different bank ($0F:$FA32)
+    ; call to code in a different bank ($0F:$FA32)
     jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $DA
-; data -> code
+    .byte $DA
     jsr $9AD0 ; open YES/NO menu, return selected option in A
-
     cmp #$00 ; YES
-
     bne B06_83B2 ; finish item transaction
-
     lda #$39 ; Item ID #$39: Jailor’s Key
-
 ; control flow target (from $83D3)
 B06_83E2:
-    jsr $8D4D ; given item ID in A, save it to $96 and set $8F-$90 to purchase price of item, accounting for possible Golden Card discount; decrease party gold by that amount and SEC if possible, CLC otherwise
-
+    jsr B06_8D4D ; given item ID in A, save it to $96 and set $8F-$90 to purchase price of item, accounting for possible Golden Card discount; decrease party gold by that amount and SEC if possible, CLC otherwise
     bcs B06_83EE
-; call to code in a different bank ($0F:$FA2E)
+    ; call to code in a different bank ($0F:$FA2E)
     jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $68
-; data -> code
+    .byte $68
     jmp $83B9
 
 ; control flow target (from $83E5)
@@ -3687,14 +3658,11 @@ B06_8D10:
     lda $0D
     sta $0625 ; party gold, high byte
 
-; control flow target (from $8D40)
 B06_8D4C:
     rts
 
-; given item ID in A, save it to $96 and set $8F-$90 to purchase price of item, accounting for possible Golden Card discount; decrease party gold by that amount and SEC if possible, CLC otherwise
-; control flow target (from $82E5, $83E2)
+B06_8D4D:
     sta $96 ; temp storage for item/spell/type/etc. IDs; item ID
-
     asl ; price list is 2 bytes wide
 
     tay
@@ -7960,7 +7928,7 @@ B06_9B2D:
     sta $0C
     lda $9E2B
     sta $0D
-    jsr $9D58 ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
+    jsr CMD_Search ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
 
     jmp $9B84
 
@@ -8005,7 +7973,7 @@ B06_9B69:
     sta $0C
     lda $9E2D
     sta $0D
-    jsr $9D58 ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
+    jsr CMD_Search ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
 
     lda $96 ; temp storage for item/spell/type/etc. IDs; useless op; $96 is already in A
 
@@ -8596,71 +8564,48 @@ B06_9D49:
 ; code -> data
 ; pre-computed offsets for the start of each hero's data at $062D
 ; indexed data load target (from $9D51)
-
 .byte $00,$12
 .byte $24
+
 ; data -> code
 ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
 ; control flow target (from $9B3F, $9B73, $9DFB)
+CMD_Search:
     ldy #$00
     lda ($0C),Y ; read map ID
-
     cmp #$FF ; #$FF => end of list
-
-    bne B06_9D63
+    bne @can_open
     jmp $9DFE ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
 
-
-; control flow target (from $9D5E)
-B06_9D63:
-    cmp $31 ; current map ID
-
-    beq B06_9D6A ; map ID matches, start checking position
-
+    @can_open:
+    cmp map_id ; current map ID
+    ; map ID matches, start checking position
+    beq @check_pos
     jmp $9DEE ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
-
-
-; map ID matches, start checking position
-; control flow target (from $9D65)
-B06_9D6A:
+    @check_pos:
     iny
     lda ($0C),Y ; treasure X-pos
-
-    cmp $16 ; current map X-pos (1)
-
+    cmp map_xpos ; current map X-pos (1)
     bne B06_9DEE ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
-
     iny
     lda ($0C),Y ; treasure Y-pos
-
-    cmp $17 ; current map Y-pos (1)
-
+    cmp map_ypos ; current map Y-pos (1)
     bne B06_9DEE ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
-
     iny
     lda ($0C),Y ; item ID
-
-    bne B06_9D80 ; map/position is valid and there is an item here
-
+    bne @open ; map/position is valid and there is an item here
     jmp $9E00 ; store item ID in $95 and $96 and RTS
 
-
-; map/position is valid and there is an item here
-; control flow target (from $9D7B)
-B06_9D80:
+    ; map/position is valid and there is an item here
+    @open:
     cmp #$45 ; randomized gold chests have IDs >= #$45
-
     bcs B06_9E00 ; store item ID in $95 and $96 and RTS
 
     sta $96 ; temp storage for item/spell/type/etc. IDs; item ID
-
     cmp #$25 ; Item ID #$25: Tresures
-
     bne B06_9D93
     lda #$2A ; Item ID #$2A: Echoing Flute
-
     jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
-
     bpl B06_9DFE ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
 
     bmi B06_9DBA
@@ -8760,7 +8705,7 @@ B06_9DEE:
     lda $0D
     adc #$00
     sta $0D
-    jmp $9D58 ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
+    jmp CMD_Search ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
 
 
 ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
@@ -8813,196 +8758,253 @@ B06_9E17:
     bne B06_9E00 ; store item ID in $95 and $96 and RTS
 
 
-; code -> data
-; -> $06:$9E2E: Treasure List 1 (map ID, X-pos, Y-pos, item ID)
-; data load target (from $9B35)
+B06_9E2A:
 ; data load target (from $9B3A)
-.byte $2E
-; -> $06:$9F07: Treasure List 2 (map ID, X-pos, Y-pos, item ID)
-.byte $9E
-; data load target (from $9B69)
+.addr TreasureList1	 ; $06:$9E2E; Treasure List 1 (map ID, X-pos, Y-pos, item ID)
 ; data load target (from $9B6E)
-.byte $07
+.addr TreasureList2	 ; $06:$9F07; Treasure List 2 (map ID, X-pos, Y-pos, item ID)
+
+TreasureList1:
 ; Treasure List 1 (map ID, X-pos, Y-pos, item ID)
-.byte $9F
 ; indirect data load target (via $9E2A)
+.byte $03,$0E,$02,$06	 ; Item ID #$06: Copper Sword (Midenhall Castle)
+.byte $03,$13,$0E,$35	 ; Item ID #$35: Wing of Wyvern (Midenhall Castle)
+.byte $03,$14,$0E,$3C	 ; Item ID #$3C: Medical Herb (Midenhall Castle)
+.byte $03,$13,$0F,$47	 ; Item ID #$47: 50 - 113 G (Midenhall Castle)
+.byte $03,$14,$0F,$00	 ; Item ID #$00: Empty (Midenhall Castle)
+.byte $03,$15,$0F,$24	 ; Item ID #$24: Token of Erdrick (Midenhall Castle)
 
-.byte $03,$0E,$02,$06,$03,$13,$0E,$35,$03,$14,$0E,$3C
-.byte $03,$13,$0F,$47,$03,$14
-.byte $0F,$00,$03
-.byte $15,$0F
-.byte $24
+.byte $06,$0A,$0A,$20	 ; Item ID #$20: Shield of Erdrick (Cannock Castle)
 
-.byte $06,$0A
-.byte $0A
-.byte $20
+.byte $0F,$06,$14,$1A	 ; Item ID #$1A: Armor of Gaia (Osterfair)
+.byte $0F,$06,$16,$02	 ; Item ID #$02: Magic Knife (Osterfair)
 
-.byte $0F,$06,$14,$1A
-.byte $0F,$06
-.byte $16
-.byte $02
+.byte $10,$02,$02,$2D	 ; Item ID #$2D: Magic Loom (Zahan)
 
-.byte $10,$02
-.byte $02
-.byte $2D
+.byte $18,$07,$06,$33	 ; Item ID #$33: Lottery Ticket (Charlock Castle)
+.byte $18,$08,$06,$3C	 ; Item ID #$3C: Medical Herb (Charlock Castle)
+.byte $18,$06,$07,$49	 ; Item ID #$49: 100 - 163 G (Charlock Castle)
+.byte $18,$07,$07,$35	 ; Item ID #$35: Wing of Wyvern (Charlock Castle)
 
-.byte $18,$07,$06,$33,$18,$08,$06,$3C
-.byte $18,$06,$07,$49
-.byte $18,$07
-.byte $07
-.byte $35
+.byte $2C,$12,$0C,$3C	 ; Item ID #$3C: Medical Herb (Lake Cave B1)
+.byte $2C,$0E,$1C,$45	 ; Item ID #$45: 15 - 30 G (Lake Cave B1)
+.byte $2D,$0E,$0C,$3C	 ; Item ID #$3C: Medical Herb (Lake Cave B2)
+.byte $2D,$14,$1A,$46	 ; Item ID #$46: 31 - 46 G (Lake Cave B2)
+.byte $2D,$02,$14,$3B	 ; Item ID #$3B: Antidote Herb (Lake Cave B2)
+.byte $2D,$14,$1C,$35	 ; Item ID #$35: Wing of Wyvern (Lake Cave B2)
+.byte $2D,$14,$14,$38	 ; Item ID #$38: Silver Key (Lake Cave B2)
 
-.byte $2C,$12,$0C,$3C,$2C,$0E,$1C,$45,$2D,$0E,$0C,$3C,$2D,$14
-.byte $1A,$46,$2D,$02,$14,$3B,$2D
-.byte $14,$1C,$35,$2D
-.byte $14,$14
-.byte $38
+.byte $2E,$18,$02,$4B	 ; Item ID #$4B: 111 - 142 G (Sea Cave B1)
+.byte $2E,$02,$0A,$3C	 ; Item ID #$3C: Medical Herb (Sea Cave B1)
+.byte $2F,$20,$0E,$FF	 ; Item ID #$FF: Trap (Sea Cave B2)
+.byte $2F,$0E,$18,$48	 ; Item ID #$48: 51 - 82 G (Sea Cave B2)
+.byte $31,$02,$02,$49	 ; Item ID #$49: 100 - 163 G (Sea Cave B3(2))
+.byte $31,$0A,$02,$FF	 ; Item ID #$FF: Trap (Sea Cave B3(2))
+.byte $32,$10,$0E,$30	 ; Item ID #$30: Dragon's Bane (Sea Cave B4)
+.byte $33,$16,$02,$28	 ; Item ID #$28: Eye of Malroth (Sea Cave B5)
 
-.byte $2E,$18,$02,$4B,$2E,$02,$0A,$3C,$2F,$20,$0E,$FF,$2F,$0E,$18,$48
-.byte $31,$02,$02,$49,$31,$0A,$02,$FF
-.byte $32,$10,$0E,$30
-.byte $33,$16
-.byte $02
-.byte $28
+.byte $34,$0E,$10,$0F	 ; Item ID #$0F: Sword of Erdrick (Charlock Castle)
 
-.byte $34,$0E
-.byte $10
-.byte $0F
+.byte $37,$10,$10,$44	 ; Item ID #$44: Life Crest (Cave to Rhone B1)
+.byte $3C,$0C,$1A,$4B	 ; Item ID #$4B: 111 - 142 G (Cave to Rhone 3F)
+.byte $3C,$0E,$32,$10	 ; Item ID #$10: Thunder Sword (Cave to Rhone 3F)
+.byte $3C,$1E,$2C,$33	 ; Item ID #$33: Lottery Ticket (Cave to Rhone 3F)
+.byte $3E,$18,$0E,$1B	 ; Item ID #$1B: Armor of Erdrick (Cave to Rhone 5F)
+.byte $3E,$1A,$18,$4D	 ; Item ID #$4D: 111 - 174 G (Cave to Rhone 5F)
+.byte $3E,$12,$20,$FF	 ; Item ID #$FF: Trap (Cave to Rhone 5F)
+.byte $3E,$12,$24,$4A	 ; Item ID #$4A: 561 - 624 G (Cave to Rhone 5F)
 
-.byte $37,$10,$10,$44,$3C,$0C,$1A,$4B,$3C,$0E,$32,$10,$3C,$1E,$2C,$33
-.byte $3E,$18,$0E,$1B,$3E,$1A,$18,$4D
-.byte $3E,$12,$20,$FF
-.byte $3E,$12
-.byte $24
-.byte $4A
+.byte $40,$02,$0E,$3C	 ; Item ID #$3C: Medical Herb (Spring Of Bravery)
+.byte $40,$0E,$1A,$45	 ; Item ID #$45: 15 - 30 G (Spring Of Bravery)
+.byte $40,$16,$1C,$3C	 ; Item ID #$3C: Medical Herb (Spring Of Bravery)
 
-.byte $40,$02,$0E,$3C,$40,$0E
-.byte $1A,$45,$40
-.byte $16,$1C
-.byte $3C
+.byte $49,$12,$14,$3C	 ; Item ID #$3C: Medical Herb (Moon Tower 1F)
+.byte $49,$10,$02,$26	 ; Item ID #$26: Moon Fragment (Moon Tower 1F)
+.byte $4B,$02,$02,$50	 ; Item ID #$50: 101 - 132 G (Moon Tower 3F)
+.byte $4C,$04,$0C,$01	 ; Item ID #$01: Bamboo Stick (Moon Tower 4F)
+.byte $4C,$02,$0C,$4F	 ; Item ID #$4F: 251 - 282 G (Moon Tower 4F)
 
-.byte $49,$12,$14,$3C,$49,$10,$02,$26,$4B,$02
-.byte $02,$50,$4C,$04,$0C
-.byte $01,$4C,$02
-.byte $0C
-.byte $4F
+.byte $50,$14,$0A,$51	 ; Item ID #$51: 38 - 53 G (Lighthouse 1F)
+.byte $51,$1E,$1C,$00	 ; Item ID #$00: Empty (triggers Star Crest battle) (Lighthouse 2F)
+.byte $53,$0C,$16,$4E	 ; Item ID #$4E: 120 - 135 G (Lighthouse 4F)
+.byte $54,$16,$02,$34	 ; Item ID #$34: Fairy Water (Lighthouse 5F)
+.byte $54,$0E,$12,$07	 ; Item ID #$07: Chain Sickle (Lighthouse 5F)
 
-.byte $50,$14,$0A,$51,$51,$1E,$1C,$00,$53,$0C
-.byte $16,$4E,$54,$16,$02
-.byte $34,$54,$0E
-.byte $12
-.byte $07
+.byte $58,$10,$14,$3C	 ; Item ID #$3C: Medical Herb (Wind Tower 1F)
+.byte $59,$02,$04,$2E	 ; Item ID #$2E: Cloak of Wind (Wind Tower 2F)
+.byte $5A,$06,$10,$4C	 ; Item ID #$4C: 41 - 56 G (Wind Tower 3F)
 ; indirect data load target
-.byte $58,$10,$14,$3C,$59,$02
-.byte $04,$2E,$5A
-.byte $06,$10
-.byte $4C
+.byte $FF	 ; end of Treasure List 1
+
+TreasureList2:
 ; Treasure List 2 (map ID, X-pos, Y-pos, item ID)
-.byte $FF
 ; indirect data load target (via $9E2C)
+.byte $01,$92,$6D,$2B	 ; Item ID #$2B: Mirror of Ra (Swamp SE of Hamlin)
+.byte $01,$1E,$FC,$25	 ; Item ID #$25: Tresures (Ocean NW of Tantegal)
+.byte $01,$BB,$DD,$29	 ; Item ID #$29: Leaf of World Tree (Island E of Wellgarth)
+.byte $08,$05,$01,$43	 ; Item ID #$43: Water Crest (Hamlin)
+.byte $1E,$08,$00,$40	 ; Item ID #$40: Sun Crest (Monolith E of Wellgarth)
+.byte $10,$12,$04,$37	 ; Item ID #$37: Golden Key location #1 (Zahan)
+.byte $10,$16,$08,$37	 ; Item ID #$37: Golden Key location #2 (Zahan)
 ; indirect data load target
-.byte $01,$92,$6D,$2B,$01,$1E,$FC,$25,$01,$BB,$DD,$29,$08,$05
-.byte $01,$43,$1E,$08,$00,$40,$10
-.byte $12,$04,$37,$10
-.byte $16,$08
-.byte $37
-; -> $06:$9F26: unique items
-.byte $FF
-; data load target (from $9DBA)
+.byte $FF	 ; end of Treasure List 2
+
 ; data load target (from $9DBF)
-.byte $26
+; -> $06:$9F26: unique items
+.addr $9F26	 ; $06:$9F26; unique items
 ; unique items
-.byte $9F
 ; indirect data load target (via $9F24)
+.byte $38	 ; Item ID #$38: Silver Key
+.byte $25	 ; Item ID #$25: Tresures
+.byte $29	 ; Item ID #$29: Leaf of The World Tree
+.byte $24	 ; Item ID #$24: Token of Erdrick
+.byte $20	 ; Item ID #$20: Shield of Erdrick
+.byte $43	 ; Crest ID #$43: Water Crest
+.byte $1A	 ; Item ID #$1A: Armor of Gaia
+.byte $10	 ; Item ID #$10: Thunder Sword
+.byte $40	 ; Crest ID #$40: Sun Crest
+.byte $28	 ; Item ID #$28: Eye of Malroth
+.byte $0F	 ; Item ID #$0F: Sword of Erdrick
+.byte $44	 ; Crest ID #$44: Life Crest
+.byte $1B	 ; Item ID #$1B: Armor of Erdrick
+.byte $26	 ; Item ID #$26: Moon Fragment
+.byte $2E	 ; Item ID #$2E: Cloak of Wind
+.byte $2B	 ; Item ID #$2B: Mirror of Ra
+.byte $37	 ; Item ID #$37: Golden Key
+.byte $2D	 ; Item ID #$2D: Magic Loom
+
 ; base treasure chest gold amount, low byte
-.byte $38,$25,$29,$24,$20,$43,$1A,$10,$40
-.byte $28,$0F,$44,$1B,$26
-.byte $2E,$2B
-.byte $37
-.byte $2D
 ; random gold amounts
-; indexed data load target (from $9C4C)
 ; base treasure chest gold amount, high byte
-.byte $0F
-; indexed data load target (from $9C51)
 ; random treasure chest gold amount
-.byte $00
 ; indexed data load target (from $9C46)
+.byte $0F,$00,$0F	 ; Chest Gold ID #$45: 15 - 30 G
+.byte $1F,$00,$0F	 ; Chest Gold ID #$46: 31 - 46 G
+.byte $32,$00,$3F	 ; Chest Gold ID #$47: 50 - 113 G
+.byte $33,$00,$1F	 ; Chest Gold ID #$48: 51 - 82 G
+.byte $64,$00,$3F	 ; Chest Gold ID #$49: 100 - 163 G
+.byte $31,$02,$3F	 ; Chest Gold ID #$4A: 561 - 624 G
+.byte $6F,$00,$1F	 ; Chest Gold ID #$4B: 111 - 142 G
+.byte $29,$00,$0F	 ; Chest Gold ID #$4C: 41 - 56 G
+.byte $6F,$00,$3F	 ; Chest Gold ID #$4D: 111 - 174 G
+.byte $78,$00,$0F	 ; Chest Gold ID #$4E: 120 - 135 G
+.byte $FB,$00,$1F	 ; Chest Gold ID #$4F: 251 - 282 G
+.byte $65,$00,$1F	 ; Chest Gold ID #$50: 101 - 132 G
+.byte $26,$00,$0F	 ; Chest Gold ID #$51: 38 - 53 G
+
 ; Crest Names
-.byte $0F,$1F,$00,$0F,$32,$00,$3F,$33,$00,$1F,$64,$00,$3F,$31,$02,$3F
-.byte $6F,$00,$1F,$29,$00,$0F,$6F,$00,$3F,$78,$00
-.byte $0F,$FB,$00,$1F,$65
-.byte $00,$1F,$26
-.byte $00
-.byte $0F
 ; indexed data load target (from $9C25)
+.byte $36,$1E,$17,$5F,$26,$1B,$0E,$1C,$1D,$FA	 ; "Sun Crest" + [end-FA]
+.byte $3A,$0A,$1D,$0E,$1B,$5F,$26,$1B,$0E,$1C,$1D,$FA	 ; "Water Crest" + [end-FA]
+.byte $2F,$12,$0F,$0E,$5F,$26,$1B,$0E,$1C,$1D,$FA	 ; "Life Crest"  + [end-FA]
+
 ; Inn prices per party member
-.byte $36,$1E,$17,$5F,$26,$1B,$0E,$1C,$1D,$FA,$3A,$0A,$1D,$0E,$1B,$5F
-.byte $26,$1B,$0E,$1C,$1D,$FA,$2F,$12,$0F
-.byte $0E,$5F,$26,$1B
-.byte $0E,$1C
-.byte $1D
-.byte $FA
 ; indexed data load target (from $821F)
+.byte  4	 ; Inn ID #$00, Map IDs #$00/#$03: Fake Midenhall/Midenhall 1F
+.byte  6	 ; Inn ID #$01, Map ID #$05: Leftwyne
+.byte  8	 ; Inn ID #$02, Map ID #$06: Cannock
+.byte 12	 ; Inn ID #$03, Map ID #$07: Hamlin
+.byte 20	 ; Inn ID #$04, Map ID #$0B: Lianport
+.byte  2	 ; Inn ID #$05, Map ID #$0C: Tantegel
+.byte 25	 ; Inn ID #$06, Map ID #$0F: Osterfair
+.byte 30	 ; Inn ID #$07, Map ID #$10: Zahan
+.byte 40	 ; Inn ID #$08, Map ID #$11: Tuhn / Map ID #$14: Wellgarth Underground
+.byte 30
+
 ; Weapon Shop inventories
-.byte $04,$06,$08,$0C,$14
-.byte $02,$19,$1E
-.byte $28
-.byte $1E
 ; external indexed data load target (from $0F:$F266, $0F:$F278, $0F:$F299)
+.byte $05,$06,$02,$07,$16,$1C	 ; Shop ID #00, Weapons/Armor, Map ID #$05: Leftwyne
+.byte $07,$08,$0A,$16,$19,$1E	 ; Shop ID #01, Weapons/Armor, Map ID #$07: Hamlin
+.byte $02,$0A,$03,$19,$12,$1E	 ; Shop ID #02, Weapons/Armor, Map ID #$0B: Lianport
+.byte $0A,$0B,$03,$12,$1E,$22	 ; Shop ID #03, Weapons/Armor, Map ID #$0C: Tantegel
+.byte $0A,$0B,$0D,$12,$18,$22	 ; Shop ID #04, Weapons/Armor, Map ID #$0F: Osterfair
+.byte $03,$09,$0D,$18,$1D,$22	 ; Shop ID #05, Weapons/Armor, Map ID #$11: Tuhn
+.byte $0B,$0D,$0E,$14,$1D,$22	 ; Shop ID #06, Weapons/Armor, Map ID #$14: Wellgarth Underground
+.byte $0B,$03,$0D,$1E,$1D,$22	 ; Shop ID #07, Weapons/Armor, Map ID #$15: Beran
 ; Tool Shop inventories
-.byte $05,$06,$02,$07,$16,$1C,$07,$08,$0A,$16,$19,$1E,$02,$0A,$03,$19
-.byte $12,$1E,$0A,$0B,$03,$12,$1E,$22,$0A,$0B,$0D,$12,$18,$22,$03,$09
-.byte $0D,$18,$1D,$22,$0B,$0D,$0E,$14
-.byte $1D,$22,$0B,$03
-.byte $0D,$1E
-.byte $1D
-.byte $22
-; Item Prices, low byte
-.byte $3C,$3B,$00,$00,$00,$00,$3C,$3B,$35,$00,$00,$00,$3C,$3B,$35,$34
-.byte $00,$00,$3C,$3B,$35,$34,$00,$00,$3C,$3B,$35,$34,$30,$00,$3C,$3B
-.byte $35,$34,$30,$00,$3C,$35,$34,$30,$00,$00,$35,$34,$30,$00,$00,$00
-.byte $3C,$3B,$34,$30,$00,$00,$3C,$3B,$39
-.byte $35,$00,$00,$3C,$3B
-.byte $35,$34
-.byte $00
-.byte $00
-; indexed data load target (from $84D7, $84E9, $8D15, $8D51, $8D6C, $9A8B, $9D06)
-; external indexed data load target (from $0F:$EED3)
-; Item Prices, high byte
-.byte $00
-; indexed data load target (from $84DC, $84F1, $8D1D, $8D56, $8D74, $9A8E, $9D09)
-; external indexed data load target (from $0F:$EED8)
+.byte $3C,$3B,$00,$00,$00,$00	 ; Shop ID #$00, Items, Map IDs #$00/#$03: Fake Midenhall/Midenhall 1F
+.byte $3C,$3B,$35,$00,$00,$00	 ; Shop ID #$01, Items, Map ID #$05: Leftwyne
+.byte $3C,$3B,$35,$34,$00,$00	 ; Shop ID #$02, Items, Map ID #$06: Cannock
+.byte $3C,$3B,$35,$34,$00,$00	 ; Shop ID #$03, Items, Map ID #$07: Hamlin
+.byte $3C,$3B,$35,$34,$30,$00	 ; Shop ID #$04, Items, Map ID #$0B: Lianport
+.byte $3C,$3B,$35,$34,$30,$00	 ; Shop ID #$05, Items, Map ID #$0C: Tantegel
+.byte $3C,$35,$34,$30,$00,$00	 ; Shop ID #$06, Items, Map ID #$10: Zahan
+.byte $35,$34,$30,$00,$00,$00	 ; Shop ID #$07, Items, Map ID #$11: Tuhn
+.byte $3C,$3B,$34,$30,$00,$00	 ; Shop ID #$08, Items, Map ID #$14: Wellgarth Underground, #1
+.byte $3C,$3B,$39,$35,$00,$00	 ; Shop ID #$09, Items, Map ID #$14: Wellgarth Underground, #2
+.byte $3C,$3B,$35,$34,$00,$00	 ; Shop ID #$0A, Items, Map ID #$15: Beran
 
-.byte $00,$14,$00,$C8,$00,$C4,$09,$90,$65,$3C,$00,$64,$00,$86,$01,$02
-.byte $03,$A8,$61,$DC,$05,$A0,$0F,$98,$3A
-.byte $40,$1F,$80,$3E
-.byte $02,$00
-.byte $F4
-.byte $01
+; Item Prices
+.word $00	 ; Item ID #$00: (no item)
+.word $14	 ; Item ID #$01: Bamboo Stick
+.word $C8	 ; Item ID #$02: Magic Knife
+.word $09C4	 ; Item ID #$03: Wizard’s Wand
+.word $6590	 ; Item ID #$04: Staff of Thunder
+.word $3C	 ; Item ID #$05: Club
+.word $64	 ; Item ID #$06: Copper Sword
+.word $0186	 ; Item ID #$07: Chain Sickle
+.word $0302	 ; Item ID #$08: Iron Spear
+.word $61A8	 ; Item ID #$09: Falcon Sword
+.word $05DC	 ; Item ID #$0A: Broad Sword
+.word $0FA0	 ; Item ID #$0B: Giant Hammer
+.word $3A98	 ; Item ID #$0C: Sword of Destruction
+.word $1F40	 ; Item ID #$0D: Dragon Killer
+.word $3E80	 ; Item ID #$0E: Light Sword
+.word $02	 ; Item ID #$0F: Sword of Erdrick
+.word $01F4	 ; Item ID #$10: Thunder Sword
 
-.byte $1E,$00,$E2,$04,$46,$00,$E8,$FD,$96,$00,$E0
-.byte $01,$00,$19,$CC,$10,$E8
-.byte $03,$32,$00
-.byte $04
-.byte $00
+.word $1E	 ; Item ID #$11: Clothes
+.word $04E2	 ; Item ID #$12: Clothes Hiding
+.word $46	 ; Item ID #$13: Water Flying Cloth
+.word $FDE8	 ; Item ID #$14: Mink Coat
+.word $96	 ; Item ID #$15: Leather Armor
+.word $01E0	 ; Item ID #$16: Chain Mail
+.word $1900	 ; Item ID #$17: Gremlin’s Armor
+.word $10CC	 ; Item ID #$18: Magic Armor
+.word $03E8	 ; Item ID #$19: Full Plate Armor
+.word $32	 ; Item ID #$1A: Armor of Gaia
+.word $04	 ; Item ID #$1B: Armor of Erdrick
 
-.byte $5A,$00,$FC,$53,$D0
-.byte $07,$60,$22
-.byte $14
-.byte $00
+.word $5A	 ; Item ID #$1C: Leather Shield
+.word $53FC	 ; Item ID #$1D: Shield of Strength
+.word $07D0	 ; Item ID #$1E: Steel Shield
+.word $2260	 ; Item ID #$1F: Evil Shield
+.word $14	 ; Item ID #$20: Shield of Erdrick
 
-.byte $20,$4E,$4E
-.byte $0C,$46
-.byte $00
+.word $4E20	 ; Item ID #$21: Mysterious Hat
+.word $0C4E	 ; Item ID #$22: Iron Helmet
+.word $46	 ; Item ID #$23: Helmet of Erdrick
 
-.byte $0A,$00,$00,$00,$2C,$01,$00,$00,$00,$00,$06,$00,$90,$01,$00,$00
-.byte $28,$00,$1E,$00,$46,$00,$DC,$05,$80,$02,$10,$27,$F4,$01,$46,$00
-.byte $28,$00,$50,$00,$02,$00,$02,$00,$02,$00,$D0,$07
-.byte $00,$00,$08,$00,$0F,$00
-.byte $28,$0A,$02
-.byte $00,$02
-.byte $00
+.word $0A	 ; Item ID #$24: Token of Erdrick
+.word $00	 ; Item ID #$25: Tresures
+.word $012C	 ; Item ID #$26: Moon Fragment
+.word $00	 ; Item ID #$27: Charm of Rubiss
+.word $00	 ; Item ID #$28: Eye of Malroth
+.word $06	 ; Item ID #$29: Leaf of The World Tree
+.word $0190	 ; Item ID #$2A: Echoing Flute
+.word $00	 ; Item ID #$2B: Mirror of Ra
+.word $28	 ; Item ID #$2C: Dew’s Yarn
+.word $1E	 ; Item ID #$2D: Magic Loom
+.word $46	 ; Item ID #$2E: Cloak of Wind
+.word $05DC	 ; Item ID #$2F: Gremlin’s Tail
+.word $0280	 ; Item ID #$30: Dragon’s Bane
+.word $2710	 ; Item ID #$31: Dragon’s Potion
+.word $01F4	 ; Item ID #$32: Golden Card
+.word $46	 ; Item ID #$33: Lottery Ticket
+.word $28	 ; Item ID #$34: Fairy Water
+.word $50	 ; Item ID #$35: Wing of the Wyvern
+.word $02	 ; Item ID #$36: [blank]
+.word $02	 ; Item ID #$37: Golden Key
+.word $02	 ; Item ID #$38: Silver Key
+.word $07D0	 ; Item ID #$39: Jailor’s Key
+.word $00	 ; Item ID #$3A: Watergate Key
+.word $08	 ; Item ID #$3B: Antidote Herb
+.word $0F	 ; Item ID #$3C: Medical Herb
+.word $0A28	 ; Item ID #$3D: Wizard’s Ring
+.word $02	 ; Item ID #$3E: Perilous
+.word $02	 ; Item ID #$3F: [blank]
+
+
 ; data -> code
 ; control flow target (from $A141, $A14C)
     lda $47 ; Stepguard flag
