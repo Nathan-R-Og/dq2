@@ -15,136 +15,82 @@
 ; possible external indexed data load target (from $0F:$F3ED, $0F:$FF28)
 ; external indirect data load target (via $08:$80CC, $0A:$80F5, $0A:$813E, $0F:$F052, $0F:$F83D)
 ; possible external indexed data load target (from $0F:$F3F2, $0F:$FF2D)
-.byte $12
-; indirect data load target (via $B0A8)
-.byte $A6
+.addr B06_A612
 ; external indirect data load target (via $02:$B74E, $0F:$FD25, $0F:$FD98)
-; -> $06:$A843: display and handle main game menu
-.byte $09
-.byte $A8
+.addr B06_A809
 ; external indirect data load target (via $0F:$C6C7)
-; -> $06:$ABC7: copy save data from save data buffer at $7000 to system RAM; update Don Mahone quest status if applicable
-.byte $43
-.byte $A8
+.addr B06_A843
 ; external indirect data load target (via $0F:$C6F9)
 ; external indirect data load target (via $0F:$D15F, $0F:$D171)
-.byte $C7
-.byte $AB
-; -> $06:$A896: copy Midenhall's full name from save slot in $75DB to $0100 in reverse
-.byte $5F
-.byte $A8
+.addr B06_ABC7
+.addr B06_A85F
 ; external indirect data load target (via $0F:$EF5B)
-; -> $06:$A8AA: given current game save slot in $75DB, return Midenhall's level in that save game in A/$0E
-.byte $96
-.byte $A8
+.addr B06_A896
 ; external indirect data load target (via $0F:$EE09)
-; -> $06:$ADFC: given a selected list index in A, an item type in X, and a hero ID in $4A, set A to the A'th item of type X in hero $4A's inventory
-.byte $AA,$A8
-.byte $B7
-.byte $A8
+.addr B06_A8AA
+.addr B06_A8B7
 ; external indirect data load target (via $0F:$F4E6, $0F:$F5E4, $0F:$F614)
-; -> $06:$AE30: given hero ID - 1 in $4A and field spell menu selection index in A, return spell ID in A
-.byte $FC
-.byte $AD
+.addr B06_ADFC
 ; external indirect data load target (via $0F:$F5FA)
-; -> $06:$AE3D: given hero ID - 1 in $4A and battle spell menu selection index in A, return spell ID in A
-.byte $30
-.byte $AE
+.addr B06_AE30
 ; external indirect data load target (via $0F:$F4AC)
 ; external indirect data load target (via $0F:$F0BF)
-.byte $3D,$AE
-.byte $86
-.byte $AE
-; -> $06:$A88F: copy Midenhall's short name from save slot in A to $0100 in reverse
-.byte $7F,$AF
-.byte $8E
-.byte $AF
+.addr B06_AE3D
+.addr B06_AE86
+.addr B06_AF7F
+.addr B06_AF8E
 ; external indirect data load target (via $0F:$EE7E)
-; -> $06:$A885: copy save data from system RAM to per-game save data
-.byte $8F
-.byte $A8
+.addr B06_A88F
 ; external indirect data load target (via $0F:$C6DA)
-; -> $06:$AE4A: given spell ID in A, set A to spell name index
-.byte $85
-.byte $A8
+.addr B06_A885
 ; external indirect data load target (via $02:$BEA4)
-; -> $06:$B2CA: Item list part 1, line 1
-.byte $4A
-.byte $AE
+.addr B06_AE4A
 ; external indirect data load target (via $0F:$F316)
-; -> $06:$B4B2: Item list part 1, line 2
-.byte $CA
-.byte $B2
+.addr ItemNames1_1
 ; external indirect data load target (via $0F:$F317)
-; -> $06:$B624: Spell name list
-.byte $B2
-.byte $B4
+.addr ItemNames1_2
 ; data load target (from $F3AB)
-; -> $06:$B718: Monster list part 1, line 1
-.byte $24
-.byte $B6
+.addr SpellNames
 ; external indirect data load target (via $0F:$F3DE)
-; -> $06:$B945: Monster list part 1, line 2
-.byte $18
-.byte $B7
+.addr MonsterNames1_1
 ; external indirect data load target (via $0F:$F3DF)
-; -> $06:$B3BE: Item list part 2, line 1
-.byte $45,$B9,$43
-.byte $BA,$83
-.byte $BA
+.addr MonsterNames1_2
+.addr CommandTileRedraw
+.addr CommandTileRedraw2
 ; external indirect data load target (via $0F:$F318)
-; -> $06:$B57C: Item list part 2, line 2
-.byte $BE
-.byte $B3
+.addr ItemNames2_1
 ; external indirect data load target (via $0F:$F319)
-; -> $06:$B85E: Monster list part 2, line 1
-.byte $7C
-.byte $B5
+.addr ItemNames2_2
 ; external indirect data load target (via $0F:$F3E0)
-; -> $06:$B9D5: Monster list part 2, line 2
-.byte $5E
-.byte $B8
+.addr MonsterNames2_1
 ; external indirect data load target (via $0F:$F3E1)
 ; external indirect data load target (via $0F:$C897)
-.byte $D5
-.byte $B9
+.addr MonsterNames2_2
 ; external indirect data load target (via $0F:$C889)
-.byte $3D
-.byte $BB
+.addr B06_BB3D
 ; external indirect data load target (via $0F:$D359)
-.byte $A3,$BA
-.byte $1A
-.byte $A6
+.addr B06_BAA3
+.addr B06_A61A
 ; external indirect data load target (via $0F:$CC9E)
-.byte $3D
-.byte $BC
+.addr B06_BC3D
 ; external indirect data load target (via $0F:$D2FA)
-.byte $8D,$BC
-.byte $E1
-.byte $A3
-; -> $06:$BEED: X = 1 => CLC and update $0C-$0D to warp point data to use if Outside allowed from current map, SEC otherwise, X = 2 => CLC and update $0C-$0D to warp point data to use if Return allowed from current map, SEC otherwise, X = 3 => disembark from ship and update ship position based on last save point ID $48
-.byte $96
-.byte $BD
+.addr B06_BC8D
+.addr B06_A3E1
+.addr B06_BD96
 ; external indirect data load target (via $0F:$D2EA)
+.addr B06_BEED
 
-.byte $ED
-.byte $BE
-; data -> code
-; control flow target (from $8056)
-; external control flow target (from $0F:$C70F)
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+B06_8048:
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda $03 ; game clock?
 
     and #$0F
     cmp #$01
     beq B06_8059
-; call to code in a different bank ($0F:$CF64)
-    jsr $CF64
-    jmp $8048
+    jsr B0F_CF64
+    jmp B06_8048
 
-; control flow target (from $8051)
 B06_8059:
     lda #$FF
     sta $35 ; flag indicating whether any menu is currently open
@@ -152,32 +98,18 @@ B06_8059:
     lda #$06
     sta $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $00
 
-
-; code -> data
-; indirect data load target
-
-.byte $00
-; data -> code
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $06
-; data -> code
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $06
     cmp #$FF
     bne B06_8077 ; given a main COMMAND menu selection index in A, execute the handler for that menu function
 
 ; exit COMMAND menu
-; control flow target (from $809A, $89D1, $8A09, $8B0C, $8B3D, $8B9F, $9545, $9558)
+B06_806D:
     lda #$01
-; call to code in a different bank ($0F:$CF6A)
-    jsr $CF6A ; wipe selected menu region
+    jsr B0F_CF6A ; wipe selected menu region
 
     lda #$00
     sta $35 ; flag indicating whether any menu is currently open
@@ -185,66 +117,50 @@ B06_8059:
     rts
 
 ; given a main COMMAND menu selection index in A, execute the handler for that menu function
-; control flow target (from $806B)
 B06_8077:
     asl
     tay
-    lda $8086,Y ; COMMAND menu command handler pointers
-
+    lda B06_8086, y ; COMMAND menu command handler pointers
     sta $0C
-    lda $8087,Y
-    sta $0D
+    lda B06_8086+1, y
+    sta $0C+1
     jmp ($000C)
 
 
-; code -> data
 ; COMMAND menu command handler pointers
-; indexed data load target (from $8079)
-; indexed data load target (from $807E)
-.byte $A8
+B06_8086:
+.addr B06_80A8 ; COMMAND menu TALK command handler
+.addr B06_8B36 ; COMMAND menu SPELL command handler
+.addr B06_89CA ; COMMAND menu STATUS command handler
+.addr B06_955B ; COMMAND menu ITEM command handler
+.addr B06_9B17 ; COMMAND menu SEARCH handler
+.addr B06_8A02 ; COMMAND menu EQUIP handler
 
-.byte $80,$36,$8B,$CA,$89,$5B
-.byte $95,$17,$9B
-.byte $02
-.byte $8A
-; data -> code
 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-; control flow target (from $80BC, $80C7, $80DA, $80F3, $8139, $816F, $81AF, $8295, $82A0, $82C0, $82D2, $8385, $83B6, $8567, $86D2, $89FF, $8AFC, $8B52, $8B66, $8B87, $8C00, $8C2D, $8C91, $8C9C, $8F4B, $8F67)
-    jsr $809D ; wait until all joypad buttons are released and then some button pressed
-
+B06_8092:
+    jsr B06_809D ; wait until all joypad buttons are released and then some button pressed
 ; wipe menus and exit COMMAND menu
-; control flow target (from $80E8, $9071, $90C9, $91C3, $9345)
+B06_8095:
     lda #$00
-; call to code in a different bank ($0F:$CF6A)
-    jsr $CF6A ; wipe selected menu region
-
-    jmp $806D ; exit COMMAND menu
+    jsr B0F_CF6A ; wipe selected menu region
+    jmp B06_806D ; exit COMMAND menu
 
 
 ; wait until all joypad buttons are released and then some button pressed
-; control flow target (from $8092, $80A0, $89D9, $89F2, $954D, $A257)
-; call to code in a different bank ($0F:$D13D)
 B06_809D:
-    jsr $D13D ; wait for interrupt, read joypad data into $2F and A
-
+    jsr B0F_D13D ; wait for interrupt, read joypad data into $2F and A
     bne B06_809D ; wait until all joypad buttons are released and then some button pressed; loop until no buttons pressed
-
-; control flow target (from $80A5)
-; call to code in a different bank ($0F:$D13D)
 B06_80A2:
-    jsr $D13D ; wait for interrupt, read joypad data into $2F and A
-
+    jsr B0F_D13D ; wait for interrupt, read joypad data into $2F and A
     beq B06_80A2 ; loop until some button pressed
-
     rts
 
 ; COMMAND menu TALK command handler
-; indirect control flow target (via $8086)
+B06_80A8:
     lda $0540 ; NPC #$00 ? + direction nybble
 
     and #$03
-; call to code in a different bank ($0F:$CF70)
-    jsr $CF70 ; -> $02:$B141
+    jsr B0F_CF70 ; -> $02:$B141
 
     lda $D0 ; Malroth status flag (#$FF = defeated, #$00 = alive, others = countdown to battle)
 
@@ -254,128 +170,74 @@ B06_80A2:
 
     beq B06_80C3 ; no sprite ID => nobody to talk to
 
-; call to code in a different bank ($0F:$D334)
-    jsr $D334 ; post-Malroth dialogue
+    jsr B0F_D334 ; post-Malroth dialogue
 
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; pre-Malroth dialogue
-; control flow target (from $80B2)
 B06_80BF:
     lda $0C ; dialogue ID
 
     bne B06_80CA ; #$00 => nobody to talk to
 
-; control flow target (from $80B7, $8216)
-; call to code in a different bank ($0F:$F6F0)
 B06_80C3:
-    jsr $F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
+    jsr B0F_F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
+    .byte $00
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $00
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-; control flow target (from $80C1)
 B06_80CA:
     cmp #$D7
     bne B06_80DD
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda #$00 ; Midenhall; useless since string doesn't use [name] control code
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $76
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $76
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; control flow target (from $80CC)
 B06_80DD:
     cmp #$D9
     bne B06_80EB
-; call to code in a different bank ($0F:$F6F6)
-    jsr $F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
+    jsr B0F_F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
+    .byte $9A
+    jsr B0F_D1E5 ; trigger Fixed Battle #$01: 1 Evil Clown (Map ID #$04: Midenhall B1)
+
+    jmp B06_8095 ; wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $9A
-; data -> code
-; call to code in a different bank ($0F:$D1E5)
-    jsr $D1E5 ; trigger Fixed Battle #$01: 1 Evil Clown (Map ID #$04: Midenhall B1)
-
-    jmp $8095 ; wipe menus and exit COMMAND menu
-
-
-; control flow target (from $80DF)
 B06_80EB:
     cmp #$D8
     bne B06_80F6
-; call to code in a different bank ($0F:$F6EA)
-    jsr $F6EA ; open main dialogue window and display string ID specified by byte following JSR
+    jsr B0F_F6EA ; open main dialogue window and display string ID specified by byte following JSR
+    .byte $67
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $67
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-; control flow target (from $80ED)
 B06_80F6:
     cmp #$01
     bne B06_815C
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda #$01 ; Cannock; useless since string doesn't use [name] control code
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $55
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $55
     lda #$00
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $56
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $56
     lda #$07 ; Music ID #$07: add party member BGM
 
-; call to code in a different bank ($0F:$C58D)
-    jsr $C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
+    jsr B0F_C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
 
     lda $05C0 ; NPC #$10 motion nybble + direction nybble
 
@@ -385,10 +247,9 @@ B06_80F6:
     asl
     tax
     ldy #$00
-; control flow target (from $8129)
 B06_811F:
-    lda $813C,X
-    sta $0542,Y ; NPC #$00 ?
+    lda B06_813C, x
+    sta $0542, y ; NPC #$00 ?
 
     iny
     inx
@@ -404,44 +265,30 @@ B06_811F:
     lda #$03
     sta $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
-
-
-; code -> data
-; indexed data load target (from $811F, $817D)
-
-.byte $80,$7F,$00,$01,$00,$00,$00,$01,$70,$6F,$FF,$00,$00,$00,$01,$01
+;scripted motion?
+B06_813C:
+.byte $80,$7F,$00,$01,$00,$00,$00,$01
+.byte $70,$6F,$FF,$00,$00,$00,$01,$01
 .byte $80,$5F,$00,$FF,$00,$00,$02,$01
-.byte $90,$6F,$01,$00
-.byte $00,$00
-.byte $03
-.byte $01
-; data -> code
-; control flow target (from $80F8)
+.byte $90,$6F,$01,$00,$00,$00,$03,$01
+
 B06_815C:
     cmp #$02
     bne B06_81A2
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $A8
-; data -> code
-    jsr $8172
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $A8
+    jsr B06_8172
     lda #$09 ; Sprite ID $#09: Dog
 
     sta $0551 ; NPC #$02 sprite ID
 
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
-
-; control flow target (from $8167, $9727)
+B06_8172:
     lda $0558 ; NPC #$03 motion nybble + direction nybble
 
     and #$03
@@ -450,10 +297,9 @@ B06_815C:
     asl
     tax
     ldy #$00
-; control flow target (from $8187)
 B06_817D:
-    lda $813C,X
-    sta $054A,Y ; NPC #$01 scripted motion low byte
+    lda B06_813C, x
+    sta $054A, y ; NPC #$01 scripted motion low byte
 
     iny
     inx
@@ -463,323 +309,222 @@ B06_817D:
     sta $0559 ; NPC #$03 sprite ID
 
     ldy #$08
-    jmp $8193 ; useless op
+    jmp B06_8193 ; useless op
 
-
-; control flow target (from $8190)
-    jsr $8197
+B06_8193:
+    jsr B06_8197
     iny
-; control flow target (from $8193)
-    lda $0544,Y ; NPC #$01 ?
-
+B06_8197:
+    lda $0544, y ; NPC #$01 ?
     sec
-    sbc $053C,Y ; NPC #$00 ?
-
-    sta $0544,Y ; NPC #$01 ?
-
+    sbc $053C, y ; NPC #$00 ?
+    sta $0544, y ; NPC #$01 ?
     rts
 
-; control flow target (from $815E)
 B06_81A2:
     cmp #$03
     bne B06_81B2
-; call to code in a different bank ($0F:$F6F6)
-    jsr $F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $4D
-; data -> code
+    jsr B0F_F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
+    .byte $4D
     lda #$0C ; Music ID #$0C: game menu / Wellgarth singer BGM
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; control flow target (from $81A4)
 B06_81B2:
     cmp #$04
     bne B06_81B9
-    jmp $9734 ; unused since no NPC has dialogue ID #$04
+    jmp B06_9734 ; unused since no NPC has dialogue ID #$04
 
 
-; control flow target (from $81B4)
 B06_81B9:
     cmp #$05
     bne B06_81C5
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda #$06 ; Save Point ID #$06: Hamlin
 
-    jmp $93E3 ; update save point $48 to A, run through the whole save point sequence
+    jmp B06_93E3 ; update save point $48 to A, run through the whole save point sequence
 
 
-; control flow target (from $81BB)
 B06_81C5:
     cmp #$0A ; useless op
 
     bcs B06_81C9 ; useless op
 
-; control flow target (from $81C7)
 B06_81C9:
     cmp #$14
     bcs B06_81D0
-    jmp $8219 ; handler for dialogue IDs #$0A-#$13 (Innkeepers)
+    jmp B06_8219 ; handler for dialogue IDs #$0A-#$13 (Innkeepers)
 
 
-; control flow target (from $81CB)
 B06_81D0:
     cmp #$1C
     bcs B06_81D7
-    jmp $82AD ; handler for dialogue IDs #$14-#$1B (Weapon Shops)
+    jmp DoWeaponShop ; handler for dialogue IDs #$14-#$1B (Weapon Shops)
 
 
-; control flow target (from $81D2)
 B06_81D7:
     cmp #$27
     bcs B06_81DE
-    jmp $839A ; handler for dialogue IDs #$1C-#$26 (Item Shops)
+    jmp B06_839A ; handler for dialogue IDs #$1C-#$26 (Item Shops)
 
 
-; control flow target (from $81D9)
 B06_81DE:
     cmp #$28
     bcs B06_81E5
-    jmp $854E ; handler for dialogue ID #$27 (House of Healing)
+    jmp B06_854E ; handler for dialogue ID #$27 (House of Healing)
 
 
-; control flow target (from $81E0)
 B06_81E5:
     cmp #$29
     bcs B06_81EC
-    jmp $86C0 ; handler for dialogue ID #$28 (Lottery)
+    jmp B06_86C0 ; handler for dialogue ID #$28 (Lottery)
 
 
-; control flow target (from $81E7)
 B06_81EC:
     cmp #$95
     bcs B06_81F3
-    jmp $8E06 ; handler for dialogue IDs #$29-#$94 (open dialogue window and display string specified by A + #$1D7, i.e. String IDs #$0200-#$026B)
+    jmp B06_8E06 ; handler for dialogue IDs #$29-#$94 (open dialogue window and display string specified by A + #$1D7, i.e. String IDs #$0200-#$026B)
 
 
-; control flow target (from $81EE)
 B06_81F3:
     cmp #$9D
     bcs B06_81FA
-    jmp $8E44 ; handler for dialogue IDs #$95-#$9C (open dialogue window, display string specified by A + #$1D9, display YES/NO menu, and display string corresponding to selected option)
+    jmp B06_8E44 ; handler for dialogue IDs #$95-#$9C (open dialogue window, display string specified by A + #$1D9, display YES/NO menu, and display string corresponding to selected option)
 
 
-; control flow target (from $81F5)
 B06_81FA:
     cmp #$C3
     bcs B06_8201
-    jmp $8E6A ; handler for dialogue IDs #$9D-#$C2 (town NPCs with complex logic)
+    jmp B06_8E6A ; handler for dialogue IDs #$9D-#$C2 (town NPCs with complex logic)
 
 
-; control flow target (from $81FC)
 B06_8201:
     cmp #$CD
     bcs B06_8208
-    jmp $94B0 ; handler for dialogue IDs #$C3-#$CC (open dialogue window and display string specified by A - #$73)
+    jmp B06_94B0 ; handler for dialogue IDs #$C3-#$CC (open dialogue window and display string specified by A - #$73)
 
 
-; control flow target (from $8203)
 B06_8208:
     cmp #$D0
     bcs B06_820F
-    jmp $94BE ; handler for dialogue IDs #$CD-#$CF (open dialogue window, display string specified by A - #$73, display YES/NO menu, and display string corresponding to selected option)
+    jmp B06_94BE ; handler for dialogue IDs #$CD-#$CF (open dialogue window, display string specified by A - #$73, display YES/NO menu, and display string corresponding to selected option)
 
 
-; control flow target (from $820A)
 B06_820F:
     cmp #$D9
     bcs B06_8216
-    jmp $94E4 ; handler for dialogue IDs #$D0-#$D8 (dungeon NPCs with complex logic)
+    jmp B06_94E4 ; handler for dialogue IDs #$D0-#$D8 (dungeon NPCs with complex logic)
 
 
-; control flow target (from $8211)
 B06_8216:
-    jmp $80C3 ; unused since #$D9 was handled earlier and no NPC has dialogue ID > #$D9
+    jmp B06_80C3 ; unused since #$D9 was handled earlier and no NPC has dialogue ID > #$D9
 
 
 ; handler for dialogue IDs #$0A-#$13 (Innkeepers)
-; control flow target (from $81CD)
+B06_8219:
     sec
     sbc #$0A ; convert to zero-based
-
     sta $49 ; object hero/target/item/string ID $49
-
     tay
-    lda $9F80,Y ; Inn prices per party member
-
+    lda InnPrices, y ; Inn prices per party member
     pha ; Inn price per party member
-
-; call to code in a different bank ($0F:$F6CE)
-    jsr $F6CE ; return number of party members - 1 in A/X
-
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
     sta $0C ; number of party members - 1
-
     inc $0C ; number of party members
-
     pla ; Inn price per party member
-
-    jsr $86AC ; multiply A by $0C, store results in ($10-$11) and ($8F-$90); consumes $0C
-
-; call to code in a different bank ($0F:$F6F0)
-    jsr $F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $7B
-; data -> code
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B06_86AC ; multiply A by $0C, store results in ($10-$11) and ($8F-$90); consumes $0C
+    jsr B0F_F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
+    .byte $7B
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1B
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     bne B06_829C
-    jsr $8D31 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
+    jsr B06_8D31 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
 
     bcc B06_8298
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $7E
-; data -> code
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1B
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $7E
     ldx #$14
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda #$FF
     sta $0D
-; call to code in a different bank ($0F:$C2EB)
-    jsr $C2EB
+    jsr B0F_C2EB
     lda #$01 ; Music ID #$01: Inn BGM
 
-; call to code in a different bank ($0F:$C58D)
-    jsr $C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
+    jsr B0F_C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
 
-    jsr $8DCC ; restore full HP to all living party members
+    jsr B06_8DCC ; restore full HP to all living party members
 
-    jsr $8DEC ; restore full MP to all living party members
+    jsr B06_8DEC ; restore full MP to all living party members
 
     ldy $49 ; object hero/target/item/string ID $49
 
-    lda $82A3,Y ; party direction after sleeping at inn (bits 0-1 = Cannock and Moonbrooke direction, 2-3 = Midenhall direction)
+    lda B06_82a3, y ; party direction after sleeping at inn (bits 0-1 = Cannock and Moonbrooke direction, 2-3 = Midenhall direction)
 
     and #$03
     clc
     adc #$05
     sta $45
-; call to code in a different bank ($0F:$CF76)
-    jsr $CF76
+    jsr B0F_CF76
     ldy $49 ; object hero/target/item/string ID $49
 
-    lda $82A3,Y ; party direction after sleeping at inn (bits 0-1 = Cannock and Moonbrooke direction, 2-3 = Midenhall direction)
+    lda B06_82a3, y ; party direction after sleeping at inn (bits 0-1 = Cannock and Moonbrooke direction, 2-3 = Midenhall direction)
 
     lsr
     lsr
     sta $0540 ; NPC #$00 ? + direction nybble
 
-; call to code in a different bank ($0F:$CF64)
-    jsr $CF64
+    jsr B0F_CF64
     ldy #$00
-; control flow target (from $8288)
 B06_827F:
-    lda $C2E6,Y
-    sta $000D,Y
+    lda B0F_C2E7-1, y
+    sta $000D, y
     iny
     cpy #$05
     bne B06_827F
-; call to code in a different bank ($0F:$C2DE)
-    jsr $C2DE
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_C2DE
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $7F
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $80
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $7F
-; data -> code
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $80
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-; control flow target (from $8240)
-; call to code in a different bank ($0F:$FA2E)
 B06_8298:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $7D
-; data -> code
-; control flow target (from $823B)
-; call to code in a different bank ($0F:$FA2E)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $7D
 B06_829C:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $7C
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $7C
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-
-; code -> data
 ; party direction after sleeping at inn (bits 0-1 = Cannock and Moonbrooke direction, 2-3 = Midenhall direction)
-; indexed data load target (from $8263, $8272)
+B06_82a3:
+.byte $04	 ; Inn ID #$00, Map IDs #$00/#$03: Fake Midenhall/Midenhall 1F
+.byte $04	 ; Inn ID #$01, Map ID #$05: Leftwyne
+.byte $0E	 ; Inn ID #$02, Map ID #$06: Cannock
+.byte $0C	 ; Inn ID #$03, Map ID #$07: Hamlin
+.byte $04	 ; Inn ID #$04, Map ID #$0B: Lianport
+.byte $0C	 ; Inn ID #$05, Map ID #$0C: Tantegel
+.byte $0C	 ; Inn ID #$06, Map ID #$0F: Osterfair
+.byte $0C	 ; Inn ID #$07, Map ID #$10: Zahan
+.byte $0F	 ; Inn ID #$08, Map ID #$11: Tuhn / Map ID #$14: Wellgarth Underground
+.byte $0C	 ; Inn ID #$09, Map ID #$15: Beran
 
-.byte $04,$04,$0E,$0C,$04
-.byte $0C,$0C,$0C
-.byte $0F
-.byte $0C
 
 DoWeaponShop:
-; data -> code
 ; handler for dialogue IDs #$14-#$1B (Weapon Shops)
-; control flow target (from $81D4)
     sta $49 ; object hero/target/item/string ID $49
     cmp #$18 ; Weapon Shop ID #04, Map ID #$0F: Osterfair
     bne B06_82C3
@@ -788,66 +533,34 @@ DoWeaponShop:
     cmp #$01 ; Right
     beq B06_82C3 ; talking to the shopkeeper from behind the counter, use a different string
 
-; call to code in a different bank ($0F:$F6F6)
-    jsr $F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
+    jsr B0F_F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
+    .byte $CE
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $CE
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-; control flow target (from $82B1, $82BA)
-; call to code in a different bank ($0F:$F6F0)
 B06_82C3:
-    jsr $F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $5B
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
+    .byte $5B
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     beq B06_82D5
 ; finish weapon transaction
-; control flow target (from $82E3, $8318, $8367)
-; call to code in a different bank ($0F:$FA2E)
 B06_82CE:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $5D
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $5D
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-; control flow target (from $82CC, $836A)
-; call to code in a different bank ($0F:$FA2E)
 B06_82D5:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $5C
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $5C
     lda $49 ; object hero/target/item/string ID $49
 
     sec
     sbc #$14 ; convert to Shop ID
 
-; call to code in a different bank ($0F:$F61B)
     jsr B0F_F61B ; display shop menu item list for shop ID given in A, returning selected item (with Jailor's Key replaced by blank) in A
 
     cmp #$FF
@@ -857,208 +570,127 @@ B06_82D5:
 
     bcs B06_82F1 ; branch if price of item was deducted from party gold
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $5E
+    jmp B06_835C
 
-
-; code -> data
-; indirect data load target
-
-.byte $5E
-; data -> code
-    jmp $835C
-
-; control flow target (from $82E8)
-; call to code in a different bank ($0F:$F6CE)
 B06_82F1:
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     cmp #$00
     bne B06_8306 ; if Midenhall is alone, no need to ask who to give it to
 
-    jsr $836D ; given hero ID in A and item ID in $96, try to add item to first empty slot in hero's inventory; if unable to add, refund purchase, pop JSR return address and JMP $8092 instead
+    jsr B06_836D ; given hero ID in A and item ID in $96, try to add item to first empty slot in hero's inventory; if unable to add, refund purchase, pop JSR return address and JMP B06_8092 instead
 
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     sta $95 ; ID for [item] and [spell] control codes
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $5F
+    jmp B06_834C
 
-
-; code -> data
-; indirect data load target
-
-.byte $5F
-; data -> code
-    jmp $834C
-
-; control flow target (from $82F6)
 B06_8306:
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     sta $95 ; ID for [item] and [spell] control codes
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $62
-; data -> code
-; call to code in a different bank ($0F:$F595)
-    jsr $F595 ; display appropriate shop BUY/SELL hero select menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $62
+    jsr B0F_F595 ; display appropriate shop BUY/SELL hero select menu
 
     cmp #$FF
     bne B06_831B
-; control flow target (from $8330)
 B06_8315:
-    jsr $8388 ; add the number at $8F-$90 to party gold; no check for overflow, so this is only safe to use when reverting a sale
+    jsr B06_8388 ; add the number at $8F-$90 to party gold; no check for overflow, so this is only safe to use when reverting a sale
 
-    jmp $82CE ; finish weapon transaction
+    jmp B06_82CE ; finish weapon transaction
 
 
-; control flow target (from $8313)
 B06_831B:
     sta $97 ; subject hero ID $97
 
-    jsr $A3A3 ; given item ID in $96 and hero ID in $97, set A to #$80 if hero can equip item, #$00 otherwise
+    jsr B06_A3A3 ; given item ID in $96 and hero ID in $97, set A to #$80 if hero can equip item, #$00 otherwise
 
     cmp #$00
     bne B06_8332
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $91
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $91
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00
     bne B06_8315
-; control flow target (from $8322)
 B06_8332:
     lda $97 ; subject hero ID $97
 
-    jsr $836D ; given hero ID in A and item ID in $96, try to add item to first empty slot in hero's inventory; if unable to add, refund purchase, pop JSR return address and JMP $8092 instead
+    jsr B06_836D ; given hero ID in A and item ID in $96, try to add item to first empty slot in hero's inventory; if unable to add, refund purchase, pop JSR return address and JMP B06_8092 instead
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_8348
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $63
+    jmp B06_834C
 
-
-; code -> data
-; indirect data load target
-
-.byte $63
-; data -> code
-    jmp $834C
-
-; control flow target (from $833C)
-; call to code in a different bank ($0F:$FA2E)
 B06_8348:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $64
-; data -> code
-; control flow target (from $8303, $8345)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $64
+B06_834C:
     lda #$32 ; Item ID #$32: Golden Card
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     cmp #$FF
     beq B06_835C
-    jsr $8D11 ; given item ID in $96 and discount amount in $8F-$90, set $8F-$90 to discounted item price
+    jsr B06_8D11 ; given item ID in $96 and discount amount in $8F-$90, set $8F-$90 to discounted item price
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $60
-; data -> code
-; control flow target (from $82EE, $8353)
-; call to code in a different bank ($0F:$FA2E)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $60
 B06_835C:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $61
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $61
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     beq B06_836A
-    jmp $82CE ; finish weapon transaction
+    jmp B06_82CE ; finish weapon transaction
 
 
-; control flow target (from $8365)
 B06_836A:
-    jmp $82D5
+    jmp B06_82D5
 
-; given hero ID in A and item ID in $96, try to add item to first empty slot in hero's inventory; if unable to add, refund purchase, pop JSR return address and JMP $8092 instead
-; control flow target (from $82F8, $8334)
+; given hero ID in A and item ID in $96, try to add item to first empty slot in hero's inventory; if unable to add, refund purchase, pop JSR return address and JMP B06_8092 instead
+B06_836D:
     sta $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcc B06_8379
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1B
     rts
 
-; control flow target (from $8372)
 B06_8379:
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $65
-; data -> code
-    jsr $8388 ; add the number at $8F-$90 to party gold; no check for overflow, so this is only safe to use when reverting a sale
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $65
+    jsr B06_8388 ; add the number at $8F-$90 to party gold; no check for overflow, so this is only safe to use when reverting a sale
 
     pla
     pla
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; add the number at $8F-$90 to party gold; no check for overflow, so this is only safe to use when reverting a sale
-; control flow target (from $8315, $8380, $8403)
+B06_8388:
     lda $8F
     clc
     adc $0624 ; party gold, low byte
@@ -1073,30 +705,16 @@ B06_8379:
     rts
 
 ; handler for dialogue IDs #$1C-#$26 (Item Shops)
-; control flow target (from $81DB)
+B06_839A:
     sec
     sbc #$14 ; convert to Shop ID
 
     sta $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$F6F0)
-    jsr $F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $66
-; data -> code
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $18
-; data -> code
+    jsr B0F_F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
+    .byte $66
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $18
     cmp #$FF
     beq B06_83B2 ; finish item transaction
 
@@ -1104,45 +722,28 @@ B06_8379:
 
     beq B06_83C4 ; BUY handler
 
-    jmp $8485 ; SELL handler
+    jmp B06_8485 ; SELL handler
 
 
 ; finish item transaction
-; control flow target (from $83A9, $83C2, $83CF, $83DE, $8406, $8497, $84B4)
-; call to code in a different bank ($0F:$FA2E)
 B06_83B2:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $70
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $70
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-; control flow target (from $83EB, $8469, $8482)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $6F
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+B06_83B9:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $6F
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     bne B06_83B2 ; finish item transaction
 
 ; BUY handler
-; control flow target (from $83AD)
-; call to code in a different bank ($0F:$FA2E)
 B06_83C4:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
     .byte $67
     lda $49 ; object hero/target/item/string ID $49
     ; display shop menu item list for shop ID given in A, returning selected item (with Jailor's Key replaced by blank) in A
@@ -1151,202 +752,117 @@ B06_83C4:
     beq B06_83B2 ; finish item transaction
     cmp #$00 ; Jailor's Key converted to #$00
     bne B06_83E2
-    ; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
     .byte $DA
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
     cmp #$00 ; YES
     bne B06_83B2 ; finish item transaction
     lda #$39 ; Item ID #$39: Jailor’s Key
-; control flow target (from $83D3)
 B06_83E2:
     jsr B06_8D4D ; given item ID in A, save it to $96 and set $8F-$90 to purchase price of item, accounting for possible Golden Card discount; decrease party gold by that amount and SEC if possible, CLC otherwise
     bcs B06_83EE
-    ; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
     .byte $68
-    jmp $83B9
+    jmp B06_83B9
 
-; control flow target (from $83E5)
-; call to code in a different bank ($0F:$F6CE)
 B06_83EE:
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     cmp #$00
     bne B06_8414 ; if Midenhall is alone, no need to ask who to give it to
 
     sta $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcs B06_8409
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $6C
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $6C
 ; revert sale, finish item transaction
-; control flow target (from $842E, $8448)
 B06_8403:
-    jsr $8388 ; add the number at $8F-$90 to party gold; no check for overflow, so this is only safe to use when reverting a sale
+    jsr B06_8388 ; add the number at $8F-$90 to party gold; no check for overflow, so this is only safe to use when reverting a sale
 
-    jmp $83B2 ; finish item transaction
+    jmp B06_83B2 ; finish item transaction
 
 
-; control flow target (from $83FA)
 B06_8409:
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     sta $95 ; ID for [item] and [spell] control codes
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $69
+    jmp B06_8455
 
-
-; code -> data
-; indirect data load target
-
-.byte $69
-; data -> code
-    jmp $8455
-
-; control flow target (from $83F3)
 B06_8414:
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     cmp #$39 ; Item ID #$39: Jailor’s Key
 
     bne B06_8421
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $DB
+    jmp B06_844a
 
-
-; code -> data
-; indirect data load target
-
-.byte $DB
-; data -> code
-    jmp $844A
-
-; control flow target (from $8418)
 B06_8421:
     sta $95 ; ID for [item] and [spell] control codes
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $6A
-; data -> code
-; control flow target (from $844E)
-; call to code in a different bank ($0F:$F595)
-    jsr $F595 ; display appropriate shop BUY/SELL hero select menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $6A
+B06_8427:
+    jsr B0F_F595 ; display appropriate shop BUY/SELL hero select menu
 
     cmp #$FF
     bne B06_8431
-    jmp $8403 ; revert sale, finish item transaction
+    jmp B06_8403 ; revert sale, finish item transaction
 
 
-; control flow target (from $842C)
 B06_8431:
     sta $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcs B06_8451
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $6C
-; data -> code
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $6D
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $6C
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $6D
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     bne B06_8403 ; revert sale, finish item transaction
 
-; control flow target (from $841E)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+B06_844a:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $6E
+    jmp B06_8427
 
-
-; code -> data
-; indirect data load target
-
-.byte $6E
-; data -> code
-    jmp $8427
-
-; control flow target (from $8436)
-; call to code in a different bank ($0F:$FA2E)
 B06_8451:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $6B
-; data -> code
-; control flow target (from $8411)
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $6B
+B06_8455:
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1B
     lda #$32 ; Item ID #$32: Golden Card
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     cmp #$FF
     beq B06_846C
-    jsr $8D11 ; given item ID in $96 and discount amount in $8F-$90, set $8F-$90 to discounted item price
+    jsr B06_8D11 ; given item ID in $96 and discount amount in $8F-$90, set $8F-$90 to discounted item price
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $71
-; data -> code
-; control flow target (from $8473, $847C)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $71
 B06_8469:
-    jmp $83B9
+    jmp B06_83B9
 
-; control flow target (from $8460)
-; call to code in a different bank ($0F:$C3AB)
 B06_846C:
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
@@ -1357,50 +873,33 @@ B06_846C:
 
     sta $96 ; temp storage for item/spell/type/etc. IDs
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcc B06_8469
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $9D
-; data -> code
-    jmp $83B9
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $9D
+    jmp B06_83B9
 
 ; SELL handler
-; control flow target (from $83AF)
-; call to code in a different bank ($0F:$F6CE)
-    jsr $F6CE ; return number of party members - 1 in A/X
+B06_8485:
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     cmp #$00
     beq B06_849A ; if Midenhall is alone, no need to ask who's selling
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $72
-; data -> code
-; call to code in a different bank ($0F:$F595)
-    jsr $F595 ; display appropriate shop BUY/SELL hero select menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $72
+    jsr B0F_F595 ; display appropriate shop BUY/SELL hero select menu
 
     cmp #$FF
     bne B06_849A
-    jmp $83B2 ; finish item transaction
+    jmp B06_83B2 ; finish item transaction
 
 
-; control flow target (from $848A, $8495)
 B06_849A:
     sta $97 ; subject hero ID $97
 
-; control flow target (from $850D)
+B06_849C:
     lda $97 ; subject hero ID $97
 
     asl ; 8 inventory items per hero
@@ -1411,9 +910,8 @@ B06_849A:
 
     ldx #$08 ; 8 inventory items per hero; loop counter
 
-; control flow target (from $84AB)
 B06_84A4:
-    lda $0600,Y ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, y ; Midenhall inventory item 1 (| #$40 if equipped)
 
     bne B06_84B7
     iny ; hero inventory read index
@@ -1421,55 +919,30 @@ B06_84A4:
     dex ; loop counter
 
     bne B06_84A4
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $73
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $73
 ; finish item transaction
-; control flow target (from $84CF, $850B)
 B06_84B4:
-    jmp $83B2 ; finish item transaction
+    jmp B06_83B2 ; finish item transaction
 
 
-; control flow target (from $84A7)
-; call to code in a different bank ($0F:$FA2E)
 B06_84B7:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $74
-; data -> code
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $74
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1B
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F5FE)
-    jsr $F5FE ; given a hero ID in A, open hero's item list and return selected item ID (or #$FE if they have no items)
+    jsr B0F_F5FE ; given a hero ID in A, open hero's item list and return selected item ID (or #$FE if they have no items)
 
     stx $49 ; object hero/target/item/string ID $49
 
     pha ; item ID
 
     lda #$03
-; call to code in a different bank ($0F:$CF6A)
-    jsr $CF6A ; wipe selected menu region
+    jsr B0F_CF6A ; wipe selected menu region
 
     pla ; item ID
 
@@ -1482,25 +955,19 @@ B06_84B7:
 
     asl
     tay
-    lda $9FFC,Y ; Item Prices, low byte
-
+    lda ItemPrices, y ; Item Prices, low byte
     sta $8F
-    lda $9FFD,Y ; Item Prices, high byte
-
+    lda ItemPrices+1, y ; Item Prices, high byte
     sta $90
     lsr $90 ; LSR 16-bit $8F-$90
-
     ror $8F
     lsr $90 ; LSR 16-bit $8F-$90
-
     ror $8F
-    lda $9FFC,Y ; Item Prices, low byte
-
+    lda ItemPrices, y ; Item Prices, low byte
     sec
     sbc $8F
     sta $8F
-    lda $9FFD,Y ; Item Prices, high byte
-
+    lda ItemPrices+1, y ; Item Prices, high byte
     sbc $90
     sta $90 ; at this point item sell price is 75% of base price
 
@@ -1509,573 +976,352 @@ B06_84B7:
     ora $90
     bne B06_8510 ; sell price of zero => key item
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $75
-; data -> code
-; control flow target (from $8523, $8544, $854B)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $79
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $75
+B06_8502:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $79
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     bne B06_84B4 ; finish item transaction
 
-    jmp $849C
+    jmp B06_849C
 
-; control flow target (from $84FC)
 B06_8510:
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     sta $95 ; ID for [item] and [spell] control codes
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $76
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $76
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     beq B06_8526
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $77
+    jmp B06_8502
 
-
-; code -> data
-; indirect data load target
-
-.byte $77
-; data -> code
-    jmp $8502
-
-; control flow target (from $851D)
 B06_8526:
     ldx $49 ; object hero/target/item/string ID $49
 
-    jsr $8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
+    jsr B06_8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
 
     txa ; don't care about the item ID, just want the party inventory ID
 
     tay
-    jsr $8B23 ; given party inventory index in Y, CLC and return equipped item ID in A if corresponding item is equipped and cursed, SEC and return unequipped item ID in A otherwise
+    jsr B06_8B23 ; given party inventory index in Y, CLC and return equipped item ID in A if corresponding item is equipped and cursed, SEC and return unequipped item ID in A otherwise
 
     bcc B06_8547
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $78
-; data -> code
-    jsr $8CF5 ; add $8F-$90 to party gold, capped at $FFFF
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $78
+    jsr B06_8CF5 ; add $8F-$90 to party gold, capped at $FFFF
 
     lda $97 ; subject hero ID $97
 
     ldx $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$C4D4)
-    jsr $C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
+    jsr B0F_C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
 
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1B
+    jmp B06_8502
 
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
-    jmp $8502
-
-; control flow target (from $8530)
-; call to code in a different bank ($0F:$FA2E)
 B06_8547:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $7A
-; data -> code
-    jmp $8502
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $7A
+    jmp B06_8502
 
 ; handler for dialogue ID #$27 (House of Healing)
-; control flow target (from $81E2)
+B06_854E:
     sec
     sbc #$27 ; LDA #$00 would have been shorter and faster
 
     sta $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$F6F0)
-    jsr $F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $81
-; data -> code
-; control flow target (from $8573)
-; call to code in a different bank ($0F:$FA2E)
+    jsr B0F_F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
+    .byte $81
 B06_8557:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $82
-; data -> code
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1A
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $82
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1A
     cmp #$FF
     bne B06_8577
 ; finish conversation
-; control flow target (from $8575, $858E, $85D9, $8632)
-; call to code in a different bank ($0F:$FA2E)
 B06_8563:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $88
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $88
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; repeat service loop
-; control flow target (from $85A0, $85BD, $85F7, $8619, $8645, $866F, $869A)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $87
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+B06_856A:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $87
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     beq B06_8557
     bne B06_8563 ; finish conversation
 
-; control flow target (from $8561)
 B06_8577:
     cmp #$00 ; DETOXICATE
 
     beq B06_857E ; DETOXICATE handler
 
-    jmp $85C0
+    jmp B06_85C0
 
 ; DETOXICATE handler
-; control flow target (from $8579)
-; call to code in a different bank ($0F:$F6CE)
 B06_857E:
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     cmp #$00
     beq B06_8590 ; if Midenhall is alone, no need to ask for target hero
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $83
-; data -> code
-; call to code in a different bank ($0F:$F595)
-    jsr $F595 ; display appropriate shop BUY/SELL hero select menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $83
+    jsr B0F_F595 ; display appropriate shop BUY/SELL hero select menu
 
     cmp #$FF
     beq B06_8563 ; finish conversation
 
-; control flow target (from $8583)
 B06_8590:
     sta $97 ; subject hero ID $97
 
     lda #$20 ; Poison
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcs B06_85A3
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $84
-; data -> code
-    jmp $856A ; repeat service loop
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $84
+    jmp B06_856A ; repeat service loop
 
 
-; control flow target (from $8597)
 B06_85A3:
     lda #$02 ; DETOXICATE fee is hero level * 2
 
-    jsr $86A4 ; given hero ID in $97, multiply A by that hero's level, store results in ($10-$11) and ($8F-$90); consumes $0C
+    jsr B06_86a4 ; given hero ID in $97, multiply A by that hero's level, store results in ($10-$11) and ($8F-$90); consumes $0C
 
-    jsr $8679 ; try to collect payment for House of Healing service; refusal or insufficient gold pops JSP return address and jumps to repeat service loop at $06:$856A
+    jsr B06_8679 ; try to collect payment for House of Healing service; refusal or insufficient gold pops JSP return address and jumps to repeat service loop at $06:B06_856A
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $86
+    jsr B0F_C515 ; flash screen 10 times
 
+    jsr B06_8DAA ; given hero ID in $97, set Y to start of hero's data in $062D, y, i.e. Y = $97 * #$12
 
-; code -> data
-; indirect data load target
-
-.byte $86
-; data -> code
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
-
-    jsr $8DAA ; given hero ID in $97, set Y to start of hero's data in $062D,Y, i.e. Y = $97 * #$12
-
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$DF ; clear Poison
 
-    sta $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-    jmp $856A ; repeat service loop
+    jmp B06_856A ; repeat service loop
 
 
-; control flow target (from $857B)
+B06_85C0:
     cmp #$01 ; UNCURSE
-
     beq B06_85C7 ; UNCURSE handler
-
-    jmp $8620 ; REVIVAL handler
+    jmp B06_8620 ; REVIVAL handler
 
 
 ; UNCURSE handler
-; control flow target (from $85C2)
-; call to code in a different bank ($0F:$F6CE)
 B06_85C7:
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     cmp #$00
     beq B06_85DC ; if Midenhall is alone, no need to ask for target hero
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $8B
-; data -> code
-; call to code in a different bank ($0F:$F595)
-    jsr $F595 ; display appropriate shop BUY/SELL hero select menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $8B
+    jsr B0F_F595 ; display appropriate shop BUY/SELL hero select menu
 
     cmp #$FF
     bne B06_85DC
-    jmp $8563 ; finish conversation
+    jmp B06_8563 ; finish conversation
 
 
-; control flow target (from $85CC, $85D7)
 B06_85DC:
     sta $97 ; subject hero ID $97
 
     lda #$04 ; there are 4 cursed items in the game
 
     sta $0C
-; control flow target (from $85EE)
 B06_85E2:
     ldy $0C
-    lda $861B,Y ; list of cursed items (equipped), built in offset from $861C
+    lda B06_861C-1, y ; list of cursed items (equipped), built in offset from $861C
 
-    jsr $8DBA ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
+    jsr B06_8DBA ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
 
     bcs B06_85FA
     dec $0C
     bne B06_85E2 ; loop to check next cursed item
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $8C
-; data -> code
-    jmp $856A ; repeat service loop
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $8C
+    jmp B06_856A ; repeat service loop
 
 
-; control flow target (from $85EA)
 B06_85FA:
     lda #$64 ; UNCURSE fee is hero level * 100
 
-    jsr $86A4 ; given hero ID in $97, multiply A by that hero's level, store results in ($10-$11) and ($8F-$90); consumes $0C
+    jsr B06_86a4 ; given hero ID in $97, multiply A by that hero's level, store results in ($10-$11) and ($8F-$90); consumes $0C
 
-    jsr $8679 ; try to collect payment for House of Healing service; refusal or insufficient gold pops JSP return address and jumps to repeat service loop at $06:$856A
+    jsr B06_8679 ; try to collect payment for House of Healing service; refusal or insufficient gold pops JSP return address and jumps to repeat service loop at $06:B06_856A
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $8D
-; data -> code
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $8D
+    jsr B0F_C515 ; flash screen 10 times
 
     lda #$04 ; there are 4 cursed items in the game
 
     sta $0C
-; control flow target (from $8617)
 B06_860D:
     ldy $0C
-    lda $861B,Y ; list of cursed items (equipped), built in offset from $861C
+    lda B06_861C-1, y ; list of cursed items (equipped), built in offset from $861C
 
-    jsr $8DC3 ; given a hero ID in $97 and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
+    jsr B06_8DC3 ; given a hero ID in $97 and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
 
     dec $0C
     bne B06_860D ; loop to keep removing cursed items
 
 ; list of cursed items (equipped), built in offset from $861C
 ; indexed data load target (from $85E4, $860F, $8AC8)
-    jmp $856A ; repeat service loop
+    jmp B06_856A ; repeat service loop
 
 
 
-; code -> data
 ; list of equipped cursed items
-; indexed data load target (from $8B28)
+B06_861C:
+.byte $6F	 ; Item ID #$6F: Gremlin’s Tail (equipped)
+.byte $4C	 ; Item ID #$4C: Sword of Destruction (equipped)
+.byte $57	 ; Item ID #$57: Gremlin’s Armor (equipped)
+.byte $5F	 ; Item ID #$5F: Evil Shield (equipped)
 
-.byte $6F,$4C
-.byte $57
-.byte $5F
-; data -> code
+
 ; REVIVAL handler
-; control flow target (from $85C4)
-; call to code in a different bank ($0F:$F6CE)
-    jsr $F6CE ; return number of party members - 1 in A/X
+B06_8620:
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     cmp #$00 ; if Midenhall is alone, no need to ask for target hero
 
     beq B06_8635
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $8E
-; data -> code
-; call to code in a different bank ($0F:$F595)
-    jsr $F595 ; display appropriate shop BUY/SELL hero select menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $8E
+    jsr B0F_F595 ; display appropriate shop BUY/SELL hero select menu
 
     cmp #$FF
     bne B06_8635
-    jmp $8563 ; finish conversation
+    jmp B06_8563 ; finish conversation
 
 
-; control flow target (from $8625, $8630)
 B06_8635:
     sta $97 ; subject hero ID $97
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_8648
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $8F
-; data -> code
-    jmp $856A ; repeat service loop
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $8F
+    jmp B06_856A ; repeat service loop
 
 
-; control flow target (from $863C)
 B06_8648:
     lda #$14 ; REVIVAL fee is hero level * 20
 
-    jsr $86A4 ; given hero ID in $97, multiply A by that hero's level, store results in ($10-$11) and ($8F-$90); consumes $0C
+    jsr B06_86a4 ; given hero ID in $97, multiply A by that hero's level, store results in ($10-$11) and ($8F-$90); consumes $0C
 
-    jsr $8679 ; try to collect payment for House of Healing service; refusal or insufficient gold pops JSP return address and jumps to repeat service loop at $06:$856A
+    jsr B06_8679 ; try to collect payment for House of Healing service; refusal or insufficient gold pops JSP return address and jumps to repeat service loop at $06:B06_856A
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $90
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $90
     lda #$02 ; Music ID #$02: revive BGM
 
-; call to code in a different bank ($0F:$C58D)
-    jsr $C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
+    jsr B0F_C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
 
-    jsr $8DAA ; given hero ID in $97, set Y to start of hero's data in $062D,Y, i.e. Y = $97 * #$12
+    jsr B06_8DAA ; given hero ID in $97, set Y to start of hero's data in $062D, y, i.e. Y = $97 * #$12
 
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     ora #$80 ; Alive
 
-    sta $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     lda #$01 ; revived with 1 HP
 
-    sta $063B,Y ; Midenhall Current HP, low byte
+    sta $063B, y ; Midenhall Current HP, low byte
 
-; call to code in a different bank ($0F:$D302)
-    jsr $D302
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
-    jmp $856A ; repeat service loop
+    jsr B0F_D302
+    jsr B0F_C22C
+    jmp B06_856A ; repeat service loop
 
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $91
+    jmp B06_867D
 
-
-; code -> data
-
-.byte $91
-; data -> code
-    jmp $867D
-
-; try to collect payment for House of Healing service; refusal or insufficient gold pops JSP return address and jumps to repeat service loop at $06:$856A
-; control flow target (from $85A8, $85FF, $864D)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $85
-; data -> code
-; control flow target (from $8676)
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+; try to collect payment for House of Healing service; refusal or insufficient gold pops JSP return address and jumps to repeat service loop at $06:B06_856A
+B06_8679:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $85
+B06_867D:
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1B
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     bne B06_8694
-    jsr $8D31 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
+    jsr B06_8D31 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
 
     bcc B06_869D
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $1B
+    jmp B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
 
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
-    jmp $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
-
-
-; control flow target (from $8686)
-; call to code in a different bank ($0F:$FA2E)
 B06_8694:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $89
-; data -> code
-; control flow target (from $86A1)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $89
+B06_8698:
     pla
     pla
-    jmp $856A ; repeat service loop
+    jmp B06_856A ; repeat service loop
 
 
-; control flow target (from $868B)
-; call to code in a different bank ($0F:$FA2E)
 B06_869D:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $8A
-; data -> code
-    jmp $8698
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $8A
+    jmp B06_8698
 
 ; given hero ID in $97, multiply A by that hero's level, store results in ($10-$11) and ($8F-$90); consumes $0C
-; control flow target (from $85A5, $85FC, $864A)
+B06_86a4:
     sta $0C
-    jsr $8DAA ; given hero ID in $97, set Y to start of hero's data in $062D,Y, i.e. Y = $97 * #$12
+    jsr B06_8DAA ; given hero ID in $97, set Y to start of hero's data in $062D, y, i.e. Y = $97 * #$12
 
-    lda $063E,Y ; Midenhall Level
+    lda $063E, y ; Midenhall Level
 
 ; multiply A by $0C, store results in ($10-$11) and ($8F-$90); consumes $0C
-; control flow target (from $822B)
+B06_86AC:
     sta $0E
     lda #$00
     sta $0D
     sta $0F
-; call to code in a different bank ($0F:$C339)
-    jsr $C339 ; 16-bit multiplication: ($10-$11) = ($0C-$0D) * ($0E-$0F); consumes $0C-$0F
+    jsr B0F_C339 ; 16-bit multiplication: ($10-$11) = ($0C-$0D) * ($0E-$0F); consumes $0C-$0F
 
     lda $10
     sta $8F
@@ -2084,57 +1330,34 @@ B06_869D:
     rts
 
 ; handler for dialogue ID #$28 (Lottery)
-; control flow target (from $81E9)
-; call to code in a different bank ($0F:$F6F0)
-    jsr $F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $94
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+B06_86C0:
+    jsr B0F_F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
+    .byte $94
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     beq B06_86D5
 ; finish lottery conversation
-; control flow target (from $86E2, $870B, $8723, $873C)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+B06_86CB:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $95
+    jsr B06_8905
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
-; code -> data
-; indirect data load target
-
-.byte $95
-; data -> code
-    jsr $8905
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-; control flow target (from $86C9)
 B06_86D5:
     lda #$33 ; Item ID #$33: Lottery Ticket
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     cmp #$FF
     bne B06_86E5
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $96
+    jmp B06_86CB ; finish lottery conversation
 
 
-; code -> data
-; indirect data load target
-
-.byte $96
-; data -> code
-    jmp $86CB ; finish lottery conversation
-
-
-; control flow target (from $86DC)
 B06_86E5:
     lsr ; convert party inventory index to hero ID
 
@@ -2142,57 +1365,27 @@ B06_86E5:
     lsr
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $97
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $97
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     bne B06_86F9
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $98
-; data -> code
-; control flow target (from $86F3)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $98
 B06_86F9:
-    jsr $8744
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $99
-; data -> code
-    jsr $8778
+    jsr B06_8744
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $99
+    jsr B06_8778
     cmp #$05
     bne B06_870E
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $9C
+    jmp B06_86CB ; finish lottery conversation
 
 
-; code -> data
-; indirect data load target
-
-.byte $9C
-; data -> code
-    jmp $86CB ; finish lottery conversation
-
-
-; control flow target (from $8705)
 B06_870E:
     sta $8F ; prize number
 
@@ -2200,64 +1393,47 @@ B06_870E:
     sta $90
     lda #$33 ; Item ID #$33: Lottery Ticket
 
-    jsr $8DC3 ; given a hero ID in $97 and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
+    jsr B06_8DC3 ; given a hero ID in $97 and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
 
     lda $8F
     cmp #$FF
     bne B06_8726
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $9B
+    jmp B06_86CB ; finish lottery conversation
 
 
-; code -> data
-; indirect data load target
-
-.byte $9B
-; data -> code
-    jmp $86CB ; finish lottery conversation
-
-
-; control flow target (from $871D)
 B06_8726:
     tay
-    lda $873F,Y ; Lottery prizes
+    lda B06_873F, y ; Lottery prizes
 
     sta $96 ; temp storage for item/spell/type/etc. IDs
 
     sta $95 ; ID for [item] and [spell] control codes
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     inc $8F
     lda #$06 ; Music ID #$06: lottery win BGM
 
-; call to code in a different bank ($0F:$C58D)
-    jsr $C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
+    jsr B0F_C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $9A
-; data -> code
-    jmp $86CB ; finish lottery conversation
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $9A
+    jmp B06_86CB ; finish lottery conversation
 
 
 
-; code -> data
 ; Lottery prizes
-; indexed data load target (from $8727)
+B06_873F:
+.byte $32	 ; Item ID #$32: Golden Card
+.byte $3D	 ; Item ID #$3D: Wizard’s Ring
+.byte $03	 ; Item ID #$03: Wizard’s Wand
+.byte $30	 ; Item ID #$30: Dragon’s Bane
+.byte $3C	 ; Item ID #$3C: Medical Herb
 
-.byte $32,$3D,$03
-.byte $30
-.byte $3C
-; data -> code
-; control flow target (from $86F9)
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+B06_8744:
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
@@ -2265,7 +1441,7 @@ B06_8726:
     and #$78
     sta $DD
     ldx #$00
-    jsr $8878
+    jsr B06_8878
     lda $32 ; RNG byte 0
 
     asl
@@ -2274,41 +1450,38 @@ B06_8726:
     and #$78
     sta $DF
     ldx #$08
-    jsr $8878
+    jsr B06_8878
     lda $33 ; RNG byte 1
 
     and #$78
     sta $E1
     ldx #$10
-    jsr $8878
+    jsr B06_8878
     lda #$00
     sta $DE
     sta $E0
     sta $E2
-    jsr $895B
+    jsr B06_895B
     rts
 
-; control flow target (from $8700)
+B06_8778:
     lda #$00
     sta $DC
     lda $2F ; joypad 1 data
 
     and #$01
     sta $DA
-; control flow target (from $87D5)
 B06_8782:
     lda $DC
     and #$07
     cmp #$07
     beq B06_87A7
-; control flow target (from $8799)
 B06_878A:
-    jsr $891F
+    jsr B06_891F
     eor $DC
     lsr
     bcc B06_8794
     inc $DC
-; control flow target (from $8790)
 B06_8794:
     lda $DC
     lsr
@@ -2319,34 +1492,32 @@ B06_8794:
     tax
     dex
     dex
-    lda $DE,X
+    lda $DE, x
     ora #$40
-    sta $DE,X
-; control flow target (from $8788, $879B)
+    sta $DE, x
 B06_87A7:
     ldx #$00
-; control flow target (from $87C9)
 B06_87A9:
     stx $D5
     txa
     asl
     asl
     sta $D6
-    lda $DD,X
+    lda $DD, x
     sta $D7
-    lda $DE,X
+    lda $DE, x
     sta $D8
-    jsr $881A
+    jsr B06_881A
     ldx $D5
     lda $D7
-    sta $DD,X
+    sta $DD, x
     lda $D8
-    sta $DE,X
+    sta $DE, x
     inx
     inx
     cpx #$06
     bne B06_87A9
-    jsr $895B
+    jsr B06_895B
     lda $DE
     and $E0
     and $E2
@@ -2354,16 +1525,14 @@ B06_87A9:
     bcc B06_8782
     ldx #$05
     lda #$00
-; control flow target (from $87DF)
 B06_87DB:
-    sta $0662,X ; Moonbrooke Level
+    sta $0662, x ; Moonbrooke Level
 
     dex
     bne B06_87DB
     ldy #$00
-; control flow target (from $87FF)
 B06_87E3:
-    ldx $DD,Y
+    ldx $DD, y
     txa
     lsr
     lsr
@@ -2376,18 +1545,17 @@ B06_87E3:
     asl
     ora $D5
     tax
-    lda $88D5,X
+    lda B06_88D5, x
     tax
-    inc $0663,X ; monster ID, group 1
+    inc $0663, x ; monster ID, group 1
 
     iny
     iny
     cpy #$06
     bne B06_87E3
     ldx #$00
-; control flow target (from $8811)
 B06_8803:
-    lda $0663,X ; monster ID, group 1
+    lda $0663, x ; monster ID, group 1
 
     cmp #$03
     beq B06_8815
@@ -2397,30 +1565,27 @@ B06_8803:
     cpx #$05
     bne B06_8803
     ldx #$FF
-; control flow target (from $8808)
 B06_8815:
     txa
     rts
 
-; control flow target (from $880C)
 B06_8817:
     lda #$05
     rts
 
-; control flow target (from $87B8)
+B06_881A:
     lda $D8
     bmi B06_886F
     and #$07
     bne B06_886D
     inc $D7
-    jsr $887C
+    jsr B06_887C
     lda $D7
     and #$07
     bne B06_8859
     lda #$85 ; Music ID #$85: single beep SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
     lda $D8
     and #$78
@@ -2433,22 +1598,19 @@ B06_8817:
     sta $D8
     and #$20
     beq B06_8859
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
     eor $D8
     and #$18
     bne B06_8859
-; control flow target (from $883C)
 B06_8852:
     lda $D8
     ora #$80
     sta $D8
     rts
 
-; control flow target (from $882B, $8838, $8845, $8850)
 B06_8859:
     lda $D8
     and #$78
@@ -2458,31 +1620,24 @@ B06_8859:
     lsr
     and #$07
     tax
-    lda $8870,X
+    lda B06_8870, x
     ora $D8
     sta $D8
     rts
 
-; control flow target (from $8820)
 B06_886D:
     dec $D8
-; control flow target (from $881C)
 B06_886F:
     rts
 
 
-; code -> data
-; indexed data load target (from $8865)
+B06_8870:
+.byte $00,$01,$01,$02,$02,$03,$04,$07
 
-.byte $00,$01,$01,$02
-.byte $02,$03
-.byte $04
-.byte $07
-; data -> code
-; control flow target (from $8750, $875E, $8769)
+B06_8878:
     stx $D6
     sta $D7
-; control flow target (from $8824)
+B06_887C:
     lda $D6
     asl
     sta $D9
@@ -2496,7 +1651,7 @@ B06_886F:
     lda $D7
     and #$07
     sta $D9
-    lda $88D5,X
+    lda B06_88D5, x
     asl
     asl
     asl
@@ -2504,10 +1659,9 @@ B06_886F:
     adc $D9
     tax
     ldy $D6
-; control flow target (from $88A8)
 B06_889D:
-    lda $89A2,X
-    sta $0663,Y ; monster ID, group 1
+    lda B06_89A2, x
+    sta $0663, y ; monster ID, group 1
 
     iny
     inx
@@ -2528,75 +1682,57 @@ B06_889D:
     and #$0F
     ora $D9
     tax
-    lda $88D5,X
+    lda B06_88D5, x
     asl
     asl
     asl
     tax
-; control flow target (from $88D2)
 B06_88C7:
-    lda $89A2,X
-    sta $0663,Y ; monster ID, group 1
+    lda B06_89A2, x
+    sta $0663, y ; monster ID, group 1
 
     inx
     iny
     tya
     and #$07
     bne B06_88C7
-; control flow target (from $88AC)
 B06_88D4:
     rts
 
-
-; code -> data
-; indexed data load target (from $87F4, $8891, $88C0)
-
+B06_88D5:
 .byte $04,$03,$02,$04,$00,$04,$01,$04,$02,$03,$04,$01,$03,$04,$02,$03
 .byte $02,$04,$03,$01,$04,$00,$02,$04,$01,$03,$04,$03,$01,$04,$00,$04
-.byte $04,$00,$04,$02,$01,$04,$03,$02
-.byte $04,$03,$01,$04
-.byte $02,$03
-.byte $04
-.byte $03
-; data -> code
-; control flow target (from $86CF, $890A)
-; call to code in a different bank ($0F:$C1DC)
+.byte $04,$00,$04,$02,$01,$04,$03,$02,$04,$03,$01,$04,$02,$03,$04,$03
+
 B06_8905:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda $02
     bne B06_8905
     lda #$05
     sta $08
-    lda $891D
+    lda B06_891D
     sta $D7
-    lda $891E
+    lda B06_891D+1
     sta $D8
-    jmp $8973
+    jmp B06_8973
 
 
-; code -> data
-; data load target (from $8910)
-; data load target (from $8915)
-.byte $A2
+B06_891D:
+.addr B06_89A2
 
-.byte $89
-; data -> code
-; control flow target (from $878A)
+B06_891F:
     ldx #$20
     lda $DC
     and #$06
     bne B06_892E
     sta $DB
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     ldx #$08
-; control flow target (from $8925)
 B06_892E:
     stx $DB
-; call to code in a different bank ($0F:$C476)
-    jsr $C476 ; read joypad 1 data into $2F
+    jsr B0F_C476 ; read joypad 1 data into $2F
 
     lda $2F ; joypad 1 data
 
@@ -2609,7 +1745,6 @@ B06_892E:
     sta $DA
     rts
 
-; control flow target (from $8938)
 B06_8941:
     lda $DC
     clc
@@ -2624,58 +1759,48 @@ B06_8941:
     eor #$01
     and #$01
     sta $DA
-; control flow target (from $8948, $8952)
 B06_895A:
     rts
 
-; control flow target (from $8774, $87CB, $8962)
+B06_895B:
     lda $02
     beq B06_8965
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
-    jmp $895B
+    jmp B06_895B
 
-; control flow target (from $895D)
 B06_8965:
     lda #$05
     sta $08
-    lda $898C
+    lda B06_898C
     sta $D7
-    lda $898D
+    lda B06_898C+1
     sta $D8
-; control flow target (from $891A)
+B06_8973:
     lda #$A0
     ldy #$00
-    jsr $898E
+    jsr B06_898E
     lda #$B0
     ldy #$08
-    jsr $898E
+    jsr B06_898E
     lda #$C0
     ldy #$10
-    jsr $898E
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B06_898E
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     rts
 
 
-; code -> data
-; data load target (from $8969)
-; data load target (from $896E)
-.byte $63
+B06_898C:
+.addr $0663
 
-.byte $06
-; data -> code
-; control flow target (from $8977, $897E, $8985)
+B06_898E:
     sta $07
-; control flow target (from $899F)
 B06_8990:
     sty $D5
-    lda ($D7),Y
+    lda ($D7), y
     sta $09
-; call to code in a different bank ($0F:$C1FA)
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     ldy $D5
     iny
@@ -2685,43 +1810,34 @@ B06_8990:
     rts
 
 
-; code -> data
-; indexed data load target (from $889D, $88C7)
-; indirect data load target (via $891D)
+B06_89A2:
+.byte $10,$82,$38,$7C,$7C,$38,$82,$10
+.byte $10,$10,$FE,$7C,$38,$7C,$6C,$82
+.byte $70,$38,$1C,$1C,$1C,$1C,$38,$70
+.byte $10,$10,$38,$7C,$FE,$FE,$FE,$7C
+.byte $00,$6C,$FE,$FE,$7C,$7C,$38,$10
 
-.byte $10,$82,$38,$7C,$7C,$38,$82,$10,$10,$10,$FE,$7C,$38,$7C,$6C,$82
-.byte $70,$38,$1C,$1C,$1C,$1C,$38,$70,$10,$10,$38,$7C
-.byte $FE,$FE,$FE,$7C,$00,$6C
-.byte $FE,$FE,$7C
-.byte $7C,$38
-.byte $10
-; data -> code
+B06_89CA:
 ; COMMAND menu STATUS command handler
-; indirect control flow target (via $808A)
-; call to code in a different bank ($0F:$F537)
-    jsr $F537 ; display hero select STATUS menu if necessary
+    jsr B0F_F537 ; display hero select STATUS menu if necessary
 
     cmp #$FF
     bne B06_89D4
-    jmp $806D ; exit COMMAND menu
+    jmp B06_806D ; exit COMMAND menu
 
 
-; control flow target (from $89CF)
 B06_89D4:
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F497)
-    jsr $F497 ; display Menu ID #$03: Main menu: selected hero's status
+    jsr B0F_F497 ; display Menu ID #$03: Main menu: selected hero's status
 
-    jsr $809D ; wait until all joypad buttons are released and then some button pressed
+    jsr B06_809D ; wait until all joypad buttons are released and then some button pressed
 
-; call to code in a different bank ($0F:$F492)
-    jsr $F492 ; display Menu ID #$02: Main menu: gold/crests
+    jsr B0F_F492 ; display Menu ID #$02: Main menu: gold/crests
 
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F63B)
-    jsr $F63B ; display Menu ID #$1C: Main menu: status screen equipped items
+    jsr B0F_F63B ; display Menu ID #$1C: Main menu: status screen equipped items
 
     dec $97 ; subject hero ID $97
 
@@ -2729,40 +1845,34 @@ B06_89D4:
 
     ldx $97 ; subject hero ID $97
 
-    lda $0618,X ; Cannock's learned battle spell list
+    lda $0618, x ; Cannock's learned battle spell list
 
-    ora $061A,X ; Cannock's learned field spell list
+    ora $061A, x ; Cannock's learned field spell list
 
     beq B06_89FF ; if casters haven't learned any spell yet (which is impossible), no need to show spell lists
 
-    jsr $809D ; wait until all joypad buttons are released and then some button pressed
+    jsr B06_809D ; wait until all joypad buttons are released and then some button pressed
 
     lda #$85 ; Music ID #$85: single beep SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F64E)
-    jsr $F64E ; display spell lists
+    jsr B0F_F64E ; display spell lists
 
-; control flow target (from $89E6, $89F0)
 B06_89FF:
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
-
+B06_8A02:
 ; COMMAND menu EQUIP handler
-; indirect control flow target (via $8090)
-; call to code in a different bank ($0F:$F56B)
-    jsr $F56B ; display appropriate main EQUIP hero select menu
+    jsr B0F_F56B ; display appropriate main EQUIP hero select menu
 
     cmp #$FF
     bne B06_8A0C
-    jmp $806D ; exit COMMAND menu
+    jmp B06_806D ; exit COMMAND menu
 
 
-; control flow target (from $8A07)
 B06_8A0C:
     sta $97 ; subject hero ID $97
 
@@ -2771,34 +1881,29 @@ B06_8A0C:
 
     sta $A5
     lda #$00
-; call to code in a different bank ($0F:$CF6A)
-    jsr $CF6A ; wipe selected menu region
+    jsr B0F_CF6A ; wipe selected menu region
 
-; control flow target (from $8AEB)
+B06_8A19:
     ldx $49 ; object hero/target/item/string ID $49
 
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F5A3)
-    jsr $F5A3 ; given a hero ID in A and an item type in X, display the EQUIP sub-menu for hero A and item type X, returning the selected item ID in A
+    jsr B0F_F5A3 ; given a hero ID in A and an item type in X, display the EQUIP sub-menu for hero A and item type X, returning the selected item ID in A
 
     sta $96 ; temp storage for item/spell/type/etc. IDs; new item to equip
 
-; control flow target (from $8A35)
 B06_8A22:
     cmp #$FF
     bne B06_8A3E
     dec $49 ; object hero/target/item/string ID $49
 
     bmi B06_8A3B
-; control flow target (from $8A39)
 B06_8A2A:
     ldx $49 ; object hero/target/item/string ID $49
 
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F5A3)
-    jsr $F5A3 ; given a hero ID in A and an item type in X, display the EQUIP sub-menu for hero A and item type X, returning the selected item ID in A
+    jsr B0F_F5A3 ; given a hero ID in A and an item type in X, display the EQUIP sub-menu for hero A and item type X, returning the selected item ID in A
 
     sta $96 ; temp storage for item/spell/type/etc. IDs; new item to equip
 
@@ -2807,75 +1912,60 @@ B06_8A2A:
     dec $49 ; object hero/target/item/string ID $49
 
     bpl B06_8A2A
-; control flow target (from $8A28)
 B06_8A3B:
-    jmp $8AFF ; wait #$14 interrupts, update each hero's stats based on their current EXP, wipe menu and exit COMMAND menu
+    jmp B06_8AFF ; wait #$14 interrupts, update each hero's stats based on their current EXP, wipe menu and exit COMMAND menu
 
 
-; control flow target (from $8A24)
 B06_8A3E:
     cmp #$FE
     bne B06_8A62
-    jmp $8AE3
+    jmp B06_8AE3
 
-; control flow target (from $8A8C)
 B06_8A45:
     and #$3F ; strip off the equipped bit
 
     sta $95 ; ID for [item] and [spell] control codes
 
-; call to code in a different bank ($0F:$F6F0)
-    jsr $F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $12
-; data -> code
-; control flow target (from $8AE0)
+    jsr B0F_F6F0 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
+    .byte $12
+B06_8A4D:
     lda #$0A ; Music ID #$0A: cursed BGM
 
-; call to code in a different bank ($0F:$C58D)
-    jsr $C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
+    jsr B0F_C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
 
-    jmp $8A5A
+    jmp B06_8A5A
 
-; control flow target (from $8ABC)
+B06_8A55:
     ldx #$50
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
-; control flow target (from $8A52)
+B06_8A5A:
     lda #$05
-; call to code in a different bank ($0F:$CF6A)
-    jsr $CF6A ; wipe selected menu region
+    jsr B0F_CF6A ; wipe selected menu region
 
-    jmp $8AE3
+    jmp B06_8AE3
 
-; control flow target (from $8A40)
 B06_8A62:
     inc $A5
     stx $12
     ldx $49 ; object hero/target/item/string ID $49
 
-    lda $F757,X ; table of first item IDs for each item type
+    lda B0F_F757, x ; table of first item IDs for each item type
 
     sta $0E ; lowest item ID of current item type
 
-    lda $F758,X
+    lda B0F_F757+1, x
     sta $0F ; lowest item ID of next item type
 
-    jsr $8B1D ; set A to hero ID in $97 * 8
+    jsr B06_8B1D ; set A to hero ID in $97 * 8
 
     tay
     lda #$08 ; 8 inventory slots per hero
 
     sta $0C ; number of invetory slots left to check
 
-; control flow target (from $8A94)
 B06_8A7A:
-    lda $0600,Y ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, y ; Midenhall inventory item 1 (| #$40 if equipped)
 
     beq B06_8A91
     and #$3F ; strip off the equipped bit
@@ -2886,12 +1976,11 @@ B06_8A7A:
     cmp $0F ; lowest item ID of next item type
 
     bcs B06_8A91
-    jsr $8B23 ; given party inventory index in Y, CLC and return equipped item ID in A if corresponding item is equipped and cursed, SEC and return unequipped item ID in A otherwise
+    jsr B06_8B23 ; given party inventory index in Y, CLC and return equipped item ID in A if corresponding item is equipped and cursed, SEC and return unequipped item ID in A otherwise
 
     bcc B06_8A45
-    sta $0600,Y ; Midenhall inventory item 1 (| #$40 if equipped); note that this unequips the item!
+    sta $0600, y ; Midenhall inventory item 1 (| #$40 if equipped); note that this unequips the item!
 
-; control flow target (from $8A7D, $8A83, $8A87)
 B06_8A91:
     iny
     dec $0C ; number of invetory slots left to check
@@ -2903,7 +1992,7 @@ B06_8A91:
     cmp #$FF
     beq B06_8AE3
     ldx $12
-    jsr $8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
+    jsr B06_8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
 
     and #$3F ; strip off the equipped bit
 
@@ -2911,67 +2000,49 @@ B06_8A91:
 
     sta $95 ; ID for [item] and [spell] control codes
 
-    jsr $A3A3 ; given item ID in $96 and hero ID in $97, set A to #$80 if hero can equip item, #$00 otherwise
+    jsr B06_A3A3 ; given item ID in $96 and hero ID in $97, set A to #$80 if hero can equip item, #$00 otherwise
 
     cmp #$00
     bne B06_8ABF
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $92
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $92
     dec $49 ; object hero/target/item/string ID $49
 
-    jmp $8A55
+    jmp B06_8A55
 
-; control flow target (from $8AAE)
 B06_8ABF:
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
 ; equip item
     ora #$40
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     ldy #$04 ; there are 4 cursed item in the game
 
-; control flow target (from $8ACE)
 B06_8AC8:
-    cmp $861B,Y ; list of cursed items (equipped), built in offset from $861C
+    cmp B06_861C-1, y ; list of cursed items (equipped), built in offset from $861C
 
     beq B06_8AD2
     dey
     bne B06_8AC8
     beq B06_8AE3
-; control flow target (from $8ACB)
 B06_8AD2:
     and #$3F ; strip off the equipped bit
 
     sta $95 ; ID for [item] and [spell] control codes
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $11
+    jmp B06_8A4D
 
-
-; code -> data
-; indirect data load target
-
-.byte $11
-; data -> code
-    jmp $8A4D
-
-; control flow target (from $8A42, $8A5F, $8A98, $8A9C, $8AD0)
 B06_8AE3:
     inc $49 ; object hero/target/item/string ID $49
 
@@ -2980,61 +2051,49 @@ B06_8AE3:
     cmp #$04 ; there are 4 EQUIP item types
 
     beq B06_8AEE
-    jmp $8A19
+    jmp B06_8A19
 
-; control flow target (from $8AE9)
 B06_8AEE:
     lda $A5
     bne B06_8AFF ; wait #$14 interrupts, update each hero's stats based on their current EXP, wipe menu and exit COMMAND menu
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $A0
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $A0
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; wait #$14 interrupts, update each hero's stats based on their current EXP, wipe menu and exit COMMAND menu
-; control flow target (from $8A3B, $8AF0)
 B06_8AFF:
     ldx #$14
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
-; call to code in a different bank ($0F:$D0EC)
-    jsr $D0EC ; update each hero's stats based on their current EXP
+    jsr B0F_D0EC ; update each hero's stats based on their current EXP
 
     lda #$07
-; call to code in a different bank ($0F:$CF6A)
-    jsr $CF6A ; wipe selected menu region
+    jsr B0F_CF6A ; wipe selected menu region
 
-    jmp $806D ; exit COMMAND menu
+    jmp B06_806D ; exit COMMAND menu
 
 
 ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
-; control flow target (from $8528, $8AA0, $989E, $98B9, $991D)
-    jsr $8B1D ; set A to hero ID in $97 * 8
+B06_8B0F:
+    jsr B06_8B1D ; set A to hero ID in $97 * 8
 
     sta $0C
     txa
     clc
     adc $0C
     tax
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     rts
 
 ; set A to hero ID in $97 * 8
-; control flow target (from $8A72, $8B0F)
+B06_8B1D:
     lda $97 ; subject hero ID $97
 
     asl
@@ -3043,14 +2102,13 @@ B06_8AFF:
     rts
 
 ; given party inventory index in Y, CLC and return equipped item ID in A if corresponding item is equipped and cursed, SEC and return unequipped item ID in A otherwise
-; control flow target (from $852D, $8A89)
-    lda $0600,Y ; Midenhall inventory item 1 (| #$40 if equipped)
+B06_8B23:
+    lda $0600, y ; Midenhall inventory item 1 (| #$40 if equipped)
 
     ldx #$03 ; max index of list of cursed items in the game
 
-; control flow target (from $8B2E)
 B06_8B28:
-    cmp $861C,X ; list of equipped cursed items
+    cmp $861C, x ; list of equipped cursed items
 
     beq B06_8B34
     dex
@@ -3059,87 +2117,64 @@ B06_8B28:
     sec
     rts
 
-; control flow target (from $8B2B)
 B06_8B34:
     clc
     rts
 
 ; COMMAND menu SPELL command handler
-; indirect control flow target (via $8088)
-; call to code in a different bank ($0F:$F545)
-    jsr $F545 ; depending on number of casters in party, maybe open caster select menu
+B06_8B36:
+    jsr B0F_F545 ; depending on number of casters in party, maybe open caster select menu
 
     cmp #$FF
     bne B06_8B40 ; did not cancel menu
 
 ; exit COMMAND menu
-; control flow target (from $8B73)
 B06_8B3D:
-    jmp $806D ; exit COMMAND menu
+    jmp B06_806D ; exit COMMAND menu
 
 
 ; did not cancel menu
-; control flow target (from $8B3B)
 B06_8B40:
     sta $97 ; subject hero ID $97; caster hero ID
 
     cmp #$FE
     bne B06_8B55 ; hero is a caster
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda #$00 ; Midenhall
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $01
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $01
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; hero is a caster
-; control flow target (from $8B44)
 B06_8B55:
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcs B06_8B69 ; caster is alive
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $02
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $02
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; caster is alive
-; control flow target (from $8B5A)
 B06_8B69:
     lda $97 ; subject hero ID $97; caster hero ID
 
     sec
-    sbc #$01 ; Midenhall can't use magic and $0F:$F5EC wants hero ID - 1
-
-; call to code in a different bank ($0F:$F5EC)
-    jsr $F5EC ; given hero ID - 1 in A, open hero's spell list and return selected spell ID in A
+    sbc #$01 ; Midenhall can't use magic and $0F:B0F_F5EC wants hero ID - 1
+    jsr B0F_F5EC ; given hero ID - 1 in A, open hero's spell list and return selected spell ID in A
 
     cmp #$FF
     beq B06_8B3D ; exit COMMAND menu
@@ -3147,37 +2182,28 @@ B06_8B69:
     sta $96 ; temp storage for item/spell/type/etc. IDs; selected spell ID
 
     tax
-    jsr $8DAA ; given hero ID in $97, set Y to start of hero's data in $062D,Y, i.e. Y = $97 * #$12
+    jsr B06_8DAA ; given hero ID in $97, set Y to start of hero's data in $062D, y, i.e. Y = $97 * #$12
 
-    lda $063D,Y ; Midenhall Current MP
+    lda $063D, y ; Midenhall Current MP
 
-    cmp $8CDD,X ; MP costs (built in offset from real data at $8CE6)
+    cmp B06_8CE6-9, x ; MP costs (built in offset from real data at $8CE6)
 
     bcs B06_8B8A ; hero has enough MP to cast
 
-; call to code in a different bank ($0F:$F6EA)
-    jsr $F6EA ; open main dialogue window and display string ID specified by byte following JSR
-
-
-; code -> data
-; indirect data load target
-
-.byte $11
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jsr B0F_F6EA ; open main dialogue window and display string ID specified by byte following JSR
+    .byte $11
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; hero has enough MP to cast
-; control flow target (from $8B81)
 B06_8B8A:
     ldy #$04 ; there are 5 single-target spells on the field
 
     lda $96 ; temp storage for item/spell/type/etc. IDs; selected spell ID
 
 ; check if spell is a healing spell
-; control flow target (from $8B94)
 B06_8B8E:
-    cmp $8CE1,Y ; single-target spell list, field
+    cmp $8CE1, y ; single-target spell list, field
 
     beq B06_8B98 ; chose a healing spell
 
@@ -3187,60 +2213,47 @@ B06_8B8E:
     bmi B06_8BA4 ; cast spell
 
 ; chose a healing spell
-; control flow target (from $8B91)
-; call to code in a different bank ($0F:$F579)
 B06_8B98:
-    jsr $F579 ; display appropriate main SPELL target menu
+    jsr B0F_F579 ; display appropriate main SPELL target menu
 
     cmp #$FF
     bne B06_8BA2 ; update target hero ID
 
-    jmp $806D ; exit COMMAND menu
+    jmp B06_806D ; exit COMMAND menu
 
 
 ; update target hero ID
-; control flow target (from $8B9D)
 B06_8BA2:
     sta $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
 ; cast spell
-; control flow target (from $8B96)
 B06_8BA4:
-    jsr $8DAA ; given hero ID in $97, set Y to start of hero's data in $062D,Y, i.e. Y = $97 * #$12
+    jsr B06_8DAA ; given hero ID in $97, set Y to start of hero's data in $062D, y, i.e. Y = $97 * #$12
 
     ldx $96 ; temp storage for item/spell/type/etc. IDs; selected spell ID
 
-    lda $063D,Y ; Midenhall Current MP
+    lda $063D, y ; Midenhall Current MP
 
     sec
-    sbc $8CDD,X ; MP costs (built in offset from real data at $8CE6)
+    sbc B06_8CE6-9, x ; MP costs (built in offset from real data at $8CE6)
 
-    sta $063D,Y ; Midenhall Current MP
+    sta $063D, y ; Midenhall Current MP
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     lda $96 ; temp storage for item/spell/type/etc. IDs; selected spell ID
 
     sta $95 ; ID for [item] and [spell] control codes
 
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1A
-; data -> code
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $1A
     lda #$90 ; Music ID #$90: casting SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
+    jsr B0F_C515 ; flash screen 10 times
 
     lda $96 ; temp storage for item/spell/type/etc. IDs; selected spell ID
 
@@ -3252,7 +2265,6 @@ B06_8BA4:
 
     bne B06_8BE1
 ; spell ID is not #$09
-; control flow target (from $8BCD)
 B06_8BD3:
     cmp #$0B ; Spell ID #$0B: Healmore
 
@@ -3262,7 +2274,6 @@ B06_8BD3:
 
     bne B06_8BE1
 ; spell ID is not #$09 or #$0B
-; control flow target (from $8BD5)
 B06_8BDB:
     cmp #$0D ; Spell ID #$0D: Healall
 
@@ -3270,51 +2281,32 @@ B06_8BDB:
 
     ldx #$FF ; power on field for Healall
 
-; control flow target (from $8BD1, $8BD9)
 B06_8BE1:
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
-    jsr $8DAC ; given hero ID in A, set Y to start of hero's data in $062D,Y, i.e. Y = A * #$12
+    jsr B06_8DAC ; given hero ID in A, set Y to start of hero's data in $062D, y, i.e. Y = A * #$12
 
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     bpl B06_8C3C ; spell ineffective; can't heal dead people :(
 
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
-; call to code in a different bank ($0F:$D146)
-    jsr $D146 ; heal hero ID in A by random amount based on healing power in X
+    jsr B0F_D146 ; heal hero ID in A by random amount based on healing power in X
 
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
+    jsr B0F_C22C
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $17
-; data -> code
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $01
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $17
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $01
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; spell ID is not #$09, #$0B, or #$0D
-; control flow target (from $8BDD)
 B06_8C03:
     cmp #$10 ; Spell ID #$10: Antidote
 
@@ -3322,9 +2314,9 @@ B06_8C03:
 
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
-    jsr $8DAC ; given hero ID in A, set Y to start of hero's data in $062D,Y, i.e. Y = A * #$12
+    jsr B06_8DAC ; given hero ID in A, set Y to start of hero's data in $062D, y, i.e. Y = A * #$12
 
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$20 ; pick out the poison bit from hero status byte
 
@@ -3332,73 +2324,46 @@ B06_8C03:
 
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $43
-; data -> code
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $43
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
-    jsr $8DAC ; given hero ID in A, set Y to start of hero's data in $062D,Y, i.e. Y = A * #$12
+    jsr B06_8DAC ; given hero ID in A, set Y to start of hero's data in $062D, y, i.e. Y = A * #$12
 
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$DF ; set poison bit to 0
 
-    sta $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $01
-; data -> code
-; control flow target (from $8C4B)
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $01
 B06_8C2D:
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; spell ID is not #$09, #$0B, #$0D, or #$10
-; control flow target (from $8C05)
 B06_8C30:
     cmp #$12 ; Spell ID #$12: Outside
 
     bne B06_8C43 ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12
 
-    jsr $8CD4 ; handler for Outside spell effect
+    jsr B06_8CD4 ; handler for Outside spell effect
 
     lda #$00
-; call to code in a different bank ($0F:$D88F)
-    jmp $D88F ; warp to warp point given by ($0C)
+    jmp B0F_D88F ; warp to warp point given by ($0C)
 
 
 ; spell ineffective
-; control flow target (from $8BE9, $8C11, $8C56, $8CAB, $8CDE)
-; call to code in a different bank ($0F:$FA2E)
 B06_8C3C:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $9E
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $9E
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12
-; control flow target (from $8C32)
 B06_8C43:
     cmp #$13 ; Spell ID #$13: Repel
 
@@ -3409,32 +2374,27 @@ B06_8C43:
 
     bne B06_8C2D
 ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12-#$13
-; control flow target (from $8C45)
 B06_8C4D:
     cmp #$14 ; Spell ID #$14: Return
 
     bne B06_8C62 ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12-#$14
 
 ; handler for Return spell effect
-; control flow target (from $9661)
+B06_8C51:
     ldx #$02
-; call to code in a different bank ($0F:$D2E7)
-    jsr $D2E7 ; X = 1 => CLC and update $0C-$0D to warp point data to use if Outside allowed from current map, SEC otherwise, X = 2 => CLC and update $0C-$0D to warp point data to use if Return allowed from current map, SEC otherwise, X = 3 => disembark from ship and update ship position based on last save point ID $48
+    jsr B0F_D2E7 ; X = 1 => CLC and update $0C-$0D to warp point data to use if Outside allowed from current map, SEC otherwise, X = 2 => CLC and update $0C-$0D to warp point data to use if Return allowed from current map, SEC otherwise, X = 3 => disembark from ship and update ship position based on last save point ID $48
 
     bcs B06_8C3C ; spell ineffective
 
     lda #$95 ; Music ID #$95: Return SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
     lda #$00
-; call to code in a different bank ($0F:$D88F)
-    jmp $D88F ; warp to warp point given by ($0C)
+    jmp B0F_D88F ; warp to warp point given by ($0C)
 
 
 ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12-#$14
-; control flow target (from $8C4F)
 B06_8C62:
     cmp #$15 ; Spell ID #$15: Open
 
@@ -3442,44 +2402,32 @@ B06_8C62:
 
     lda #$00
     sta $C9
-; call to code in a different bank ($0F:$CF7C)
-    jsr $CF7C
+    jsr B0F_CF7C
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
     cmp #$FF
     beq B06_8C91
     lda #$01
     sta $C9
-; call to code in a different bank ($0F:$CF7C)
-    jsr $CF7C
+    jsr B0F_CF7C
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
     cmp #$FF
     beq B06_8C91
     lda #$02
     sta $C9
-; call to code in a different bank ($0F:$CF7C)
-    jsr $CF7C
+    jsr B0F_CF7C
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
     cmp #$FF
     beq B06_8C91
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $3B
-; data -> code
-; control flow target (from $8C71, $8C7E, $8C8B)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $3B
 B06_8C91:
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12-#$15
-; control flow target (from $8C64)
 B06_8C94:
     cmp #$16 ; Spell ID #$16: Stepguard
 
@@ -3488,99 +2436,93 @@ B06_8C94:
     lda #$FF
     sta $47 ; Stepguard flag
 
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12-#$16; ergo it's Spell ID #$17: Revive
-; control flow target (from $8C96, $964B)
 B06_8C9F:
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
-    jsr $8DAC ; given hero ID in A, set Y to start of hero's data in $062D,Y, i.e. Y = A * #$12
+    jsr B06_8DAC ; given hero ID in A, set Y to start of hero's data in $062D, y, i.e. Y = A * #$12
 
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$80 ; Alive
 
     beq B06_8CAE
-    jmp $8C3C ; spell ineffective
+    jmp B06_8C3C ; spell ineffective
 
 
-; control flow target (from $8CA9)
 B06_8CAE:
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
     sta $97 ; subject hero ID $97
 
-    jsr $8DAC ; given hero ID in A, set Y to start of hero's data in $062D,Y, i.e. Y = A * #$12
+    jsr B06_8DAC ; given hero ID in A, set Y to start of hero's data in $062D, y, i.e. Y = A * #$12
 
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     ora #$80 ; Alive
 
-    sta $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     lda #$01 ; revive with 1 HP
 
-    sta $063B,Y ; Midenhall Current HP, low byte
+    sta $063B, y ; Midenhall Current HP, low byte
 
-; call to code in a different bank ($0F:$D302)
-    jsr $D302
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
+    jsr B0F_D302
+    jsr B0F_C22C
     lda $49 ; object hero/target/item/string ID $49; target hero ID for single-target spells
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $44
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $44
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for Outside spell effect
-; control flow target (from $8C34)
-; external control flow target (from $0F:$D597, $0F:$D59D)
+B06_8CD4:
     ldx #$01
-; call to code in a different bank ($0F:$D2E7)
-    jsr $D2E7 ; X = 1 => CLC and update $0C-$0D to warp point data to use if Outside allowed from current map, SEC otherwise, X = 2 => CLC and update $0C-$0D to warp point data to use if Return allowed from current map, SEC otherwise, X = 3 => disembark from ship and update ship position based on last save point ID $48
+    jsr B0F_D2E7 ; X = 1 => CLC and update $0C-$0D to warp point data to use if Outside allowed from current map, SEC otherwise, X = 2 => CLC and update $0C-$0D to warp point data to use if Return allowed from current map, SEC otherwise, X = 3 => disembark from ship and update ship position based on last save point ID $48
 
     bcs B06_8CDC
     rts
 
-; control flow target (from $8CD9)
 B06_8CDC:
     pla
 ; MP costs (built in offset from real data at $8CE6)
 ; indexed data load target (from $8B7E, $8BAD)
     pla
-    jmp $8C3C ; spell ineffective
+    jmp B06_8C3C ; spell ineffective
 
-
-
-; code -> data
 ; single-target spell list, field
-; indexed data load target (from $8B8E)
+B06_8CE1:
+.byte $09	 ; Spell ID #$09: Heal
+.byte $0B	 ; Spell ID #$0B: Healmore
+.byte $0D	 ; Spell ID #$0D: Healall
+.byte $10	 ; Spell ID #$10: Antidote
+.byte $17	 ; Spell ID #$17: Revive
 
-.byte $09,$0B,$0D
-.byte $10
-.byte $17
-; MP Cost for Spells on Field (referenced as $8CDD,X)
+; MP Cost for Spells on Field (referenced as B06_8CE6-9, x)
+B06_8CE6:
+.byte $03	 ; Spell ID #$09: Heal
+.byte $00	 ; Spell ID #$0A: Increase
+.byte $05	 ; Spell ID #$0B: Healmore
+.byte $00	 ; Spell ID #$0C: Sacrifice
+.byte $08	 ; Spell ID #$0D: Healall
+.byte $00	 ; Spell ID #$0E: Explodet
+.byte $00	 ; Spell ID #$0F: Chance
+.byte $03	 ; Spell ID #$10: Antidote
+.byte $02	 ; Spell ID #$11: Heal (not used by heroes)
+.byte $06	 ; Spell ID #$12: Outside
+.byte $02	 ; Spell ID #$13: Repel
+.byte $06	 ; Spell ID #$14: Return
+.byte $02	 ; Spell ID #$15: Open
+.byte $04	 ; Spell ID #$16: Stepguard
+.byte $0F	 ; Spell ID #$17: Revive
 
-.byte $03,$00,$05,$00,$08,$00,$00,$03
-.byte $02,$06,$02,$06
-.byte $02,$04
-.byte $0F
-; data -> code
-; add $8F-$90 to party gold, capped at $FFFF
-; control flow target (from $8536, $9C58)
+B06_8CF5:
     lda $8F
     clc
     adc $0624 ; party gold, low byte
@@ -3599,45 +2541,41 @@ B06_8CDC:
 
     sta $0625 ; party gold, high byte
 
-; control flow target (from $8D06)
 B06_8D10:
     rts
 
 ; given item ID in $96 and discount amount in $8F-$90, set $8F-$90 to discounted item price
-; control flow target (from $8355, $8462)
+B06_8D11:
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID
 
     asl ; item prices are 2 bytes each
 
     tay
-    lda $9FFC,Y ; Item Prices, low byte
-
+    lda ItemPrices, y ; Item Prices, low byte
     sec
     sbc $8F
     sta $8F
-    lda $9FFD,Y ; Item Prices, high byte
-
+    lda ItemPrices+1, y ; Item Prices, high byte
     sbc $90
     sta $90
     rts
 
 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
-; control flow target (from $8324, $833E, $8379, $83FC, $8438, $84AD, $8599, $85F0, $863E, $8691, $8AB3, $8AD9, $8AF5, $8B5F, $8BB6, $8F26, $904A, $9125, $9476, $959D, $95C0, $963A, $9652, $96D4, $9830, $99B7, $99E5, $99F2, $9A0D, $9A26, $9A31, $9A55, $9A5F, $9A6F, $9A7A, $9A9F, $9AAC, $9AF1, $9B1E, $9D2D, $9D3C)
+B06_8D25:
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$FC50)
-    jmp $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jmp B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
 
 ; set $8F-$90 to A-#$00
-; control flow target (from $9C75)
+B06_8D2A:
     sta $8F
     lda #$00
     sta $90
     rts
 
 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
-; control flow target (from $823D, $8688, $8D7B, $9130)
+B06_8D31:
     lda $0624 ; party gold, low byte
 
     sec
@@ -3666,15 +2604,15 @@ B06_8D4D:
     asl ; price list is 2 bytes wide
 
     tay
-    lda $9FFC,Y ; Item Prices, low byte
+    lda ItemPrices, y ; Item Prices, low byte
 
     sta $8F
-    lda $9FFD,Y ; Item Prices, high byte
+    lda ItemPrices+1, y ; Item Prices, high byte
 
     sta $90
     lda #$32 ; Item ID #$32: Golden Card
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     cmp #$FF
     beq B06_8D7B ; branch if no Golden Card, otherwise extra string and altered price
@@ -3685,23 +2623,22 @@ B06_8D4D:
     lsr $90 ; 16-bit LSR
 
     ror $8F
-    lda $9FFC,Y ; Item Prices, low byte
+    lda ItemPrices, y ; Item Prices, low byte
 
     sec
     sbc $8F
     sta $8F
-    lda $9FFD,Y ; Item Prices, high byte
+    lda ItemPrices+1, y ; Item Prices, high byte
 
     sbc $90
     sta $90 ; 25% discount
 
-; control flow target (from $8D62)
 B06_8D7B:
-    jmp $8D31 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
+    jmp B06_8D31 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
 
 
 ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
-; control flow target (from $836F, $83F7, $8433, $8479, $872E, $92A9, $9313, $9A07, $9C70, $9C8B, $A2D2, $A2D9, $A2E0)
+B06_8D7E:
     lda $97 ; subject hero ID $97; hero ID
 
     asl ; 8 inventory slots per hero
@@ -3711,9 +2648,8 @@ B06_8D7B:
     tay
     ldx #$00 ; loop counter
 
-; control flow target (from $8D8F)
 B06_8D86:
-    lda $0600,Y ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, y ; Midenhall inventory item 1 (| #$40 if equipped)
 
     beq B06_8D93 ; if empty slot, go add item
 
@@ -3728,39 +2664,37 @@ B06_8D86:
 
     rts
 
-; control flow target (from $8D89)
 B06_8D93:
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID
 
-    sta $0600,Y ; Midenhall inventory item 1 (| #$40 if equipped); add to hero's inventory
+    sta $0600, y ; Midenhall inventory item 1 (| #$40 if equipped); add to hero's inventory
 
     sec ; flag success for calling code
 
     rts
 
 ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
-; control flow target (from $8339, $8594, $8639, $8B57, $9045, $9453, $946C, $9499, $94A3, $9595, $95EA, $9608, $99E0, $9A21, $9A36, $9A50, $9A9A, $9ADB, $9D25)
+B06_8D9A:
     sta $0C
-    jsr $8DAA ; given hero ID in $97, set Y to start of hero's data in $062D,Y, i.e. Y = $97 * #$12
+    jsr B06_8DAA ; given hero ID in $97, set Y to start of hero's data in $062D, y, i.e. Y = $97 * #$12
 
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and $0C
     beq B06_8DA8
     sec
     rts
 
-; control flow target (from $8DA4)
 B06_8DA8:
     clc
     rts
 
-; given hero ID in $97, set Y to start of hero's data in $062D,Y, i.e. Y = $97 * #$12
-; control flow target (from $85B2, $8659, $86A6, $8B78, $8BA4, $8D9C)
+; given hero ID in $97, set Y to start of hero's data in $062D, y, i.e. Y = $97 * #$12
+B06_8DAA:
     lda $97 ; subject hero ID $97
 
-; given hero ID in A, set Y to start of hero's data in $062D,Y, i.e. Y = A * #$12
-; control flow target (from $8BE3, $8C09, $8C1E, $8CA1, $8CB2, $960F)
+; given hero ID in A, set Y to start of hero's data in $062D, y, i.e. Y = A * #$12
+B06_8DAC:
     beq B06_8DB8 ; if it's Midenhall, use + #$00
 
     cmp #$01 ; is it Cannock?
@@ -3771,58 +2705,51 @@ B06_8DA8:
 
     bne B06_8DB8 ; and skip over Moonbrooke
 
-; control flow target (from $8DB0)
 B06_8DB6:
     lda #$24 ; it's Moonbrooke, so use + #$24
 
-; control flow target (from $8DAC, $8DB4)
 B06_8DB8:
     tay
     rts
 
 ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
-; control flow target (from $85E7, $9897, $98B2, $9916)
+B06_8DBA:
     pha
     lda $97 ; subject hero ID $97
 
     sta $9C
     pla
-; call to code in a different bank ($0F:$C4B0)
-    jmp $C4B0 ; given a hero ID in $9C and an item ID in A, SEC if hero has that item, CLC otherwise
+    jmp B0F_C4B0 ; given a hero ID in $9C and an item ID in A, SEC if hero has that item, CLC otherwise
 
 
 ; given a hero ID in $97 and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
-; control flow target (from $8612, $8716)
+B06_8DC3:
     pha
     lda $97 ; subject hero ID $97
 
     sta $9C
     pla
-; call to code in a different bank ($0F:$C4B6)
-    jmp $C4B6 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
+    jmp B0F_C4B6 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
 
 
 ; restore full HP to all living party members
-; control flow target (from $825B, $951C)
-; external control flow target (from $0F:$C789, $0F:$D289)
+B06_8DCC:
     ldy #$00
-; control flow target (from $8DE9)
 B06_8DCE:
-    lda $063B,Y ; Midenhall Current HP, low byte
+    lda $063B, y ; Midenhall Current HP, low byte
 
-    ora $063C,Y ; Midenhall Current HP, high byte
+    ora $063C, y ; Midenhall Current HP, high byte
 
     beq B06_8DE2 ; branch if current HP is #$00
 
-    lda $0630,Y ; Midenhall Max HP low byte
+    lda $0630, y ; Midenhall Max HP low byte
 
-    sta $063B,Y ; Midenhall Current HP, low byte
+    sta $063B, y ; Midenhall Current HP, low byte
 
-    lda $0631,Y ; Midenhall Max HP high byte
+    lda $0631, y ; Midenhall Max HP high byte
 
-    sta $063C,Y ; Midenhall Current HP, high byte
+    sta $063C, y ; Midenhall Current HP, high byte
 
-; control flow target (from $8DD4)
 B06_8DE2:
     tya
     clc
@@ -3836,23 +2763,20 @@ B06_8DE2:
     rts
 
 ; restore full MP to all living party members
-; control flow target (from $825E, $9175)
-; external control flow target (from $0F:$C78C)
+B06_8DEC:
     ldy #$00 ; start with Midenhall
 
-; control flow target (from $8E03)
 B06_8DEE:
-    lda $063B,Y ; Midenhall Current HP, low byte
+    lda $063B, y ; Midenhall Current HP, low byte
 
-    ora $063C,Y ; Midenhall Current HP, high byte
+    ora $063C, y ; Midenhall Current HP, high byte
 
     beq B06_8DFC ; zero HP => dead, right?
 
-    lda $0632,Y ; Midenhall Max MP
+    lda $0632, y ; Midenhall Max MP
 
-    sta $063D,Y ; Midenhall Current MP
+    sta $063D, y ; Midenhall Current MP
 
-; control flow target (from $8DF4)
 B06_8DFC:
     tya
     clc
@@ -3866,22 +2790,21 @@ B06_8DFC:
     rts
 
 ; handler for dialogue IDs #$29-#$94 (open dialogue window and display string specified by A + #$1D7, i.e. String IDs #$0200-#$026B)
-; control flow target (from $81F0)
+B06_8E06:
     sec
     sbc #$29
     sta $49 ; object hero/target/item/string ID $49
 
     pha ; string ID
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda #$00
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
     pla ; string ID
 
-    cmp #$64 ; either this or the above call to $FC50 are useless
+    cmp #$64 ; either this or the above call to B0F_FC50 are useless
 
     bcc B06_8E30
     pha ; string ID
@@ -3891,7 +2814,6 @@ B06_8DFC:
     lda #$00 ; Midenhall
 
     beq B06_8E2C
-; control flow target (from $8E1C)
 B06_8E22:
     cmp #$6A ; string ID #026A uses Cannock's name
 
@@ -3900,51 +2822,31 @@ B06_8E22:
     lda #$01 ; Cannock
 
     bne B06_8E2C
-; control flow target (from $8E24)
 B06_8E2A:
     lda #$02 ; Moonbrooke
 
-; control flow target (from $8E20, $8E28)
-; call to code in a different bank ($0F:$FC50)
 B06_8E2C:
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
     pla ; String IDs #$0200-#$026B: "‘When in need, visit the Houses of Healing[.’][end-FC]" / "‘[name] is still inexperienced.[line]Return here in thy need[.’][end-FC]" / "‘One who sets foot upon the Travel Door is transported to a distant place[.’][end-FC]" / "‘The Dragon's Bane is a magic charm[.’][wait][line]‘It is said that it may keep one safe from the spell[.’][end-FC]" / "‘If thy path leads west of this castle thou shall reach the town of Leftwyne[.’][end-FC]" / "‘This is Midenhall Castle[.’][end-FC]" / "‘Remember to equip thyself with weapons and armor when thou obtains such items[.’][end-FC]" / "‘Woof, woof!’[end-FC]" / "‘[name], royalty should not venture into prisons such as this[.’][end-FC]" / "‘I have heard that the heir of our good King has ventured forth to do battle with the evil sorcerer, Hargon[.’][wait][line]‘What? Thou art the one? Luck be with thee[.’][end-FC]" / "‘If thou art poisoned, each step will weaken thee further[.’][end-FC]" / "‘Northward lies the castle of Cannock, my friend[.’][end-FC]" / "‘Welcome to Leftwyne[.’][end-FC]" / "‘Look for the monolith by the inland sea west of this place[.’][wait][line]‘It is by that route alone that thou shall reach Moonbrooke[.’][end-FC]" / "‘Oh, thou scared me! And my hiccups are cured! Thank thee, stranger[.’][end-FC]" / "‘Bow-wow!’[end-FC]" / "‘I have heard of a cave far to the east in which the Spring of Bravery rises[.’][end-FC]" / "‘Welcome to Cannock Castle[.’][end-FC]" / "‘Only if the descendants of Erdrick combine their skills can the forces of evil be overcome[.’][end-FC]" / "‘If thou would speak to the prisoners, do so through the barred doors[.’][end-FC]" / "‘Pssst.[line]I'll tell thee a secret[.’][wait][line]‘There is a silver key that opens doors of silver[.’][end-FC]" / "‘What does it matter if people steal things[.’][wait][line]‘The world is doomed no matter what happens[.’][end-FC]" / "‘I saw the sky burning red on the southern horizon[.’][wait][line]‘Perhaps it was Moonbrooke Castle in flames[.’][end-FC]" / "‘Listen closely[.’][wait][line]‘Our prince has studied the ways of magic, though with heavy armor or weapons he has no skill[.’][wait][line]‘Still, he seeks to fight evil[.’][end-FC]" / "‘There is a legend that tells of a great and good wizard who lives in a cave in the sea[.’][wait][line]‘If thou hast the five crests he will come to thee[.’][end-FC]" / "‘Here in Hamlin not all is as it seems[.’][wait][line]‘Talk to everyone, for appearances may not reflect the true person[.’][end-FC]" / "‘Southwest of this village lies the castle of Moonbrooke[.’][end-FC]" / "‘Some say that there is a tall tower, and in it a brave adventurer may find the Cloak of Wind[.’][wait][line]‘It can save thee if thou falls from a great height[.’][end-FC]" / "‘The Mirror of Ra was lost long ago in a swamp southeast of Hamlin in the place where four bridges can be seen[.’][end-FC]" / "‘Help! Help! Hargon is coming to destroy us all!’[end-FC]" / "‘Of keys and doors I know this[.’][wait][line]‘There are silver keys and golden keys, and doors to match them each[.’][wait][line]‘Seek thee first the silver key, for this is what I teach[.’][wait][line]‘That key is in the Cave of the Lake, west of Cannock's walls[.’][wait][line]‘But go only with a friend inside, or there thou shall surely fall[.’][end-FC]" / "‘Eastward, across an arm of the sea lies the kingdom of Alefgard[.’][wait][line]‘From there in ages past came a great warrior ‟a descendant of Erdrick” who slew dragons, and there came also a princess named Gwaelin[.’][end-FC]" / "‘Please, please, do not hurt me!’[wait][line]‘I can tell thee of a secret[.’][wait][line]‘In Hamlin Village there is a Water Crest. Seek it!’[end-FC]" / "‘It has been rumored that the king of Tantegel Castle has disappeared[.’][end-FC]" / "‘I am a soldier from Alefgard[.’][wait][line]‘Perhaps thou has seen ancient maps of my land, but it has changed much through the ages[.’][end-FC]" / "‘Thou art welcome in Lianport[.’][end-FC]" / "‘Yes, this is Tantegel[.’][end-FC]" / "‘The golden key opens the red door, too[.’][end-FC]" / "‘Pardon me, stranger, but I had a vision and in it descendants of the great hero Erdrick came to us in our need[.’][wait][line]‘Ah! So it was true.[line]Thou art truly welcome[.’][end-FC]" / "‘Thou hast come to Tantegel Castle[.’][end-FC]" / "‘Long ago Princess Gwaelin departed over the sea, but thy companion is her twin in appearance[.’][end-FC]" / "‘So thou has come even here to this simple room[.’][wait][line]‘I cannot help thee. My hope fled long ago[.’][end-FC]" / "‘The King keeps himself hidden, for he is afraid of Hargon's wrath[.’][end-FC]" / "‘The Echoing Flute blows a magical note[.’][wait][line]‘On an island, in a tower, in a chamber remote, play it and listen, a wise man once wrote[.’][wait][line]‘For when the sound echoes, there shall thou find, a crest of great power to aid thee in time[.’][end-FC]" / "‘So, thou art the great warriors of which we have heard[.’][end-FC]" / "‘Here in this coliseum many heroes have proven their strength[.’][end-FC]" / "‘Beyond lies the coliseum and the court of the King[.’][end-FC]" / "‘In the island town of Zahan in the southern ocean lives a man named Torval who owns the golden key[.’][end-FC]" / "‘As the story goes, it was a dark and stormy night when the pirate ship, Relentless, hit a reef and sank[.’][wait][line]‘They say that in its hold was the Echoing Flute[.’][end-FC]" / "‘I seek the Armor of Gaia[.’][wait][line]‘I was told that it was kept in a shop that sells armor[.’][end-FC]" / "Thou hast found the Stars Crest.[end-FC]" / "‘Do not overburden thyself. Cast away those items that thou doesn't need[.’][end-FC]" / "‘I have come seeking a thief by the name of Roge Fastfinger[.’][end-FC]" / "‘I warn thee to go back. This wizard's house may be thy ruin[.’][end-FC]" / "‘Thou hast come to Zahan at a poor time[.’][wait][line]‘All the men are away fishing at sea[.’][end-FC]" / "‘Many are the tales of a mountainous island in the sea and its great cavern[.’][wait][line]‘It is said that only one who bears the Moon Fragment may enter there[.’][end-FC]" / "‘One day I will be a great fisherman like Papa[.’][end-FC]" / "‘When the Moon Fragment is held upon high, the tide will rise and the seagulls cry[.’][end-FC]" / "‘Oh Formeo, Formeo, where for art thou my Formeo!’[end-FC]" / "‘Yes, I am Torval's wife. But just between us, he loves his dogs more than me[.’][end-FC]" / "‘That mutt yonder keeps pulling at my sleeve[.’][end-FC]" / "‘So thou hast heard of the sinking of the Relentless[.’][wait][line]‘Some say that the pirates simply left the plug out. Fools[.’][end-FC]" / "‘This is a town of lonely women, old men, dogs and children[.’][wait][line]‘What the men want of those stinking fish is beyond me[.’][end-FC]" / "‘Hello. This is the village of Tuhn[.’][end-FC]" / "‘Many years have passed since the Tower of the Moon could be reached by ship[.’][wait][line]‘It lies to the south[.’][end-FC]" / "‘Thou hast heard of Roge Fastfinger I see[.’][wait][line]‘Well, he stole the key to our watergate, the scoundrel.[line]We would dearly love to have it back[.’][end-FC]" / "‘If Jena sent thee, tell her I would not name our dog Ruffles for all the dragon's gold in Alefgard[.’][end-FC]" / "‘Ruff, ruff..[.’][end-FC]" / "‘It is said that the Tower of the Moon holds a piece of the moon[.’][end-FC]" / "‘I'm Jena. If thou meets my husband, tell him that my father's name was Ruffles[.’][end-FC]" / "‘Far and wide I have sought a master weaver who makes Water Flying Cloth, and they say such a man lives here[.’][end-FC]" / "‘If the watergate were to be raised, water would once more fill the dry riverbed[.’][end-FC]" / "‘Where has everyone gone?[line]Dost thou think it is my breath?’[end-FC]" / "‘Yip, yip, yip!’[end-FC]" / "‘Hargon dwells on the high plateau of Rhone[.’][wait][line]‘Only one who has the Eye of Malroth can find the road to that place[.’][end-FC]" / "‘It is true enough[.’][wait][line]‘I locked Roge Fastfinger in prison and threw away the key.[line]But he has escaped[.’][end-FC]" / "‘For the finest Water Flying Cloth I recommend Don Mahone who lives in Tuhn[.’][end-FC]" / "‘I bid thee welcome to Wellgarth Town[.’][wait][line]‘I shall sing for thee[.’][end-FC]" / "‘Let me tell thee, Hargon is a master of disguise, but if thou hast the Charm of Rubiss thou will see through the deception[.’][end-FC]" / "‘How dare thou enter a lady's room unbidden!’[end-FC]" / "‘It is said that the greatest shall fall by a spell of his own devising[.’][end-FC]" / "‘There is an isolated valley northwest of the town where once a road led to Rhone[.’][end-FC]" / "‘Some say that Hargon has cast a spell over his entire castle, that it looks fair and peaceful[.’][wait][line]‘Thou will not be deceived if thou hast the gift of Rubiss[.’][end-FC]" / "‘In the ocean far to the east lies an island and on it are trees from every corner of the world[.’][end-FC]" / "‘Having come this far, thou may as well try the door there to the left[.’][end-FC]" / "‘Roge Fastfinger? No, I have not heard the name[.’][end-FC]" / "‘We call this town Beran. Welcome[.’][end-FC]" / "‘Thou should see the King of Osterfair for the Moon Crest[.’][end-FC]" / "‘With the Magic Loom and Dew's Yarn thou can make the Water Flying Cloth[.’][end-FC]" / "‘The Leaf of the World Tree has the power to revive ghosts[.’][end-FC]" / "‘I seek the Thunder Sword, for one need not know magic to use its power[.’][end-FC]" / "‘Osterfair lies far south of Midenhall on a great island[.’][end-FC]" / "‘Welcome to Bragol's Tools. May I help thee?’[end-FC]" / "‘Greetings. I am the Keeper of this Inn[.’][end-FC]" / "‘Thou hast come to Midenhall[.’][end-FC]" / "‘[..][..][.’][end-FC]" / "‘[..][..][.’][end-FC]" / "‘Only the golden key can open this door[.’][end-FC]" / "‘This travel door takes one back to the underworld.[line]If that is thy wish, please enter[.’][end-FC]" / "‘The ancient road to Rhone was once west of this monolith[.’][end-FC]" / "‘In Cannock there is a young prince and Moonbrooke had a princess[.’][end-FC]" / "‘Although it makes me sad, thou must go forth and seek thy destiny[.’][end-FC]" / "‘Thief! Thief! What? Thou art [name], heir of Midenhall!’[wait][line]‘Please forgive me[.’][end-FC]" / "[end-FC]" / "‘Ghosts may wander this world under moon or sun and at times they may even be recalled[.’][end-FC]" / "‘If thy name is [name], I have a message for thee[.’][wait][line]‘Seek the Fire Monolith and thou shall find the Sun Crest[.’][end-FC]" / "‘That is the chamber of Prince [name]'s sister, Princess Halla[.’][end-FC]" / "‘After the sacking of Moonbrooke I escaped and made my way here, hoping others would follow[.’][end-FC]"
 
-; control flow target (from $8E17)
-; call to code in a different bank ($0F:$FA52)
 B06_8E30:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
     lda $49 ; object hero/target/item/string ID $49
 
     cmp #$6B
     bne B06_8E41
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $6C
-; data -> code
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $6D
-; data -> code
-; control flow target (from $8E37)
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $6C
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $6D
 B06_8E41:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue IDs #$95-#$9C (open dialogue window, display string specified by A + #$1D9, display YES/NO menu, and display string corresponding to selected option)
-; control flow target (from $81F7)
+B06_8E44:
     sec
     sbc #$95 ; why not just SBC #$27?
 
@@ -3953,14 +2855,13 @@ B06_8E41:
 
     sta $49 ; object hero/target/item/string ID $49
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$FA52)
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
@@ -3968,26 +2869,23 @@ B06_8E41:
     lda #$08 ; String IDs #$0276-#$027D: "‘Yes, I think so, too[.’][end-FC]" / "‘The Lottery is but a game; do not take it too seriously[.’][end-FC]" / "‘Alas, I have no more of the Dew's Yarn, but I know where thou may seek some,[wait][line]for it is a substance made of wind and water and it drifts aloft until it lands on the third floor[line]in the North Tower of the Dragon's Horn[.’][end-FC]" / "‘The pirate ship sank in the wide seas of the north[.’][end-FC]" / "‘I heard that it is sold here, but perhaps that is a lie[.’][end-FC]" / "‘I thank thee very much indeed[.’][end-FC]" / "‘The Eye of Malroth sees much that is not readily apparent[.’][wait][line]‘Use it in the swamp of the hidden valley and perhaps thou will see a way to Rhone[.’][end-FC]" / "‘Please say nothing of this[.’][end-FC]"
 
     bne B06_8E61
-; control flow target (from $8E59)
 B06_8E5F:
     lda #$10 ; String IDs #$027E-#$0285: "‘But I cannot think of anyone else with such power[.’][end-FC]" / "‘Some merchants give out Lottery Tickets for free[.’][end-FC]" / "‘Stop again if thou art near[.’][end-FC]" / "‘Speak to the merchantman in Lianport[.’][end-FC]" / "‘Perhaps I should not say anything more[.’][end-FC]" / "‘Then may thy ears become cabbages and thy tongue a sausage[.’][wait][line]‘A little courtesy never killed anyone[.’][end-FC]" / "‘Once thou hast the Moon Fragment thou may enter the island cave where the Eye of Malroth is kept in darkness[.’][end-FC]" / "‘My brother must be there now. Will thou not go to him?’[end-FC]"
 
-; control flow target (from $8E5D)
 B06_8E61:
     clc
     adc $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$FA52)
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue IDs #$9D-#$C2 (town NPCs with complex logic)
-; control flow target (from $81FE)
+B06_8E6A:
     pha ; dialogue ID
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     pla ; dialogue ID
 
@@ -3997,53 +2895,69 @@ B06_8E61:
     asl ; 2 bytes per pointer
 
     tax
-    lda $8E81,X ; complex dialogue logic handlers
+    lda B06_8E81, x ; complex dialogue logic handlers
 
     sta $0C
-    lda $8E82,X
+    lda B06_8E81+1, x
     sta $0D
     jmp ($000C)
 
-
-; code -> data
 ; complex dialogue logic handlers
-; indexed data load target (from $8E74)
-; indexed data load target (from $8E79)
-.byte $CD
+B06_8E81:
+.addr B06_8ECD      ; $06:B06_8ECD; handler for dialogue ID #$9D: King in Map ID #$02: Midenhall 2F
+.addr B06_8F6A      ; $06:B06_8F6A; handler for dialogue ID #$9E: Guard in Map ID #$02: Midenhall 2F
+.addr B06_8F85      ; $06:B06_8F85; handler for dialogue ID #$9F: Wizard in Map ID #$02: Midenhall 2F
+.addr B06_8FAC      ; $06:B06_8FAC; handler for dialogue ID #$A0: Brute in Map ID #$04: Midenhall B1
+.addr B06_8FCC      ; $06:B06_8FCC; handler for dialogue ID #$A1: King in Map ID #$06: Cannock
+.addr B06_9019      ; $06:B06_9019; handler for dialogue ID #$A2: Princess Halla in Map ID #$06: Cannock
+.addr B06_9055      ; $06:B06_9055; handler for dialogue ID #$A3: Wizard in Map ID #$06: Cannock
+.addr B06_9065      ; $06:B06_9065; handler for dialogue ID #$A4-#$A5: Monsters in Map ID #$08: Hamlin Waterway
+.addr B06_9065      ; $06:B06_9065; handler for dialogue ID #$A4-#$A5: Monsters in Map ID #$08: Hamlin Waterway
+.addr B06_9077      ; $06:B06_9077; handler for dialogue ID #$A6: King Moonbrooke's Flame in Map ID #$09: Moonbrooke
+.addr B06_9095      ; $06:B06_9095; handler for dialogue ID #$A7: Guard in Map ID #$0A: Moonbrooke B1
+.addr B06_90A8      ; $06:B06_90A8; handler for dialogue ID #$A8: Wizard in Map ID #$0B: Lianport
+.addr B06_90CC      ; $06:B06_90CC; handler for dialogue ID #$A9: Echoing Flute guy in NE in Map ID #$0B: Lianport
+.addr B06_90EF      ; $06:B06_90EF; handler for dialogue ID #$AA: Woman in Map ID #$0B: Lianport
+.addr B06_9102      ; $06:B06_9102; handler for dialogue ID #$AB: Brute in Map ID #$0B: Lianport
+.addr B06_9112      ; $06:B06_9112; handler for dialogue ID #$AC: Woman in SW corner of Map ID #$0B: Lianport
+.addr B06_914D      ; $06:B06_914D; handler for dialogue ID #$AD: Wizard in Map ID #$0C: Tantegel
+.addr B06_916E      ; $06:B06_916E; handler for dialogue ID #$AE: Wizard in Map ID #$0C: Tantegel
+.addr B06_917B      ; $06:B06_917B; handler for dialogue ID #$AF: Priest in Map ID #$0C: Tantegel
+.addr B06_9197      ; $06:B06_9197; handler for dialogue ID #$B0: King in Map ID #$0F: Osterfair
+.addr B06_9213      ; $06:B06_9213; handler for dialogue ID #$B1: crazy fortuneteller Wizard in NW Map ID #$0F: Osterfair
+.addr B06_928B      ; $06:B06_928B; handler for dialogue IDs #$B2-#$B3: Dog in Map ID #$0F: Osterfair
+.addr B06_928B      ; $06:B06_928B; handler for dialogue IDs #$B2-#$B3: Dog in Map ID #$0F: Osterfair
+.addr B06_9292      ; $06:B06_9292; handler for dialogue ID #$B4: Dog in Map ID #$10: Zahan
+.addr B06_9299      ; $06:B06_9299; handler for dialogue ID #$B5: Don Mahone in Map ID #$11: Tuhn
+.addr B06_92FE      ; $06:B06_92FE; handler for dialogue ID #$B6: Roge Fastfinger in NE Map ID #$14: Wellgarth Underground
+.addr B06_932C      ; $06:B06_932C; handler for dialogue IDs #$B7-#$B9: Priest in Map ID #$15: Beran
+.addr B06_932C      ; $06:B06_932C; handler for dialogue IDs #$B7-#$B9: Priest in Map ID #$15: Beran
+.addr B06_932C      ; $06:B06_932C; handler for dialogue IDs #$B7-#$B9: Priest in Map ID #$15: Beran
+.addr B06_933E      ; $06:B06_933E; handler for dialogue ID #$BA: Monster in Map ID #$16: Hargon's Castle 1F
+.addr B06_9348      ; $06:B06_9348; handler for dialogue ID #$BB: Hargon in Map ID #$17: Hargon's Castle 7F
+.addr B06_937F      ; $06:B06_937F; handler for dialogue ID #$BC: Dragonlord's Grandson in Map ID #$18: Charlock Castle B8
+.addr B06_939B      ; $06:B06_939B; handler for dialogue ID #$BD: Guard in Map ID #$1A: Shrine SW of Cannock
+.addr B06_939F      ; $06:B06_939F; handler for dialogue ID #$BE: Guard in Map ID #$1A: Shrine SW of Cannock
+.addr B06_93BE      ; $06:B06_93BE; handler for dialogue ID #$BF: Wizard in Map ID #$1C: Shrine SE of Rimuldar
+.addr B06_93E1      ; $06:B06_93E1; handler for dialogue ID #$C0: Wizard in Map ID #$15: Beran
+.addr B06_9400      ; $06:B06_9400; handler for dialogue ID #$C1: Priest in Map ID #$1F: Rhone Shrine
+.addr B06_944D      ; $06:B06_944D; handler for dialogue ID #$C2: Priest in Map ID #$20: Shrine SW of Moonbrooke
 
-.byte $8E,$6A,$8F,$85,$8F,$AC,$8F,$CC,$8F,$19,$90,$55,$90,$65,$90,$65
-.byte $90,$77,$90,$95,$90,$A8,$90,$CC,$90,$EF,$90,$02,$91,$12,$91,$4D
-.byte $91,$6E,$91,$7B,$91,$97,$91,$13,$92,$8B,$92,$8B,$92,$92,$92,$99
-.byte $92,$FE,$92,$2C,$93,$2C,$93,$2C,$93,$3E,$93,$48,$93,$7F
-.byte $93,$9B,$93,$9F,$93,$BE,$93
-.byte $E1,$93,$00
-.byte $94,$4D
-.byte $94
-; data -> code
+B06_8ECD:
 ; handler for dialogue ID #$9D: King in Map ID #$02: Midenhall 2F
-; indirect control flow target (via $8E81)
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
     bne B06_8F0C ; different dialogue when talking to King Midenhall depending on whether Prince Midenhall is alive or not
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $86
-; data -> code
-    jsr $9466 ; display EXP to next level messages for entire party
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $86
+    jsr B06_9466 ; display EXP to next level messages for entire party
 
     lda #$00 ; Midenhall; pointless since none of these string use the [name] control code
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
     lda $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
@@ -4059,179 +2973,96 @@ B06_8E61:
     beq B06_8EF6 ; message for when you're able to add Cannock, but haven't yet done so
 
     bne B06_8EFA
-; control flow target (from $8EE5)
 B06_8EF4:
     inc $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
-; control flow target (from $8EF0)
-; call to code in a different bank ($0F:$FA32)
 B06_8EF6:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $89
-; data -> code
-; control flow target (from $8EE9, $8EF2)
-; call to code in a different bank ($0F:$FA32)
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $89
 B06_8EFA:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $87
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $87
     lda #$00 ; Save Point ID #$00: Midenhall 2F
 
     sta $48 ; last save point ID
 
-    jsr $A35D ; save game handler
+    jsr B06_A35D ; save game handler
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $88
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $88
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $8ED0)
 B06_8F0C:
     lda #$00 ; Midenhall
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $8A
-; data -> code
-    jsr $9466 ; display EXP to next level messages for entire party
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $8A
+    jsr B06_9466 ; display EXP to next level messages for entire party
 
     lda #$00 ; Save Point ID #$00: Midenhall 2F
 
     sta $48 ; last save point ID
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $87
+    jsr B0F_D16B
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; code -> data
-; indirect data load target
-
-.byte $87
-; data -> code
-; call to code in a different bank ($0F:$D16B)
-    jsr $D16B
-    jsr $9AD5 ; set A/$97 to ID of first living hero
-
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
-
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $8B
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $8B
     lda #$00 ; Midenhall
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $8C
+    jmp B06_9548 ; end TALK/ITEM routines
 
-
-; code -> data
-; indirect data load target
-
-.byte $8C
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; external control flow target (from $0F:$D28F)
+B06_8F39:
     lsr $0625 ; party gold, high byte; full party death costs you half your gold
 
     ror $0624 ; party gold, low byte
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda #$00 ; Midenhall
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $8D
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
+B06_8F4E:
+    jsr B06_9ACB ; open dialogue window
 
-; code -> data
-; indirect data load target
-
-.byte $8D
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
-
-
-; external control flow target (from $0F:$C6FD)
-    jsr $9ACB ; open dialogue window
-
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
     pha
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $8E
-; data -> code
-    jsr $9466 ; display EXP to next level messages for entire party
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $8E
+    jsr B06_9466 ; display EXP to next level messages for entire party
 
     pla
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $90
-; data -> code
-    jmp $8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $90
+    jmp B06_8092 ; wait until all joypad buttons are released and then some button pressed then wipe menus and exit COMMAND menu
 
 
 ; handler for dialogue ID #$9E: Guard in Map ID #$02: Midenhall 2F
-; indirect control flow target (via $8E83)
+B06_8F6A:
     lda #$00 ; Midenhall
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
     lda $44 ; non-saved event status (#$00 = event start, #$01 = Lianport Gremlins defeated, #$02 = met with Lianport grandfather/have no friends at Shrine SW of Cannock, #$03 = King Midenhall moved to stairs, #$04 = King Midenhall moved down stairs, #$05 = King Midenhall spoke on Midenhall 1F, #$0B = Lighthouse Wizard 7F, #$1B Lighthouse Wizard 2F spoke, #$64 = Hargon dead, #$FF = event end)
 
@@ -4242,24 +3073,20 @@ B06_8F0C:
     lda #$92 ; String ID #$0292: ‘I would come with thee, [name],[wait][line]but my place is here beside the King[.’][end-FC]
 
     bne B06_8F7F
-; control flow target (from $8F73, $8F77)
 B06_8F7D:
     lda #$91 ; String ID #$0291: ‘By land and sea and air will thy path lead, and in places I cannot see[.’][end-FC]
 
-; control flow target (from $8F7B)
-; call to code in a different bank ($0F:$FA52)
 B06_8F7F:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$9F: Wizard in Map ID #$02: Midenhall 2F
-; indirect control flow target (via $8E85)
+B06_8F85:
     lda #$00 ; Midenhall
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
     lda $44 ; non-saved event status (#$00 = event start, #$01 = Lianport Gremlins defeated, #$02 = met with Lianport grandfather/have no friends at Shrine SW of Cannock, #$03 = King Midenhall moved to stairs, #$04 = King Midenhall moved down stairs, #$05 = King Midenhall spoke on Midenhall 1F, #$0B = Lighthouse Wizard 7F, #$1B Lighthouse Wizard 2F spoke, #$64 = Hargon dead, #$FF = event end)
 
@@ -4267,56 +3094,37 @@ B06_8F7F:
     beq B06_8F94
     cmp #$04
     bne B06_8F9B
-; control flow target (from $8F8E)
-; call to code in a different bank ($0F:$FA32)
 B06_8F94:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $93
+    jmp B06_8FA9
 
-
-; code -> data
-; indirect data load target
-
-.byte $93
-; data -> code
-    jmp $8FA9
-
-; control flow target (from $8F92)
 B06_8F9B:
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
     bne B06_8FA4 ; branch if Midenhall dead
 
     lda #$94 ; String ID #$0294: ‘Thou art now as strong as an ox and twice as good looking.[line]That is very good[.’][end-FC]
 
     bne B06_8FA6
-; control flow target (from $8F9E)
 B06_8FA4:
     lda #$95 ; String ID #$0295: ‘[name], it is such a pity[.’][end-FC]
 
-; control flow target (from $8FA2)
-; call to code in a different bank ($0F:$FA52)
 B06_8FA6:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-; control flow target (from $8F98)
-    jmp $9548 ; end TALK/ITEM routines
+B06_8FA9:
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$A0: Brute in Map ID #$04: Midenhall B1
-; indirect control flow target (via $8E87)
+B06_8FAC:
     lda $05F2 ; probably whether door between you and NPC is open
 
     beq B06_8FC4
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $96
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $96
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
@@ -4324,50 +3132,36 @@ B06_8FA6:
     lda #$97 ; String ID #$0297: ‘Open this and I shall give thee some news[.’][end-FC]
 
     bne B06_8FC6
-; control flow target (from $8FBA)
 B06_8FC0:
     lda #$98 ; String ID #$0298: ‘Be gone with thee!’[end-FC]
 
     bne B06_8FC6
-; control flow target (from $8FAF)
 B06_8FC4:
     lda #$99 ; String ID #$0299: ‘As a reward for opening the door, let me tell thee of the Crest of Life[.’][wait][line]‘Find it on the dark road that leads to Rhone[.’][end-FC]
 
-; control flow target (from $8FBE, $8FC2)
-; call to code in a different bank ($0F:$FA52)
 B06_8FC6:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$A1: King in Map ID #$06: Cannock
-; indirect control flow target (via $8E89)
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+B06_8FCC:
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$F6CE)
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     sta $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $E2
-; data -> code
-    jsr $9466 ; display EXP to next level messages for entire party
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $E2
+    jsr B06_9466 ; display EXP to next level messages for entire party
 
     lda #$01 ; Cannock
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
     lda $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
@@ -4375,75 +3169,42 @@ B06_8FC6:
     cmp #$01
     beq B06_8FEF
     bne B06_8FF6
-; control flow target (from $8FE5)
 B06_8FED:
     inc $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
-; control flow target (from $8FE9)
-; call to code in a different bank ($0F:$FA32)
 B06_8FEF:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $9D
+    jmp B06_9002
 
-
-; code -> data
-; indirect data load target
-
-.byte $9D
-; data -> code
-    jmp $9002
-
-; control flow target (from $8FEB)
 B06_8FF6:
     cmp #$03
     bne B06_9002
     lda $49 ; object hero/target/item/string ID $49
 
     bne B06_9002
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $9E
-; data -> code
-; control flow target (from $8FF3, $8FF8, $8FFC)
-; call to code in a different bank ($0F:$FA32)
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $9E
 B06_9002:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $87
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $87
     lda #$01 ; Save Point ID #$01: Cannock
 
     sta $48 ; last save point ID
 
-    jsr $A35D ; save game handler
+    jsr B06_A35D ; save game handler
 
     lda #$01 ; Cannock
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $9C
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $9C
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$A2: Princess Halla in Map ID #$06: Cannock
-; indirect control flow target (via $8E8B)
+B06_9019:
     lda $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
     cmp #$04
@@ -4451,22 +3212,13 @@ B06_9002:
     lda #$A4 ; String ID #$02A4: [end-FC]
 
     bne B06_9039
-; control flow target (from $901D)
-; call to code in a different bank ($0F:$F6CE)
 B06_9023:
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     bne B06_903F
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $9F
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $9F
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
@@ -4474,19 +3226,15 @@ B06_9023:
     lda #$A0 ; String ID #$02A0: ‘Then I'll give thee some advice[.’][wait][line]‘My brother has gone searching for the Spring of Bravery, but he travels slowly[.’][end-FC]
 
     bne B06_9039
-; control flow target (from $9031)
 B06_9037:
     lda #$A1 ; String ID #$02A1: ‘Then I wish to be left alone[.’][end-FC]
 
-; control flow target (from $9021, $9035, $904F, $9053)
-; call to code in a different bank ($0F:$FA52)
 B06_9039:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9026)
 B06_903F:
     lda #$01 ; Cannock
 
@@ -4494,88 +3242,55 @@ B06_903F:
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_9051
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     lda #$A2 ; String ID #$02A2: ‘So, thou hast found my brother[.’][wait][line]‘Why dost thou tarry here when the world is in grave peril?’[end-FC]
 
     bne B06_9039
-; control flow target (from $9048)
 B06_9051:
     lda #$A3 ; String ID #$02A3: ‘Oh, no! He is as dead as a pork chop[.’][end-FC]
 
     bne B06_9039
 ; handler for dialogue ID #$A3: Wizard in Map ID #$06: Cannock
-; indirect control flow target (via $8E8D)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $A5
-; data -> code
+B06_9055:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $A5
     lda $051A ; something to do with whether you've opened the chest containing the Shield of Erdrick
 
     beq B06_9062
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $A6
-; data -> code
-; control flow target (from $905C)
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $A6
 B06_9062:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$A4-#$A5: Monsters in Map ID #$08: Hamlin Waterway
-; indirect control flow target (via $8E8F, $8E91)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $A9
-; data -> code
+B06_9065:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $A9
     lda $05F2 ; probably whether door between you and NPC is open
 
     bne B06_9074
-; call to code in a different bank ($0F:$D1A1)
-    jsr $D1A1 ; handle Hamlin Waterway Gremlins fight
+    jsr B0F_D1A1 ; handle Hamlin Waterway Gremlins fight
 
-    jmp $8095 ; wipe menus and exit COMMAND menu
+    jmp B06_8095 ; wipe menus and exit COMMAND menu
 
 
-; control flow target (from $906C)
 B06_9074:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$A6: King Moonbrooke's Flame in Map ID #$09: Moonbrooke
-; indirect control flow target (via $8E93)
+B06_9077:
     lda #$02 ; Moonbrooke
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $AA
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $AA
     lda $0651 ; Moonbrooke status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$84 ; pick out the Alive and In Party bits
@@ -4586,56 +3301,32 @@ B06_9074:
 
     lda #$02 ; Moonbrooke
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $AB
-; data -> code
-; control flow target (from $9087)
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $AB
 B06_9092:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$A7: Guard in Map ID #$0A: Moonbrooke B1
-; indirect control flow target (via $8E95)
-    jsr $9493 ; SEC if Moonbrooke in party, CLC otherwise
+B06_9095:
+    jsr B06_9493 ; SEC if Moonbrooke in party, CLC otherwise
 
     bcc B06_90A1
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $AD
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $AD
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9098)
-; call to code in a different bank ($0F:$FA32)
 B06_90A1:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $AC
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $AC
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$A8: Wizard in Map ID #$0B: Lianport
-; indirect control flow target (via $8E97)
+B06_90A8:
     lda $059C ; NPC #$0C X-pos
 
     cmp #$0F
@@ -4643,80 +3334,63 @@ B06_90A1:
     lda #$B8 ; String ID #$02B8: ‘Farewell[.’][end-FC]
 
     bne B06_90B9
-; control flow target (from $90AD)
 B06_90B3:
     lda $CF ; ship status (#$04 = on ship, #$02 = own ship, #$01 = beat Lianport Gremlins)
 
     bne B06_90BF
     lda #$AE ; String ID #$02AE: ‘We never lend boats to strangers, sorry[.’][end-FC]
 
-; control flow target (from $90B1)
-; call to code in a different bank ($0F:$FA52)
 B06_90B9:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $90B5)
-; call to code in a different bank ($0F:$FA32)
 B06_90BF:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $AF
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
-
-; code -> data
-; indirect data load target
-
-.byte $AF
-; data -> code
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
-
-; call to code in a different bank ($0F:$CCA2)
-    jsr $CCA2
-    jmp $8095 ; wipe menus and exit COMMAND menu
+    jsr B0F_CCA2
+    jmp B06_8095 ; wipe menus and exit COMMAND menu
 
 
 ; handler for dialogue ID #$A9: Echoing Flute guy in NE in Map ID #$0B: Lianport
-; indirect control flow target (via $8E99)
+B06_90CC:
     lda #$25 ; Item ID #$25: Tresures
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_90DE ; branch if found
 
     lda #$2A ; Item ID #$2A: Echoing Flute
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_90E7 ; branch if found
 
     lda #$B0 ; String ID #$02B0: ‘The pirate ship Relentless sank in chill waters with a great treasure still aboard[.’][wait][line]‘Bring me this treasure and I shall pay a handsome fee[.’][end-FC]
 
     bne B06_90E9
-; control flow target (from $90D1)
 B06_90DE:
     lda #$2A ; Item ID #$2A: Echoing Flute
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped); replace Tresures in party inventory with Echoing Flute
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped); replace Tresures in party inventory with Echoing Flute
 
     lda #$B1 ; String ID #$02B1: ‘Thou hast done exceedingly well[.’][wait][line]‘As I promised I shall give thee the Echoing Flute as thy reward[.’][end-FC]
 
     bne B06_90E9
-; control flow target (from $90D8)
 B06_90E7:
     lda #$B2 ; String ID #$02B2: ‘Thanks to thee I was greatly helped[.’][end-FC]
 
-; control flow target (from $90DC, $90E5)
-; call to code in a different bank ($0F:$FA52)
 B06_90E9:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$AA: Woman in Map ID #$0B: Lianport
-; indirect control flow target (via $8E9B)
+B06_90EF:
     lda $0594 ; NPC #$0B X-pos
 
     cmp #$03
@@ -4724,77 +3398,52 @@ B06_90E9:
     lda #$B9 ; String ID #$02B9: ‘I am in thy debt.[line]Please see my grandfather[.’][wait][line]‘He is at the port where his ship is docked[.’][end-FC]
 
     bne B06_90FC
-; control flow target (from $90F4)
 B06_90FA:
     lda #$B7 ; String ID #$02B7: ‘I wish thee speed and health[.’][end-FC]
 
-; control flow target (from $90F8)
-; call to code in a different bank ($0F:$FA52)
 B06_90FC:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$AB: Brute in Map ID #$0B: Lianport
-; indirect control flow target (via $8E9D)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $BA
-; data -> code
-    jsr $949D ; SEC if Moonbrooke alive, CLC otherwise
+B06_9102:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $BA
+    jsr B06_949D ; SEC if Moonbrooke alive, CLC otherwise
 
     bcc B06_910F
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $BB
-; data -> code
-; control flow target (from $9109)
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $BB
 B06_910F:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$AC: Woman in SW corner of Map ID #$0B: Lianport
-; indirect control flow target (via $8E9F)
-    jsr $949D ; SEC if Moonbrooke alive, CLC otherwise
+B06_9112:
+    jsr B06_949D ; SEC if Moonbrooke alive, CLC otherwise
 
     bcs B06_9145 ; if Moonbrooke's alive, display the boring string, otherwise...
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $BC
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $BC
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; #$00 = YES
 
     bne B06_9141 ; branch if you chose NO
 
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     lda #$64 ; 100 gold
 
     sta $8F
     lda #$00
     sta $90
-    jsr $8D31 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
+    jsr B06_8D31 ; given gold amount in $8F-$90, decrease party gold by that amount and SEC if possible, CLC otherwise
 
     bcs B06_913D ; if you didn't have 100 G to start with, reduce party gold to 0 :(
 
@@ -4803,38 +3452,32 @@ B06_910F:
 
     sta $0625 ; party gold, high byte
 
-; control flow target (from $9133)
 B06_913D:
     lda #$BD ; String ID #$02BD: ‘Perhaps the great Prince of Cannock thinks so too[.’][end-FC]
 
     bne B06_9147
-; control flow target (from $9120)
 B06_9141:
     lda #$BE ; String ID #$02BE: ‘What's wrong!’[end-FC]
 
     bne B06_9147
-; control flow target (from $9115)
 B06_9145:
     lda #$BF ; String ID #$02BF: ‘Be nice to one who lives here; she knows how to turn princes into tadpoles[.’][end-FC]
 
-; control flow target (from $913F, $9143)
-; call to code in a different bank ($0F:$FA52)
 B06_9147:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$AD: Wizard in Map ID #$0C: Tantegel
-; indirect control flow target (via $8EA1)
+B06_914D:
     lda #$00
     sta $49 ; object hero/target/item/string ID $49
 
     sta $97 ; subject hero ID $97
 
-; control flow target (from $915E)
 B06_9153:
-    jsr $9AFC ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
+    jsr B06_9AFC ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
 
     beq B06_9162
     inc $49 ; object hero/target/item/string ID $49
@@ -4845,266 +3488,153 @@ B06_9153:
 
     bne B06_9153
     beq B06_9166
-; control flow target (from $9156)
 B06_9162:
     lda #$C1 ; String ID #$02C1: ‘Unfortunately I have not the skill to cure this curse[.’][end-FC]
 
     bne B06_9168
-; control flow target (from $9160)
 B06_9166:
     lda #$C0 ; String ID #$02C0: ‘Come here when thou art afflicted by a curse[.’][end-FC]
 
-; control flow target (from $9164)
-; call to code in a different bank ($0F:$FA52)
 B06_9168:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$AE: Wizard in Map ID #$0C: Tantegel
-; indirect control flow target (via $8EA3)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+B06_916E:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $C2
+    jsr B0F_C515 ; flash screen 10 times
 
+    jsr B06_8DEC ; restore full MP to all living party members
 
-; code -> data
-; indirect data load target
-
-.byte $C2
-; data -> code
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
-
-    jsr $8DEC ; restore full MP to all living party members
-
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$AF: Priest in Map ID #$0C: Tantegel
-; indirect control flow target (via $8EA5)
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+B06_917B:
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $C3
+    jsr B06_9466 ; display EXP to next level messages for entire party
 
-
-; code -> data
-; indirect data load target
-
-.byte $C3
-; data -> code
-    jsr $9466 ; display EXP to next level messages for entire party
-
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $A7
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $A7
     lda #$02 ; Save Point ID #$02: Tantegel
 
     sta $48 ; last save point ID
 
-    jsr $A35D ; save game handler
+    jsr B06_A35D ; save game handler
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $C4
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $C4
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$B0: King in Map ID #$0F: Osterfair
-; indirect control flow target (via $8EA7)
+B06_9197:
     lda $98 ; outcome of last fight?
 
     beq B06_91A1
     cmp #$FC
     beq B06_91E3
     bne B06_91C6
-; control flow target (from $9199)
 B06_91A1:
     lda $0112 ; Crests found bit field (#$10 = Life, #$80 = Water, #$04 = Moon, #$02 = Stars, #$01 = Sun)
 
     and #$04 ; Moon Crest
 
     bne B06_91F4
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $C5
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $C5
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     bne B06_91ED
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $C6
-; data -> code
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $C6
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     lda #$00
     sta $98 ; outcome of last fight?
 
     sta $03 ; game clock?
 
-; call to code in a different bank ($0F:$CABA)
-    jsr $CABA
-    jmp $8095 ; wipe menus and exit COMMAND menu
+    jsr B0F_CABA
+    jmp B06_8095 ; wipe menus and exit COMMAND menu
 
 
-; control flow target (from $919F)
 B06_91C6:
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda $0112 ; Crests found bit field (#$10 = Life, #$80 = Water, #$04 = Moon, #$02 = Stars, #$01 = Sun)
 
     and #$04 ; Moon Crest
 
     bne B06_91DC
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $C7
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $C7
     lda #$04 ; Moon Crest
 
     ora $0112 ; Crests found bit field (#$10 = Life, #$80 = Water, #$04 = Moon, #$02 = Stars, #$01 = Sun)
 
     sta $0112 ; Crests found bit field (#$10 = Life, #$80 = Water, #$04 = Moon, #$02 = Stars, #$01 = Sun)
 
-; control flow target (from $91CE)
-; call to code in a different bank ($0F:$FA2E)
 B06_91DC:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $15
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $15
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $919D)
 B06_91E3:
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $C9
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $C9
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $91B1)
-; call to code in a different bank ($0F:$FA32)
 B06_91ED:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $C8
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $C8
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $91A6)
 B06_91F4:
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $EC
+    jsr B06_9466 ; display EXP to next level messages for entire party
 
-
-; code -> data
-; indirect data load target
-
-.byte $EC
-; data -> code
-    jsr $9466 ; display EXP to next level messages for entire party
-
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $87
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $87
     lda #$03 ; Save Point ID #$03: Osterfair
 
     sta $48 ; last save point ID
 
-    jsr $A35D ; save game handler
+    jsr B06_A35D ; save game handler
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $CA
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $CA
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$B1: crazy fortuneteller Wizard in NW Map ID #$0F: Osterfair
-; indirect control flow target (via $8EA9)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $CB
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+B06_9213:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $CB
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     bne B06_9246
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
@@ -5114,19 +3644,18 @@ B06_91F4:
 
     tax
     inx
-    lda $924E ; -> $06:$9250: Direction Names text
+    lda B06_924E ; -> $06:$9250: Direction Names text
 
     sta $0C
-    lda $924F
+    lda B06_924E+1
     sta $0D
-    jsr $9266 ; given a pointer ($0C) and a number (one-based) in X, update $0C-$0D to the address of the start of the X'th string in ($0C)
+    jsr B06_9266 ; given a pointer ($0C) and a number (one-based) in X, update $0C-$0D to the address of the start of the X'th string in ($0C)
 
     ldy #$00 ; copy direction name to $5A
 
-; control flow target (from $9240)
 B06_9238:
-    lda ($0C),Y
-    sta $005A,Y ; Crest/direction name write buffer start
+    lda ($0C), y
+    sta $005A, y ; Crest/direction name write buffer start
 
     iny
 ; [end-FA]
@@ -5136,50 +3665,30 @@ B06_9238:
     lda #$CC ; String ID #$02CC: ‘I'll tell thy fortune[.’][wait][line]‘That which thou seeks is [item-F9]!’[end-FC]
 
     bne B06_9248
-; control flow target (from $921C)
 B06_9246:
     lda #$CD ; String ID #$02CD: ‘So be it then.[line]I shall tell thee nothing[.’][end-FC]
 
-; control flow target (from $9244)
-; call to code in a different bank ($0F:$FA52)
 B06_9248:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
+
+B06_924E:
+.addr Directions
+
+Directions:
+.byte "East",$FA
+.byte "West",$FA
+.byte "South",$FA
+.byte "North",$FA
 
 
-
-; code -> data
-; -> $06:$9250: Direction Names text
-; data load target (from $9229)
-; data load target (from $922E)
-.byte $50
-; Direction Names text
-.byte $92
-; indirect data load target (via $924E)
-; indirect data load target
-.byte $28,$0A,$1C
-.byte $1D
-.byte $FA
-; indirect data load target
-.byte $3A,$0E,$1C
-.byte $1D
-.byte $FA
-; indirect data load target
-.byte $36,$18,$1E
-.byte $1D,$11
-.byte $FA
-
-.byte $31,$18,$1B
-.byte $1D,$11
-.byte $FA
-; data -> code
 ; given a pointer ($0C) and a number (one-based) in X, update $0C-$0D to the address of the start of the X'th string in ($0C)
-; control flow target (from $9233, $9287)
+B06_9266:
     ldy #$00 ; start at the current position of ($0C)
 
-; control flow target (from $9277)
-    lda ($0C),Y
+B06_9268:
+    lda ($0C), y
 ; [end-FA]
     cmp #$FA
     beq B06_927A ; found some end token
@@ -5193,10 +3702,9 @@ B06_9248:
     beq B06_927A ; found some end token
 
     iny
-    jmp $9268
+    jmp B06_9268
 
 ; found some end token
-; control flow target (from $926C, $9270, $9274)
 B06_927A:
     dex ; number of strings to skip ahead + 1
 
@@ -5209,45 +3717,29 @@ B06_927A:
     sta $0C
     bcc B06_9287
     inc $0D
-; control flow target (from $9283)
 B06_9287:
-    jmp $9266 ; given a pointer ($0C) and a number (one-based) in X, update $0C-$0D to the address of the start of the X'th string in ($0C)
+    jmp B06_9266 ; given a pointer ($0C) and a number (one-based) in X, update $0C-$0D to the address of the start of the X'th string in ($0C)
 
 
-; control flow target (from $927B)
 B06_928A:
     rts
 
 ; handler for dialogue IDs #$B2-#$B3: Dog in Map ID #$0F: Osterfair
-; indirect control flow target (via $8EAB, $8EAD)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $CF
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+B06_928B:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $CF
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$B4: Dog in Map ID #$10: Zahan
-; indirect control flow target (via $8EAF)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $D0
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+B06_9292:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $D0
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$B5: Don Mahone in Map ID #$11: Tuhn
-; indirect control flow target (via $8EB1)
+B06_9299:
     lda $CD ; Don Mahone quest status (#$00 = not started, #$01 = ingredients delivered, #$03 = game loaded after ingredients delivered)
 
     beq B06_92BA
@@ -5261,16 +3753,14 @@ B06_928A:
 
     sta $96 ; temp storage for item/spell/type/etc. IDs
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcs B06_92B2
-; control flow target (from $929F)
 B06_92AE:
     lda #$D5 ; String ID #$02D5: ‘Sorry.[line]I haven't finished it yet.[line]Please be patient[.’][end-FC]
 
     bne B06_92F8 ; display string, end TALK routine
 
-; control flow target (from $92AC)
 B06_92B2:
     lda #$00
     sta $CD ; Don Mahone quest status (#$00 = not started, #$01 = ingredients delivered, #$03 = game loaded after ingredients delivered)
@@ -5279,41 +3769,38 @@ B06_92B2:
 
     bne B06_92F8 ; display string, end TALK routine
 
-; control flow target (from $929B)
 B06_92BA:
     lda #$2C ; Item ID #$2C: Dew’s Yarn
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bmi B06_92E7
     lda #$2D ; Item ID #$2D: Magic Loom
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bmi B06_92E7
-    jsr $94A7 ; X = A mod 8, A = A / 8
+    jsr B06_94A7 ; X = A mod 8, A = A / 8
 
     sta $9C ; hero ID
 
     lda #$2D ; Item ID #$2D: Magic Loom
 
-; call to code in a different bank ($0F:$C4B6)
-    jsr $C4B6 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
+    jsr B0F_C4B6 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
 
     lda #$2C ; Item ID #$2C: Dew’s Yarn
 
     pha ; Item ID #$2C: Dew’s Yarn
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
-    jsr $94A7 ; X = A mod 8, A = A / 8
+    jsr B06_94A7 ; X = A mod 8, A = A / 8
 
     sta $9C ; hero ID
 
     pla ; Item ID #$2C: Dew’s Yarn
 
-; call to code in a different bank ($0F:$C4B6)
-    jsr $C4B6 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
+    jsr B0F_C4B6 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
 
     inc $CD ; Don Mahone quest status (#$00 = not started, #$01 = ingredients delivered, #$03 = game loaded after ingredients delivered)
 
@@ -5321,18 +3808,10 @@ B06_92BA:
 
     bne B06_92F8 ; display string, end TALK routine
 
-; control flow target (from $92BF, $92C6)
-; call to code in a different bank ($0F:$FA32)
 B06_92E7:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $D1
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $D1
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
@@ -5341,21 +3820,18 @@ B06_92E7:
 
     bne B06_92F8 ; display string, end TALK routine
 
-; control flow target (from $92F0)
 B06_92F6:
     lda #$D3 ; String ID #$02D3: ‘That's too bad.[line]We could help each other[.’][end-FC]
 
 ; display string, end TALK routine
-; control flow target (from $92B0, $92B8, $92E5, $92F4)
-; call to code in a different bank ($0F:$FA52)
 B06_92F8:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$B6: Roge Fastfinger in NE Map ID #$14: Wellgarth Underground
-; indirect control flow target (via $8EB3)
+B06_92FE:
     lda $CE ; Tuhn Watergate open flag (#$00 = closed, #$01 = open)
 
     bne B06_9324
@@ -5363,25 +3839,17 @@ B06_92F8:
 
     sta $96 ; temp storage for item/spell/type/etc. IDs
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_9324
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $D7
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $D7
     lda #$00 ; Midenhall
 
-; control flow target (from $931E)
 B06_9311:
     sta $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcs B06_9329
     inc $97 ; subject hero ID $97
@@ -5395,22 +3863,18 @@ B06_9311:
     lda #$D8 ; String ID #$02D8: [wait]‘But thou hast many things.[line]See me again later[.’][end-FC]
 
     bne B06_9326
-; control flow target (from $9300, $9309)
 B06_9324:
     lda #$D9 ; String ID #$02D9: ‘I'm sorry; I will not do that anymore[.’][end-FC]
 
-; control flow target (from $9322)
-; call to code in a different bank ($0F:$FA52)
 B06_9326:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-; control flow target (from $9316)
 B06_9329:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue IDs #$B7-#$B9: Priest in Map ID #$15: Beran
-; indirect control flow target (via $8EB5, $8EB7, $8EB9)
+B06_932C:
     lda $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
     cmp #$04
@@ -5418,46 +3882,28 @@ B06_9329:
     lda #$E1 ; String ID #$02E1: ‘I see that thou hast faced many dangers and the greatest lie ahead[.’][end-FC]
 
     bne B06_9338
-; control flow target (from $9330)
 B06_9336:
     lda #$E2 ; String ID #$02E2: ‘Welcome, [name]!’[wait][end-FC]
 
-; control flow target (from $9334)
-; call to code in a different bank ($0F:$FA52)
 B06_9338:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$BA: Monster in Map ID #$16: Hargon's Castle 1F
-; indirect control flow target (via $8EBB)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $E3
-; data -> code
-; call to code in a different bank ($0F:$D1C6)
-    jsr $D1C6
-    jmp $8095 ; wipe menus and exit COMMAND menu
+B06_933E:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $E3
+    jsr B0F_D1C6
+    jmp B06_8095 ; wipe menus and exit COMMAND menu
 
 
 ; handler for dialogue ID #$BB: Hargon in Map ID #$17: Hargon's Castle 7F
-; indirect control flow target (via $8EBD)
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $E4
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+B06_9348:
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $E4
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
@@ -5465,69 +3911,46 @@ B06_9338:
     lda #$E5 ; String ID #$02E5: ‘Such audacity is unforgivable!’[end-FC]
 
     bne B06_9359
-; control flow target (from $9351)
 B06_9357:
     lda #$E6 ; String ID #$02E6: ‘Then I shall teach the proper respect!’[end-FC]
 
-; control flow target (from $9355)
-; call to code in a different bank ($0F:$FA52)
 B06_9359:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
-; call to code in a different bank ($0F:$D1F8)
-    jsr $D1F8 ; trigger Fixed Battle #$0B: 1 Hargon (Map ID #$17: Hargon's Castle 7F)
+    jsr B0F_D1F8 ; trigger Fixed Battle #$0B: 1 Hargon (Map ID #$17: Hargon's Castle 7F)
 
     lda $98 ; outcome of last fight?
 
     cmp #$FC
     beq B06_937C
-; call to code in a different bank ($0F:$F6F6)
-    jsr $F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $E7
-; data -> code
+    jsr B0F_F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
+    .byte $E7
     lda #$FF
     sta $0561 ; NPC #$04 sprite ID
 
-; call to code in a different bank ($0F:$CF64)
-    jsr $CF64
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_CF64
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     lda #$64
     sta $44 ; non-saved event status (#$00 = event start, #$01 = Lianport Gremlins defeated, #$02 = met with Lianport grandfather/have no friends at Shrine SW of Cannock, #$03 = King Midenhall moved to stairs, #$04 = King Midenhall moved down stairs, #$05 = King Midenhall spoke on Midenhall 1F, #$0B = Lighthouse Wizard 7F, #$1B Lighthouse Wizard 2F spoke, #$64 = Hargon dead, #$FF = event end)
 
     rts
 
-; control flow target (from $9366)
 B06_937C:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$BC: Dragonlord's Grandson in Map ID #$18: Charlock Castle B8
-; indirect control flow target (via $8EBF)
+B06_937F:
     lda #$00 ; Midenhall
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $EA
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $EA
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
@@ -5535,33 +3958,28 @@ B06_937C:
     lda #$F0 ; String ID #$02F0: ‘Once thou hast the five crests, seek out the good wizard, Rubiss,[wait][line]who dwells in the depths of the sea south of Midenhall[.’][end-FC]
 
     bne B06_9395
-; control flow target (from $938D)
 B06_9393:
     lda #$F1 ; String ID #$02F1: ‘Thou art surely missing thy brain.[line]But it is up to thee[.’][end-FC]
 
-; control flow target (from $9391)
-; call to code in a different bank ($0F:$FA52)
 B06_9395:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$BD: Guard in Map ID #$1A: Shrine SW of Cannock
-; indirect control flow target (via $8EC1)
+B06_939B:
     lda #$BD ; dialogue ID
 
     bne B06_93A1
 ; handler for dialogue ID #$BE: Guard in Map ID #$1A: Shrine SW of Cannock
-; indirect control flow target (via $8EC3)
+B06_939F:
     lda #$BE ; dialogue ID
 
-; control flow target (from $939D)
 B06_93A1:
     sta $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$F6CE)
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     bne B06_93B6 ; if Midenhall is alone, he can't pass
 
@@ -5572,126 +3990,87 @@ B06_93A1:
     lda #$F3 ; String ID #$02F3: ‘It is dangerous to tread some roads alone[.’][end-FC]
 
     bne B06_93B8
-; control flow target (from $93AC)
 B06_93B2:
     lda #$F4 ; String ID #$02F4: ‘The King of Cannock has left orders that none shall pass alone[.’][end-FC]
 
     bne B06_93B8
-; control flow target (from $93A6)
 B06_93B6:
     lda #$EB ; String ID #$02EB: ‘Please go through[.’][end-FC]
 
-; control flow target (from $93B0, $93B4)
-; call to code in a different bank ($0F:$FA52)
 B06_93B8:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$BF: Wizard in Map ID #$1C: Shrine SE of Rimuldar
-; indirect control flow target (via $8EC5)
+B06_93BE:
     lda #$23 ; Item ID #$23: Helmet of Erdrick
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bmi B06_93C9
     lda #$F7 ; String ID #$02F7: ‘Thou hast no further business here. Go[.’][end-FC]
 
     bne B06_93DB
-; control flow target (from $93C3)
 B06_93C9:
     lda #$24 ; Item ID #$24: Token of Erdrick
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_93D4
     lda #$F5 ; String ID #$02F5: ‘The real descendant of Erdrick carries a token to prove his heritage[.’][wait][line]‘Now be off with thee, imposter[.’][end-FC]
 
     bne B06_93DB
-; control flow target (from $93CE)
 B06_93D4:
     lda #$23 ; Item ID #$23: Helmet of Erdrick
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     lda #$F6 ; String ID #$02F6: ‘I have been waiting for thee to come[.’][wait][line]‘I will trade the Helmet of Erdrick for the token thou carries[.’][end-FC]
 
-; control flow target (from $93C7, $93D2)
-; call to code in a different bank ($0F:$FA52)
 B06_93DB:
-    jsr $FA52 ; display string ID specified by A + #$0200
+    jsr B0F_FA52 ; display string ID specified by A + #$0200
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$C0: Wizard in Map ID #$15: Beran
-; indirect control flow target (via $8EC7)
+B06_93E1:
     lda #$04 ; Save Point ID #$04: Beran
 
 ; update save point $48 to A, run through the whole save point sequence
-; control flow target (from $81C2)
+B06_93E3:
     sta $48 ; last save point ID
 
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $F8
+    jsr B06_9466 ; display EXP to next level messages for entire party
 
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $87
+    jsr B06_A35D ; save game handler
 
-; code -> data
-; indirect data load target
-
-.byte $F8
-; data -> code
-    jsr $9466 ; display EXP to next level messages for entire party
-
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $87
-; data -> code
-    jsr $A35D ; save game handler
-
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $F9
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $F9
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$C1: Priest in Map ID #$1F: Rhone Shrine
-; indirect control flow target (via $8EC9)
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+B06_9400:
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
     pha ; ID of first living hero at start of conversation
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $FA
-; data -> code
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $FA
+    jsr B0F_C515 ; flash screen 10 times
 
     lda #$84 ; everybody's alive and in your party!
 
@@ -5701,144 +4080,92 @@ B06_93DB:
 
     sta $0651 ; Moonbrooke status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-; call to code in a different bank ($0F:$C77B)
-    jsr $C77B ; restore full HP/MP to all living party members
+    jsr B0F_C77B ; restore full HP/MP to all living party members
 
     lda #$00
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$D302)
-    jsr $D302
+    jsr B0F_D302
     lda #$01
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$D302)
-    jsr $D302
+    jsr B0F_D302
     lda #$02
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$D302)
-    jsr $D302
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
-    jsr $9466 ; display EXP to next level messages for entire party
+    jsr B0F_D302
+    jsr B0F_C22C
+    jsr B06_9466 ; display EXP to next level messages for entire party
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $87
-; data -> code
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $87
     lda #$05 ; Save Point ID #$05: Rhone Shrine
 
     sta $48 ; last save point ID
 
-    jsr $A35D ; save game handler
+    jsr B06_A35D ; save game handler
 
     pla ; ID of first living hero at start of conversation
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $FB
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $FB
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue ID #$C2: Priest in Map ID #$20: Shrine SW of Moonbrooke
-; indirect control flow target (via $8ECB)
+B06_944D:
     lda #$02 ; Moonbrooke
 
     sta $97 ; subject hero ID $97
 
     lda #$04 ; In Party
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcs B06_945F
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $FC
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-
-.byte $FC
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9456)
-; call to code in a different bank ($0F:$FA32)
 B06_945F:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $00
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $00
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; display EXP to next level messages for entire party
-; control flow target (from $8ED9, $8F15, $8F5C, $8FDB, $9182, $91FE, $93EF, $9434)
+B06_9466:
     lda #$00 ; Midenhall
 
     sta $97 ; subject hero ID $97
 
-; control flow target (from $9490)
 B06_946A:
     lda #$04 ; In Party
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
 ; skip if not in party
     bcc B06_948A
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F734)
-    jsr $F734 ; set $8F-$90 to EXP required to reach next level
+    jsr B0F_F734 ; set $8F-$90 to EXP required to reach next level
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     lda $8F
     ora $90
     bne B06_9486 ; different messages depending on whether you're at max EXP or not
 
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $52
+    jmp B06_948A
 
-
-; code -> data
-; indirect data load target
-
-.byte $52
-; data -> code
-    jmp $948A
-
-; control flow target (from $947D)
-; call to code in a different bank ($0F:$FA32)
 B06_9486:
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $8F
-; data -> code
-; control flow target (from $946F, $9483)
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $8F
 B06_948A:
     inc $97 ; subject hero ID $97
 
@@ -5851,31 +4178,31 @@ B06_948A:
     rts
 
 ; SEC if Moonbrooke in party, CLC otherwise
-; control flow target (from $9095)
+B06_9493:
     lda #$02 ; Moonbrooke
 
     sta $97 ; subject hero ID $97
 
     lda #$04 ; In Party
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     rts
 
 ; SEC if Moonbrooke alive, CLC otherwise
-; control flow target (from $9106, $9112)
+B06_949D:
     lda #$02 ; Moonbrooke
 
     sta $97 ; subject hero ID $97
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     rts
 
 ; X = A mod 8, A = A / 8
-; control flow target (from $92C8, $92D8)
+B06_94A7:
     pha
     and #$07
     tax
@@ -5886,23 +4213,22 @@ B06_948A:
     rts
 
 ; handler for dialogue IDs #$C3-#$CC (open dialogue window and display string specified by A - #$73)
-; control flow target (from $8205)
+B06_94B0:
     sec
     sbc #$73 ; convert to string ID
 
     pha
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     pla ; String IDs #$50-#$59: "‘Take care that thou strays not over the tower's edge[.’][end-FC]" / "‘As the full moon waxes and wanes so too the tide rises and falls[.’][end-FC]" / "‘[name] is now strong enough[.’][wait][end-FC]" / "And [cardinal #] [monster(s)][line]appeared.[end-FC]" / "[cardinal #] [monster(s)][line]appeared.[end-FC]" / "[end-FC]" / "[end-FC]" / "‘In ancient times a volcano rose from the seabed, and inside was a deep cavern[.’][end-FC]" / "[end-FC]" / "[end-FC]"
 
-; call to code in a different bank ($0F:$FA4A)
-    jsr $FA4A ; display string ID specified by A
+    jsr B0F_FA4A ; display string ID specified by A
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue IDs #$CD-#$CF (open dialogue window, display string specified by A - #$73, display YES/NO menu, and display string corresponding to selected option)
-; control flow target (from $820C)
+B06_94BE:
     sec
     sbc #$CD ; why not just SBC #$73?
 
@@ -5911,14 +4237,13 @@ B06_948A:
 
     sta $49 ; object hero/target/item/string ID $49
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$FA4A)
-    jsr $FA4A ; display string ID specified by A
+    jsr B0F_FA4A ; display string ID specified by A
 
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
@@ -5926,59 +4251,41 @@ B06_948A:
     lda #$03 ; String IDs #$5D-#$5F: "‘Then all is well[.’][end-FC]" / "‘But I have not yet spoken[.’][end-FC]" / "‘Go then, for thou must defeat Hargon[.’][end-FC]"
 
     bne B06_94DB
-; control flow target (from $94D3)
 B06_94D9:
     lda #$06 ; String IDs #$60-#$62: "‘That is not good[.’][wait][line]‘All who seek victory must first visit the Spring of Bravery[.’][end-FC]" / "‘These twin towers are known as the Dragon's Horn[.’][end-FC]" / "‘Thou art close to the island cave wherein lies an object of great power and greater peril!’[end-FC]"
 
-; control flow target (from $94D7)
 B06_94DB:
     clc
     adc $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$FA4A)
-    jsr $FA4A ; display string ID specified by A
+    jsr B0F_FA4A ; display string ID specified by A
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; handler for dialogue IDs #$D0-#$D8 (dungeon NPCs with complex logic)
-; control flow target (from $8213)
+B06_94E4:
     pha ; dialogue ID
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     pla ; dialogue ID
 
     cmp #$D0 ; dialogue ID #$D0: Wizard in Map ID #$40: Spring of Bravery
 
     bne B06_9525
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $6A
-; data -> code
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $6A
     lda $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
     cmp #$01
     beq B06_94FB
     cmp #$02
     bne B06_9515
-; control flow target (from $94F5)
-; call to code in a different bank ($0F:$FA2A)
 B06_94FB:
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $64
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $64
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
@@ -5989,130 +4296,82 @@ B06_94FB:
     bne B06_950E
     inc $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
 
-; control flow target (from $950A)
-; call to code in a different bank ($0F:$FA2A)
 B06_950E:
-    jsr $FA2A ; display string ID specified by next byte
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $65
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $65
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $94F9, $9504)
-; call to code in a different bank ($0F:$FA2A)
 B06_9515:
-    jsr $FA2A ; display string ID specified by next byte
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $63
+    jsr B0F_C515 ; flash screen 10 times
+
+    jsr B06_8DCC ; restore full HP to all living party members
+
+    jsr B0F_C22C
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $63
-; data -> code
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
-
-    jsr $8DCC ; restore full HP to all living party members
-
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $94EB)
 B06_9525:
     cmp #$D1 ; dialogue ID #$D1: Wizard in Map ID #$56: Lighthouse 7F
 
     bne B06_9530
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $52
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-
-.byte $52
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9527)
 B06_9530:
     cmp #$D6 ; dialogue ID #$D6: Guard in Map ID ; Map ID #$57: Lighthouse 8F
 
     bne B06_953F
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $70
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $71
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $70
-; data -> code
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $71
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9532)
 B06_953F:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; exit COMMAND menu
-; control flow target (from $9560, $9569, $958A, $95B8, $9630, $99C8)
-; call to code in a different bank ($0F:$FA89)
 B06_9542:
-    jsr $FA89 ; useless JSR to RTS?!
+    jsr B0F_FA89 ; useless JSR to RTS?!
 
-    jmp $806D ; exit COMMAND menu
+    jmp B06_806D ; exit COMMAND menu
 
 
 ; end TALK/ITEM routines
-; control flow target (from $8C40, $8CD1, $8E41, $8E67, $8F09, $8F36, $8F82, $8FA9, $8FC9, $9016, $903C, $9062, $9074, $9092, $909E, $90A5, $90BC, $90EC, $90FF, $910F, $914A, $916B, $9178, $9194, $91E0, $91EA, $91F1, $9210, $924B, $928F, $9296, $92FB, $9329, $933B, $937C, $9398, $93BB, $93DE, $93FD, $944A, $945C, $9463, $94BB, $94E1, $9512, $9522, $952D, $953C, $953F, $957B, $95A4, $9603, $966C, $967E, $96CD, $96F6, $9745, $9754, $97E6, $97F1, $980C, $9822, $983B, $9845, $984F, $9859, $9863, $986D, $9877, $9881, $988B, $9892, $99BE, $99EC, $99FD, $9A14, $9A44, $9A66, $9A81, $9ABA, $9AC1, $9AC8, $9B81, $9BA3, $9BB7, $9BEF, $9C02, $9C34, $9C5F, $9C90, $9CBE, $9D4C)
+B06_9548:
     lda $8E ; flag for in battle or not (#$FF)?
 
     bpl B06_954D
     rts
 
-; control flow target (from $954A)
 B06_954D:
-    jsr $809D ; wait until all joypad buttons are released and then some button pressed
+    jsr B06_809D ; wait until all joypad buttons are released and then some button pressed
 
-; call to code in a different bank ($0F:$FA89)
-    jsr $FA89 ; useless JSR to RTS?!
+    jsr B0F_FA89 ; useless JSR to RTS?!
 
     lda #$00
-; call to code in a different bank ($0F:$CF6A)
-    jsr $CF6A ; wipe selected menu region
+    jsr B0F_CF6A ; wipe selected menu region
 
-    jmp $806D ; exit COMMAND menu
+    jmp B06_806D ; exit COMMAND menu
 
 
 ; COMMAND menu ITEM command handler
-; indirect control flow target (via $808C)
-; call to code in a different bank ($0F:$F55D)
-    jsr $F55D ; display appropriate main ITEM hero select menu
+B06_955B:
+    jsr B0F_F55D ; display appropriate main ITEM hero select menu
 
     cmp #$FF
     beq B06_9542 ; exit COMMAND menu
 
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F5FE)
-    jsr $F5FE ; given a hero ID in A, open hero's item list and return selected item ID (or #$FE if they have no items)
+    jsr B0F_F5FE ; given a hero ID in A, open hero's item list and return selected item ID (or #$FE if they have no items)
 
     cmp #$FF
     beq B06_9542 ; exit COMMAND menu
@@ -6120,27 +4379,18 @@ B06_954D:
     cmp #$FE
     bne B06_957E ; hero has selected an item to use
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $13
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $13
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; hero has selected an item to use
-; control flow target (from $956D)
 B06_957E:
     sta $96 ; temp storage for item/spell/type/etc. IDs; item ID
 
@@ -6148,15 +4398,8 @@ B06_957E:
 
     stx $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $17
-; data -> code
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $17
     cmp #$FF
     beq B06_9542 ; exit COMMAND menu
 
@@ -6164,36 +4407,27 @@ B06_957E:
 
     bcc B06_9593 ; USE handler
 
-    jmp $99A8 ; TRADE/THROW handler
+    jmp B06_99A8 ; TRADE/THROW handler
 
 
 ; USE handler
-; control flow target (from $958E)
 B06_9593:
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcs B06_95A7 ; USE handler, hero alive
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $1F
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $1F
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; USE handler, hero alive
-; control flow target (from $9598)
 B06_95A7:
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID
 
@@ -6205,23 +4439,20 @@ B06_95A7:
 
     bne B06_9625
 ; USE Medical/Antidote Herb
-; control flow target (from $95AB)
-; call to code in a different bank ($0F:$F587)
 B06_95B1:
-    jsr $F587 ; display appropriate main ITEM target menu
+    jsr B0F_F587 ; display appropriate main ITEM target menu
 
     cmp #$FF
     bne B06_95BB
-    jmp $9542 ; exit COMMAND menu
+    jmp B06_9542 ; exit COMMAND menu
 
 
-; control flow target (from $95B6)
 B06_95BB:
     sta $C9 ; target hero ID
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     lda $97 ; subject hero ID $97
 
@@ -6229,31 +4460,20 @@ B06_95BB:
 
     beq B06_95D6 ; use different strings depending on whether hero uses item on themself or another hero
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $20
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $20
     lda $C9 ; target hero ID
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
     lda #$1D ; String ID #$011D: used the [item] on [name].[end-FC]
 
     bne B06_95D8
-; control flow target (from $95C7)
 B06_95D6:
     lda #$1E ; String ID #$011E: [name] used the [item].[end-FC]
 
-; control flow target (from $95D4)
-; call to code in a different bank ($0F:$FA4E)
 B06_95D8:
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
     lda $97 ; subject hero ID $97
 
@@ -6271,7 +4491,7 @@ B06_95D8:
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_95F9 ; Medical Herbs can't heal dead people
 
@@ -6279,197 +4499,134 @@ B06_95D8:
 
     ldx #$64 ; Healing Power on field for Medical Herb
 
-; call to code in a different bank ($0F:$F72B)
-    jsr $F72B ; heal hero ID in A by random amount based on healing power in X
+    jsr B0F_F72B ; heal hero ID in A by random amount based on healing power in X
 
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
-; control flow target (from $95ED, $960B, $961A)
+    jsr B0F_C22C
 B06_95F9:
     pla ; subject hero ID
 
     ldx $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$C4D4)
-    jsr $C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
+    jsr B0F_C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
 
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $01
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $01
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; USE Antidote Herb
-; control flow target (from $95E6)
 B06_9606:
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_95F9 ; Antidote Herbs can't heal dead people
 
     lda $C9 ; target hero ID
 
-    jsr $8DAC ; given hero ID in A, set Y to start of hero's data in $062D,Y, i.e. Y = A * #$12
+    jsr B06_8DAC ; given hero ID in A, set Y to start of hero's data in $062D, y, i.e. Y = A * #$12
 
     lda #$DF ; clear Poison
 
-    and $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    and $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-    sta $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-    jmp $95F9
+    jmp B06_95F9
 
 ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
-; control flow target (from $9634, $965E, $967B, $9809)
+B06_961D:
     lda $97 ; subject hero ID $97
 
     ldx $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$C4D4)
-    jsr $C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
+    jsr B0F_C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
 
     rts
 
-; control flow target (from $95AF)
 B06_9625:
     cmp #$29 ; Item ID #$29: Leaf of The World Tree
 
     bne B06_964E
-; call to code in a different bank ($0F:$F587)
-    jsr $F587 ; display appropriate main ITEM target menu
+    jsr B0F_F587 ; display appropriate main ITEM target menu
 
     cmp #$FF
     bne B06_9633 ; USE Item ID #$29: Leaf of The World Tree on target hero
 
-    jmp $9542 ; exit COMMAND menu
+    jmp B06_9542 ; exit COMMAND menu
 
 
 ; USE Item ID #$29: Leaf of The World Tree on target hero
-; control flow target (from $962E)
 B06_9633:
     pha ; target hero ID
 
-    jsr $961D ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
+    jsr B06_961D ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $20
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $20
     pla ; target hero ID
 
     sta $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $32
-; data -> code
-    jmp $8C9F ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12-#$16; ergo it's Spell ID #$17: Revive
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $32
+    jmp B06_8C9F ; spell ID is not #$09, #$0B, #$0D, #$10, or #$12-#$16; ergo it's Spell ID #$17: Revive
 
 
-; control flow target (from $9627)
 B06_964E:
     pha ; item ID
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     pla ; item ID
 
     cmp #$35 ; Item ID #$35: Wing of the Wyvern
 
     bne B06_9664
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $21
+    jsr B06_961D ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
+
+    jmp B06_8C51 ; handler for Return spell effect
 
 
-; code -> data
-; indirect data load target
-
-.byte $21
-; data -> code
-    jsr $961D ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
-
-    jmp $8C51 ; handler for Return spell effect
-
-
-; control flow target (from $9658)
 B06_9664:
     cmp #$25 ; Item ID #$25: Tresures
 
     bne B06_966F
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $29
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $29
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9666)
 B06_966F:
     cmp #$34 ; Item ID #$34: Fairy Water
 
     bne B06_9681
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $2A
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $2A
     lda #$FF
     sta $46 ; Repel (#$FE) / Fairy Water (#$FF) flag
 
-    jsr $961D ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
+    jsr B06_961D ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9671)
 B06_9681:
     cmp #$28 ; Item ID #$28: Eye of Malroth
 
     bne B06_96D0
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $31
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $31
     lda $31 ; current map ID
 
     cmp #$01 ; Map ID #$01: World Map
@@ -6498,85 +4655,51 @@ B06_9681:
     cmp #$C9
     bcs B06_96C9 ; item useless here
 
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     ldx #$3C
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
-; call to code in a different bank ($0F:$D23E)
-    jmp $D23E
+    jmp B0F_D23E
 
-; control flow target (from $968D)
 B06_96B3:
     cmp #$16 ; Map ID #$16: Hargon's Castle 1F
 
     bne B06_96C9 ; item useless here
 
-; call to code in a different bank ($0F:$CD26)
-    jsr $CD26 ; set Z if your current map position is the (X, Y) co-ordinates given by the next 2 bytes
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $0D
-
-.byte $04
-; data -> code
+    jsr B0F_CD26 ; set Z if your current map position is the (X, Y) co-ordinates given by the next 2 bytes
+    .byte $0D,$04
     bne B06_96C9 ; item useless here
 
     ldx #$78
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
+    jsr B0F_C515 ; flash screen 10 times
 
-; call to code in a different bank ($0F:$D7A6)
-    jmp $D7A6
+    jmp B0F_D7A6
 
 ; item useless here
-; control flow target (from $9692, $9698, $969C, $96A2, $96A6, $96B5, $96BC)
-; call to code in a different bank ($0F:$FA2E)
 B06_96C9:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $27
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $27
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9683)
 B06_96D0:
     cmp #$2B ; Item ID #$2B: Mirror of Ra
 
     bne B06_9748
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $36
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $36
     lda #$00
     sta $96 ; temp storage for item/spell/type/etc. IDs
 
-; control flow target (from $96F0)
 B06_96DF:
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
-; call to code in a different bank ($0F:$CF70)
-    jsr $CF70
+    jsr B0F_CF70
     lda $0C
     cmp #$02 ; Moonbrooke
 
@@ -6587,47 +4710,28 @@ B06_96DF:
 
     cmp #$04
     bne B06_96DF
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $27
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $27
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $96E8)
 B06_96F9:
     lda #$02 ; Moonbrooke; useless op
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $37
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $37
     lda $97 ; subject hero ID $97
 
     ldx $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$C4D4)
-    jsr $C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
+    jsr B0F_C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
 
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     ldx #$28
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda #$00
     sta $054A ; NPC #$01 scripted motion low byte
@@ -6636,13 +4740,11 @@ B06_96F9:
 
     lda #$09
     ldy #$1F
-; call to code in a different bank ($0F:$CD45)
-    jsr $CD45
+    jsr B0F_CD45
     lda #$02
     ldy #$1F
-; call to code in a different bank ($0F:$CD4B)
-    jsr $CD4B
-    jsr $8172
+    jsr B0F_CD4B
+    jsr B06_8172
     lda #$84 ; add Moonbrooke to party
 
     sta $0651 ; Moonbrooke status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
@@ -6650,32 +4752,22 @@ B06_96F9:
     lda #$02
     sta $0551 ; NPC #$02 sprite ID
 
-; control flow target (from $81B6)
-    jsr $9ACB ; open dialogue window
+B06_9734:
+    jsr B06_9ACB ; open dialogue window
 
     lda #$02 ; Moonbrooke
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $57
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $57
     lda #$07 ; Music ID #$07: add party member BGM
 
-; call to code in a different bank ($0F:$C58D)
-    jsr $C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
+    jsr B0F_C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $96D2)
 B06_9748:
     cmp #$2C ; Item ID #$2C: Dew’s Yarn
 
@@ -6683,35 +4775,24 @@ B06_9748:
     cmp #$2D ; Item ID #$2D: Magic Loom
 
     bne B06_9757
-; control flow target (from $974A)
-; call to code in a different bank ($0F:$FA2E)
 B06_9750:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $38
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $38
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $974E)
 B06_9757:
     cmp #$37 ; Item ID #$37: Golden Key
 
     bne B06_975F
     lda #$01
     bne B06_9773
-; control flow target (from $9759)
 B06_975F:
     cmp #$38 ; Item ID #$38: Silver Key
 
     bne B06_9767
     lda #$00
     beq B06_9773
-; control flow target (from $9761)
 B06_9767:
     cmp #$39 ; Item ID #$39: Jailor’s Key
 
@@ -6721,14 +4802,11 @@ B06_9767:
     beq B06_978D ; check Watergate
 
     bne B06_97E9
-; control flow target (from $9769)
 B06_9771:
     lda #$02
-; control flow target (from $975D, $9765)
 B06_9773:
     sta $C9
-; call to code in a different bank ($0F:$CF7C)
-    jsr $CF7C
+    jsr B0F_CF7C
     lda $49 ; object hero/target/item/string ID $49
 
     bne B06_9784
@@ -6738,54 +4816,34 @@ B06_9773:
 
     beq B06_97D9
     bne B06_97D5
-; control flow target (from $977A)
 B06_9784:
     cmp #$01
     beq B06_97E1 ; wrong key for door
 
     lda #$58 ; String ID #$0158: The door opened.[end-FC]
 
-    jmp $97E3
+    jmp B06_97E3
 
 ; check Watergate
-; control flow target (from $976D)
 B06_978D:
     lda $31 ; current map ID
 
     cmp #$12 ; Map ID #$12: Tuhn Watergate
 
     bne B06_97DD
-; call to code in a different bank ($0F:$CD26)
-    jsr $CD26 ; set Z if your current map position is the (X, Y) co-ordinates given by the next 2 bytes
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $02
-
-.byte $04
-; data -> code
+    jsr B0F_CD26 ; set Z if your current map position is the (X, Y) co-ordinates given by the next 2 bytes
+    .byte $02,$04
     bne B06_97DD
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $59
-; data -> code
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $59
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     lda $97 ; subject hero ID $97
 
     sta $9C
     lda #$3A ; Item ID #$3A: Watergate Key
 
-; call to code in a different bank ($0F:$C4B6)
-    jsr $C4B6 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
+    jsr B0F_C4B6 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
 
     lda #$04
     sta $20 ; map exterior border tile ID (#$00 = Road, #$01 = Grass, #$02 = Sand, #$03 = Tree, #$04 = Water, #$05 = Vertical Wall, #$06 = Shrub, #$07 = Horizontal Wall, #$08 = Swamp, ..., #$20 = Ceiling Alternating?, #$21 = Ceiling Down?, #$24 = Black?, #$28 = Blue?)
@@ -6797,152 +4855,92 @@ B06_978D:
     sta $18
     lda #$02
     sta $19
-; call to code in a different bank ($0F:$D256)
-    jsr $D256
+    jsr B0F_D256
     lda #$02
     sta $18
-; call to code in a different bank ($0F:$D256)
-    jsr $D256
+    jsr B0F_D256
     lda #$96 ; Music ID #$96: Watergate SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
     ldx #$3C
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda #$32
     sta $41
-; call to code in a different bank ($0F:$E938)
-    jmp $E938
+    jmp B0F_E938
 
-; control flow target (from $9782)
 B06_97D5:
     lda #$3B ; String ID #$013B: There is no door here.[end-FC]
 
     bne B06_97E3
-; control flow target (from $9780)
 B06_97D9:
     lda #$3C ; String ID #$013C: There is no prison here.[end-FC]
 
     bne B06_97E3
-; control flow target (from $9791, $9798)
 B06_97DD:
     lda #$3D ; String ID #$013D: This is not the water gate.[end-FC]
 
     bne B06_97E3
 ; wrong key for door
-; control flow target (from $9786)
 B06_97E1:
     lda #$3E ; String ID #$013E: The key wouldn't turn in the lock.[end-FC]
 
-; control flow target (from $978A, $97D7, $97DB, $97DF)
-; call to code in a different bank ($0F:$FA4E)
 B06_97E3:
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $976F)
 B06_97E9:
     cmp #$33 ; Item ID #$33: Lottery Ticket
 
     bne B06_97F4
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $40
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $40
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $97EB)
 B06_97F4:
     cmp #$3D ; Item ID #$3D: Wizard’s Ring
 
     bne B06_980F
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $41
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $41
     lda $97 ; subject hero ID $97
-
-; call to code in a different bank ($0F:$F722)
-    jsr $F722 ; restore the hero ID in A's MP by a random amount based on the Wizard's Ring's power; returns a random number between $03 and #$0A in A and $99
+    jsr B0F_F722 ; restore the hero ID in A's MP by a random amount based on the Wizard's Ring's power; returns a random number between $03 and #$0A in A and $99
 
     lda $99 ; chance for Wizard's Ring to break
 
     bne B06_980C
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $42
+    jsr B06_961D ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
 
-
-; code -> data
-; indirect data load target
-
-.byte $42
-; data -> code
-    jsr $961D ; given hero ID in $97 and hero inventory offset in $49, remove that item from hero's inventory and move all lower items up 1 slot
-
-; control flow target (from $9803)
 B06_980C:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $97F6)
 B06_980F:
     cmp #$31 ; Item ID #$31: Dragon’s Potion
 
     bne B06_9825
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $43
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $87
+    jsr B06_A35D ; save game handler
+
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $47
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $43
-; data -> code
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $87
-; data -> code
-    jsr $A35D ; save game handler
-
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $47
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9811)
 B06_9825:
     cmp #$3E ; Item ID #$3E: Perilous
 
     bne B06_9834
-; external control flow target (from $0F:$F74D)
+B06_9829:
     stx $49 ; object hero/target/item/string ID $49
 
     sta $96 ; temp storage for item/spell/type/etc. IDs
@@ -6950,182 +4948,152 @@ B06_9825:
     sta $95 ; ID for [item] and [spell] control codes
 
     pha
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     pla
-; control flow target (from $9827)
 B06_9834:
     cmp #$30 ; Item ID #$30: Dragon’s Bane
 
     bne B06_983E
-    jsr $9895 ; USE Dragon's Bane
+    jsr B06_9895 ; USE Dragon's Bane
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9836)
 B06_983E:
     cmp #$2F ; Item ID #$2F: Gremlin’s Tail
 
     bne B06_9848
-    jsr $98B0 ; USE Gremlin's Tail
+    jsr B06_98B0 ; USE Gremlin's Tail
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9840)
 B06_9848:
     cmp #$26 ; Item ID #$26: Moon Fragment
 
     bne B06_9852
-    jsr $98CB ; USE Moon Fragment
+    jsr B06_98CB ; USE Moon Fragment
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $984A)
 B06_9852:
     cmp #$24 ; Item ID #$24: Token of Erdrick
 
     bne B06_985C
-    jsr $9908 ; USE Token of Erdrick
+    jsr B06_9908 ; USE Token of Erdrick
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9854)
 B06_985C:
     cmp #$2E ; Item ID #$2E: Cloak of Wind
 
     bne B06_9866
-    jsr $9914 ; USE Cloak of Wind
+    jsr B06_9914 ; USE Cloak of Wind
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $985E)
 B06_9866:
     cmp #$27 ; Item ID #$27: Charm of Rubiss
 
     bne B06_9870
-    jsr $992F ; USE Charm of Rubiss
+    jsr B06_992F ; USE Charm of Rubiss
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9868)
 B06_9870:
     cmp #$2A ; Item ID #$2A: Echoing Flute
 
     bne B06_987A
-    jsr $9963 ; USE Echoing Flute
+    jsr B06_9963 ; USE Echoing Flute
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9872)
 B06_987A:
     cmp #$36 ; Item ID #$36: [blank]
 
     bne B06_9884
-    jsr $999C ; USE Golden Card
+    jsr B06_999C ; USE Golden Card
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $987C)
 B06_9884:
     cmp #$32 ; Item ID #$32: Golden Card
 
     bne B06_988E
-    jsr $999C ; USE Golden Card
+    jsr B06_999C ; USE Golden Card
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9886)
-; call to code in a different bank ($0F:$FA2E)
 B06_988E:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $9E
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $9E
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; USE Dragon's Bane
-; control flow target (from $9838)
+B06_9895:
     ora #$40 ; check for equipped version
 
-    jsr $8DBA ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
+    jsr B06_8DBA ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
 
     bcs B06_98AA
     ldx $49 ; object hero/target/item/string ID $49
 
-    jsr $8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
+    jsr B06_8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
 
     ora #$40 ; equip it
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     lda #$22 ; String ID #$0122: [name] put on the Dragon's Bane.[end-FC]
 
     bne B06_98AC
-; control flow target (from $989A)
 B06_98AA:
     lda #$23 ; String ID #$0123: [name] has already put on the Dragon's Bane.[end-FC]
 
-; control flow target (from $98A8)
-; call to code in a different bank ($0F:$FA4E)
 B06_98AC:
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
     rts
 
 ; USE Gremlin's Tail
-; control flow target (from $9842)
+B06_98B0:
     ora #$40 ; check for equipped version
 
-    jsr $8DBA ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
+    jsr B06_8DBA ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
 
     bcs B06_98C5
     ldx $49 ; object hero/target/item/string ID $49
 
-    jsr $8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
+    jsr B06_8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
 
     ora #$40 ; equip it
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     lda #$24 ; String ID #$0124: [name] put on the Gremlin's Tail.[end-FC]
 
     bne B06_98C7
-; control flow target (from $98B5)
 B06_98C5:
     lda #$25 ; String ID #$0125: [name] has already put on the Gremlin's Tail.[end-FC]
 
-; control flow target (from $98C3)
-; call to code in a different bank ($0F:$FA4E)
 B06_98C7:
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
     rts
 
 ; USE Moon Fragment
-; control flow target (from $984C)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $26
-; data -> code
+B06_98CB:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $26
     lda $8E ; flag for in battle or not (#$FF)?
 
     bmi B06_9900
@@ -7149,99 +5117,64 @@ B06_98C7:
     bcc B06_9900
     cmp #$AD
     bcs B06_9900
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     ldx #$3C
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda #$01
     sta $05F8 ; Sea Cave shoal status (#$00 = shoals up, others = shoals down)
 
-; call to code in a different bank ($0F:$D218)
-    jmp $D218 ; open path to Sea Cave
+    jmp B0F_D218 ; open path to Sea Cave
 
 
-; control flow target (from $98D1, $98D5, $98DA, $98E0, $98E4, $98EA, $98EE)
-; call to code in a different bank ($0F:$F73D)
 B06_9900:
-    jsr $F73D ; calls $04:$99E6
+    jsr B0F_F73D ; calls $04:$99E6
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $27
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $27
     rts
 
 ; USE Token of Erdrick
-; control flow target (from $9856)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+B06_9908:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $28
+    jsr B0F_F73D ; calls $04:$99E6
 
-
-; code -> data
-
-.byte $28
-; data -> code
-; call to code in a different bank ($0F:$F73D)
-    jsr $F73D ; calls $04:$99E6
-
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-
-.byte $53
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $53
     rts
 
 ; USE Cloak of Wind
-; control flow target (from $9860)
+B06_9914:
     ora #$40 ; check for equipped version
 
-    jsr $8DBA ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
+    jsr B06_8DBA ; given a hero ID in $97 and an item ID in A, SEC if hero has that item, CLC otherwise
 
     bcs B06_9929
     ldx $49 ; object hero/target/item/string ID $49
 
-    jsr $8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
+    jsr B06_8B0F ; given hero ID in $97 and hero inventory index in X, return corresponding item ID in A and party inventory index in X
 
     ora #$40 ; equip it
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     lda #$2C ; String ID #$012C: [name] donned the Cloak of Wind.[end-FC]
 
     bne B06_992B
-; control flow target (from $9919)
 B06_9929:
     lda #$2D ; String ID #$012D: Remember, [name] has already put on the Cloak of Wind.[end-FC]
 
-; control flow target (from $9927)
-; call to code in a different bank ($0F:$FA4E)
 B06_992B:
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
     rts
 
 ; USE Charm of Rubiss
-; control flow target (from $986A)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $2E
-; data -> code
+B06_992F:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $2E
     lda $8E ; flag for in battle or not (#$FF)?
 
     bmi B06_995B
@@ -7249,83 +5182,50 @@ B06_992B:
 
 ; Map ID #$00: Fake Midenhall
     bne B06_995B
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $30
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $30
     ldx #$78
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
+    jsr B0F_C515 ; flash screen 10 times
 
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
+    jsr B0F_C515 ; flash screen 10 times
 
     pla
     pla
-    lda $9959
+    lda B06_9959
     sta $0C
-    lda $995A
+    lda B06_9959+1
     sta $0D
-; call to code in a different bank ($0F:$D81C)
-    jmp $D81C
+    jmp B0F_D81C
 
+B06_9959:
+.addr $BD85
 
-; code -> data
-; data load target (from $994C)
-; data load target (from $9951)
-.byte $85
-
-.byte $BD
-; data -> code
-; control flow target (from $9935, $9939)
-; call to code in a different bank ($0F:$F73D)
 B06_995B:
-    jsr $F73D ; calls $04:$99E6
+    jsr B0F_F73D ; calls $04:$99E6
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $2F
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $2F
     rts
 
 ; USE Echoing Flute
-; control flow target (from $9874)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $35
-; data -> code
+B06_9963:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $35
     ldy #$00
     lda $31 ; current map ID
 
-; control flow target (from $9986)
 B06_996B:
-    cmp $998D,Y ; minimum map ID (inclusive)
+    cmp B06_998D, y ; minimum map ID (inclusive)
 
     bcc B06_9981 ; wrong map
 
-    cmp $998E,Y ; maximum map ID (exclusive)
+    cmp B06_998D+1, y ; maximum map ID (exclusive)
 
     bcs B06_9981 ; wrong map
 
-    lda $998F,Y ; Crest in this map
+    lda B06_998D+2, y ; Crest in this map
 
     and $0112 ; Crests found bit field (#$10 = Life, #$80 = Water, #$04 = Moon, #$02 = Stars, #$01 = Sun)
 
@@ -7336,7 +5236,6 @@ B06_996B:
     bne B06_998A ; flute echoes!
 
 ; wrong map
-; control flow target (from $996E, $9973)
 B06_9981:
     iny
     iny
@@ -7346,116 +5245,76 @@ B06_9981:
     bne B06_996B ; if more maps to check, check them
 
 ; flute does not echo
-; control flow target (from $997B)
 B06_9988:
     lda #$04 ; Music ID #$04: Echoing Flute not echoing BGM
 
-; control flow target (from $997F)
-; call to code in a different bank ($0F:$C58D)
 B06_998A:
-    jmp $C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
+    jmp B0F_C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
 
+B06_998D:
+; minimum map ID (inclusive), maximum map ID (exclusive), Crest in this map
+.byte $08,$09,$08	 ; Map ID #$08: Hamlin Waterway
+.byte $0F,$10,$04	 ; Map ID #$0F: Osterfair
+.byte $1E,$1F,$01	 ; Map ID #$1E: Shrine NW of Zahan
+.byte $50,$58,$02	 ; Map IDs #$50 - #$57: Lighthouse
+.byte $37,$40,$10	 ; Map IDs #$37 - #$3F: Cave to Rhone
 
-
-; code -> data
-; minimum map ID (inclusive)
-; indexed data load target (from $996B)
-; maximum map ID (exclusive)
-.byte $08
-; indexed data load target (from $9970)
-; Crest in this map
-.byte $09
-; indexed data load target (from $9975)
-
-.byte $08,$0F,$10,$04,$1E,$1F,$01
-.byte $50,$58,$02
-.byte $37,$40
-.byte $10
-; data -> code
 ; USE Golden Card
-; control flow target (from $987E, $9888)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+B06_999C:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $3F
+    jsr B0F_F73D ; calls $04:$99E6
 
-
-; code -> data
-; indirect data load target
-
-.byte $3F
-; data -> code
-; call to code in a different bank ($0F:$F73D)
-    jsr $F73D ; calls $04:$99E6
-
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $54
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $54
     rts
 
 ; TRADE/THROW handler
-; control flow target (from $9590)
+B06_99A8:
     cmp #$01 ; TRADE; useless op
 
     beq B06_99AF ; TRADE handler
 
-    jmp $9A84 ; THROW command handler
+    jmp B06_9A84 ; THROW command handler
 
 
 ; TRADE handler
-; control flow target (from $99AA)
-; call to code in a different bank ($0F:$F6CE)
 B06_99AF:
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     bne B06_99C1 ; determine target hero
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $19
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $19
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; determine target hero
-; control flow target (from $99B2)
-; call to code in a different bank ($0F:$F587)
 B06_99C1:
-    jsr $F587 ; display appropriate main ITEM target menu
+    jsr B0F_F587 ; display appropriate main ITEM target menu
 
     cmp #$FF
     bne B06_99CB
-    jmp $9542 ; exit COMMAND menu
+    jmp B06_9542 ; exit COMMAND menu
 
 
-; control flow target (from $99C6)
 B06_99CB:
     sta $C9 ; target hero ID
 
-    jsr $9ACB ; open dialogue window
+    jsr B06_9ACB ; open dialogue window
 
-    jsr $9AFC ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
+    jsr B06_9AFC ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
 
     bne B06_99D8 ; item can be traded
 
-    jmp $9AC4 ; item is equipped and cursed
+    jmp B06_9AC4 ; item is equipped and cursed
 
 
 ; item can be traded
-; control flow target (from $99D3)
 B06_99D8:
     lda $97 ; subject hero ID $97
 
@@ -7465,54 +5324,31 @@ B06_99D8:
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_99EF ; ghost giving to itself
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $1C
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $1C
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; ghost giving to itself
-; control flow target (from $99E3)
 B06_99EF:
-    jsr $9AEB ; using name of first living hero, display String ID #$0120: [name] [end-FF]
+    jsr B06_9AEB ; using name of first living hero, display String ID #$0120: [name] [end-FF]
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $A1
-; data -> code
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $A3
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $A1
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $A3
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; give to different hero
-; control flow target (from $99DC)
 B06_9A00:
     lda $97 ; subject hero ID $97
 
@@ -7522,28 +5358,20 @@ B06_9A00:
 
     sta $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcs B06_9A17 ; item given to target hero
 
     pla ; item owner hero ID
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $1B
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; item given to target hero
-; control flow target (from $9A0A)
 B06_9A17:
     pla ; item owner hero ID
 
@@ -7551,35 +5379,27 @@ B06_9A17:
 
     ldx $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$C4D4)
-    jsr $C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
+    jsr B0F_C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_9A47 ; owner is a ghost
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $20
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $20
     lda $C9 ; target hero ID
 
     sta $97 ; subject hero ID $97
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_9A3F ; target is a ghost
 
@@ -7588,21 +5408,17 @@ B06_9A17:
     bne B06_9A41 ; target is alive
 
 ; target is a ghost
-; control flow target (from $9A39)
 B06_9A3F:
     lda #$17 ; String ID #$0117: gave the [item] to the ghost of [name].[end-FC]
 
 ; target is alive
-; control flow target (from $9A3D)
-; call to code in a different bank ($0F:$FA4E)
 B06_9A41:
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; owner is a ghost
-; control flow target (from $9A24)
 B06_9A47:
     lda $97 ; subject hero ID $97
 
@@ -7614,209 +5430,133 @@ B06_9A47:
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_9A69 ; target is a ghost
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     pla ; item owner hero ID
 
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $20
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-
-; code -> data
-; indirect data load target
-
-.byte $20
-; data -> code
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
-
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $18
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $18
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; target is a ghost
-; control flow target (from $9A53)
 B06_9A69:
-    jsr $9AEB ; using name of first living hero, display String ID #$0120: [name] [end-FF]
+    jsr B06_9AEB ; using name of first living hero, display String ID #$0120: [name] [end-FF]
 
     pla ; item owner hero ID
 
     sta $97 ; subject hero ID $97
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $A1
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $A1
     lda $C9 ; target hero ID
 
     sta $97 ; subject hero ID $97
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $A2
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $A2
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; THROW command handler
-; control flow target (from $99AC)
-    jsr $9ACB ; open dialogue window
+B06_9A84:
+    jsr B06_9ACB ; open dialogue window
 
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     asl ; item prices are 2 bytes each
 
     tay
-    lda $9FFC,Y ; Item Prices, low byte
+    lda ItemPrices, y ; Item Prices, low byte
 
-    ora $9FFD,Y ; Item Prices, high byte
+    ora ItemPrices+1, y ; Item Prices, high byte
 
     beq B06_9ABD ; 0 G items are key items
 
-    jsr $9AFC ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
+    jsr B06_9AFC ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
 
     beq B06_9AC4 ; item is equipped and cursed
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcc B06_9AA9 ; owner is a ghost
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $14
-; data -> code
-    jmp $9AB3
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $14
+    jmp B06_9AB3
 
 ; owner is a ghost
-; control flow target (from $9A9D)
 B06_9AA9:
-    jsr $9AEB ; using name of first living hero, display String ID #$0120: [name] [end-FF]
+    jsr B06_9AEB ; using name of first living hero, display String ID #$0120: [name] [end-FF]
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $16
-; data -> code
-; control flow target (from $9AA6)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $16
+B06_9AB3:
     lda $97 ; subject hero ID $97
 
     ldx $49 ; object hero/target/item/string ID $49
 
-; call to code in a different bank ($0F:$C4D4)
-    jsr $C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
+    jsr B0F_C4D4 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; 0 G items are key items
-; control flow target (from $9A91)
-; call to code in a different bank ($0F:$FA2E)
 B06_9ABD:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $0E
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $0E
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; item is equipped and cursed
-; control flow target (from $99D5, $9A96)
-; call to code in a different bank ($0F:$FA2E)
 B06_9AC4:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $12
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $12
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; open dialogue window
-; control flow target (from $80CE, $80FA, $8160, $81BD, $8AB0, $8AD6, $8AF2, $8B46, $8B5C, $8BB3, $8E0C, $8E4C, $8E6B, $8F3F, $8F4E, $91C6, $91E3, $94B4, $94C6, $94E5, $956F, $959A, $95BD, $9637, $964F, $9734, $99B4, $99CD, $9A84)
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
+B06_9ACB:
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $04
     rts
 
 ; open YES/NO menu, return selected option in A
-; control flow target (from $8236, $82C7, $832B, $8360, $83BD, $83D9, $8443, $8506, $8518, $856E, $8681, $86C4, $86EE, $8E54, $8FB5, $902C, $911B, $91AC, $9217, $92EB, $934C, $9388, $94CE, $94FF, $9CAE)
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $19
-; data -> code
+B06_9AD0:
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $19
     rts
 
 ; set A/$97 to ID of first living hero
-; control flow target (from $8ECD, $8F23, $8F51, $8F9B, $8FCC, $9122, $917B, $91F4, $93E5, $9400, $9AEE, $9B1B)
+B06_9AD5:
     lda #$00 ; start with Midenhall
 
     sta $97 ; subject hero ID $97
 
-; control flow target (from $9AE6)
 B06_9AD9:
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcs B06_9AE8 ; if hero alive, then we're done
 
@@ -7828,30 +5568,22 @@ B06_9AD9:
 
     bne B06_9AD9 ; loop if more heroes to check
 
-; control flow target (from $9ADE)
 B06_9AE8:
     lda $97 ; subject hero ID $97
 
     rts
 
 ; using name of first living hero, display String ID #$0120: [name] [end-FF]
-; control flow target (from $99EF, $9A69, $9AA9, $9D2A)
-    lda $97 ; subject hero ID $97; save $97 to stack since $9AD5 will overwrite it
+B06_9AEB:
+    lda $97 ; subject hero ID $97; save $97 to stack since B06_9AD5 will overwrite it
 
     pha
-    jsr $9AD5 ; set A/$97 to ID of first living hero
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $20
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $20
     pla ; restore $97 from stack
 
     sta $97 ; subject hero ID $97
@@ -7859,7 +5591,7 @@ B06_9AE8:
     rts
 
 ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
-; control flow target (from $9153, $99D0, $9A93, $9CF4)
+B06_9AFC:
     lda $97 ; subject hero ID $97
 
     asl ; inventory is 8 items per hero
@@ -7870,7 +5602,7 @@ B06_9AE8:
     adc $49 ; object hero/target/item/string ID $49
 
     tax
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     cmp #$4C ; Item ID #$4C: Sword of Destruction (equipped)
 
@@ -7883,24 +5615,16 @@ B06_9AE8:
     beq B06_9B16
     cmp #$6F ; Item ID #$6F: Gremlin’s Tail (equipped)
 
-; control flow target (from $9B0A, $9B0E, $9B12)
 B06_9B16:
     rts
 
 ; COMMAND menu SEARCH handler
-; indirect control flow target (via $808E)
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
+B06_9B17:
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $04
+    jsr B06_9AD5 ; set A/$97 to ID of first living hero
 
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
-    jsr $9AD5 ; set A/$97 to ID of first living hero
-
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
     lda $CF ; ship status (#$04 = on ship, #$02 = own ship, #$01 = beat Lianport Gremlins)
 
@@ -7911,28 +5635,22 @@ B06_9B16:
     lda #$07 ; String ID #$0107: [name] dove overboard into the sea.[wait][end-FC]
 
     bne B06_9B2D
-; control flow target (from $9B25)
 B06_9B2B:
     lda #$03 ; String ID #$0103: [name] searched all about.[wait][end-FC]
 
-; control flow target (from $9B29)
-; call to code in a different bank ($0F:$FA4E)
 B06_9B2D:
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
-; call to code in a different bank ($0F:$D095)
-    jsr $D095
+    jsr B0F_D095
     bcc B06_9B45
-    lda $9E2A ; -> $06:$9E2E: Treasure List 1 (map ID, X-pos, Y-pos, item ID)
-
+    lda B06_9E2A ; -> $06:$9E2E: Treasure List 1 (map ID, X-pos, Y-pos, item ID)
     sta $0C
-    lda $9E2B
+    lda B06_9E2A+1
     sta $0D
     jsr CMD_Search ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
 
-    jmp $9B84
+    jmp B06_9B84
 
-; control flow target (from $9B33)
 B06_9B45:
     lda $31 ; current map ID
 
@@ -7945,18 +5663,17 @@ B06_9B45:
 
     sta $95 ; ID for [item] and [spell] control codes; item ID
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_9B7D ; search failed
 
     lda #$13 ; Item ID #$13: Water Flying Cloth
 
-    jsr $A360 ; check for item A (possibly equipped) in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A360 ; check for item A (possibly equipped) in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_9B7D ; search failed
 
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
@@ -7964,14 +5681,12 @@ B06_9B45:
 
     bne B06_9B7D ; search failed
 
-    jmp $9C05
+    jmp B06_9C05
 
-; control flow target (from $9B49)
 B06_9B69:
-    lda $9E2C ; -> $06:$9F07: Treasure List 2 (map ID, X-pos, Y-pos, item ID)
-
+    lda B06_9E2C ; -> $06:$9F07: Treasure List 2 (map ID, X-pos, Y-pos, item ID)
     sta $0C
-    lda $9E2D
+    lda B06_9E2C+1
     sta $0D
     jsr CMD_Search ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
 
@@ -7979,52 +5694,30 @@ B06_9B69:
 
     beq B06_9B7D ; search failed
 
-    jmp $9C05
+    jmp B06_9C05
 
 ; search failed
-; control flow target (from $9B54, $9B5B, $9B64, $9B78)
-; call to code in a different bank ($0F:$FA2E)
 B06_9B7D:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $06
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $06
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9B42)
+B06_9B84:
     lda $96 ; temp storage for item/spell/type/etc. IDs; useless op; $96 is already in A
 
     cmp #$FF ; Item ID #$FF: Trap!
 
     beq B06_9BA6 ; if Midenhall is equipped with the Armour of Erdrick, chest is empty, otherwise it's a trap with 50/50 chance for the party leader losing half their current HP or getting poisoned
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $05
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $05
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID
 
     bne B06_9C05 ; Item ID #$00: (no item)
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $4B
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $4B
     lda $31 ; current map ID
 
     cmp #$51 ; Map ID #$51: Lighthouse 2F
@@ -8033,130 +5726,88 @@ B06_9B7D:
     lda $D0 ; Malroth status flag (#$FF = defeated, #$00 = alive, others = countdown to battle)
 
     bmi B06_9BA3
-; call to code in a different bank ($0F:$CC0A)
-    jmp $CC0A ; trigger Stars Crest battle
+    jmp B0F_CC0A ; trigger Stars Crest battle
 
 
-; control flow target (from $9B9A, $9B9E)
 B06_9BA3:
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; if Midenhall is equipped with the Armour of Erdrick, chest is empty, otherwise it's a trap with 50/50 chance for the party leader losing half their current HP or getting poisoned
-; control flow target (from $9B88)
 B06_9BA6:
     lda #$5B ; Item ID #$5B: Armor of Erdrick (equipped)
 
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     cmp #$08 ; only Midenhall can equip the Armour of Erdrick, so inventory index >= #$08 means he does not have it equipped
 
     bcs B06_9BBA ; if you don't have it or it isn't equipped, the treasure chest is a trap :(
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $05
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $4B
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $05
-; data -> code
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $4B
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9BAD)
-; call to code in a different bank ($0F:$FA2E)
 B06_9BBA:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $4C
-; data -> code
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $4C
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
     bmi B06_9BF2 ; 50% chance to branch and get poisoned or not branch and lose half your current HP
 
-    jsr $9D4F ; given hero ID in $97, set A to the offset of that hero's data in $062D
+    jsr B06_9D4F ; given hero ID in $97, set A to the offset of that hero's data in $062D
 
     clc
     adc #$0E ; offset for hero's current HP, low byte
 
     tax
-    lda $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     sta $8F ; hero's current HP, low byte
 
-    lda $062E,X ; Midenhall Battle Command Target
+    lda $062E, x ; Midenhall Battle Command Target
 
     sta $90 ; hero's current HP, high byte
 
     lsr $90 ; divide 16-bit current HP by 2 (round down)
 
     ror $8F
-    lda $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     sec ; set 16-bit current HP to 1/2 current HP, rounded up
 
     sbc $8F
-    sta $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-    lda $062E,X ; Midenhall Battle Command Target
+    lda $062E, x ; Midenhall Battle Command Target
 
     sbc $90
-    sta $062E,X ; Midenhall Battle Command Target
+    sta $062E, x ; Midenhall Battle Command Target
 
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $0C
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $0C
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9BC3)
 B06_9BF2:
-    jsr $9D4F ; given hero ID in $97, set A to the offset of that hero's data in $062D
+    jsr B06_9D4F ; given hero ID in $97, set A to the offset of that hero's data in $062D
 
     tax
     lda #$20 ; Poison
 
-    ora $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    ora $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-    sta $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $4D
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $4D
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9B66, $9B7A, $9B90)
 B06_9C05:
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID
 
@@ -8173,50 +5824,38 @@ B06_9C05:
     cmp #$43 ; Crest ID #$43: Water Crest
 
     bne B06_9C19
-    ldy #$0A ; offset from $9F5F for start of "Water Crest"
+    ldy #$0A ; offset from CrestNames for start of "Water Crest"
 
     bne B06_9C23
-; control flow target (from $9C13)
 B06_9C19:
     cmp #$40 ; Crest ID #$40: Sun Crest
 
     bne B06_9C21 ; #$44 = Life Crest, #$41, #$42 = Life Crest too :p
 
-    ldy #$00 ; offset from $9F5F for start of "Sun Crest"
+    ldy #$00 ; offset from CrestNames for start of "Sun Crest"
 
     beq B06_9C23
-; control flow target (from $9C1B)
 B06_9C21:
-    ldy #$16 ; offset from $9F5F for start of "Life Crest"
+    ldy #$16 ; offset from CrestNames for start of "Life Crest"
 
-; copy crest name (terminated by #$FA) to $5A,X
-; control flow target (from $9C17, $9C1F)
+; copy crest name (terminated by #$FA) to $5A, x
 B06_9C23:
     ldx #$00
-; control flow target (from $9C2E)
 B06_9C25:
-    lda $9F5F,Y ; Crest Names
+    lda CrestNames, y ; Crest Names
 
-    sta $5A,X ; Crest/direction name write buffer start
+    sta $5A, x ; Crest/direction name write buffer start
 
     iny
     inx
     cmp #$FA
     bne B06_9C25
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $4E
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $4E
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; generate randomized gold amount for treasure ID in A
-; control flow target (from $9C0D)
 B06_9C37:
     sec
     sbc #$45 ; subtract treasure offset to get index
@@ -8227,54 +5866,32 @@ B06_9C37:
     clc
     adc $8F
     pha
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     pla
     tay
-    lda $9F3A,Y ; random treasure chest gold amount; fetch maximum bonus gold amount
-
+    lda RandomChestGold+2, y ; random treasure chest gold amount; fetch maximum bonus gold amount
     and $32 ; RNG byte 0; AND with random number to make a randomized bonus gold amount
-
     clc
-    adc $9F38,Y ; base treasure chest gold amount, low byte; add random bonus amount to low byte of base gold amount
-
+    adc RandomChestGold, y ; base treasure chest gold amount, low byte; add random bonus amount to low byte of base gold amount
     sta $8F ; store to $8F for later use
-
-    lda $9F39,Y ; base treasure chest gold amount, high byte; load high byte of base gold amount
-
+    lda RandomChestGold+1, y ; base treasure chest gold amount, high byte; load high byte of base gold amount
     adc #$00 ; add carry from low byte
-
     sta $90 ; store to $90 for later use
 
 ; add $8F-$90 to party gold, capped at $FFFF, and display String ID #$0048: And earned [number] piece[(s)] of gold.[end-FC]
-; control flow target (from $9C78)
-    jsr $8CF5 ; add $8F-$90 to party gold, capped at $FFFF
+B06_9C58:
+    jsr B06_8CF5 ; add $8F-$90 to party gold, capped at $FFFF
 
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $48
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $48
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; find a regular item
-; control flow target (from $9C09)
-; call to code in a different bank ($0F:$FA2E)
 B06_9C62:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $04
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID
 
     cmp #$06 ; Item ID #$06: Copper Sword
@@ -8284,23 +5901,21 @@ B06_9C62:
 
     sta $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     lda #$32 ; at this point in the game, Midenhall is incapable of having a full inventory, so no need to check C; #$32 = 50 Gold
 
-    jsr $8D2A ; set $8F-$90 to A-#$00
+    jsr B06_8D2A ; set $8F-$90 to A-#$00
 
-    jmp $9C58 ; add $8F-$90 to party gold, capped at $FFFF, and display String ID #$0048: And earned [number] piece[(s)] of gold.[end-FC]
+    jmp B06_9C58 ; add $8F-$90 to party gold, capped at $FFFF, and display String ID #$0048: And earned [number] piece[(s)] of gold.[end-FC]
 
 
-; control flow target (from $9C6A)
 B06_9C7B:
     lda $95 ; ID for [item] and [spell] control codes; item ID
 
     sta $614C ; found item ID
 
-; call to code in a different bank ($0F:$F6CE)
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     sta $C9 ; number of party members - 1
 
@@ -8310,16 +5925,14 @@ B06_9C7B:
     sta $97 ; subject hero ID $97
 
 ; try to add item to party member's inventory
-; control flow target (from $9C99)
 B06_9C8B:
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcc B06_9C93 ; branch if party member has no room
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; control flow target (from $9C8E)
 B06_9C93:
     inc $97 ; subject hero ID $97
 
@@ -8336,87 +5949,51 @@ B06_9C93:
 
     lda $C9 ; number of party members - 1
 
-    beq B06_9CA7 ; useless op; #$80 and #$00 are identical as far as $FC50 is concerned
+    beq B06_9CA7 ; useless op; #$80 and #$00 are identical as far as B0F_FC50 is concerned
 
     lda #$80
-; control flow target (from $9CA3)
-; call to code in a different bank ($0F:$FC50)
 B06_9CA7:
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $08
-; data -> code
-    jsr $9AD0 ; open YES/NO menu, return selected option in A
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $08
+    jsr B06_9AD0 ; open YES/NO menu, return selected option in A
 
     cmp #$00 ; YES
 
     beq B06_9CC1
 ; give up new item
-; control flow target (from $9CCE, $9CEC)
 B06_9CB5:
     lda $614C ; found item ID; useless op; $95 hasn't changed since we copied it to $614C
 
     sta $95 ; ID for [item] and [spell] control codes
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $09
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
-; code -> data
-; indirect data load target
-
-.byte $09
-; data -> code
-    jmp $9548 ; end TALK/ITEM routines
-
-
-; control flow target (from $9CB3)
 B06_9CC1:
     lda $C9 ; number of party members - 1
 
     beq B06_9CD2 ; if Midenhall's alone, no need to pick a party member
 
-; control flow target (from $9CEE)
-; call to code in a different bank ($0F:$FA2E)
 B06_9CC5:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $0A
-; data -> code
-; call to code in a different bank ($0F:$F55D)
-    jsr $F55D ; display appropriate main ITEM hero select menu
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $0A
+    jsr B0F_F55D ; display appropriate main ITEM hero select menu
 
     cmp #$FF
     beq B06_9CB5 ; give up new item
 
     sta $97 ; subject hero ID $97
 
-; control flow target (from $9CC3, $9CFD, $9D12)
-; call to code in a different bank ($0F:$FA2E)
 B06_9CD2:
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $0B
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $0B
     lda $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$F5FE)
-    jsr $F5FE ; given a hero ID in A, open hero's item list and return selected item ID (or #$FE if they have no items)
+    jsr B0F_F5FE ; given a hero ID in A, open hero's item list and return selected item ID (or #$FE if they have no items)
 
     pha ; item ID to drop
 
@@ -8424,8 +6001,7 @@ B06_9CD2:
     pha ; save X
 
     lda #$03
-; call to code in a different bank ($0F:$CF6A)
-    jsr $CF6A ; wipe selected menu region
+    jsr B0F_CF6A ; wipe selected menu region
 
     pla ; restore X
 
@@ -8439,27 +6015,18 @@ B06_9CD2:
     beq B06_9CB5 ; give up new item
 
     bne B06_9CC5
-; control flow target (from $9CE8)
 B06_9CF0:
     stx $49 ; object hero/target/item/string ID $49
 
     sta $95 ; ID for [item] and [spell] control codes
 
-    jsr $9AFC ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
+    jsr B06_9AFC ; given hero ID in $97 and hero inventory index in $49, set Z if item is equipped and cursed, clear if not
 
     bne B06_9D00
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $12
+    jmp B06_9CD2
 
-
-; code -> data
-; indirect data load target
-
-.byte $12
-; data -> code
-    jmp $9CD2
-
-; control flow target (from $9CF7)
 B06_9D00:
     lda $95 ; ID for [item] and [spell] control codes; item ID to throw away
 
@@ -8467,24 +6034,14 @@ B06_9D00:
 
     asl
     tay
-    lda $9FFC,Y ; Item Prices, low byte
-
-    ora $9FFD,Y ; Item Prices, high byte
-
+    lda ItemPrices, y ; Item Prices, low byte
+    ora ItemPrices+1, y ; Item Prices, high byte
     bne B06_9D15 ; if price is 0 G, it's a quest item
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $0E
+    jmp B06_9CD2
 
-
-; code -> data
-; indirect data load target
-
-.byte $0E
-; data -> code
-    jmp $9CD2
-
-; control flow target (from $9D0C)
 B06_9D15:
     lda $97 ; subject hero ID $97
 
@@ -8498,26 +6055,19 @@ B06_9D15:
     tax
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID to gain
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     lda #$80 ; Alive
 
-    jsr $8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
+    jsr B06_8D9A ; given hero ID in $97, and status in A, SEC if hero has that status, CLC otherwise
 
     bcs B06_9D3C
-    jsr $9AEB ; using name of first living hero, display String ID #$0120: [name] [end-FF]
+    jsr B06_9AEB ; using name of first living hero, display String ID #$0120: [name] [end-FF]
 
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $0F
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $0F
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     sta $95 ; ID for [item] and [spell] control codes
@@ -8525,76 +6075,61 @@ B06_9D15:
     lda #$10 ; String ID #$0110: the [item] to ghost of [name].[end-FC]
 
     bne B06_9D49
-; control flow target (from $9D28)
 B06_9D3C:
-    jsr $8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
+    jsr B06_8D25 ; print name of hero given by low 2 bits of $97 to [name] buffer $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $0C
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $0C
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     sta $95 ; ID for [item] and [spell] control codes
 
     lda #$0D ; String ID #$010D: [name] obtained the [item].[end-FC]
 
-; control flow target (from $9D3A)
-; call to code in a different bank ($0F:$FA4E)
 B06_9D49:
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
-    jmp $9548 ; end TALK/ITEM routines
+    jmp B06_9548 ; end TALK/ITEM routines
 
 
 ; given hero ID in $97, set A to the offset of that hero's data in $062D
-; control flow target (from $9BC5, $9BF2)
+B06_9D4F:
     ldx $97 ; subject hero ID $97
 
-    lda $9D55,X ; pre-computed offsets for the start of each hero's data at $062D
+    lda B06_9D55, x ; pre-computed offsets for the start of each hero's data at $062D
 
     rts
 
-
-; code -> data
 ; pre-computed offsets for the start of each hero's data at $062D
-; indexed data load target (from $9D51)
-.byte $00,$12
-.byte $24
+B06_9D55:
+.byte $00,$12,$24
 
-; data -> code
 ; scan treasure list at ($0C), returning in A/$95/$96 the item ID corresponding to party's current map ID/position or #$00 if there is no item or you're not allowed to get it
-; control flow target (from $9B3F, $9B73, $9DFB)
 CMD_Search:
     ldy #$00
-    lda ($0C),Y ; read map ID
+    lda ($0C), y ; read map ID
     cmp #$FF ; #$FF => end of list
     bne @can_open
-    jmp $9DFE ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
+    jmp B06_9DFE ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
 
     @can_open:
     cmp map_id ; current map ID
     ; map ID matches, start checking position
     beq @check_pos
-    jmp $9DEE ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
+    jmp B06_9DEE ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
     @check_pos:
     iny
-    lda ($0C),Y ; treasure X-pos
+    lda ($0C), y ; treasure X-pos
     cmp map_xpos ; current map X-pos (1)
     bne B06_9DEE ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
     iny
-    lda ($0C),Y ; treasure Y-pos
+    lda ($0C), y ; treasure Y-pos
     cmp map_ypos ; current map Y-pos (1)
     bne B06_9DEE ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
     iny
-    lda ($0C),Y ; item ID
+    lda ($0C), y ; item ID
     bne @open ; map/position is valid and there is an item here
-    jmp $9E00 ; store item ID in $95 and $96 and RTS
+    jmp B06_9E00 ; store item ID in $95 and $96 and RTS
 
     ; map/position is valid and there is an item here
     @open:
@@ -8605,11 +6140,10 @@ CMD_Search:
     cmp #$25 ; Item ID #$25: Tresures
     bne B06_9D93
     lda #$2A ; Item ID #$2A: Echoing Flute
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
     bpl B06_9DFE ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
 
     bmi B06_9DBA
-; control flow target (from $9D88)
 B06_9D93:
     cmp #$2B ; Item ID #$2B: Mirror of Ra
 
@@ -8621,7 +6155,6 @@ B06_9D93:
     bne B06_9DFE ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
 
     beq B06_9DBA
-; control flow target (from $9D95)
 B06_9DA0:
     cmp #$37 ; Item ID #$37: Golden Key
 
@@ -8640,42 +6173,37 @@ B06_9DA0:
 
     beq B06_9DBA
 ; the (#$16, #$08) Golden Key
-; control flow target (from $9DA8)
 B06_9DB3:
     lda $057C ; NPC #$08 X-pos; dog's X-pos
 
     cmp #$12
     beq B06_9DEE ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
 
-; control flow target (from $9D91, $9D9E, $9DA2, $9DB1)
 B06_9DBA:
-    lda $9F24 ; -> $06:$9F26: unique items
-
+    lda B06_9F24 ; -> $06:$9F26: unique items
     sta $0C
-    lda $9F25
+    lda B06_9F24+1
     sta $0D
     ldy #$00
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID
 
-; control flow target (from $9DCF)
 B06_9DC8:
-    cmp ($0C),Y ; compare against list of unique items
+    cmp ($0C), y ; compare against list of unique items
 
     beq B06_9DD4
     iny
     cpy #$12
     bne B06_9DC8 ; if more items to check, check them
 
-    jmp $9E00 ; store item ID in $95 and $96 and RTS; happens if item is not unique
+    jmp B06_9E00 ; store item ID in $95 and $96 and RTS; happens if item is not unique
 
 
-; control flow target (from $9DCA)
 B06_9DD4:
     cmp #$40 ; we already handled IDs >= #$45, so this checks for Crests #$40 - #$44
 
     bcs B06_9E05 ; handle finding a Crest
 
-    jsr $A360 ; check for item A (possibly equipped) in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A360 ; check for item A (possibly equipped) in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_9DFE ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
 
@@ -8687,7 +6215,7 @@ B06_9DD4:
 
     lda #$23 ; Item ID #$23: Helmet of Erdrick
 
-    jsr $A360 ; check for item A (possibly equipped) in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A360 ; check for item A (possibly equipped) in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_9DFE ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
 
@@ -8696,7 +6224,6 @@ B06_9DD4:
     bne B06_9E00 ; store item ID in $95 and $96 and RTS
 
 ; increment 16-bit $0C-$0D by 4 (move to next treasure record) and loop to check next treasure
-; control flow target (from $9D67, $9D6F, $9D76, $9DAF, $9DB8)
 B06_9DEE:
     lda $0C
     clc
@@ -8709,11 +6236,9 @@ B06_9DEE:
 
 
 ; end of treasure list or you aren't allowed to get the item again; set $95 = $96 = #$00 and RTS
-; control flow target (from $9D60, $9D8F, $9D9C, $9DDB, $9DE8, $9E1C)
 B06_9DFE:
     lda #$00
 ; store item ID in $95 and $96 and RTS
-; control flow target (from $9D7D, $9D82, $9DD1, $9DE1, $9DEC, $9E28)
 B06_9E00:
     sta $96 ; temp storage for item/spell/type/etc. IDs
 
@@ -8722,7 +6247,6 @@ B06_9E00:
     rts
 
 ; handle finding a Crest
-; control flow target (from $9DD6)
 B06_9E05:
     cmp #$43 ; Crest ID #$43: Water Crest
 
@@ -8730,18 +6254,15 @@ B06_9E05:
     lda #$08 ; Crest ID #$43: Water Crest sets bit #$08
 
     bne B06_9E17
-; control flow target (from $9E07)
 B06_9E0D:
     cmp #$40
     bne B06_9E15
     lda #$01 ; Crest ID #$40: Sun Crest sets bit #$01
 
     bne B06_9E17
-; control flow target (from $9E0F)
 B06_9E15:
     lda #$10 ; by process of elimination, Crest ID #$44: Life Crest sets bit #$10
 
-; control flow target (from $9E0B, $9E13)
 B06_9E17:
     sta $0C
     and $0112 ; Crests found bit field (#$10 = Life, #$80 = Water, #$04 = Moon, #$02 = Stars, #$01 = Sun)
@@ -8759,14 +6280,12 @@ B06_9E17:
 
 
 B06_9E2A:
-; data load target (from $9B3A)
-.addr TreasureList1	 ; $06:$9E2E; Treasure List 1 (map ID, X-pos, Y-pos, item ID)
-; data load target (from $9B6E)
-.addr TreasureList2	 ; $06:$9F07; Treasure List 2 (map ID, X-pos, Y-pos, item ID)
+.addr TreasureList1
+B06_9E2C:
+.addr TreasureList2
 
-TreasureList1:
 ; Treasure List 1 (map ID, X-pos, Y-pos, item ID)
-; indirect data load target (via $9E2A)
+TreasureList1:
 .byte $03,$0E,$02,$06	 ; Item ID #$06: Copper Sword (Midenhall Castle)
 .byte $03,$13,$0E,$35	 ; Item ID #$35: Wing of Wyvern (Midenhall Castle)
 .byte $03,$14,$0E,$3C	 ; Item ID #$3C: Medical Herb (Midenhall Castle)
@@ -8833,12 +6352,10 @@ TreasureList1:
 .byte $58,$10,$14,$3C	 ; Item ID #$3C: Medical Herb (Wind Tower 1F)
 .byte $59,$02,$04,$2E	 ; Item ID #$2E: Cloak of Wind (Wind Tower 2F)
 .byte $5A,$06,$10,$4C	 ; Item ID #$4C: 41 - 56 G (Wind Tower 3F)
-; indirect data load target
 .byte $FF	 ; end of Treasure List 1
 
-TreasureList2:
 ; Treasure List 2 (map ID, X-pos, Y-pos, item ID)
-; indirect data load target (via $9E2C)
+TreasureList2:
 .byte $01,$92,$6D,$2B	 ; Item ID #$2B: Mirror of Ra (Swamp SE of Hamlin)
 .byte $01,$1E,$FC,$25	 ; Item ID #$25: Tresures (Ocean NW of Tantegal)
 .byte $01,$BB,$DD,$29	 ; Item ID #$29: Leaf of World Tree (Island E of Wellgarth)
@@ -8846,14 +6363,13 @@ TreasureList2:
 .byte $1E,$08,$00,$40	 ; Item ID #$40: Sun Crest (Monolith E of Wellgarth)
 .byte $10,$12,$04,$37	 ; Item ID #$37: Golden Key location #1 (Zahan)
 .byte $10,$16,$08,$37	 ; Item ID #$37: Golden Key location #2 (Zahan)
-; indirect data load target
 .byte $FF	 ; end of Treasure List 2
 
-; data load target (from $9DBF)
-; -> $06:$9F26: unique items
-.addr $9F26	 ; $06:$9F26; unique items
+B06_9F24:
+.addr UniqueItems
+
 ; unique items
-; indirect data load target (via $9F24)
+UniqueItems:
 .byte $38	 ; Item ID #$38: Silver Key
 .byte $25	 ; Item ID #$25: Tresures
 .byte $29	 ; Item ID #$29: Leaf of The World Tree
@@ -8873,11 +6389,10 @@ TreasureList2:
 .byte $37	 ; Item ID #$37: Golden Key
 .byte $2D	 ; Item ID #$2D: Magic Loom
 
-; base treasure chest gold amount, low byte
-; random gold amounts
-; base treasure chest gold amount, high byte
 ; random treasure chest gold amount
-; indexed data load target (from $9C46)
+; leftmost word is the base amount.
+; rightmost byte is the amount to increase randomly.
+RandomChestGold:
 .byte $0F,$00,$0F	 ; Chest Gold ID #$45: 15 - 30 G
 .byte $1F,$00,$0F	 ; Chest Gold ID #$46: 31 - 46 G
 .byte $32,$00,$3F	 ; Chest Gold ID #$47: 50 - 113 G
@@ -8893,13 +6408,13 @@ TreasureList2:
 .byte $26,$00,$0F	 ; Chest Gold ID #$51: 38 - 53 G
 
 ; Crest Names
-; indexed data load target (from $9C25)
-.byte $36,$1E,$17,$5F,$26,$1B,$0E,$1C,$1D,$FA	 ; "Sun Crest" + [end-FA]
-.byte $3A,$0A,$1D,$0E,$1B,$5F,$26,$1B,$0E,$1C,$1D,$FA	 ; "Water Crest" + [end-FA]
-.byte $2F,$12,$0F,$0E,$5F,$26,$1B,$0E,$1C,$1D,$FA	 ; "Life Crest"  + [end-FA]
+CrestNames:
+.byte "Sun Crest",$FA
+.byte "Water Crest",$FA
+.byte "Life Crest",$FA
 
 ; Inn prices per party member
-; indexed data load target (from $821F)
+InnPrices:
 .byte  4	 ; Inn ID #$00, Map IDs #$00/#$03: Fake Midenhall/Midenhall 1F
 .byte  6	 ; Inn ID #$01, Map ID #$05: Leftwyne
 .byte  8	 ; Inn ID #$02, Map ID #$06: Cannock
@@ -8909,10 +6424,10 @@ TreasureList2:
 .byte 25	 ; Inn ID #$06, Map ID #$0F: Osterfair
 .byte 30	 ; Inn ID #$07, Map ID #$10: Zahan
 .byte 40	 ; Inn ID #$08, Map ID #$11: Tuhn / Map ID #$14: Wellgarth Underground
-.byte 30
+.byte 30     ; ?
 
 ; Weapon Shop inventories
-; external indexed data load target (from $0F:$F266, $0F:$F278, $0F:$F299)
+ShopInventories:
 .byte $05,$06,$02,$07,$16,$1C	 ; Shop ID #00, Weapons/Armor, Map ID #$05: Leftwyne
 .byte $07,$08,$0A,$16,$19,$1E	 ; Shop ID #01, Weapons/Armor, Map ID #$07: Hamlin
 .byte $02,$0A,$03,$19,$12,$1E	 ; Shop ID #02, Weapons/Armor, Map ID #$0B: Lianport
@@ -8935,6 +6450,7 @@ TreasureList2:
 .byte $3C,$3B,$35,$34,$00,$00	 ; Shop ID #$0A, Items, Map ID #$15: Beran
 
 ; Item Prices
+ItemPrices:
 .word $00	 ; Item ID #$00: (no item)
 .word $14	 ; Item ID #$01: Bamboo Stick
 .word $C8	 ; Item ID #$02: Magic Knife
@@ -9005,8 +6521,7 @@ TreasureList2:
 .word $02	 ; Item ID #$3F: [blank]
 
 
-; data -> code
-; control flow target (from $A141, $A14C)
+B06_A07C:
     lda $47 ; Stepguard flag
 
     bpl B06_A088
@@ -9015,7 +6530,6 @@ TreasureList2:
     lda #$07
     sta $47 ; Stepguard flag
 
-; control flow target (from $A07E)
 B06_A088:
     tya
     and $47 ; Stepguard flag
@@ -9028,24 +6542,19 @@ B06_A088:
 
     sta $47 ; Stepguard flag
 
-; control flow target (from $A082)
 B06_A095:
     pla
     pla
-    jmp $A1A1
+    jmp B06_A1A1
 
-; control flow target (from $A08B)
 B06_A09A:
     rts
 
 
-; code -> data
-; indexed data load target (from $A11D)
+B06_A09B:
+.byte 4, 2, 1
 
-.byte $04,$02
-.byte $01
-; data -> code
-; external control flow target (from $0F:$C89E)
+B06_A09E:
     lda $015A
     sta $015B
     lda $0159
@@ -9066,40 +6575,28 @@ B06_A09A:
     lda #$2B ; String ID #$012B: The Fairy Water evaporated and lost its power.[end-FC]
 
     bne B06_A0C9
-; control flow target (from $A0BD)
 B06_A0C3:
     cmp #$02
     bne B06_A0DA
     lda #$BE ; String ID #$01BE: Repel has lost its effect.[end-FC]
 
-; control flow target (from $A0C1)
 B06_A0C9:
     pha
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $04
     pla
-; call to code in a different bank ($0F:$FA4E)
-    jsr $FA4E ; display string ID specified by A + #$0100
+    jsr B0F_FA4E ; display string ID specified by A + #$0100
 
     lda #$01
     sta $0E
     lda #$02
     sta $46 ; Repel (#$FE) / Fairy Water (#$FF) flag
 
-; control flow target (from $A0C5)
 B06_A0DA:
     dec $46 ; Repel (#$FE) / Fairy Water (#$FF) flag
 
     dec $46 ; Repel (#$FE) / Fairy Water (#$FF) flag
 
-; control flow target (from $A0B9)
 B06_A0DE:
     inc $05FB ; movement counter
 
@@ -9112,21 +6609,19 @@ B06_A0DE:
     cmp #$01
     beq B06_A10E
     ldy #$00
-; control flow target (from $A10C)
 B06_A0F0:
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$A0
     cmp #$A0
     bne B06_A105
     tya
     pha
-    jsr $A262
+    jsr B06_A262
     pla
     tay
     lda #$01
-    jsr $A1C7
-; control flow target (from $A0F7)
+    jsr B06_A1C7
 B06_A105:
     tya
     clc
@@ -9134,7 +6629,6 @@ B06_A105:
     tay
     cpy #$36
     bcc B06_A0F0
-; control flow target (from $A0E6, $A0EC)
 B06_A10E:
     lda #$24
     sta $49 ; object hero/target/item/string ID $49
@@ -9142,7 +6636,7 @@ B06_A10E:
     lda #$00
     sta $96 ; temp storage for item/spell/type/etc. IDs
 
-; control flow target (from $A1AA)
+B06_A116:
     lda $49 ; object hero/target/item/string ID $49
 
     lsr
@@ -9150,13 +6644,12 @@ B06_A10E:
     lsr
     lsr
     tax
-    ldy $A09B,X
-    lda $0159,X
+    ldy B06_A09B, x
+    lda $0159, x
     cmp #$70
     bne B06_A12B
     lda #$02
     bne B06_A161
-; control flow target (from $A125)
 B06_A12B:
     cmp #$A0
     bne B06_A13D
@@ -9170,21 +6663,18 @@ B06_A12B:
     bcs B06_A153
     lda #$01
     bne B06_A161
-; control flow target (from $A12D)
 B06_A13D:
     cmp #$80
     bne B06_A148
-    jsr $A07C
+    jsr B06_A07C
     lda #$0F
     bne B06_A161
-; control flow target (from $A13F)
 B06_A148:
     cmp #$90
     bne B06_A153
-    jsr $A07C
+    jsr B06_A07C
     lda #$1E
     bne B06_A161
-; control flow target (from $A133, $A137, $A14A)
 B06_A153:
     lda $47 ; Stepguard flag
 
@@ -9195,26 +6685,24 @@ B06_A153:
 
     sta $47 ; Stepguard flag
 
-    jmp $A1A1
+    jmp B06_A1A1
 
-; control flow target (from $A129, $A13B, $A146, $A151)
 B06_A161:
     sta $CC
     ldy $49 ; object hero/target/item/string ID $49
 
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     bpl B06_A1A1
     lda #$5B
-    jsr $A1B5
+    jsr B06_A1B5
     bcs B06_A1A1
     lda $CC
     cmp #$0A
     bcs B06_A17E
     lda #$53
-    jsr $A1B5
+    jsr B06_A1B5
     bcs B06_A1A1
-; control flow target (from $A175)
 B06_A17E:
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
@@ -9226,25 +6714,21 @@ B06_A17E:
     bcs B06_A195
     lda #$91 ; Music ID #$91: swamp SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-    jsr $A262
-    jmp $A198
+    jsr B06_A262
+    jmp B06_A198
 
-; control flow target (from $A188)
 B06_A195:
-    jsr $A296
-; control flow target (from $A192)
+    jsr B06_A296
+B06_A198:
     pla
     tay
-; control flow target (from $A180)
 B06_A19A:
     inc $96 ; temp storage for item/spell/type/etc. IDs
 
     lda $CC
-    jsr $A1C7
-; control flow target (from $A097, $A155, $A15E, $A168, $A16F, $A17C)
+    jsr B06_A1C7
 B06_A1A1:
     lda $49 ; object hero/target/item/string ID $49
 
@@ -9253,20 +6737,17 @@ B06_A1A1:
     sta $49 ; object hero/target/item/string ID $49
 
     bmi B06_A1AD
-    jmp $A116
+    jmp B06_A116
 
-; control flow target (from $A1A8)
 B06_A1AD:
     lda $0E
     beq B06_A1B4
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
-; control flow target (from $A1AF)
 B06_A1B4:
     rts
 
-; control flow target (from $A16C, $A179)
+B06_A1B5:
     sta $0C
     tya
     pha
@@ -9276,53 +6757,49 @@ B06_A1B4:
     lsr
     sta $9C
     lda $0C
-; call to code in a different bank ($0F:$C4B0)
-    jsr $C4B0 ; given a hero ID in $9C and an item ID in A, SEC if hero has that item, CLC otherwise
+    jsr B0F_C4B0 ; given a hero ID in $9C and an item ID in A, SEC if hero has that item, CLC otherwise
 
     pla
     tay
     rts
 
-; control flow target (from $A102, $A19E)
+B06_A1C7:
     sta $0C
-    lda $063B,Y ; Midenhall Current HP, low byte
+    lda $063B, y ; Midenhall Current HP, low byte
 
     sec
     sbc $0C
-    sta $063B,Y ; Midenhall Current HP, low byte
+    sta $063B, y ; Midenhall Current HP, low byte
 
-    lda $063C,Y ; Midenhall Current HP, high byte
+    lda $063C, y ; Midenhall Current HP, high byte
 
     sbc #$00
-    sta $063C,Y ; Midenhall Current HP, high byte
+    sta $063C, y ; Midenhall Current HP, high byte
 
     bcs B06_A1E4
     lda #$00
-    sta $063B,Y ; Midenhall Current HP, low byte
+    sta $063B, y ; Midenhall Current HP, low byte
 
-    sta $063C,Y ; Midenhall Current HP, high byte
+    sta $063C, y ; Midenhall Current HP, high byte
 
-; control flow target (from $A1DA)
 B06_A1E4:
-    ora $063B,Y ; Midenhall Current HP, low byte
+    ora $063B, y ; Midenhall Current HP, low byte
 
     beq B06_A1F5
     tya
     pha
     txa
     pha
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
+    jsr B0F_C22C
     pla
     tax
     pla
     tay
     rts
 
-; control flow target (from $A1E7)
 B06_A1F5:
     lda #$04
-    sta $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     lda #$FF
     sta $35 ; flag indicating whether any menu is currently open
@@ -9331,20 +6808,12 @@ B06_A1F5:
     bne B06_A20E
     tya
     pha
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $04
     pla
     tay
     lda #$00
     sta $0E
-; control flow target (from $A200)
 B06_A20E:
     inc $0E
     lda $0E
@@ -9357,8 +6826,7 @@ B06_A20E:
     lsr
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
     lda $97 ; subject hero ID $97
 
@@ -9366,25 +6834,16 @@ B06_A20E:
     adc #$03
     sta $97 ; subject hero ID $97
 
-; call to code in a different bank ($0F:$D302)
-    jsr $D302
-; call to code in a different bank ($0F:$FA2A)
-    jsr $FA2A ; display string ID specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $1B
-; data -> code
+    jsr B0F_D302
+    jsr B0F_FA2A ; display string ID specified by next byte
+    .byte $1B
     pla
     tay
     pla
     sta $0E
     ldx #$00
-; control flow target (from $A23F)
 B06_A233:
-    lda $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     bmi B06_A25D
     txa
@@ -9393,229 +6852,169 @@ B06_A233:
     tax
     cmp #$36
     bcc B06_A233
-; call to code in a different bank ($0F:$F6CE)
-    jsr $F6CE ; return number of party members - 1 in A/X
+    jsr B0F_F6CE ; return number of party members - 1 in A/X
 
     beq B06_A24F
     lda #$80
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $51
-; data -> code
-; control flow target (from $A244)
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $51
 B06_A24F:
     lda #$12 ; Music ID #$12: party defeat BGM
 
     sta $05F7 ; probably BGM for current area
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-    jsr $809D ; wait until all joypad buttons are released and then some button pressed
+    jsr B06_809D ; wait until all joypad buttons are released and then some button pressed
 
-; call to code in a different bank ($0F:$D271)
-    jmp $D271
+    jmp B0F_D271
 
-; control flow target (from $A236)
 B06_A25D:
     lda #$00
     sta $35 ; flag indicating whether any menu is currently open
 
     rts
 
-; control flow target (from $A0FB, $A18F, $A29F)
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+B06_A262:
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
-    lda $A287
+    lda B06_A287
     sta $0A
-    lda $A288
-    jsr $A27E
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
-
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
-
+    lda B06_A287+1
+    jsr B06_A27E
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
     lda $C2E9
     sta $0A
     lda $C2EA
-; control flow target (from $A26D)
+B06_A27E:
     sta $0B
     lda #$00
     sta $0C
-; call to code in a different bank ($0F:$C228)
-    jmp $C228
+    jmp B0F_C228
 
 
-; code -> data
-; data load target (from $A265)
-; data load target (from $A26A)
-.byte $89
-; indirect data load target (via $A287)
-.byte $A2
-; indirect data load target
+B06_A287:
+.addr B06_A289
+
+B06_A289:
 .byte $0F
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
 .byte $16
-; indirect data load target
+.byte $16
 .byte $16
 
-.byte $16
-; data -> code
-; control flow target (from $A195)
+B06_A296:
     lda #$81 ; Music ID #$81: hit 1 SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
     lda #$04
     sta $13
-; control flow target (from $A2A4)
 B06_A29F:
-    jsr $A262
+    jsr B06_A262
     dec $13
     bne B06_A29F
     rts
 
-; external control flow target (from $0F:$C91B)
+B06_A2A7:
     lda $0112 ; Crests found bit field (#$10 = Life, #$80 = Water, #$04 = Moon, #$02 = Stars, #$01 = Sun)
 
     and #$1F
     cmp #$1F
     beq B06_A2B1
-; control flow target (from $A2B8)
 B06_A2B0:
     rts
 
-; control flow target (from $A2AE)
 B06_A2B1:
     lda #$27
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     cmp #$FF
     bne B06_A2B0
     lda #$05 ; Music ID #$05: Rubiss BGM
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
     lda #$04
     sta $49 ; object hero/target/item/string ID $49
 
-    jsr $A2FB
-; call to code in a different bank ($0F:$F6F6)
-    jsr $F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $FD
-; data -> code
+    jsr B06_A2FB
+    jsr B0F_F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
+    .byte $FD
     lda #$27
     sta $96 ; temp storage for item/spell/type/etc. IDs
 
     lda #$00
     sta $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcs B06_A2E9
     inc $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcs B06_A2E9
     inc $97 ; subject hero ID $97
 
-    jsr $8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
+    jsr B06_8D7E ; given hero ID in $97 and item ID in $96, try to add item to first empty slot in hero's inventory; SEC if added, CLC if no empty slots
 
     bcs B06_A2E9
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-
-.byte $D8
-; data -> code
-; control flow target (from $A2D5, $A2DC, $A2E3)
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $D8
 B06_A2E9:
     ldx #$3C
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda #$FF
     sta $49 ; object hero/target/item/string ID $49
 
-    jsr $A2FB
-; call to code in a different bank ($0F:$C59D)
-    jsr $C59D
-; call to code in a different bank ($0F:$D0F5)
-    jmp $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B06_A2FB
+    jsr B0F_C59D
+    jmp B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
 
-; control flow target (from $A2C3, $A2F2)
+B06_A2FB:
     ldy #$1F
-    jsr $A30C
+    jsr B06_A30C
     ldy #$27
-    jsr $A30C
+    jsr B06_A30C
     ldy #$2F
-    jsr $A30C
+    jsr B06_A30C
     ldy #$37
-; control flow target (from $A2FD, $A302, $A307)
+B06_A30C:
     lda $49 ; object hero/target/item/string ID $49
 
-    sta $053A,Y
-; call to code in a different bank ($0F:$CF64)
-    jsr $CF64
+    sta $053A, y
+    jsr B0F_CF64
     ldx #$19
-; call to code in a different bank ($0F:$C1EE)
-    jmp $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jmp B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
 
-; if $05FC is #$00, copy battle stats at $015D,Y to field stats at $0600,X, otherwise copy field stats at $0600,X to battle stats at $015D,Y
-; external control flow target (from $0F:$E438)
+; if $05FC is #$00, copy battle stats at $015D, y to field stats at $0600, x, otherwise copy field stats at $0600, x to battle stats at $015D, y
+B06_A319:
     ldx #$00
     ldy #$00
-; control flow target (from $A337)
 B06_A31D:
     stx $0C
-    lda $A34E,X
+    lda B06_A34D+1, x
     sta $0D
-    lda $A34D,X ; stat ranges
+    lda B06_A34D, x ; stat ranges
 
     tax
-; control flow target (from $A32F)
 B06_A328:
-    jsr $A33A ; if $05FC is #$00, copy $015D,Y to $0600,X, otherwise copy $0600,X to $015D,Y
+    jsr B06_A33A ; if $05FC is #$00, copy $015D, y to $0600, x, otherwise copy $0600, x to $015D, y
 
     inx
     iny
@@ -9628,42 +7027,40 @@ B06_A328:
     bne B06_A31D
     rts
 
-; if $05FC is #$00, copy $015D,Y to $0600,X, otherwise copy $0600,X to $015D,Y
-; control flow target (from $A328)
+; if $05FC is #$00, copy $015D, y to $0600, x, otherwise copy $0600, x to $015D, y
+B06_A33A:
     lda $05FC
     beq B06_A346
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
-    sta $015D,Y
+    sta $015D, y
     rts
 
-; control flow target (from $A33D)
 B06_A346:
-    lda $015D,Y
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $015D, y
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     rts
 
 
-; code -> data
 ; stat ranges
-; indexed data load target (from $A324)
-; indexed data load target (from $A31F)
-.byte $00
+B06_A34D:
+.byte $00,$18
+.byte $24,$26
+.byte $2D,$2E
+.byte $3B,$3E
+.byte $3F,$40
+.byte $4D,$50
+.byte $51,$52
+.byte $5F,$62
 
-.byte $18,$24,$26,$2D,$2E,$3B,$3E,$3F
-.byte $40,$4D,$50,$51
-.byte $52,$5F
-.byte $62
-; data -> code
 ; save game handler
-; control flow target (from $8F02, $900A, $918D, $9209, $93F6, $943F, $981B)
-; call to code in a different bank ($0F:$D159)
-    jmp $D159
+B06_A35D:
+    jmp B0F_D159
 
 ; check for item A (possibly equipped) in party inventory, returning inventory index of item in A/X if found, #$FF if not
-; control flow target (from $9B58, $9DD8, $9DE5)
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+B06_A360:
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     bpl B06_A39F ; if found, RTS
 
@@ -9672,8 +7069,7 @@ B06_A346:
     ora #$40 ; and check for an equipped version
 
 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
-; control flow target (from $834E, $845B, $86D7, $8D5D, $90CE, $90D5, $92BC, $92C3, $92D5, $9306, $93C0, $93CB, $9B51, $9BA8, $9D8C, $A2B3, $A360)
-; external control flow target (from $0F:$D589)
+B06_A369:
     sty $10 ; save Y in $10
 
     sta $0C ; save item ID in $0C
@@ -9682,14 +7078,13 @@ B06_A346:
 
     stx $0D ; inventory index
 
-; control flow target (from $A398)
 B06_A371:
     ldy $0D ; hero ID
 
-    lda $A3A0,Y ; pre-computed offsets for the start of each hero's data (what's wrong with the same data at $06:$9D55?)
+    lda B06_A3A0, y ; pre-computed offsets for the start of each hero's data (what's wrong with the same data at $06:$9D55?)
 
     tay
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$04 ; pick out the In Party bit
 
@@ -9703,9 +7098,8 @@ B06_A371:
     tax
     bne B06_A392 ; branch always taken; skip cheking current hero's inventory (since they're not in the party)
 
-; control flow target (from $A37C, $A390)
 B06_A385:
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     cmp $0C ; item ID
 
@@ -9718,7 +7112,6 @@ B06_A385:
     and #$07
     bne B06_A385 ; if this hero has more inventory to check, check it
 
-; control flow target (from $A383)
 B06_A392:
     inc $0D ; increment hero ID
 
@@ -9729,25 +7122,20 @@ B06_A392:
 
     ldx #$FF ; otherwise flag item not found
 
-; control flow target (from $A38A)
 B06_A39C:
     ldy $10 ; restore Y from $10
 
     txa
-; control flow target (from $A363)
 B06_A39F:
     rts
 
 
-; code -> data
 ; pre-computed offsets for the start of each hero's data (what's wrong with the same data at $06:$9D55?)
-; indexed data load target (from $A373)
+B06_A3A0:
+.byte $00,$12,$24
 
-.byte $00,$12
-.byte $24
-; data -> code
 ; given item ID in $96 and hero ID in $97, set A to #$80 if hero can equip item, #$00 otherwise
-; control flow target (from $831D, $8AA9)
+B06_A3A3:
     stx $10 ; save X
 
     lda $96 ; temp storage for item/spell/type/etc. IDs; item ID
@@ -9755,14 +7143,13 @@ B06_A39F:
     and #$3F ; strip off equipped bit
 
     tax
-    lda $A3BD,X ; Bit fields controlling who can equip each item
+    lda EquipFields, x ; Bit fields controlling who can equip each item
 
     sta $0D
     ldy $97 ; subject hero ID $97
 
     iny ; number of bits to shift
 
-; control flow target (from $A3B8)
 B06_A3B2:
     lda #$00 ; initialize return value
 
@@ -9779,164 +7166,240 @@ B06_A3B2:
     rts
 
 
-; code -> data
 ; Bit fields controlling who can equip each item
 ; #$01 = Midenhall, #$02 = Cannock, #$04 = Moonbrooke
-; indexed data load target (from $A3AA)
+.define equipbytes(miden,cann,moon) .byte (moon << 2) | (cann << 1) | miden
 
-.byte $00,$07,$07,$07,$07,$03,$03,$03,$03
-.byte $03,$01,$01,$01
-.byte $01,$01
-.byte $01
-.byte $01
+EquipFields:
+equipbytes 0, 0, 0	 ; Item ID #$00: (no item)
+equipbytes 1, 1, 1	 ; Item ID #$01: Bamboo Stick
+equipbytes 1, 1, 1	 ; Item ID #$02: Magic Knife
+equipbytes 1, 1, 1	 ; Item ID #$03: Wizard’s Wand
+equipbytes 1, 1, 1	 ; Item ID #$04: Staff of Thunder
+equipbytes 1, 1, 0	 ; Item ID #$05: Club
+equipbytes 1, 1, 0	 ; Item ID #$06: Copper Sword
+equipbytes 1, 1, 0	 ; Item ID #$07: Chain Sickle
+equipbytes 1, 1, 0	 ; Item ID #$08: Iron Spear
+equipbytes 1, 1, 0	 ; Item ID #$09: Falcon Sword
+equipbytes 1, 0, 0	 ; Item ID #$0A: Broad Sword
+equipbytes 1, 0, 0	 ; Item ID #$0B: Giant Hammer
+equipbytes 1, 0, 0	 ; Item ID #$0C: Sword of Destruction
+equipbytes 1, 0, 0	 ; Item ID #$0D: Dragon Killer
+equipbytes 1, 0, 0	 ; Item ID #$0E: Light Sword
+equipbytes 1, 0, 0	 ; Item ID #$0F: Sword of Erdrick
+equipbytes 1, 0, 0	 ; Item ID #$10: Thunder Sword
 
-.byte $07,$07,$07,$07,$03,$03
-.byte $03,$03,$01
-.byte $01
-.byte $01
+equipbytes 1, 1, 1	 ; Item ID #$11: Clothes
+equipbytes 1, 1, 1	 ; Item ID #$12: Clothes Hiding
+equipbytes 1, 1, 1	 ; Item ID #$13: Water Flying Cloth
+equipbytes 1, 1, 1	 ; Item ID #$14: Mink Coat
+equipbytes 1, 1, 0	 ; Item ID #$15: Leather Armor
+equipbytes 1, 1, 0	 ; Item ID #$16: Chain Mail
+equipbytes 1, 1, 0	 ; Item ID #$17: Gremlin’s Armor
+equipbytes 1, 1, 0	 ; Item ID #$18: Magic Armor
+equipbytes 1, 0, 0	 ; Item ID #$19: Full Plate Armor
+equipbytes 1, 0, 0	 ; Item ID #$1A: Armor of Gaia
+equipbytes 1, 0, 0	 ; Item ID #$1B: Armor of Erdrick
 
-.byte $03,$03,$01
-.byte $01
-.byte $01
+equipbytes 1, 1, 0	 ; Item ID #$1C: Leather Shield
+equipbytes 1, 1, 0	 ; Item ID #$1D: Shield of Strength
+equipbytes 1, 0, 0	 ; Item ID #$1E: Steel Shield
+equipbytes 1, 0, 0	 ; Item ID #$1F: Evil Shield
+equipbytes 1, 0, 0	 ; Item ID #$20: Shield of Erdrick
+
+equipbytes 1, 1, 1	 ; Item ID #$21: Mysterious Hat
+equipbytes 1, 0, 0	 ; Item ID #$22: Iron Helmet
+equipbytes 1, 0, 0	 ; Item ID #$23: Helmet of Erdrick
+
 ; pointers to warp spaces for irregularly-shaped maps
-.byte $07,$01
-.byte $01
-; indirect data load target (via $8042)
-; external indexed data load target (from $0F:$E8BC)
-; external indexed data load target (from $0F:$E8C1)
-.byte $00
-; warp spaces for irregularly-shaped maps; format is (destination map ID, destination X-pos, destination Y-pos, transition X-pos, transition Y-pos), all positions are 7-bit, describing a 2x2 space
-.byte $00,$1B,$A4,$30,$A4,$45,$A4,$50,$A4,$00,$00,$00,$00,$00,$00,$00
-.byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$5B,$A4,$98,$A4,$D5
-.byte $A4,$F4,$A4,$00,$00,$00,$00,$31,$A5,$00,$00,$00,$00
-.byte $00,$00,$00,$00,$00,$00
-.byte $00,$00,$00
-.byte $00,$00
-.byte $00
-; Map ID #$2C: Lake Cave B1
-; indirect data load target (via $A3E3)
-; indirect data load target
-.byte $2C,$1E,$16,$FE,$10,$2C,$00,$10,$20,$16
-.byte $2C,$04,$00,$18,$20
-.byte $2C,$18,$1E
-.byte $04
-.byte $FE
-; Map ID #$2D: Lake Cave B2
-.byte $FF
-; indirect data load target (via $A3E5)
-; indirect data load target
-.byte $2D,$16,$02,$0E,$20,$2D,$0E,$1E,$16,$00
-.byte $2D,$1A,$1C,$FE,$1C
-.byte $2D,$00,$1C
-.byte $1C
-.byte $1C
-; Map ID #$2E: Sea Cave B1
-.byte $FF
-; indirect data load target (via $A3E7)
-; indirect data load target
-.byte $2E,$04,$02,$02,$1C
-.byte $2E,$02,$1A
-.byte $04
-.byte $00
-; Map ID #$2F: Sea Cave B2
-.byte $FF
-; indirect data load target (via $A3E9)
-; indirect data load target
-.byte $2F,$20,$14,$12,$28
-.byte $2F,$12,$26
-.byte $20
-.byte $12
-; Map ID #$39: Cave to Rhone 2F-1
-.byte $FF
-; indirect data load target (via $A3FD)
-; indirect data load target
-.byte $3A,$06,$0A,$06,$00,$3A,$10,$0A,$10,$00,$3A,$1A,$0A,$1A,$00,$3A
-.byte $24,$0A,$24,$00,$3A,$2E,$0A,$2E,$00,$3A,$06,$02,$06,$0C,$3A,$10
-.byte $02,$10,$0C,$3A,$1A,$02,$1A,$0C,$3A,$24,$02,$24,$0C,$3A
-.byte $2E,$02,$2E,$0C,$3B,$08,$04
-.byte $FE,$08,$3B,$00
-.byte $04,$36
-.byte $08
-; Map ID #$3A: Cave to Rhone 2F-2
-.byte $FF
-; indirect data load target (via $A3FF)
-; indirect data load target
-.byte $39,$06,$0A,$06,$00,$39,$10,$0A,$10,$00,$39,$1A,$0A,$1A,$00,$39
-.byte $24,$0A,$24,$00,$39,$2E,$0A,$2E,$00,$39,$06,$02,$06,$0C,$39,$10
-.byte $02,$10,$0C,$39,$1A,$02,$1A,$0C,$39,$24,$02,$24,$0C,$39
-.byte $2E,$02,$2E,$0C,$3B,$08,$0E
-.byte $FE,$08,$3B,$00
-.byte $0E,$36
-.byte $08
-; Map ID #$3B: Cave to Rhone 2F-3
-.byte $FF
-; indirect data load target (via $A401)
-; indirect data load target
-.byte $3B,$04,$00,$04,$14,$3B,$04,$12,$04,$FE,$39,$34,$08,$FE,$04
-.byte $39,$00,$08,$0A,$04,$3A,$34,$08
-.byte $FE,$0E,$3A,$00
-.byte $08,$0A
-.byte $0E
-; Map ID #$3C: Cave to Rhone 3F
-.byte $FF
-; indirect data load target (via $A403)
-; indirect data load target
-.byte $3C,$16,$18,$FE,$06,$3C,$00,$06,$18,$18,$3C,$26,$0A,$FE,$12,$3C
-.byte $00,$12,$28,$0A,$3C,$26,$16,$FE,$22,$3C,$00,$22,$28,$16,$3C,$22
-.byte $1E,$20,$38,$3C,$20,$36,$22,$1C,$3C,$0A,$2A,$28,$34,$3C
-.byte $26,$34,$08,$2A,$3C,$26,$02
-.byte $10,$16,$3C,$12
-.byte $16,$28
-.byte $02
-; Map ID #$3F: Cave to Rhone 6F
-.byte $FF
-; indirect data load target (via $A409)
+B06_A3E1:
+.addr $0000      ; $06:$0000; Map ID #$2B: Cave to Hamlin
+.addr B06_A41B      ; $06:$A41B; Map ID #$2C: Lake Cave B1
+.addr B06_A430      ; $06:$A430; Map ID #$2D: Lake Cave B2
+.addr B06_A445      ; $06:$A445; Map ID #$2E: Sea Cave B1
+.addr B06_A450      ; $06:$A450; Map ID #$2F: Sea Cave B2
+.addr $0000      ; $06:$0000; Map ID #$30: Sea Cave B3-1
+.addr $0000      ; $06:$0000; Map ID #$31: Sea Cave B3-2
+.addr $0000      ; $06:$0000; Map ID #$32: Sea Cave B4
+.addr $0000      ; $06:$0000; Map ID #$33: Sea Cave B5
+.addr $0000      ; $06:$0000; Map ID #$34: Charlock Castle B1/B2
+.addr $0000      ; $06:$0000; Map ID #$35: Charlock Castle B3/B4-1/B5-1
+.addr $0000      ; $06:$0000; Map ID #$36: Charlock Castle B4-2/B5-2/B6
+.addr $0000      ; $06:$0000; Map ID #$37: Cave to Rhone B1
+.addr $0000      ; $06:$0000; Map ID #$38: Cave to Rhone 1F
+.addr B06_A45B      ; $06:$A45B; Map ID #$39: Cave to Rhone 2F-1
+.addr B06_A498      ; $06:$A498; Map ID #$3A: Cave to Rhone 2F-2
+.addr B06_A4D5      ; $06:$A4D5; Map ID #$3B: Cave to Rhone 2F-3
+.addr B06_A4F4      ; $06:$A4F4; Map ID #$3C: Cave to Rhone 3F
+.addr $0000      ; $06:$0000; Map ID #$3D: Cave to Rhone 4F
+.addr $0000      ; $06:$0000; Map ID #$3E: Cave to Rhone 5F
+.addr B06_A531      ; $06:$A531; Map ID #$3F: Cave to Rhone 6F
+.addr $0000      ; $06:$0000; Map ID #$40: Spring of Bravery
+.addr $0000      ; $06:$0000; Map ID #$41: unused?
+.addr $0000      ; $06:$0000; Map ID #$42: unused?
+.addr $0000      ; $06:$0000; Map ID #$43: Cave to Rimuldar
+.addr $0000      ; $06:$0000; Map ID #$44: Hargon's Castle 2F
+.addr $0000      ; $06:$0000; Map ID #$45: Hargon's Castle 3F
+.addr $0000      ; $06:$0000; Map ID #$46: Hargon's Castle 4F
+.addr $0000      ; $06:$0000; Map ID #$47: Hargon's Castle 5F
 
-.byte $3F,$02,$16,$1A,$12,$3F,$18,$12,$00,$16,$3F,$18,$12,$20,$14,$3F
-.byte $18,$12,$FE,$02,$3F,$08,$0C,$12,$0E,$3F,$12,$10,$08,$0E,$3F,$12
-.byte $10,$06,$30,$3F,$24,$0E,$0A,$12,$3F,$0C,$12,$26,$0E,$3F,$0C,$12
-.byte $06,$02,$3F,$0C,$12,$06,$12,$3F,$00,$0C,$28,$02,$3F,$26,$02,$FE
-.byte $0C,$3F,$00,$12,$28,$1A,$3F,$26,$1A,$FE,$12,$3F,$00,$26,$1E,$04
-.byte $3F,$00,$26,$28,$14,$3F,$00,$26,$20,$1C,$3F,$10,$2C,$12,$24,$3F
-.byte $10,$2C,$20,$22,$3F,$10,$2C,$1A,$2C,$3F,$22,$22,$12,$2C,$3F,$00
-.byte $1C,$28,$24,$3F,$00,$1C,$28,$2C,$3F,$26,$24,$FE,$1C,$3F,$00,$20
-.byte $28,$28,$3F,$26,$28,$FE,$20,$3F,$1C,$2C,$28,$20,$3F,$0E,$0C,$1E
-.byte $26,$3F,$1A,$1E,$0A,$FE,$3F,$16,$2E,$1C,$16,$3F,$08,$18,$1C,$24
-.byte $3F,$1A,$24,$06,$18,$3F,$18,$0A,$16,$1E,$3F,$14,$1E,$16,$0A,$3F
-.byte $06,$2E,$12,$FE,$3F,$0C,$24,$0E,$0E,$3F,$0C,$24,$1A,$20,$3F,$0C
-.byte $24,$16,$30,$3F,$12,$0A,$12,$1A,$3F,$12,$18,$12,$08,$3F,$12
-.byte $18,$0C,$22,$3F,$12,$18,$22
-.byte $FE,$3F,$1C,$04
-.byte $FE,$26
+; warp spaces for irregularly-shaped maps; format is (destination map ID, destination X-pos, destination Y-pos, transition X-pos, transition Y-pos), all positions are 7-bit, describing a 2x2 space
+; Map ID #$2C: Lake Cave B1
+B06_A41B:
+.byte $2C,$1E,$16,$FE,$10
+.byte $2C,$00,$10,$20,$16
+.byte $2C,$04,$00,$18,$20
+.byte $2C,$18,$1E,$04,$FE
 .byte $FF
-; data -> code
+
+; Map ID #$2D: Lake Cave B2
+B06_A430:
+.byte $2D,$16,$02,$0E,$20
+.byte $2D,$0E,$1E,$16,$00
+.byte $2D,$1A,$1C,$FE,$1C
+.byte $2D,$00,$1C,$1C,$1C
+.byte $FF
+
+; Map ID #$2E: Sea Cave B1
+B06_A445:
+.byte $2E,$04,$02,$02,$1C
+.byte $2E,$02,$1A,$04,$00
+.byte $FF
+
+; Map ID #$2F: Sea Cave B2
+B06_A450:
+.byte $2F,$20,$14,$12,$28
+.byte $2F,$12,$26,$20,$12
+.byte $FF
+
+; Map ID #$39: Cave to Rhone 2F-1
+B06_A45B:
+.byte $3A,$06,$0A,$06,$00
+.byte $3A,$10,$0A,$10,$00
+.byte $3A,$1A,$0A,$1A,$00
+.byte $3A,$24,$0A,$24,$00
+.byte $3A,$2E,$0A,$2E,$00
+.byte $3A,$06,$02,$06,$0C
+.byte $3A,$10,$02,$10,$0C
+.byte $3A,$1A,$02,$1A,$0C
+.byte $3A,$24,$02,$24,$0C
+.byte $3A,$2E,$02,$2E,$0C
+.byte $3B,$08,$04,$FE,$08
+.byte $3B,$00,$04,$36,$08
+.byte $FF
+
+; Map ID #$3A: Cave to Rhone 2F-2
+B06_A498:
+.byte $39,$06,$0A,$06,$00
+.byte $39,$10,$0A,$10,$00
+.byte $39,$1A,$0A,$1A,$00
+.byte $39,$24,$0A,$24,$00
+.byte $39,$2E,$0A,$2E,$00
+.byte $39,$06,$02,$06,$0C
+.byte $39,$10,$02,$10,$0C
+.byte $39,$1A,$02,$1A,$0C
+.byte $39,$24,$02,$24,$0C
+.byte $39,$2E,$02,$2E,$0C
+.byte $3B,$08,$0E,$FE,$08
+.byte $3B,$00,$0E,$36,$08
+.byte $FF
+
+; Map ID #$3B: Cave to Rhone 2F-3
+B06_A4D5:
+.byte $3B,$04,$00,$04,$14
+.byte $3B,$04,$12,$04,$FE
+.byte $39,$34,$08,$FE,$04
+.byte $39,$00,$08,$0A,$04
+.byte $3A,$34,$08,$FE,$0E
+.byte $3A,$00,$08,$0A,$0E
+.byte $FF
+
+; Map ID #$3C: Cave to Rhone 3F
+B06_A4F4:
+.byte $3C,$16,$18,$FE,$06
+.byte $3C,$00,$06,$18,$18
+.byte $3C,$26,$0A,$FE,$12
+.byte $3C,$00,$12,$28,$0A
+.byte $3C,$26,$16,$FE,$22
+.byte $3C,$00,$22,$28,$16
+.byte $3C,$22,$1E,$20,$38
+.byte $3C,$20,$36,$22,$1C
+.byte $3C,$0A,$2A,$28,$34
+.byte $3C,$26,$34,$08,$2A
+.byte $3C,$26,$02,$10,$16
+.byte $3C,$12,$16,$28,$02
+.byte $FF
+
+; Map ID #$3F: Cave to Rhone 6F
+B06_A531:
+.byte $3F,$02,$16,$1A,$12
+.byte $3F,$18,$12,$00,$16
+.byte $3F,$18,$12,$20,$14
+.byte $3F,$18,$12,$FE,$02
+.byte $3F,$08,$0C,$12,$0E
+.byte $3F,$12,$10,$08,$0E
+.byte $3F,$12,$10,$06,$30
+.byte $3F,$24,$0E,$0A,$12
+.byte $3F,$0C,$12,$26,$0E
+.byte $3F,$0C,$12,$06,$02
+.byte $3F,$0C,$12,$06,$12
+.byte $3F,$00,$0C,$28,$02
+.byte $3F,$26,$02,$FE,$0C
+.byte $3F,$00,$12,$28,$1A
+.byte $3F,$26,$1A,$FE,$12
+.byte $3F,$00,$26,$1E,$04
+.byte $3F,$00,$26,$28,$14
+.byte $3F,$00,$26,$20,$1C
+.byte $3F,$10,$2C,$12,$24
+.byte $3F,$10,$2C,$20,$22
+.byte $3F,$10,$2C,$1A,$2C
+.byte $3F,$22,$22,$12,$2C
+.byte $3F,$00,$1C,$28,$24
+.byte $3F,$00,$1C,$28,$2C
+.byte $3F,$26,$24,$FE,$1C
+.byte $3F,$00,$20,$28,$28
+.byte $3F,$26,$28,$FE,$20
+.byte $3F,$1C,$2C,$28,$20
+.byte $3F,$0E,$0C,$1E,$26
+.byte $3F,$1A,$1E,$0A,$FE
+.byte $3F,$16,$2E,$1C,$16
+.byte $3F,$08,$18,$1C,$24
+.byte $3F,$1A,$24,$06,$18
+.byte $3F,$18,$0A,$16,$1E
+.byte $3F,$14,$1E,$16,$0A
+.byte $3F,$06,$2E,$12,$FE
+.byte $3F,$0C,$24,$0E,$0E
+.byte $3F,$0C,$24,$1A,$20
+.byte $3F,$0C,$24,$16,$30
+.byte $3F,$12,$0A,$12,$1A
+.byte $3F,$12,$18,$12,$08
+.byte $3F,$12,$18,$0C,$22
+.byte $3F,$12,$18,$22,$FE
+.byte $3F,$1C,$04,$FE,$26
+.byte $FF
+
     lda #$FF
     bne B06_A614
-; indirect control flow target (via $8000)
+B06_A612:
     lda #$00
-; control flow target (from $A610)
 B06_A614:
-    jsr $A61A
-; call to code in a different bank ($0F:$C1DC)
-    jmp $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B06_A61A
+    jmp B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 
-; control flow target (from $A614)
-; indirect control flow target (via $803C)
+B06_A61A:
     pha
     lda a:$01
     beq B06_A623
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
-; control flow target (from $A61E)
 B06_A623:
     lda #$01
     sta $0183
     lda #$00
     sta $6080
     pla
-    jsr $A763
+    jsr B06_A763
     lda #$00
     sta $6081
     sta $6082
@@ -9953,7 +7416,6 @@ B06_A623:
     sta $607F
     sta $6083
     ldx a:$02
-; control flow target (from $A6D0)
 B06_A652:
     lda $08
     sta $6090
@@ -9971,15 +7433,13 @@ B06_A652:
     sta $608E
     beq B06_A678
     bcs B06_A681
-; control flow target (from $A674)
 B06_A678:
     lda $607F
     sta $608D
-    jmp $A6A4
+    jmp B06_A6A4
 
-; control flow target (from $A676)
 B06_A681:
-    jsr $A6D6
+    jsr B06_A6D6
     lda $6090
     eor #$04
     sta $6090
@@ -9992,8 +7452,8 @@ B06_A681:
     sta $608F
     lda $608E
     sta $608D
-; control flow target (from $A67E)
-    jsr $A6D6
+B06_A6A4:
+    jsr B06_A6D6
     lda $08
     and #$FB
     cmp #$23
@@ -10005,9 +7465,8 @@ B06_A681:
     sta $07
     lda $08
     and #$FC
-    jmp $A6CB
+    jmp B06_A6CB
 
-; control flow target (from $A6AD, $A6B3)
 B06_A6C0:
     lda $07
     clc
@@ -10015,32 +7474,31 @@ B06_A6C0:
     sta $07
     lda $08
     adc #$00
-; control flow target (from $A6BD)
+B06_A6CB:
     sta $08
     dec $607E
     bne B06_A652
     stx a:$02
     rts
 
-; control flow target (from $A681, $A6A4)
+B06_A6D6:
     lda $6090
     ora #$80
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
     lda $608D
-    sta $0301,X
+    sta $0301, x
     lda $608F
-    sta $0302,X
+    sta $0302, x
     inx
     inx
     inx
     lda $608D
     pha
     ldy $6081
-; control flow target (from $A6FF)
 B06_A6F4:
-    lda $600B,Y
-    sta $0300,X ; PPU write buffer start
+    lda $600B, y
+    sta $0300, x ; PPU write buffer start
 
     inx
     iny
@@ -10058,7 +7516,6 @@ B06_A6F4:
     sta $6098
     lda $608F
     sta $6097
-; control flow target (from $A75A)
 B06_A71F:
     txa
     pha
@@ -10066,8 +7523,8 @@ B06_A71F:
     pha
     lda $6090
     pha
-    lda $606B,Y
-    jsr $A789
+    lda $606B, y
+    jsr B06_A789
     sta $608B
     pla
     sta $6090
@@ -10076,15 +7533,15 @@ B06_A71F:
     pla
     tax
     lda $609A
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
     inx
     lda $6099
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
     inx
     lda $608B
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
     inx
     iny
@@ -10094,26 +7551,24 @@ B06_A71F:
     dec $608D
     bne B06_A71F
     sty $6082
-; control flow target (from $A70E)
 B06_A75F:
     inc a:$01
     rts
 
-; control flow target (from $A62E)
+B06_A763:
     pha
-    jsr $A772
+    jsr B06_A772
     pla
     bne B06_A76B
     rts
 
-; control flow target (from $A768)
 B06_A76B:
     lda $08
     eor #$04
     sta $08
     rts
 
-; control flow target (from $A764)
+B06_A772:
     lda $607C
     asl
     and #$1E
@@ -10124,9 +7579,9 @@ B06_A76B:
     lsr
     and #$1E
     sta $608C
-    jmp $A809
+    jmp B06_A809
 
-; control flow target (from $A72A)
+B06_A789:
     sta $6096
     lda #$1F
     and $6097
@@ -10155,7 +7610,6 @@ B06_A76B:
     cmp #$24
     bcc B06_A7C1
     ldx #$27
-; control flow target (from $A7BD)
 B06_A7C1:
     stx $609A
     lda $6097
@@ -10177,31 +7631,28 @@ B06_A7C1:
     sta $58 ; pointer to start of main pointer table, high byte
 
     ldy #$00
-    lda ($57),Y ; pointer to start of main pointer table, low byte
+    lda ($57), y ; pointer to start of main pointer table, low byte
 
     sta $6094
     lda #$03
     ldy $6093
     beq B06_A7FC
-; control flow target (from $A7FA)
 B06_A7F5:
     asl
     asl $6096
     dey
     bne B06_A7F5
-; control flow target (from $A7F3)
 B06_A7FC:
     eor #$FF
     and $6094
     ora $6096
     ldy #$00
-    sta ($57),Y ; pointer to start of main pointer table, low byte
+    sta ($57), y ; pointer to start of main pointer table, low byte
 
     rts
 
 ; from $02:$B74E, $06:$B0A8, $0F:$FD25, $0F:$FD98 via $8002
-; control flow target (from $A786, $AF70)
-; indirect control flow target (via $8002)
+B06_A809:
     lda $04
     asl
     asl
@@ -10219,7 +7670,6 @@ B06_A7FC:
     lda $08
     eor #$04
     sta $08
-; control flow target (from $A81E)
 B06_A826:
     lda $06
     lsr
@@ -10230,7 +7680,6 @@ B06_A826:
     cmp #$1E
     bcc B06_A835
     sbc #$1E
-; control flow target (from $A831)
 B06_A835:
     lsr
     ror $07
@@ -10244,31 +7693,30 @@ B06_A835:
 
 ; display and handle main game menu
 ; from $0F:$C6C7 via $8004
-; indirect control flow target (via $8004)
+B06_A843:
     lda #$0C ; Music ID #$0C: game menu / Wellgarth singer BGM
 
     sta $05F7 ; probably BGM for current area
 
-; call to code in a different bank ($0F:$D14F)
-    jsr $D14F
+    jsr B0F_D14F
     lda #$00 ; Music ID #$00: BGM off
 
     sta $05F7 ; probably BGM for current area
 
-    jsr $A8CA
-; control flow target (from $A85C)
-    jsr $A97E
-; control flow target (from $A9CC)
-    jsr $A9A3 ; open apporpriate main game menu based on number of filled save slots, set $75DB = #$0A, #$05, or #$00 based on number of filled slots, return menu selection index in A
+    jsr B06_A8CA
+B06_A853:
+    jsr B06_A97E
+B06_A856:
+    jsr B06_A9A3 ; open apporpriate main game menu based on number of filled save slots, set $75DB = #$0A, #$05, or #$00 based on number of filled slots, return menu selection index in A
 
-    jsr $A9CF
-    jmp $A853
+    jsr B06_A9CF
+    jmp B06_A853
 
 ; from $0F:$D15F via $8008
-; indirect control flow target (via $8008)
+B06_A85F:
     lda #$19 ; Menu ID #$19: General menu: YES/NO
 
-    jsr $A993 ; open menu specified by A
+    jsr B06_A993 ; open menu specified by A
 
     tax
     bne B06_A874 ; branch if NO
@@ -10276,68 +7724,62 @@ B06_A835:
     lda #$FF
     sta $7070 ; ????, SRAM buffer
 
-    jsr $A885 ; copy save data from system RAM to per-game save data
+    jsr B06_A885 ; copy save data from system RAM to per-game save data
 
     lda #$78 ; String ID #$0078: ‘I have entered thy deeds in the Imperial Scrolls of Honor[.’][wait][end-FC]
 
-    jsr $A99B ; display string ID specified by A
+    jsr B06_A99B ; display string ID specified by A
 
-; control flow target (from $A865)
 B06_A874:
     lda #$79 ; String ID #$0079: ‘Dost thou wish to continue thy quest?’[FD][FD][end-FC]
 
-    jsr $A99B ; display string ID specified by A
+    jsr B06_A99B ; display string ID specified by A
 
     lda #$19 ; Menu ID #$19: General menu: YES/NO
 
-    jsr $A993 ; open menu specified by A
+    jsr B06_A993 ; open menu specified by A
 
     tax
     bne B06_A882 ; branch if NO
 
     rts
 
-; control flow target (from $A87F)
-; call to code in a different bank ($0F:$D175)
 B06_A882:
-    jmp $D175
+    jmp B0F_D175
 
 ; copy save data from system RAM to per-game save data
 ; from $0F:$C6DA via $801E
-; control flow target (from $A86C)
-; indirect control flow target (via $801E)
-    jsr $AC3C ; copy save data from system RAM to $7000-$706F
+B06_A885:
+    jsr B06_AC3C ; copy save data from system RAM to $7000-$706F
 
-    jsr $ACAD ; initialize the RNG based on 71 passes using SRAM data $7000-$7070 and save resulting seed to $7071-$7072
+    jsr B06_ACAD ; initialize the RNG based on 71 passes using SRAM data $7000-$7070 and save resulting seed to $7071-$7072
 
-    jsr $AB87 ; copy data from SRAM buffer to per-game save data
+    jsr B06_AB87 ; copy data from SRAM buffer to per-game save data
 
     rts
 
 ; copy Midenhall's short name from save slot in A to $0100 in reverse
 ; from $0F:$EE7E via $801C
-; indirect control flow target (via $801C)
-    jsr $A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
+B06_A88F:
+    jsr B06_A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
 
     ldy #$03 ; copy 4 bytes
 
     bne B06_A89E
 ; copy Midenhall's full name from save slot in $75DB to $0100 in reverse
 ; from $0F:$EF5B via $800A
-; indirect control flow target (via $800A)
+B06_A896:
     lda $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
-    jsr $A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
+    jsr B06_A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
 
     ldy #$07 ; copy 8 bytes
 
-; control flow target (from $A894)
 B06_A89E:
     ldx #$00
-; control flow target (from $A8A7)
 B06_A8A0:
-    lda ($99),Y
-    sta $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    lda ($99), y
+    sta $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
     inx
     dey
@@ -10345,65 +7787,58 @@ B06_A8A0:
     rts
 
 ; given current game save slot in $75DB, return Midenhall's level in that save game in A/$0E
-; indirect control flow target (via $800C)
+B06_A8AA:
     lda $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
-    jsr $A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
+    jsr B06_A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
 
     ldy #$08 ; offset for Midenhall's level
 
-    lda ($99),Y
+    lda ($99), y
     sta $0E
     rts
 
-; indirect control flow target (via $800E)
-    jsr $A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
+B06_A8B7:
+    jsr B06_A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
 
     ldx #$02
     ldy #$09
-    lda ($99),Y
+    lda ($99), y
     bmi B06_A8C8
     cmp #$46
     beq B06_A8C7
     dex
-; control flow target (from $A8C4)
 B06_A8C7:
     dex
-; control flow target (from $A8C0)
 B06_A8C8:
     txa
     rts
 
-; control flow target (from $A850)
+B06_A8CA:
     ldx #$05
-; control flow target (from $A8DF)
 B06_A8CC:
-    lda $ADB9,X
-    cmp $75FA,X
+    lda B06_ADB9, x
+    cmp $75FA, x
     beq B06_A8DE
-    cmp $6001,X
+    cmp $6001, x
     beq B06_A8DE
-    cmp $61A7,X
+    cmp $61A7, x
     bne B06_A8E3
-; control flow target (from $A8D2, $A8D7)
 B06_A8DE:
     dex
     bpl B06_A8CC
     bmi B06_A919
-; control flow target (from $A8DC)
 B06_A8E3:
-    lda $ADF4
+    lda B06_ADF4
     sta a:$99
-    lda $ADF5
+    lda B06_ADF4+1
     sta a:$9A
     ldx #$0D
-; control flow target (from $A908)
 B06_A8F1:
     ldy #$72
     lda #$00
-; control flow target (from $A8F8)
 B06_A8F5:
-    sta ($99),Y
+    sta ($99), y
     dey
     bpl B06_A8F5
     sec
@@ -10420,45 +7855,40 @@ B06_A8F5:
 
     ldx #$02
     lda #$FF
-; control flow target (from $A917)
 B06_A913:
-    sta $75D7,X ; save slot 1 status (write-only?)
+    sta $75D7, x ; save slot 1 status (write-only?)
 
     dex
     bpl B06_A913
-; control flow target (from $A8E1)
 B06_A919:
     ldx #$05
-; control flow target (from $A928)
 B06_A91B:
-    lda $ADB9,X
-    sta $75FA,X
-    sta $6001,X
-    sta $61A7,X
+    lda B06_ADB9, x
+    sta $75FA, x
+    sta $6001, x
+    sta $61A7, x
     dex
     bpl B06_A91B
     lda #$00
     sta $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
-; control flow target (from $A973)
 B06_A92F:
     ldx $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
     lda $75DA ; bit field for which save game slots are filled
 
-; control flow target (from $A937)
 B06_A935:
     lsr
     dex
     bpl B06_A935
     bcc B06_A96B
-    jsr $AB44 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
+    jsr B06_AB44 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
 
     bcc B06_A968
     ldx $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
     lda #$FD
-    sta $75D7,X ; save slot 1 status (write-only?)
+    sta $75D7, x ; save slot 1 status (write-only?)
 
     inx
     stx $8F
@@ -10466,29 +7896,26 @@ B06_A935:
     sta $90
     lda #$04 ; Menu ID #$04: Dialogue window
 
-    jsr $A993 ; open menu specified by A
+    jsr B06_A993 ; open menu specified by A
 
     lda #$0A ; Music ID #$0A: cursed BGM
 
-; call to code in a different bank ($0F:$C58D)
-    jsr $C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
+    jsr B0F_C58D ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
 
     inc $8E ; flag for in battle or not (#$FF)?
 
     lda #$77 ; String ID #$0077: [no voice]I'm afraid that[line][no voice]scenario [number] was not[line][no voice]recorded in the[line][no voice]Imperial Scrolls of[line][no voice]Honor.[end-FC]
 
-    jsr $A99B ; display string ID specified by A
+    jsr B06_A99B ; display string ID specified by A
 
     inc $8E ; flag for in battle or not (#$FF)?
 
-    jsr $A976 ; wait for controller input
+    jsr B06_A976 ; wait for controller input
 
-    jsr $AAEB
-; control flow target (from $A93E)
+    jsr B06_AAEB
 B06_A968:
-    jsr $AA02 ; copy more data to second part of per-game save data
+    jsr B06_AA02 ; copy more data to second part of per-game save data
 
-; control flow target (from $A939)
 B06_A96B:
     inc $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
@@ -10499,10 +7926,8 @@ B06_A96B:
     rts
 
 ; wait for controller input
-; control flow target (from $A962, $A97B)
-; call to code in a different bank ($0F:$C476)
 B06_A976:
-    jsr $C476 ; read joypad 1 data into $2F
+    jsr B0F_C476 ; read joypad 1 data into $2F
 
     lda $2F ; joypad 1 data
 
@@ -10510,47 +7935,40 @@ B06_A976:
 
     rts
 
-; control flow target (from $A853)
-; call to code in a different bank ($0F:$C42A)
-    jsr $C42A
-; call to code in a different bank ($0F:$C446)
-    jsr $C446 ; turn screen off, write $800 [space] tiles to PPU $2000, turn screen on
+B06_A97E:
+    jsr B0F_C42A
+    jsr B0F_C446 ; turn screen off, write $800 [space] tiles to PPU $2000, turn screen on
 
-; call to code in a different bank ($0F:$C1DC)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$80
     sta $6007
-; call to code in a different bank ($0F:$C41C)
-    jsr $C41C ; wait for interrupt, turn screen sprites and backround on
+    jsr B0F_C41C ; wait for interrupt, turn screen sprites and backround on
 
-; call to code in a different bank ($0F:$D14F)
-    jsr $D14F
+    jsr B0F_D14F
     rts
 
 ; open menu specified by A
-; control flow target (from $A861, $A87B, $A951, $A9C2, $AA76, $AAFE, $AB03, $AB1C)
+B06_A993:
     ldx #$06
     stx $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
-; call to code in a different bank ($0F:$EB89)
-    jsr $EB89 ; open menu specified by A
+    jsr B0F_EB89 ; open menu specified by A
 
     rts ; JMP > JSR + RTS
 
 
 ; display string ID specified by A
-; control flow target (from $A871, $A876, $A95D)
+B06_A99B:
     ldx #$06
     stx $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
-; call to code in a different bank ($0F:$FA4A)
-    jsr $FA4A ; display string ID specified by A
+    jsr B0F_FA4A ; display string ID specified by A
 
     rts
 
 ; open apporpriate main game menu based on number of filled save slots, set $75DB = #$0A, #$05, or #$00 based on number of filled slots, return menu selection index in A
-; control flow target (from $A856)
+B06_A9A3:
     ldx #$02
     lda $75DA ; bit field for which save game slots are filled
 
@@ -10562,10 +7980,8 @@ B06_A976:
 
     dex ; 3 slots filled => use X = #$00
 
-; control flow target (from $A9AE)
 B06_A9B1:
     dex
-; control flow target (from $A9AA)
 B06_A9B2:
     txa
     sta $75DB ; in game: current game save slot; out of game: various temporary game menu setup values; base index into main game menu handlers
@@ -10580,31 +7996,30 @@ B06_A9B2:
     clc
     adc #$32 ; Menu ID #$32 - #$34: Game menu: 3, 1-2, or 0 saves
 
-    jsr $A993 ; open menu specified by A
+    jsr B06_A993 ; open menu specified by A
 
     cmp #$FF
     beq B06_A9CA
     rts
 
-; control flow target (from $A9C7)
 B06_A9CA:
     pla
     pla
-    jmp $A856
+    jmp B06_A856
 
-; control flow target (from $A859)
+B06_A9CF:
     clc
     adc $75DB ; in game: current game save slot; out of game: various temporary game menu setup values; base index into main game menu handlers
 
     tax
-    lda $ADD7,X ; index into jump table at $ADE2
+    lda B06_ADD7, x ; index into jump table at B06_ADE2
 
     asl
     tax
-    lda $ADE2,X ; jump table for main game menu handlers
+    lda B06_ADE2, x ; jump table for main game menu handlers
 
     sta $99
-    lda $ADE3,X
+    lda B06_ADE2+1, x
     sta $9A
     jmp ($0099)
 
@@ -10612,7 +8027,6 @@ B06_A9CA:
     ldx #$00
     lda $75DA ; bit field for which save game slots are filled
 
-; control flow target (from $A9EE, $A9F1)
 B06_A9EC:
     inx
     lsr
@@ -10622,54 +8036,51 @@ B06_A9EC:
     dex
     txa
 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
-; control flow target (from $A88F, $A899, $A8AD, $A8B7, $AA05)
+B06_A9F5:
     asl
     tax
-    lda $ADF6,X
+    lda B06_ADF6, x
     sta $99
-    lda $ADF7,X
+    lda B06_ADF6+1, x
     sta $9A
     rts
 
 ; copy more data to second part of per-game save data
-; control flow target (from $A968, $AB8C)
+B06_AA02:
     lda $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
-    jsr $A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
+    jsr B06_A9F5 ; given save slot number in A, set $99-$9A to pointer to second part of save slot data
 
     ldy #$09
     lda $706F ; current battle message delay, SRAM buffer
 
-    sta ($99),Y
+    sta ($99), y
     dey
     lda $7026
-    sta ($99),Y
+    sta ($99), y
     ldx #$03
-; control flow target (from $AA1E)
 B06_AA17:
     dey
-    lda $7063,X ; party names, bytes 4-7, SRAM buffer
+    lda $7063, x ; party names, bytes 4-7, SRAM buffer
 
-    sta ($99),Y
+    sta ($99), y
     dex
     bpl B06_AA17
     dey
-; control flow target (from $AA27)
 B06_AA21:
-    lda $7009,Y ; Midenhall name bytes 0-3, SRAM buffer
+    lda $7009, y ; Midenhall name bytes 0-3, SRAM buffer
 
-    sta ($99),Y
+    sta ($99), y
     dey
     bpl B06_AA21
     rts
 
 ; mark save game slot specified by $75DB as filled
-; control flow target (from $AAAE, $AAD3)
+B06_AA2A:
     sec
     lda #$00
     ldx $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
-; control flow target (from $AA32)
 B06_AA30:
     rol
     dex
@@ -10682,12 +8093,11 @@ B06_AA30:
     rts
 
 ; mark save game slot specified by $75DB as empty
-; control flow target (from $AAEB)
+B06_AA3B:
     clc
     lda #$FF
     ldx $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
-; control flow target (from $AA43)
 B06_AA41:
     rol
     dex
@@ -10700,69 +8110,67 @@ B06_AA41:
     rts
 
 ; set $75D7,$75DB to #$FF (useless op?)
-; control flow target (from $AAB1, $AAD6)
+B06_AA4C:
     lda #$FF
     ldx $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
-    sta $75D7,X ; save slot 1 status (write-only?)
+    sta $75D7, x ; save slot 1 status (write-only?)
 
     rts
 
 ; CONTINUE A QUEST handler
-; indirect control flow target (via $ADE2)
-    jsr $AB0C ; display filled slots selection menu, set A/$75DB to selected slot
+B06_AA55:
+    jsr B06_AB0C ; display filled slots selection menu, set A/$75DB to selected slot
 
-    jsr $AB44 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
+    jsr B06_AB44 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
 
-    jsr $ABC7 ; copy save data from save data buffer at $7000 to system RAM; update Don Mahone quest status if applicable
+    jsr B06_ABC7 ; copy save data from save data buffer at $7000 to system RAM; update Don Mahone quest status if applicable
 
-; control flow target (from $AABA)
+B06_AA5E:
     pla
     pla
-; call to code in a different bank ($0F:$C577)
-    jsr $C577 ; set $6144 to #$05
+    jsr B0F_C577 ; set $6144 to #$05
 
     rts
 
 ; CHANGE MESSAGE SPEED handler
-; indirect control flow target (via $ADE4)
-    jsr $AB0C ; display filled slots selection menu, set A/$75DB to selected slot
+B06_AA64:
+    jsr B06_AB0C ; display filled slots selection menu, set A/$75DB to selected slot
 
-    jsr $AB44 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
+    jsr B06_AB44 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
 
-    jsr $AA6E ; display Menu ID #$45: Game menu: select message speed, update message speed based on new selection
+    jsr B06_AA6E ; display Menu ID #$45: Game menu: select message speed, update message speed based on new selection
 
     rts
 
 ; display Menu ID #$45: Game menu: select message speed, update message speed based on new selection
-; control flow target (from $AA6A, $AAA9)
+B06_AA6E:
     lda $706F ; current battle message delay, SRAM buffer
 
     sta $062C ; current battle message delay
 
     lda #$45 ; Menu ID #$45: Game menu: select message speed
 
-    jsr $A993 ; open menu specified by A
+    jsr B06_A993 ; open menu specified by A
 
     cmp #$FF
     beq B06_AA8F ; pop JSR return address and RTS back to to display and handle main game menu
 
     tax
-    lda $ADBF,X ; battle message delays (frames between prints; higher = slower)
+    lda B06_ADBF, x ; battle message delays (frames between prints; higher = slower)
 
     sta $706F ; current battle message delay, SRAM buffer
 
     sta $062C ; current battle message delay
 
-    jsr $ACAD ; initialize the RNG based on 71 passes using SRAM data $7000-$7070 and save resulting seed to $7071-$7072
+    jsr B06_ACAD ; initialize the RNG based on 71 passes using SRAM data $7000-$7070 and save resulting seed to $7071-$7072
 
-    jsr $AB87 ; copy data from SRAM buffer to per-game save data
+    jsr B06_AB87 ; copy data from SRAM buffer to per-game save data
 
     clc
     rts
 
 ; pop JSR return address and RTS back to to display and handle main game menu
-; control flow target (from $AA7B)
 B06_AA8F:
     pla
     pla
@@ -10770,14 +8178,14 @@ B06_AA8F:
     rts
 
 ; BEGIN A NEW QUEST handler
-; indirect control flow target (via $ADE6)
+B06_AA93:
     lda #$00
     sta $7070 ; ????, SRAM buffer
 
-    jsr $AB15 ; display empty slots selection menu, set A/$75DB to selected slot
+    jsr B06_AB15 ; display empty slots selection menu, set A/$75DB to selected slot
 
-    jsr $ACCD
-    jsr $AAC0 ; if $0100 is [space], pop JSR return address and RTS back to to display and handle main game menu
+    jsr B06_ACCD
+    jsr B06_AAC0 ; if $0100 is [space], pop JSR return address and RTS back to to display and handle main game menu
 
     lda #$46 ; NORMAL
 
@@ -10785,122 +8193,117 @@ B06_AA8F:
 
     sta $706F ; current battle message delay, SRAM buffer
 
-    jsr $AA6E ; display Menu ID #$45: Game menu: select message speed, update message speed based on new selection
+    jsr B06_AA6E ; display Menu ID #$45: Game menu: select message speed, update message speed based on new selection
 
-    bcs B06_AABD ; impossible branch; if $AA6E finishes with SEC, it also popped its return address, so control flow does not end up here
+    bcs B06_AABD ; impossible branch; if B06_AA6E finishes with SEC, it also popped its return address, so control flow does not end up here
 
-    jsr $AA2A ; mark save game slot specified by $75DB as filled
+    jsr B06_AA2A ; mark save game slot specified by $75DB as filled
 
-    jsr $AA4C ; set $75D7,$75DB to #$FF (useless op?)
+    jsr B06_AA4C ; set $75D7,$75DB to #$FF (useless op?)
 
-    jsr $ACAD ; initialize the RNG based on 71 passes using SRAM data $7000-$7070 and save resulting seed to $7071-$7072
+    jsr B06_ACAD ; initialize the RNG based on 71 passes using SRAM data $7000-$7070 and save resulting seed to $7071-$7072
 
-    jsr $AB87 ; copy data from SRAM buffer to per-game save data
+    jsr B06_AB87 ; copy data from SRAM buffer to per-game save data
 
-    jmp $AA5E
+    jmp B06_AA5E
 
 ; pop JSR return address and RTS back to to display and handle main game menu
-; control flow target (from $AAAC)
 B06_AABD:
     pla
     pla
     rts
 
 ; if $0100 is [space], pop JSR return address and RTS back to to display and handle main game menu
-; control flow target (from $AA9E)
-    lda $0100 ; string copy buffer start (often referenced as $00FF,X)
+B06_AAC0:
+    lda $0100 ; string copy buffer start (often referenced as $00FF, x)
 
     cmp #$5F ; Tile ID #$5F: [space]
 
     bne B06_AAC9
     pla
     pla
-; control flow target (from $AAC5)
 B06_AAC9:
     rts
 
 ; COPY A QUEST handler
-; indirect control flow target (via $ADE8)
-    jsr $AB0C ; display filled slots selection menu, set A/$75DB to selected slot
+B06_AACA:
+    jsr B06_AB0C ; display filled slots selection menu, set A/$75DB to selected slot
 
-    jsr $AB44 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
+    jsr B06_AB44 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
 
-    jsr $AB15 ; display empty slots selection menu, set A/$75DB to selected slot
+    jsr B06_AB15 ; display empty slots selection menu, set A/$75DB to selected slot
 
-    jsr $AA2A ; mark save game slot specified by $75DB as filled
+    jsr B06_AA2A ; mark save game slot specified by $75DB as filled
 
-    jsr $AA4C ; set $75D7,$75DB to #$FF (useless op?)
+    jsr B06_AA4C ; set $75D7,$75DB to #$FF (useless op?)
 
-    jsr $AB87 ; copy data from SRAM buffer to per-game save data
+    jsr B06_AB87 ; copy data from SRAM buffer to per-game save data
 
     rts
 
 ; ERASE A QUEST handler
-; indirect control flow target (via $ADEA)
-    jsr $AB0C ; display filled slots selection menu, set A/$75DB to selected slot
+B06_AADD:
+    jsr B06_AB0C ; display filled slots selection menu, set A/$75DB to selected slot
 
-    jsr $AAFC ; display Menu ID #$43: Game menu: delete selected game and Menu ID #$19: General menu: YES/NO
+    jsr B06_AAFC ; display Menu ID #$43: Game menu: delete selected game and Menu ID #$19: General menu: YES/NO
 
     ldx $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
     lda #$FE
-    sta $75D7,X ; save slot 1 status (write-only?)
+    sta $75D7, x ; save slot 1 status (write-only?)
 
-; control flow target (from $A965)
-    jsr $AA3B ; mark save game slot specified by $75DB as empty
+B06_AAEB:
+    jsr B06_AA3B ; mark save game slot specified by $75DB as empty
 
     ldx #$72 ; fill save game buffer with #$00
 
     lda #$00
-; control flow target (from $AAF6)
 B06_AAF2:
-    sta $7000,X ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4), SRAM buffer
+    sta $7000, x ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4), SRAM buffer
 
     dex
     bpl B06_AAF2
-    jsr $AB87 ; copy data from SRAM buffer to per-game save data
+    jsr B06_AB87 ; copy data from SRAM buffer to per-game save data
 
     rts
 
 ; display Menu ID #$43: Game menu: delete selected game and Menu ID #$19: General menu: YES/NO
-; control flow target (from $AAE0)
+B06_AAFC:
     lda #$43 ; Menu ID #$43: Game menu: delete selected game
 
-    jsr $A993 ; open menu specified by A
+    jsr B06_A993 ; open menu specified by A
 
     lda #$19 ; Menu ID #$19: General menu: YES/NO
 
-    jsr $A993 ; open menu specified by A
+    jsr B06_A993 ; open menu specified by A
 
     tax
 ; if NO, pop JSR return address and RTS back to to display and handle main game menu
     beq B06_AB0B
     pla
     pla
-; control flow target (from $AB07)
 B06_AB0B:
     rts
 
 ; display filled slots selection menu, set A/$75DB to selected slot
-; control flow target (from $AA55, $AA64, $AACA, $AADD)
+B06_AB0C:
     lda #$00 ; get index for filled slots
 
-    jsr $AB32 ; set A to offset of appropriate save slot selection menu: A = #$00 gets index for filled slots, A = #$FF gets index for empty slots; also sets $75DB to offset for corresponding current slot lut
+    jsr B06_AB32 ; set A to offset of appropriate save slot selection menu: A = #$00 gets index for filled slots, A = #$FF gets index for empty slots; also sets $75DB to offset for corresponding current slot lut
 
     adc #$3C ; base menu ID
 
     bne B06_AB1C
 ; display empty slots selection menu, set A/$75DB to selected slot
-; control flow target (from $AA98, $AAD0)
+B06_AB15:
     lda #$FF ; get index for empty slots
 
-    jsr $AB32 ; set A to offset of appropriate save slot selection menu: A = #$00 gets index for filled slots, A = #$FF gets index for empty slots; also sets $75DB to offset for corresponding current slot lut
+    jsr B06_AB32 ; set A to offset of appropriate save slot selection menu: A = #$00 gets index for filled slots, A = #$FF gets index for empty slots; also sets $75DB to offset for corresponding current slot lut
 
     adc #$35 ; base menu ID
 
-; control flow target (from $AB13)
 B06_AB1C:
-    jsr $A993 ; open menu specified by A
+    jsr B06_A993 ; open menu specified by A
 
     cmp #$FF
     beq B06_AB2F ; pop JSR return address and RTS back to to display and handle main game menu
@@ -10909,21 +8312,20 @@ B06_AB1C:
     adc $75DB ; in game: current game save slot; out of game: various temporary game menu setup values; offset for current slot lookup table
 
     tax
-    lda $ADC2,X ; lookup table for save game slot based on save game slot selection type + menu selection index
+    lda B06_ADC2, x ; lookup table for save game slot based on save game slot selection type + menu selection index
 
     sta $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
     rts
 
 ; pop JSR return address and RTS back to to display and handle main game menu
-; control flow target (from $AB21)
 B06_AB2F:
     pla
     pla
     rts
 
 ; set A to offset of appropriate save slot selection menu: A = #$00 gets index for filled slots, A = #$FF gets index for empty slots; also sets $75DB to offset for corresponding current slot lut
-; control flow target (from $AB0E, $AB17)
+B06_AB32:
     eor $75DA ; bit field for which save game slots are filled
 
     and #$07 ; 3 save slots
@@ -10940,19 +8342,17 @@ B06_AB2F:
     rts
 
 ; copy current save game's data to save data buffer at $7000; CLC if data is valid, SEC if it's unrecoverable
-; control flow target (from $A93B, $AA58, $AA67, $AACD)
-    jsr $AB90 ; set $99-$9A to pointer to current game's save slot, $9B-$9C to pointer to save data buffer at $7000
+B06_AB44:
+    jsr B06_AB90 ; set $99-$9A to pointer to current game's save slot, $9B-$9C to pointer to save data buffer at $7000
 
     ldx #$00 ; save data copy number
 
-; control flow target (from $AB7B)
 B06_AB49:
     ldy #$72 ; copy #$73 bytes of data from current game's save slot to save data buffer at $7000
 
-; control flow target (from $AB50)
 B06_AB4B:
-    lda ($99),Y
-    sta ($9B),Y
+    lda ($99), y
+    sta ($9B), y
     dey
     bpl B06_AB4B
     tya ; save Y and X on the stack
@@ -10960,7 +8360,7 @@ B06_AB4B:
     pha
     txa
     pha
-    jsr $ACBB ; initialize the RNG based on 71 passes using SRAM data $7000-$7070
+    jsr B06_ACBB ; initialize the RNG based on 71 passes using SRAM data $7000-$7070
 
     pla ; restore X and Y from the stack
 
@@ -10980,7 +8380,6 @@ B06_AB4B:
     beq B06_AB7F ; save data valid!
 
 ; save data corrupted!
-; control flow target (from $AB62)
 B06_AB6B:
     clc ; add #$159 (i.e. #$73 * 3) to $99-$9A
 
@@ -11000,58 +8399,52 @@ B06_AB6B:
     rts
 
 ; save data valid!
-; control flow target (from $AB69)
 B06_AB7F:
     txa
     beq B06_AB85 ; if first save data copy was bad, update all copies with good data
 
-    jsr $ABAA ; copy save data from save data buffer to current game's save slot, making X copies of the data spaced 3 saves slots away
+    jsr B06_ABAA ; copy save data from save data buffer to current game's save slot, making X copies of the data spaced 3 saves slots away
 
-; control flow target (from $AB80)
 B06_AB85:
     clc ; flag data as valid
 
     rts
 
 ; copy data from SRAM buffer to per-game save data
-; control flow target (from $A88B, $AA8A, $AAB7, $AAD9, $AAF8)
+B06_AB87:
     ldx #$04 ; make 4 copies of save data
 
-    jsr $ABAA ; copy save data from save data buffer to current game's save slot, making X copies of the data spaced 3 saves slots away
+    jsr B06_ABAA ; copy save data from save data buffer to current game's save slot, making X copies of the data spaced 3 saves slots away
 
-    jsr $AA02 ; copy more data to second part of per-game save data
+    jsr B06_AA02 ; copy more data to second part of per-game save data
 
     rts
 
 ; set $99-$9A to pointer to current game's save slot, $9B-$9C to pointer to save data buffer at $7000
-; control flow target (from $AB44, $ABAA)
+B06_AB90:
     lda $75DB ; in game: current game save slot; out of game: various temporary game menu setup values
 
     asl
     tay
-    lda $ADEE,Y ; pointers to start of per-game save data
-
+    lda B06_ADEE, y ; pointers to start of per-game save data
     sta $99
-    lda $ADEF,Y
+    lda B06_ADEE+1, y
     sta $9A
-    lda $ADEC ; pointer to start of current game save data buffer
-
+    lda B06_ADEC ; pointer to start of current game save data buffer
     sta $9B
-    lda $ADED
+    lda B06_ADEC+1
     sta $9C
     rts
 
 ; copy save data from save data buffer to current game's save slot, making X copies of the data spaced 3 saves slots away
-; control flow target (from $AB82, $AB89)
-    jsr $AB90 ; set $99-$9A to pointer to current game's save slot, $9B-$9C to pointer to save data buffer at $7000
+B06_ABAA:
+    jsr B06_AB90 ; set $99-$9A to pointer to current game's save slot, $9B-$9C to pointer to save data buffer at $7000
 
-; control flow target (from $ABC4)
 B06_ABAD:
     ldy #$72
-; control flow target (from $ABB4)
 B06_ABAF:
-    lda ($9B),Y
-    sta ($99),Y
+    lda ($9B), y
+    sta ($99), y
     dey
     bpl B06_ABAF
     clc ; add #$72 * 3 = #$0159 to write address $99-$9A
@@ -11069,8 +8462,7 @@ B06_ABAF:
 
 ; copy save data from save data buffer at $7000 to system RAM; update Don Mahone quest status if applicable
 ; from $0F:$C6F9 via $8006
-; control flow target (from $AA5B)
-; indirect control flow target (via $8006)
+B06_ABC7:
     lda $7000 ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4), SRAM buffer
 
     sta $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
@@ -11079,7 +8471,6 @@ B06_ABAF:
 
     beq B06_ABD3
     lda #$03
-; control flow target (from $ABCF)
 B06_ABD3:
     sta $CD ; Don Mahone quest status (#$00 = not started, #$01 = ingredients delivered, #$03 = game loaded after ingredients delivered)
     lda $7002 ; Tuhn Watergate open flag (#$00 = closed, #$01 = open), SRAM buffer
@@ -11097,46 +8488,42 @@ B06_ABD3:
     lda $7008 ; party gold, high byte, SRAM buffer
     sta $0625 ; party gold, high byte
     ldx #$35
-; control flow target (from $AC06)
 B06_ABFF:
-    lda $7015,X ; hero data from $062D, SRAM buffer
+    lda $7015, x ; hero data from $062D, SRAM buffer
 
-    sta $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    sta $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     dex
     bpl B06_ABFF
     ldx #$17
-; control flow target (from $AC11)
 B06_AC0A:
-    lda $704B,X ; party inventory, SRAM buffer
+    lda $704B, x ; party inventory, SRAM buffer
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     dex
     bpl B06_AC0A
     ldx #$03
-; control flow target (from $AC28)
 B06_AC15:
-    lda $7009,X ; Midenhall name bytes 0-3, SRAM buffer
+    lda $7009, x ; Midenhall name bytes 0-3, SRAM buffer
 
-    sta $0113,X ; Midenhall name bytes 0-3 + terminator
+    sta $0113, x ; Midenhall name bytes 0-3 + terminator
 
-    lda $700D,X ; Cannock name bytes 0-3, SRAM buffer
+    lda $700D, x ; Cannock name bytes 0-3, SRAM buffer
 
-    sta $0118,X ; Cannock name bytes 0-3 + terminator
+    sta $0118, x ; Cannock name bytes 0-3 + terminator
 
-    lda $7011,X ; Moonbrooke name bytes 0-3, SRAM buffer
+    lda $7011, x ; Moonbrooke name bytes 0-3, SRAM buffer
 
-    sta $011D,X ; Moonbrooke name bytes 0-3 + terminator
+    sta $011D, x ; Moonbrooke name bytes 0-3 + terminator
 
     dex
     bpl B06_AC15
     ldx #$0B
-; control flow target (from $AC33)
 B06_AC2C:
-    lda $7063,X ; party names, bytes 4-7, SRAM buffer
+    lda $7063, x ; party names, bytes 4-7, SRAM buffer
 
-    sta $0186,X ; Midenhall name bytes 4-7
+    sta $0186, x ; Midenhall name bytes 4-7
 
     dex
     bpl B06_AC2C
@@ -11147,7 +8534,7 @@ B06_AC2C:
     rts
 
 ; copy save data from system RAM to $7000-$706F
-; control flow target (from $A885)
+B06_AC3C:
     lda $CA ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4)
     sta $7000 ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4), SRAM buffer
     lda $CD ; Don Mahone quest status (#$00 = not started, #$01 = ingredients delivered, #$03 = game loaded after ingredients delivered)
@@ -11168,46 +8555,42 @@ B06_AC2C:
     sta $7008 ; party gold, high byte, SRAM buffer
 
     ldx #$35
-; control flow target (from $AC77)
 B06_AC70:
-    lda $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-    sta $7015,X ; hero data from $062D, SRAM buffer
+    sta $7015, x ; hero data from $062D, SRAM buffer
 
     dex
     bpl B06_AC70
     ldx #$17
-; control flow target (from $AC82)
 B06_AC7B:
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
-    sta $704B,X ; party inventory, SRAM buffer
+    sta $704B, x ; party inventory, SRAM buffer
 
     dex
     bpl B06_AC7B
     ldx #$03
-; control flow target (from $AC99)
 B06_AC86:
-    lda $0113,X ; Midenhall name bytes 0-3 + terminator
+    lda $0113, x ; Midenhall name bytes 0-3 + terminator
 
-    sta $7009,X ; Midenhall name bytes 0-3, SRAM buffer
+    sta $7009, x ; Midenhall name bytes 0-3, SRAM buffer
 
-    lda $0118,X ; Cannock name bytes 0-3 + terminator
+    lda $0118, x ; Cannock name bytes 0-3 + terminator
 
-    sta $700D,X ; Cannock name bytes 0-3, SRAM buffer
+    sta $700D, x ; Cannock name bytes 0-3, SRAM buffer
 
-    lda $011D,X ; Moonbrooke name bytes 0-3 + terminator
+    lda $011D, x ; Moonbrooke name bytes 0-3 + terminator
 
-    sta $7011,X ; Moonbrooke name bytes 0-3, SRAM buffer
+    sta $7011, x ; Moonbrooke name bytes 0-3, SRAM buffer
 
     dex
     bpl B06_AC86
     ldx #$0B
-; control flow target (from $ACA4)
 B06_AC9D:
-    lda $0186,X ; Midenhall name bytes 4-7
+    lda $0186, x ; Midenhall name bytes 4-7
 
-    sta $7063,X ; party names, bytes 4-7, SRAM buffer
+    sta $7063, x ; party names, bytes 4-7, SRAM buffer
 
     dex
     bpl B06_AC9D
@@ -11218,8 +8601,8 @@ B06_AC9D:
     rts
 
 ; initialize the RNG based on 71 passes using SRAM data $7000-$7070 and save resulting seed to $7071-$7072
-; control flow target (from $A888, $AA87, $AAB4)
-    jsr $ACBB ; initialize the RNG based on 71 passes using SRAM data $7000-$7070
+B06_ACAD:
+    jsr B06_ACBB ; initialize the RNG based on 71 passes using SRAM data $7000-$7070
 
     lda $32 ; RNG byte 0
 
@@ -11232,57 +8615,53 @@ B06_AC9D:
     rts
 
 ; initialize the RNG based on 71 passes using SRAM data $7000-$7070
-; control flow target (from $AB56, $ACAD)
+B06_ACBB:
     ldx #$70
     stx $32 ; RNG byte 0
 
     stx $33 ; RNG byte 1
 
-; control flow target (from $ACCA)
 B06_ACC1:
-    lda $7000,X ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4), SRAM buffer
+    lda $7000, x ; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4), SRAM buffer
 
     sta $0C
-; call to code in a different bank ($0F:$C3B6)
-    jsr $C3B6 ; generate a random number and store it in $32-$33 (one pass)
+    jsr B0F_C3B6 ; generate a random number and store it in $32-$33 (one pass)
 
     dex
     bpl B06_ACC1
     rts
 
-; control flow target (from $AA9B)
-    jsr $AE86
+B06_ACCD:
+    jsr B06_AE86
     ldx #$03
 ; save Midenhall's name
-; control flow target (from $ACE5)
 B06_ACD2:
-    lda $0104,X
-    sta $7063,X ; party names, bytes 4-7, SRAM buffer
+    lda $0104, x
+    sta $7063, x ; party names, bytes 4-7, SRAM buffer
 
-    sta $0186,X ; Midenhall name bytes 4-7
+    sta $0186, x ; Midenhall name bytes 4-7
 
-    lda $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    lda $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
-    sta $7009,X ; Midenhall name bytes 0-3, SRAM buffer
+    sta $7009, x ; Midenhall name bytes 0-3, SRAM buffer
 
-    sta $0113,X ; Midenhall name bytes 0-3 + terminator
+    sta $0113, x ; Midenhall name bytes 0-3 + terminator
 
     dex
     bpl B06_ACD2
-    jsr $ACEB ; generate and save Cannock/Moonbrooke's names
+    jsr B06_ACEB ; generate and save Cannock/Moonbrooke's names
 
     rts
 
 ; generate and save Cannock/Moonbrooke's names
-; control flow target (from $ACE7)
+B06_ACEB:
     lda #$00
     ldx #$03
     clc
-; control flow target (from $ACF7)
 B06_ACF0:
-    adc $7009,X ; Midenhall name bytes 0-3, SRAM buffer; first 4 characters of Midenhall's name
+    adc $7009, x ; Midenhall name bytes 0-3, SRAM buffer; first 4 characters of Midenhall's name
 
-    adc $7063,X ; party names, bytes 4-7, SRAM buffer; last 4 characters of Midenhall's name
+    adc $7063, x ; party names, bytes 4-7, SRAM buffer; last 4 characters of Midenhall's name
 
     dex
     bpl B06_ACF0
@@ -11296,19 +8675,14 @@ B06_ACF0:
     tax
     ldy #$00
 ; save Cannock's name
-; control flow target (from $AD18)
 B06_AD02:
-    lda $AD39,X ; Prince of Cannock Names, first 4 bytes; pointer to list of Cannock names, starting at 0th byte
+    lda PrinceNames, x ; Prince of Cannock Names, first 4 bytes; pointer to list of Cannock names, starting at 0th byte
+    sta $700D, y ; Cannock name bytes 0-3, SRAM buffer; store the first 4 characters in SRAM
+    sta $0118, y ; Cannock name bytes 0-3 + terminator; store the first 4 characters in RAM
 
-    sta $700D,Y ; Cannock name bytes 0-3, SRAM buffer; store the first 4 characters in SRAM
-
-    sta $0118,Y ; Cannock name bytes 0-3 + terminator; store the first 4 characters in RAM
-
-    lda $AD3D,X ; Prince of Cannock Names, last 4 bytes; pointer to list of Cannock names, starting at 4th byte
-
-    sta $7067,Y ; store the last 4 characters in SRAM
-
-    sta $018A,Y ; Cannock name bytes 4-7; store the last 4 characters in RAM
+    lda PrinceNames+4, x ; Prince of Cannock Names, last 4 bytes; pointer to list of Cannock names, starting at 4th byte
+    sta $7067, y ; store the last 4 characters in SRAM
+    sta $018A, y ; Cannock name bytes 4-7; store the last 4 characters in RAM
 
     inx
     iny
@@ -11320,19 +8694,14 @@ B06_AD02:
     tax
     ldy #$00
 ; save Moonbrooke's name
-; control flow target (from $AD36)
 B06_AD20:
-    lda $AD79,X ; Princess of Moonbrooke Names, first 4 bytes; pointer to list of Moonbrooke names, starting at 0th byte
+    lda PrincessNames, x ; Princess of Moonbrooke Names, first 4 bytes; pointer to list of Moonbrooke names, starting at 0th byte
+    sta $7011, y ; Moonbrooke name bytes 0-3, SRAM buffer; store the first 4 characters in SRAM
+    sta $011D, y ; Moonbrooke name bytes 0-3 + terminator; store the first 4 characters in RAM
 
-    sta $7011,Y ; Moonbrooke name bytes 0-3, SRAM buffer; store the first 4 characters in SRAM
-
-    sta $011D,Y ; Moonbrooke name bytes 0-3 + terminator; store the first 4 characters in RAM
-
-    lda $AD7D,X ; Princess of Moonbrooke Names, last 4 bytes; pointer to list of Moonbrooke names, starting at 0th byte
-
-    sta $706B,Y ; store the last 4 characters in SRAM
-
-    sta $018E,Y ; Moonbrooke name bytes 4-7; store the last 4 characters in RAM
+    lda PrincessNames+4, x ; Princess of Moonbrooke Names, last 4 bytes; pointer to list of Moonbrooke names, starting at 0th byte
+    sta $706B, y ; store the last 4 characters in SRAM
+    sta $018E, y ; Moonbrooke name bytes 4-7; store the last 4 characters in RAM
 
     inx
     iny
@@ -11340,108 +8709,110 @@ B06_AD20:
     bne B06_AD20
     rts
 
+; Prince of Cannock Names
+PrinceNames:
+.byte "Bran    "
+.byte "Glynn   "
+.byte "Talint  "
+.byte "Numor   "
+.byte "Lars    "
+.byte "Orfeo   "
+.byte "Artho   "
+.byte "Esgar   "
 
-; code -> data
-; Prince of Cannock Names, first 4 bytes
-; indexed data load target (from $AD02)
-; Prince of Cannock Names, last 4 bytes
-.byte $25,$1B
-.byte $0A
-.byte $17
-; indexed data load target (from $AD0B)
-; Princess of Moonbrooke Names, first 4 bytes
-.byte $5F,$5F,$5F,$5F,$2A,$15,$22,$17,$17,$5F,$5F,$5F,$37,$0A,$15,$12
-.byte $17,$1D,$5F,$5F,$31,$1E,$16,$18,$1B,$5F,$5F,$5F,$2F,$0A,$1B,$1C
-.byte $5F,$5F,$5F,$5F,$32,$1B,$0F,$0E,$18,$5F,$5F,$5F,$24,$1B
-.byte $1D,$11,$18,$5F,$5F,$5F,$28
-.byte $1C,$10,$0A,$1B
-.byte $5F,$5F
-.byte $5F
-; indexed data load target (from $AD20)
-; Princess of Moonbrooke Names, last 4 bytes
-.byte $39,$0A
-.byte $1B
-.byte $12
-; indexed data load target (from $AD29)
-; indexed data load target (from $A8CC, $A91B)
-.byte $0A,$5F,$5F,$5F,$28,$15,$0A,$17,$12,$5F,$5F,$5F,$32,$15,$15,$12
-.byte $1C,$0A,$5F,$5F,$35,$18,$23,$5F,$5F,$5F,$5F,$5F,$2E,$0A,$12,$15
-.byte $12,$17,$5F,$5F,$33,$0E,$1D,$0A,$5F,$5F,$5F,$5F,$2C,$15
-.byte $15,$22,$1D,$11,$5F,$5F,$2A
-.byte $20,$0E,$17,$5F
-.byte $5F,$5F
-.byte $5F
+; Princess of Moonbrooke Names
+PrincessNames:
+.byte "Varia   "
+.byte "Elani   "
+.byte "Ollisa  "
+.byte "Roz     "
+.byte "Kailin  "
+.byte "Peta    "
+.byte "Illyth  "
+.byte "Gwen    "
+
+B06_ADB9:
+.byte $44,$51,$32,$55,$53,$41
+
 ; battle message delays (frames between prints; higher = slower)
-.byte $44,$51,$32
-.byte $55,$53
-.byte $41
-; indexed data load target (from $AA7E)
-; lookup table for save game slot based on save game slot selection type + menu selection index
-.byte $28,$46
-.byte $FF
-; only slot 0
-; indexed data load target (from $AB28)
-; only slot 1
-.byte $00,$00
-.byte $00
-; slots 0 and 1
-.byte $01,$00
-.byte $00
-; only slot 2
-.byte $00,$01
-.byte $00
-; slots 0 and 2
-.byte $02,$00
-.byte $00
-; slots 1 and 2
-.byte $00,$02
-.byte $00
-; all 3 slots
-.byte $01,$02
-.byte $00
-; index into jump table at $ADE2
-.byte $00,$01
-.byte $02
-; indexed data load target (from $A9D4)
-; jump table for main game menu handlers
-.byte $00,$01,$04,$00,$00,$00
-.byte $01,$02,$03
-.byte $04
-.byte $02
-; indexed data load target (from $A9D9)
-; indexed data load target (from $A9DE)
-.byte $55
-; pointer to start of current game save data buffer
-.byte $AA,$64,$AA,$93,$AA
-.byte $CA,$AA
-.byte $DD
-.byte $AA
-; data load target (from $AB9F)
-; data load target (from $ABA4)
-.byte $00
-; pointers to start of per-game save data
-.byte $70
-; indexed data load target (from $AB95)
-; indexed data load target (from $AB9A)
-.byte $73
-; data load target (from $A8E3)
-.byte $70,$E6,$70
-.byte $59
-.byte $71
-; data load target (from $A8E9)
-.byte $64
-; indexed data load target (from $A9F7)
-.byte $75
-; indexed data load target (from $A9FC)
-.byte $DC
+B06_ADBF:
+.byte 40	 ; 40 frames
+.byte 70	 ; 70 frames
+.byte 255	 ; 255 frames
 
-.byte $75,$E6,$75
-.byte $F0
-.byte $75
-; data -> code
+; lookup table for save game slot based on save game slot selection type + menu selection index
+; only slot 0
+B06_ADC2:
+.byte $00	 ; slot 0
+.byte $00	 ; (impossible)
+.byte $00	 ; (impossible)
+; only slot 1
+.byte $01	 ; slot 1
+.byte $00	 ; (impossible)
+.byte $00	 ; (impossible)
+; slots 0 and 1
+.byte $00	 ; slot 0
+.byte $01	 ; slot 1
+.byte $00	 ; (impossible)
+; only slot 2
+.byte $02	 ; slot 2
+.byte $00	 ; (impossible)
+.byte $00	 ; (impossible)
+; slots 0 and 2
+.byte $00	 ; slot 0
+.byte $02	 ; slot 2
+.byte $00	 ; (impossible)
+; slots 1 and 2
+.byte $01	 ; slot 1
+.byte $02	 ; slot 2
+.byte $00	 ; (impossible)
+; all 3 slots
+.byte $00	 ; slot 0
+.byte $01	 ; slot 1
+.byte $02	 ; slot 2
+
+; index into jump table at B06_ADE2
+B06_ADD7:
+.byte $00	 ; CONTINUE A QUEST
+.byte $01	 ; CHANGE MESSAGE SPEED
+.byte $04	 ; ERASE A QUEST
+.byte $00	 ; (impossible)
+.byte $00	 ; (impossible)
+.byte $00	 ; CONTINUE A QUEST
+.byte $01	 ; CHANGE MESSAGE SPEED
+.byte $02	 ; BEGIN A NEW QUEST
+.byte $03	 ; COPY A QUEST
+.byte $04	 ; ERASE A QUEST
+.byte $02	 ; BEGIN A NEW QUEST
+
+; jump table for main game menu handlers
+B06_ADE2:
+.addr B06_AA55      ; $06:B06_AA55; CONTINUE A QUEST handler
+.addr B06_AA64      ; $06:B06_AA64; CHANGE MESSAGE SPEED handler
+.addr B06_AA93      ; $06:B06_AA93; BEGIN A NEW QUEST handler
+.addr B06_AACA      ; $06:B06_AACA; COPY A QUEST handler
+.addr B06_AADD      ; $06:B06_AADD; ERASE A QUEST handler
+
+; pointer to start of current game save data buffer
+B06_ADEC:
+.addr $7000      ; $7000; Cannock runaround quest status (0 = start of game, 0 -> 1 = talked to King Cannock, 1 -> 2 = said YES to seeking Cannock in Spring of Bravery, 2 -> 3 = talked to King Midenhall; adding Cannock sets this to 3; some code checks for 4), SRAM buffer
+
+; pointers to start of per-game save data
+B06_ADEE:
+.addr $7073      ; $7073; start of save game 1 backup #1
+.addr $70E6      ; $70E6; start of save game 1 backup #2
+.addr $7159      ; $7159; start of save game 1 backup #3
+
+B06_ADF4:
+.addr $7564      ; $7564
+B06_ADF6:
+.addr $75DC      ; $75DC
+.addr $75E6      ; $75E6
+.addr $75F0      ; $75F0
+
 ; given a selected list index in A, an item type in X, and a hero ID in $4A, set A to the A'th item of type X in hero $4A's inventory
 ; from $0F:$F4E6, $0F:$F5E4, $0F:$F614 via $8010
-; indirect control flow target (via $8010)
+B06_ADFC:
     cmp #$FE
     bcs B06_AE2F ; A >= #$FE => just RTS
 
@@ -11449,18 +8820,15 @@ B06_AD20:
 
     sta $10 ; selected item index
 
-; call to code in a different bank ($0F:$F1B0)
-    jsr $F1B0 ; given a hero ID in $4A, set A and X to hero ID * 8, a.k.a. offset for start of hero's inventory
+    jsr B0F_F1B0 ; given a hero ID in $4A, set A and X to hero ID * 8, a.k.a. offset for start of hero's inventory
 
     ldy #$08
     sty $60AA ; menu format (#$80 = has cursor, #$40 = is linked, #$20 = is single spaced, #$02 = only display equipped items, #$01 = display [left border, equipped] if equipped)
 
-; control flow target (from $AE1E)
 B06_AE0D:
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
-; call to code in a different bank ($0F:$F1D6)
-    jsr $F1D6 ; determine item type (#$00 = weapon, #$01 = armour, #$02 = shield, #$03 = helmet, #$04 = menu function wants all items or item is non-equipment, #$05 = menu format wants equipped items only and item not equipped)
+    jsr B0F_F1D6 ; determine item type (#$00 = weapon, #$01 = armour, #$02 = shield, #$03 = helmet, #$04 = menu function wants all items or item is non-equipment, #$05 = menu format wants equipped items only and item not equipped)
 
     cmp $609D ; menu function parameter
 
@@ -11470,7 +8838,6 @@ B06_AE0D:
 
     bmi B06_AE24 ; branch if we've found the right item
 
-; control flow target (from $AE16)
 B06_AE1C:
     inx ; increment inventory index
 
@@ -11483,9 +8850,8 @@ B06_AE1C:
     tax
     rts
 
-; control flow target (from $AE1A)
 B06_AE24:
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     pha
     txa ; X = X mod 8
@@ -11495,13 +8861,12 @@ B06_AE24:
     pla
     and #$3F ; strip off the equipped bit
 
-; control flow target (from $ADFE)
 B06_AE2F:
     rts
 
 ; given hero ID - 1 in $4A and field spell menu selection index in A, return spell ID in A
 ; from $0F:$F5FA via $8012
-; indirect control flow target (via $8012)
+B06_AE30:
     asl $4A ; convert hero ID - 1 to spell list start index; 8 spells per hero
 
     asl $4A
@@ -11509,13 +8874,13 @@ B06_AE2F:
 ; add list start offset to spell menu selection index
     adc $4A
     tax
-    lda $AE66,X ; Cannock field spell list
+    lda FieldSpells, x ; Cannock field spell list
 
     rts
 
 ; given hero ID - 1 in $4A and battle spell menu selection index in A, return spell ID in A
 ; from $0F:$F4AC via $8014
-; indirect control flow target (via $8014)
+B06_AE3D:
     asl $4A ; convert hero ID - 1 to spell list start index; 8 spells per hero
 
     asl $4A
@@ -11523,67 +8888,99 @@ B06_AE2F:
 ; add list start offset to spell menu selection index
     adc $4A
     tax
-    lda $AE76,X ; Cannock battle spell list
+    lda BattleSpells, x ; Cannock battle spell list
 
     rts
 
 ; given spell ID in A, set A to spell name index
-; from $02:$BEA4 via $8020
-; indirect control flow target (via $8020)
+B06_AE4A:
     tax
-    lda $AE4E,X
-; indexed data load target (from $AE4B)
+    lda SpellIDS-1, x
     rts
 
 
-; code -> data
 ; spell ID -> spell name index (built in offset from $AE4F)
+SpellIDS:
+.byte $00	 ; Spell ID #$00: (no spell)
+.byte $10	 ; Spell ID #$01: Firebal
+.byte $04	 ; Spell ID #$02: Sleep
+.byte $06	 ; Spell ID #$03: Firebane
+.byte $12	 ; Spell ID #$04: Defeat
+.byte $02	 ; Spell ID #$05: Infernos
+.byte $14	 ; Spell ID #$06: Stopspell
+.byte $13	 ; Spell ID #$07: Surround
+.byte $08	 ; Spell ID #$08: Defence
+.byte $05	 ; Spell ID #$09: Heal
+.byte $18	 ; Spell ID #$0A: Increase
+.byte $07	 ; Spell ID #$0B: Healmore
+.byte $1B	 ; Spell ID #$0C: Sacrifice
+.byte $16	 ; Spell ID #$0D: Healall
+.byte $17	 ; Spell ID #$0E: Explodet
+.byte $1A	 ; Spell ID #$0F: Chance
+.byte $08	 ; Spell ID #$10: Antidote
+.byte $1C	 ; Spell ID #$11: Heal (not used by heroes)
+.byte $19	 ; Spell ID #$12: Outside
+.byte $0A	 ; Spell ID #$13: Repel
+.byte $1E	 ; Spell ID #$14: Return
+.byte $0D	 ; Spell ID #$15: Open
+.byte $0E
+
 ; Cannock field spell list
-.byte $00,$10,$04,$06,$12,$02,$14,$13,$08,$05,$18,$07
-.byte $1B,$16,$17,$1A,$08,$1C
-.byte $19,$0A,$1E
-.byte $0D
-.byte $0E
-; indexed data load target (from $AE39)
+FieldSpells:
+.byte $09	 ; Spell ID #$09: Heal
+.byte $10	 ; Spell ID #$10: Antidote
+.byte $14	 ; Spell ID #$14: Return
+.byte $12	 ; Spell ID #$12: Outside
+.byte $0B	 ; Spell ID #$0B: Healmore
+.byte $16	 ; Spell ID #$16: Stepguard
+.byte $17	 ; Spell ID #$17: Revive
+.byte $00	 ; Spell ID #$00: (no spell)
 ; Moonbrooke field spell list
-.byte $09,$10,$14,$12
-.byte $0B,$16
-.byte $17
-.byte $00
+.byte $0B	 ; Spell ID #$0B: Healmore
+.byte $13	 ; Spell ID #$13: Repel
+.byte $10	 ; Spell ID #$10: Antidote
+.byte $0D	 ; Spell ID #$0D: Healall
+.byte $12	 ; Spell ID #$12: Outside
+.byte $16	 ; Spell ID #$16: Stepguard
+.byte $15	 ; Spell ID #$15: Open
+.byte $00	 ; Spell ID #$00: (no spell)
+
 ; Cannock battle spell list
-.byte $0B,$13,$10,$0D
-.byte $12,$16
-.byte $15
-.byte $00
-; indexed data load target (from $AE46)
+BattleSpells:
+.byte $01	 ; Spell ID #$01: Firebal
+.byte $09	 ; Spell ID #$09: Heal
+.byte $06	 ; Spell ID #$06: Stopspell
+.byte $0B	 ; Spell ID #$0B: Healmore
+.byte $03	 ; Spell ID #$03: Firebane
+.byte $0A	 ; Spell ID #$0A: Increase
+.byte $04	 ; Spell ID #$04: Defeat
+.byte $0C	 ; Spell ID #$0C: Sacrifice
 ; Moonbrooke battle spell list
-.byte $01,$09,$06,$0B
-.byte $03,$0A
-.byte $04
-.byte $0C
+.byte $02	 ; Spell ID #$02: Sleep
+.byte $0B	 ; Spell ID #$0B: Healmore
+.byte $05	 ; Spell ID #$05: Infernos
+.byte $08	 ; Spell ID #$08: Defence
+.byte $07	 ; Spell ID #$07: Surround
+.byte $0D	 ; Spell ID #$0D: Healall
+.byte $0E	 ; Spell ID #$0E: Explodet
+.byte $0F	 ; Spell ID #$0F: Chance
 
-.byte $02,$0B,$05,$08
-.byte $07,$0D
-.byte $0E
-.byte $0F
-; data -> code
-; control flow target (from $ACCD)
-; indirect control flow target (via $8016)
-    jsr $AE9E
-    jsr $AF56
-    jsr $AF7F
-; control flow target (from $AE9A)
-    jsr $AECC
-    jsr $AF30
+
+B06_AE86:
+    jsr B06_AE9E
+    jsr B06_AF56
+    jsr B06_AF7F
+B06_AE8F:
+    jsr B06_AECC
+    jsr B06_AF30
     bcs B06_AE9D
-    jsr $AF8E
-    jmp $AE8F
+    jsr B06_AF8E
+    jmp B06_AE8F
 
-; control flow target (from $AE95)
 B06_AE9D:
     rts
 
-; control flow target (from $AE86)
+B06_AE9E:
     lda #$FF
     sta $8E ; flag for in battle or not (#$FF)?
 
@@ -11591,17 +8988,10 @@ B06_AE9D:
     sta $60C2
     sta $60C3
     lda #$47 ; Menu ID #$47: Game menu: new game name entry display
-
-; call to code in a different bank ($0F:$EB89)
-    jsr $EB89 ; open menu specified by A
-
+    jsr B0F_EB89 ; open menu specified by A
     lda #$44 ; Menu ID #$44: Game menu: new game name input area
-
-; call to code in a different bank ($0F:$EB89)
-    jsr $EB89 ; open menu specified by A
-
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
+    jsr B0F_EB89 ; open menu specified by A
+    jsr B0F_C22C
     lda #$12
     sta $60A5 ; menu cursor second column X-offset (from left edge of menu)
 
@@ -11610,15 +9000,14 @@ B06_AE9D:
 
     lda #$60
     ldx #$0C
-; control flow target (from $AEC9)
 B06_AEC5:
-    sta $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    sta $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
     dex
     bpl B06_AEC5
     rts
 
-; control flow target (from $AE8F)
+B06_AECC:
     cmp #$FF
     beq B06_AF05
     cmp #$1A
@@ -11631,90 +9020,78 @@ B06_AEC5:
     bcc B06_AEFF
     cmp #$3D
     beq B06_AF05
-    jsr $AF46 ; CLC if $0100-$0103 are all #$60, SEC otherwise
+    jsr B06_AF46 ; CLC if $0100-$0103 are all #$60, SEC otherwise
 
     bcc B06_AEEE
     lda #$08
     sta $60C2
-; control flow target (from $AEE7)
 B06_AEEE:
     rts
 
-; control flow target (from $AED2)
 B06_AEEF:
     clc
     adc #$24
     bne B06_AF14
-; control flow target (from $AEDA)
 B06_AEF4:
     sec
     sbc #$17
     bne B06_AF14
-; control flow target (from $AED6)
 B06_AEF9:
     tax
-    lda $AF5C,X
+    ;confirm???
+    lda B06_AF76-$1a, x
     bne B06_AF14
-; control flow target (from $AEDE)
 B06_AEFF:
     tax ; A is either #$3B or #$3C
 
-    lda $AF42,X ; $AF7D or $AF7E
+    lda B06_AF7D-$3b, x ; $AF7D or $AF7E
 
     bne B06_AF14
-; control flow target (from $AECE, $AEE2)
 B06_AF05:
     lda $60C2
     beq B06_AF13
-    jsr $AF5A
+    jsr B06_AF5A
     dec $60C2
-    jsr $AF56
-; control flow target (from $AF08)
+    jsr B06_AF56
 B06_AF13:
     rts
 
-; control flow target (from $AEF2, $AEF7, $AEFD, $AF03)
 B06_AF14:
     pha
-    jsr $AF5A
+    jsr B06_AF5A
     pla
     ldx $60C2
-    sta $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    sta $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
-    jsr $AF60
+    jsr B06_AF60
     inc $60C2
     lda $60C2
     cmp #$08
     bcs B06_AF2F
-    jsr $AF56
-; control flow target (from $AF2A)
+    jsr B06_AF56
 B06_AF2F:
     rts
 
-; control flow target (from $AE92)
+B06_AF30:
     lda $60C2
     cmp #$08
     bcc B06_AF45
-    jsr $AF46 ; CLC if $0100-$0103 are all #$60, SEC otherwise
+    jsr B06_AF46 ; CLC if $0100-$0103 are all #$60, SEC otherwise
 
     bcs B06_AF45 ; branch if we have something != #$60
 
     lda #$07
     sta $60C2
-; actual target is $AF7D/$AF7E
-; indexed data load target (from $AF00)
-    jsr $AF56
+    jsr B06_AF56
     clc
-; control flow target (from $AF35, $AF3A)
 B06_AF45:
     rts
 
 ; CLC if $0100-$0103 are all #$60, SEC otherwise
-; control flow target (from $AEE4, $AF37)
+B06_AF46:
     ldx #$03
-; control flow target (from $AF50)
 B06_AF48:
-    lda $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    lda $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
     cmp #$60
     bne B06_AF54
@@ -11724,25 +9101,21 @@ B06_AF48:
 
     rts
 
-; control flow target (from $AF4D)
 B06_AF54:
     sec ; not entire string is #$60
 
     rts
 
-; control flow target (from $AE89, $AF10, $AF2C, $AF41)
+B06_AF56:
     lda #$77
     bne B06_AF5C
-; control flow target (from $AF0A, $AF15)
+B06_AF5A:
     lda #$5F
-; control flow target (from $AF58)
-; indexed data load target (from $AEFA)
 B06_AF5C:
     ldx #$07
     bne B06_AF62
-; control flow target (from $AF1F)
+B06_AF60:
     ldx #$06
-; control flow target (from $AF5E)
 B06_AF62:
     stx $608C
     sta $09
@@ -11750,48 +9123,38 @@ B06_AF62:
     clc
     adc #$0C
     sta $608B
-    jsr $A809
-; call to code in a different bank ($0F:$C1FA)
-    jmp $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B06_A809
+    jmp B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
+B06_AF76:
+.byte $67,$69,$6B,$70,$75,$63,$60
+B06_AF7D:
+.byte $6F,$6E
 
-
-; code -> data
-
-.byte $67,$69,$6B,$70,$75
-.byte $63,$60
-.byte $6F
-.byte $6E
-; data -> code
 ; from $0F:$F0BF via $8018
-; control flow target (from $AE8C)
-; indirect control flow target (via $8018)
+B06_AF7F:
     lda $60B4 ; menu phase (1 = first, 0 = second)
 
     bne B06_AF91
-    jsr $AFC6
+    jsr B06_AFC6
     lda #$80
     sta $60C5
     sta $2F ; joypad 1 data
 
-; control flow target (from $AE97)
-; indirect control flow target (via $801A)
-    jsr $AF92
-; control flow target (from $AF82)
+B06_AF8E:
+    jsr B06_AF92
 B06_AF91:
     rts
 
-; control flow target (from $AF8E, $AF98)
-    jsr $AF9B
-    jsr $B0AC
-    jmp $AF92
+B06_AF92:
+    jsr B06_AF9B
+    jsr B06_B0AC
+    jmp B06_AF92
 
-; control flow target (from $AF92, $AFB4, $AFC3)
-; call to code in a different bank ($0F:$C1DC)
 B06_AF9B:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
-    jsr $B085
+    jsr B06_B085
     lda $2F ; joypad 1 data
 
     beq B06_AFAB
@@ -11799,13 +9162,10 @@ B06_AF9B:
 
     and #$0F
     bne B06_AFAE
-; control flow target (from $AFA3)
 B06_AFAB:
     sta $60C5
-; control flow target (from $AFA9)
-; call to code in a different bank ($0F:$C476)
 B06_AFAE:
-    jsr $C476 ; read joypad 1 data into $2F
+    jsr B0F_C476 ; read joypad 1 data into $2F
 
     lda $60C5
     bne B06_AF9B
@@ -11819,7 +9179,7 @@ B06_AFAE:
     beq B06_AF9B
     rts
 
-; control flow target (from $AF84)
+B06_AFC6:
     lda #$00
     sta $82
     sta $83
@@ -11834,7 +9194,7 @@ B06_AFAE:
     lsr
     lsr
     tax
-    lda $B2C8,X
+    lda B06_B2C8, x
     sta $60C4
     lda $59 ; menu ID
 
@@ -11856,9 +9216,8 @@ B06_AFAE:
     cmp #$07 ; Menu ID #$07: Battle menu: spell list
 
     beq B06_B01B
-    jmp $B060
+    jmp B06_B060
 
-; control flow target (from $AFF9)
 B06_B002:
     ldx #$00
     lda $062C ; current battle message delay
@@ -11869,26 +9228,22 @@ B06_B002:
     cmp #$64
     bcc B06_B011
     inx
-; control flow target (from $B009, $B00E)
 B06_B011:
     stx $83
     txa
     asl
     sta $60B1
-    jmp $B060
+    jmp B06_B060
 
-; control flow target (from $AFFD)
 B06_B01B:
     ldx #$00
-; control flow target (from $B025)
 B06_B01D:
-    lda $60BA,X
+    lda $60BA, x
     bne B06_B029
     inx
     cpx #$08
     bne B06_B01D
     ldx #$00
-; control flow target (from $B020)
 B06_B029:
     txa
     and #$01
@@ -11898,16 +9253,14 @@ B06_B029:
 
     and #$0F
     sta $60B0
-; control flow target (from $B02E)
 B06_B038:
     txa
     lsr
     sta $83
     asl
     sta $60B1
-    jmp $B060
+    jmp B06_B060
 
-; control flow target (from $AFE9, $AFED, $AFF1, $AFF5)
 B06_B043:
     lda $60B9
     cmp #$FF
@@ -11915,9 +9268,8 @@ B06_B043:
     sta $83
     asl
     sta $60B1
-    jmp $B060
+    jmp B06_B060
 
-; control flow target (from $B048)
 B06_B053:
     sec
     lda $60A3 ; menu window height (ROM value * 2)
@@ -11927,7 +9279,7 @@ B06_B053:
     sta $83
     asl
     sta $60B1
-; control flow target (from $AFFF, $B018, $B040, $B050)
+B06_B060:
     lda $60A9 ; menu cursor initial position (from ROM; X-pos = low nybble, Y-pos = high nybble)
 
     pha
@@ -11950,16 +9302,15 @@ B06_B053:
 
     rts
 
-; control flow target (from $AF9E)
+B06_B085:
     ldx #$5F
     lda $03 ; game clock?
 
     and #$1F
     cmp #$10
     bcs B06_B091
-; control flow target (from $B218)
+B06_B08F:
     ldx #$72
-; control flow target (from $B08D, $B211)
 B06_B091:
     stx $09
     lda $4D
@@ -11970,20 +9321,12 @@ B06_B091:
     clc
     adc $60B1
     sta $608C
-; call to code in a different bank ($0F:$FE97)
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr B0F_FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
+    .byte $C1
+    jmp B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
 
-; code -> data
-; indirect data load target
-
-.byte $C1
-; data -> code
-; call to code in a different bank ($0F:$C1FA)
-    jmp $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
-
-
-; control flow target (from $AF95)
+B06_B0AC:
     lda $608D
     lsr
     bcs B06_B0C9
@@ -11999,73 +9342,64 @@ B06_B091:
     bcs B06_B0C6
     lsr
     bcc B06_B10A
-    jmp $B1BE
+    jmp B06_B1BE
 
-; control flow target (from $B0BE)
 B06_B0C6:
-    jmp $B174
+    jmp B06_B174
 
-; control flow target (from $B0B0)
 B06_B0C9:
     lda #$01
     sta $60C5
-    jsr $B214
+    jsr B06_B214
     lda #$85 ; Music ID #$85: single beep SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
     lda $82
     sta $12
     lda $83
     sta $13
-    jsr $B294
+    jsr B06_B294
     pla
     pla
     lda $81
     rts
 
-; control flow target (from $B0B3)
 B06_B0E6:
     lda #$02
     sta $60C5
-    jsr $B214
+    jsr B06_B214
     pla
     pla
     lda #$FF
     rts
 
-; control flow target (from $B0B8)
 B06_B0F3:
     lda #$10
     sta $60C5
     bit $60AA ; menu format (#$80 = has cursor, #$40 = is linked, #$20 = is single spaced, #$02 = only display equipped items, #$01 = display [left border, equipped] if equipped)
 
     bvs B06_B10B
-; control flow target (from $B112)
 B06_B0FD:
     lda $83
     beq B06_B10A
-    jsr $B20F
-    jsr $B2BC
-    jsr $B214
-; control flow target (from $B0C1, $B0FF, $B10E)
+    jsr B06_B20F
+    jsr B06_B2BC
+    jsr B06_B214
 B06_B10A:
     rts
 
 B06_B10B:
-; control flow target (from $B0FB)
     lda $60B1
     beq B06_B10A
     lda $83
     bne B06_B0FD
-    jsr $B20F
+    jsr B06_B20F
     lda #$00
     sta $60B1
-    jsr $B214
+    jsr B06_B214
     rts
 
-; control flow target (from $B0BB)
 B06_B120:
     lda #$20
     sta $60C5
@@ -12077,7 +9411,6 @@ B06_B120:
     lda $83
     cmp #$02
     beq B06_B173
-; control flow target (from $B129)
 B06_B131:
     sec
     lda $60A3 ; menu window height (ROM value * 2)
@@ -12086,7 +9419,7 @@ B06_B131:
     lsr
     cmp $83
     beq B06_B173
-    jsr $B20F
+    jsr B06_B20F
     lda $59 ; menu ID
 
     cmp #$44 ; Menu ID #$44: Game menu: new game name input area
@@ -12101,35 +9434,29 @@ B06_B131:
     cmp #$22 ; Menu ID #$22: Battle menu: item list window 2
 
     bne B06_B15B
-; control flow target (from $B147, $B14B)
 B06_B151:
-    jsr $B243
+    jsr B06_B243
     bcc B06_B173
     bcs B06_B15B
-; control flow target (from $B143)
 B06_B158:
-    jsr $B21E
-; control flow target (from $B14F, $B156)
+    jsr B06_B21E
 B06_B15B:
     lda $60B1
     bne B06_B168
     lda $60B3
     sta $60B1
     bne B06_B170
-; control flow target (from $B15E)
 B06_B168:
     clc
     adc #$02
     sta $60B1
     inc $83
-; control flow target (from $B166)
 B06_B170:
-    jsr $B214
-; control flow target (from $B12F, $B13A, $B154)
+    jsr B06_B214
 B06_B173:
     rts
 
-; control flow target (from $B0C6)
+B06_B174:
     lda #$40
     sta $60C5
     lda $82
@@ -12142,10 +9469,9 @@ B06_B173:
     cmp #$07 ; Menu ID #$07: Battle menu: spell list
 
     bne B06_B1A5
-    jsr $B252
+    jsr B06_B252
     bcc B06_B1BD
     bcs B06_B1A5
-; control flow target (from $B181)
 B06_B18E:
     lda $83
     cmp #$05
@@ -12155,12 +9481,11 @@ B06_B18E:
     bne B06_B1A5
     lda #$06
     sta $82
-    jsr $B20F
+    jsr B06_B20F
     lda #$0D
     bne B06_B1B7
-; control flow target (from $B185, $B18C, $B192, $B198)
 B06_B1A5:
-    jsr $B20F
+    jsr B06_B20F
     dec $82
     lda $60A5 ; menu cursor second column X-offset (from left edge of menu)
 
@@ -12169,15 +9494,13 @@ B06_B1A5:
     lda $60B0
     sec
     sbc $10
-; control flow target (from $B1A3)
 B06_B1B7:
     sta $60B0
-    jsr $B214
-; control flow target (from $B17B, $B18A)
+    jsr B06_B214
 B06_B1BD:
     rts
 
-; control flow target (from $B0C3)
+B06_B1BE:
     lda #$80
     sta $60C5
     lda $60A5 ; menu cursor second column X-offset (from left edge of menu)
@@ -12191,10 +9514,9 @@ B06_B1BD:
     cmp #$07 ; Menu ID #$07: Battle menu: spell list
 
     bne B06_B1F2
-    jsr $B25A
+    jsr B06_B25A
     bcc B06_B20E
     bcs B06_B1F2
-; control flow target (from $B1CC)
 B06_B1D9:
     lda $83
     cmp #$05
@@ -12203,46 +9525,41 @@ B06_B1D9:
     cmp #$06
     bcc B06_B1F2
     bne B06_B20E
-    jsr $B20F
+    jsr B06_B20F
     lda #$09
     sta $82
     lda #$13
     bne B06_B208
-; control flow target (from $B1D0, $B1D7, $B1DD, $B1E3)
 B06_B1F2:
     ldx $60C4
     dex
     cpx $82
     beq B06_B20E
-    jsr $B20F
+    jsr B06_B20F
     inc $82
     lda $60A5 ; menu cursor second column X-offset (from left edge of menu)
 
     and #$0F
     clc
     adc $60B0
-; control flow target (from $B1F0)
 B06_B208:
     sta $60B0
-    jsr $B214
-; control flow target (from $B1C6, $B1D5, $B1E5, $B1F8)
+    jsr B06_B214
 B06_B20E:
     rts
 
-; control flow target (from $B101, $B114, $B13C, $B19E, $B1A5, $B1E7, $B1FA, $B276, $B27F)
+B06_B20F:
     ldx #$5F
-    jmp $B091
+    jmp B06_B091
 
-; control flow target (from $B0CE, $B0EB, $B107, $B11C, $B170, $B1BA, $B20B)
+B06_B214:
     lda #$05
     sta $03 ; game clock?
 
-    jsr $B08F
-; call to code in a different bank ($0F:$C1DC)
-    jmp $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B06_B08F
+    jmp B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
-
-; control flow target (from $B158)
+B06_B21E:
     lda $83
     cmp #$04
     bne B06_B242
@@ -12256,78 +9573,72 @@ B06_B20E:
     lda #$13
     sta $60B0
     bne B06_B242
-; control flow target (from $B228)
 B06_B239:
     lda #$06
     sta $82
     lda #$0D
     sta $60B0
-; control flow target (from $B222, $B22C, $B237)
 B06_B242:
     rts
 
-; control flow target (from $B151)
-    jsr $B2B3 ; copy $82-$83 to $12-$13
+B06_B243:
+    jsr B06_B2B3 ; copy $82-$83 to $12-$13
 
     inc $13
     lda $60B1
     beq B06_B250
-    jmp $B287
+    jmp B06_B287
 
-; control flow target (from $B24B)
 B06_B250:
     sec
     rts
 
-; control flow target (from $B187)
-    jsr $B2B3 ; copy $82-$83 to $12-$13
+B06_B252:
+    jsr B06_B2B3 ; copy $82-$83 to $12-$13
 
     dec $12
-    jmp $B25F
+    jmp B06_B25F
 
-; control flow target (from $B1D2)
-    jsr $B2B3 ; copy $82-$83 to $12-$13
+B06_B25A:
+    jsr B06_B2B3 ; copy $82-$83 to $12-$13
 
     inc $12
-; control flow target (from $B257)
-    jsr $B287
+B06_B25F:
+    jsr B06_B287
     bcs B06_B286
     dec $13
     bmi B06_B286
-    jsr $B287
+    jsr B06_B287
     bcs B06_B27F
     dec $13
     bmi B06_B286
-    jsr $B287
+    jsr B06_B287
     bcc B06_B286
-    jsr $B20F
-    jsr $B2BC
-    jmp $B282
+    jsr B06_B20F
+    jsr B06_B2BC
+    jmp B06_B282
 
-; control flow target (from $B26B)
 B06_B27F:
-    jsr $B20F
-; control flow target (from $B27C)
-    jsr $B2BC
+    jsr B06_B20F
+B06_B282:
+    jsr B06_B2BC
     sec
-; control flow target (from $B262, $B266, $B26F, $B274)
 B06_B286:
     rts
 
-; control flow target (from $B24D, $B25F, $B268, $B271)
-    jsr $B294
+B06_B287:
+    jsr B06_B294
     tax
-    lda $60BA,X
+    lda $60BA, x
     beq B06_B292
     sec
     rts
 
-; control flow target (from $B28E)
 B06_B292:
     clc
     rts
 
-; control flow target (from $B0DE, $B287)
+B06_B294:
     lda $13
     ldx $60A5 ; menu cursor second column X-offset (from left edge of menu)
 
@@ -12338,26 +9649,24 @@ B06_B292:
     sta $11
     ldx #$10
     lda $60C4
-; call to code in a different bank ($0F:$F0F4)
-    jsr $F0F4 ; 16-bit multiplication: set 16-bit ($00,X-$01,X) = ($00,X-$01,X) * A
+    jsr B0F_F0F4 ; 16-bit multiplication: set 16-bit ($00, x-$01, x) = ($00, x-$01, x) * A
 
     lda $10
     clc
     adc $12
-; control flow target (from $B299)
 B06_B2B0:
     sta $81
     rts
 
 ; copy $82-$83 to $12-$13
-; control flow target (from $B243, $B252, $B25A)
+B06_B2B3:
     lda $82
     sta $12
     lda $83
     sta $13
     rts
 
-; control flow target (from $B104, $B279, $B282)
+B06_B2BC:
     lda $60B1
     sec
     sbc #$02
@@ -12365,202 +9674,387 @@ B06_B2B0:
     dec $83
     rts
 
-
-; code -> data
-; indexed data load target (from $AFDF)
-; Item list part 1, line 1
+B06_B2C8:
 .byte $02
 .byte $0B
-; indirect data load target (via $8022)
-; Item list part 2, line 1
-.byte $25,$0A,$16,$0B,$18,$18,$FF,$30,$0A,$10,$12,$0C,$FF,$3A,$12,$23
-.byte $0A,$1B,$0D,$67,$1C,$FF,$36,$1D,$0A,$0F,$0F,$5F,$18,$0F,$FF,$26
-.byte $15,$1E,$0B,$FF,$26,$18,$19,$19,$0E,$1B,$FF,$26,$11,$0A,$12,$17
-.byte $FF,$2C,$1B,$18,$17,$FF,$29,$0A,$15,$0C,$18,$17,$FF,$25,$1B,$18
-.byte $0A,$0D,$FF,$2A,$12,$0A,$17,$1D,$FF,$36,$20,$18,$1B,$0D,$5F,$18
-.byte $0F,$FF,$27,$1B,$0A,$10,$18,$17,$FF,$2F,$12,$10,$11,$1D,$FF,$36
-.byte $20,$18,$1B,$0D,$5F,$18,$0F,$FF,$37,$11,$1E,$17,$0D,$0E,$1B,$FF
-.byte $26,$15,$18,$1D,$11,$0E,$1C,$FF,$26,$15,$18,$1D,$11,$0E,$1C,$FF
-.byte $3A,$0A,$1D,$0E,$1B,$5F,$29,$15,$22,$12,$17,$10,$FF,$30,$12,$17
-.byte $14,$FF,$2F,$0E,$0A,$1D,$11,$0E,$1B,$FF,$26,$11,$0A,$12,$17,$FF
-.byte $2A,$1B,$0E,$16,$15,$12,$17,$67,$1C,$FF,$30,$0A,$10,$12,$0C,$FF
-.byte $29,$1E,$15,$15,$5F,$33,$15,$0A,$1D,$0E,$FF,$24,$1B,$16,$18,$1B
-.byte $5F,$18,$0F,$FF,$24,$1B,$16,$18,$1B,$5F,$18,$0F,$FF,$2F,$0E,$0A
-.byte $1D,$11,$0E,$1B,$FF,$36,$11,$12,$0E,$15,$0D,$5F,$18,$0F,$FF,$36
-.byte $1D,$0E,$0E,$15,$FF,$28,$1F,$12,$15,$FF
-.byte $36,$11,$12,$0E,$15
-.byte $0D,$5F,$18
-.byte $0F
-.byte $FF
-; indirect data load target (via $8030)
-; Item list part 1, line 2
-.byte $30,$22,$1C,$1D,$0E,$1B,$12,$18,$1E,$1C,$FF,$2C,$1B,$18,$17,$FF
-.byte $2B,$0E,$15,$16,$0E,$1D,$5F,$18,$0F,$FF,$37,$18,$14,$0E,$17,$5F
-.byte $18,$0F,$FF,$37,$1B,$0E,$1C,$1E,$1B,$0E,$1C,$FF,$30,$18,$18,$17
-.byte $FF,$26,$11,$0A,$1B,$16,$5F,$18,$0F,$FF,$28,$22,$0E,$5F,$18,$0F
-.byte $FF,$2F,$0E,$0A,$0F,$5F,$18,$0F,$5F,$37,$11,$0E,$FF,$28,$0C,$11
-.byte $18,$12,$17,$10,$FF,$30,$12,$1B,$1B,$18,$1B,$5F,$18,$0F,$FF,$27
-.byte $0E,$20,$67,$1C,$FF,$30,$0A,$10,$12,$0C,$FF,$26,$15,$18,$0A,$14
-.byte $5F,$18,$0F,$FF,$2A,$1B,$0E,$16,$15,$12,$17,$67,$1C,$FF,$27,$1B
-.byte $0A,$10,$18,$17,$67,$1C,$FF,$27,$1B,$0A,$10,$18,$17,$67,$1C,$FF
-.byte $2A,$18,$15,$0D,$0E,$17,$FF,$2F,$18,$1D,$1D,$0E,$1B,$22,$FF,$29
-.byte $0A,$12,$1B,$22,$FF,$3A,$12,$17,$10,$5F,$18,$0F,$FF,$FF,$2A,$18
-.byte $15,$0D,$0E,$17,$FF,$36,$12,$15,$1F,$0E,$1B,$FF,$2D,$0A,$12,$15
-.byte $18,$1B,$67,$1C,$FF,$3A,$0A,$1D,$0E,$1B,$10,$0A,$1D,$0E,$FF,$24
-.byte $17,$1D,$12,$0D,$18,$1D,$0E,$FF,$30,$0E,$0D,$12,$0C,$0A,$15,$FF
-.byte $3A,$12,$23,$0A,$1B,$0D,$67,$1C,$FF,$33
-.byte $0E,$1B,$12,$15,$18
-.byte $1E,$1C,$FF
-.byte $FF
-.byte $FF
-; indirect data load target (via $8024)
-; Item list part 2, line 2
-.byte $36,$1D,$12,$0C,$14,$FF,$2E,$17,$12,$0F,$0E,$FF,$3A,$0A,$17,$0D
-.byte $FF,$37,$11,$1E,$17,$0D,$0E,$1B,$FF,$FF,$36,$20,$18,$1B,$0D,$FF
-.byte $36,$12,$0C,$14,$15,$0E,$FF,$36,$19,$0E,$0A,$1B,$FF,$36,$20,$18
-.byte $1B,$0D,$FF,$36,$20,$18,$1B,$0D,$FF,$2B,$0A,$16,$16,$0E,$1B,$FF
-.byte $27,$0E,$1C,$1D,$1B,$1E,$0C,$1D,$12,$18,$17,$FF,$2E,$12,$15,$15
-.byte $0E,$1B,$FF,$36,$20,$18,$1B,$0D,$FF,$28,$1B,$0D,$1B,$12,$0C,$14
-.byte $FF,$36,$20,$18,$1B,$0D,$FF,$FF,$2B,$12,$0D,$12,$17,$10,$FF,$26
-.byte $15,$18,$1D,$11,$FF,$26,$18,$0A,$1D,$FF,$24,$1B,$16,$18,$1B,$FF
-.byte $30,$0A,$12,$15,$FF,$24,$1B,$16,$18,$1B,$FF,$24,$1B,$16,$18,$1B
-.byte $FF,$24,$1B,$16,$18,$1B,$FF,$2A,$0A,$12,$0A,$FF,$28,$1B,$0D,$1B
-.byte $12,$0C,$14,$FF,$36,$11,$12,$0E,$15,$0D,$FF,$36,$1D,$1B,$0E,$17
-.byte $10,$1D,$11,$FF,$36,$11,$12,$0E,$15,$0D,$FF,$36,$11
-.byte $12,$0E,$15,$0D,$FF,$28,$1B
-.byte $0D,$1B,$12
-.byte $0C,$14
-.byte $FF
-; indirect data load target (via $8032)
-; Spell name list
-.byte $2B,$0A,$1D,$FF,$2B,$0E,$15,$16,$0E,$1D,$FF,$28,$1B,$0D,$1B,$12
-.byte $0C,$14,$FF,$28,$1B,$0D,$1B,$12,$0C,$14,$FF,$FF,$29,$1B,$0A,$10
-.byte $16,$0E,$17,$1D,$FF,$35,$1E,$0B,$12,$1C,$1C,$FF,$30,$0A,$15,$1B
-.byte $18,$1D,$11,$FF,$3A,$18,$1B,$15,$0D,$5F,$37,$1B,$0E,$0E,$FF,$29
-.byte $15,$1E,$1D,$0E,$FF,$35,$0A,$FF,$3C,$0A,$1B,$17,$FF,$2F,$18,$18
-.byte $16,$FF,$3A,$12,$17,$0D,$FF,$37,$0A,$12,$15,$FF,$25,$0A,$17,$0E
-.byte $FF,$33,$18,$1D,$12,$18,$17,$FF,$26,$0A,$1B,$0D,$FF,$37,$12,$0C
-.byte $14,$0E,$1D,$FF,$3A,$0A,$1D,$0E,$1B,$FF,$1D,$11,$0E,$5F,$3A,$22
-.byte $1F,$0E,$1B,$17,$FF,$FF,$2E,$0E,$22,$FF,$2E,$0E,$22,$FF,$2E,$0E
-.byte $22,$FF,$2E,$0E,$22,$FF,$2B,$0E,$1B,$0B,$FF,$2B
-.byte $0E,$1B,$0B,$FF,$35,$12
-.byte $17,$10,$FF
-.byte $FF,$FF
-.byte $FF
-; indirect data load target (via $8026)
-; Monster list part 1, line 1
-.byte $29,$12,$1B,$0E,$0B,$0A,$15,$FF,$2B,$0E,$0A,$15,$FF,$36,$1D,$18
-.byte $19,$1C,$19,$0E,$15,$15,$FF,$2B,$0E,$0A,$15,$16,$18,$1B,$0E,$FF
-.byte $29,$12,$1B,$0E,$0B,$0A,$17,$0E,$FF,$2C,$17,$0C,$1B,$0E,$0A,$1C
-.byte $0E,$FF,$27,$0E,$0F,$0E,$0A,$1D,$FF,$36,$0A,$0C,$1B,$12,$0F,$12
-.byte $0C,$0E,$FF,$2B,$0E,$0A,$15,$FF,$24,$17,$1D,$12,$0D,$18,$1D,$0E
-.byte $FF,$35,$0E,$1D,$1E,$1B,$17,$FF,$32,$1E,$1D,$1C,$12,$0D,$0E,$FF
-.byte $2B,$0E,$0A,$15,$16,$18,$1B,$0E,$FF,$36,$1D,$0E,$19,$10,$1E,$0A
-.byte $1B,$0D,$FF,$35,$0E,$1F,$12,$1F,$0E,$FF,$FF,$36,$15,$0E,$0E,$19
-.byte $FF,$2B,$0E,$0A,$15,$16,$18,$1B,$0E,$FF,$2C,$17,$0F,$0E,$1B,$17
-.byte $18,$1C,$FF,$27,$0E,$0F,$0E,$17,$0C,$0E,$FF,$36,$1E,$1B,$1B,$18
-.byte $1E,$17,$0D,$FF,$2B,$0E,$0A,$15,$0A,$15,$15,$FF,$28,$21,$19,$15
-.byte $18,$0D,$0E,$1D,$FF,$26,$11,$0A,$17,$0C,$0E,$FF,$2B,$0E,$0A,$15
-.byte $16,$18,$1B,$0E,$FF,$35,$0E,$19,$0E,$15,$FF,$24,$17,$1D,$12,$0D
-.byte $18,$1D,$0E,$FF,$2B,$0E,$0A,$15,$0A,$15,$15,$FF,$32,$1E,$1D,$1C
-.byte $12,$0D,$0E,$FF,$36,$1D,$0E,$19,$10,$1E
-.byte $0A,$1B,$0D,$FF,$32
-.byte $19,$0E,$17
-.byte $FF
-.byte $FF
-; indirect data load target (via $8028)
-; Monster list part 2, line 1
-.byte $36,$15,$12,$16,$0E,$FF,$25,$12,$10,$FF,$2C,$1B,$18,$17,$FF,$27
-.byte $1B,$0A,$14,$0E,$0E,$FF,$3A,$12,$15,$0D,$FF,$2B,$0E,$0A,$15,$0E
-.byte $1B,$FF,$2A,$11,$18,$1C,$1D,$FF,$25,$0A,$0B,$0B,$15,$0E,$FF,$24
-.byte $1B,$16,$22,$FF,$30,$0A,$10,$12,$0C,$12,$0A,$17,$FF,$25,$12,$10
-.byte $FF,$25,$12,$10,$FF,$30,$0A,$10,$12,$0C,$FF,$30,$0A,$10,$12,$0D
-.byte $1B,$0A,$14,$0E,$0E,$FF,$26,$0E,$17,$1D,$12,$19,$18,$0D,$FF,$30
-.byte $0A,$17,$5F,$32,$67,$FF,$2F,$12,$23,$0A,$1B,$0D,$FF,$3D,$18,$16
-.byte $0B,$12,$0E,$FF,$36,$16,$18,$14,$0E,$FF,$2A,$11,$18,$1C,$1D,$FF
-.byte $25,$0A,$0B,$18,$18,$17,$FF,$26,$0A,$1B,$17,$12,$1F,$18,$10,$FF
-.byte $30,$0E,$10,$0A,$19,$0E,$0D,$0E,$FF,$36,$0E,$0A,$FF,$30,$0E,$0D
-.byte $1E,$1C,$0A,$FF,$28,$17,$0C,$11,$0A,$17,$1D,$0E,$1B,$FF,$30,$1E
-.byte $0D,$FF,$30,$0A,$10,$12,$0C,$FF,$27,$0E,$16,$12,$10,$11,$18,$1C
-.byte $1D,$FF,$2A,$1B,$0E,$16,$15,$12,$17,$FF,$33,$18,$12,$1C,$18,$17
-.byte $FF,$30,$1E,$16,$16,$22,$FF,$2A,$18,$1B,$10,$18,$17,$FF,$36,$0A
-.byte $0B,$0E,$1B,$FF,$27,$1B,$0A,$10,$18,$17,$FF,$37,$12,$1D,$0A,$17
-.byte $FF,$38,$17,$0D,$0E,$0A,$0D,$FF,$25,$0A,$1C,$12,$15,$12,$1C,$14
-.byte $FF,$2A,$18,$18,$19,$12,$FF,$32,$1B,$0C,$FF,$33,$1E,$19,$19,$0E
-.byte $1D,$FF,$30,$1E,$16,$16,$22,$FF,$28,$1F,$12,$15,$FF,$2A,$0A,$1C
-.byte $FF,$2B,$18,$1B,$14,$FF,$2B,$0A,$20,$14,$FF,$36,$18,$1B,$0C,$0E
-.byte $1B,$0E,$1B,$FF,$30,$0E,$1D,$0A,$15,$FF,$2B
-.byte $1E,$17,$1D,$0E,$1B,$FF
-.byte $28,$1F,$12
-.byte $15
-.byte $FF
-; indirect data load target (via $8034)
-; Monster list part 1, line 2
-.byte $2B,$12,$0B,$0A,$0B,$0A,$17,$10,$18,$FF,$2A,$1B,$0A,$0B,$18,$18
-.byte $19,$12,$FF,$2A,$18,$15,$0D,$FF,$28,$1F,$12,$15,$FF,$2A,$11,$18
-.byte $1E,$15,$FF,$39,$0A,$16,$19,$12,$1B,$1E,$1C,$FF,$30,$0E,$10,$0A
-.byte $FF,$36,$0A,$0B,$0E,$1B,$FF,$30,$0E,$1D,$0A,$15,$FF,$32,$23,$20
-.byte $0A,$1B,$10,$FF,$27,$0A,$1B,$14,$FF,$2A,$0A,$1B,$10,$18,$22,$15
-.byte $0E,$FF,$32,$1B,$0C,$FF,$30,$0A,$10,$12,$0C,$FF,$25,$0E,$1B,$1C
-.byte $0E,$1B,$14,$0E,$1B,$FF,$30,$0E,$1D,$0A,$15,$FF,$2B,$0A,$1B,$10
-.byte $18,$17,$67,$1C,$FF,$26,$22,$0C,$15,$18,$19,$1C,$FF,$24,$1D,$1D
-.byte $0A,$0C,$14,$0B,$18,$1D,$FF,$2A,$1B,$0E,$0E,$17,$FF,$30,$0A,$0C
-.byte $0E,$FF,$29,$15,$0A,$16,$0E,$FF,$36,$12,$15,$1F,$0E,$1B,$FF,$25
-.byte $15,$12,$23,$23,$0A,$1B,$0D,$FF,$2A,$12,$0A,$17,$1D,$FF,$2A,$18
-.byte $15,$0D,$FF,$25,$1E,$15,$15,$20,$18,$17,$10,$FF,$24,$1D,$15,$0A
-.byte $1C,$FF,$25,$0A,$23,$1E,$23,$1E,$FF,$3D,$0A,$1B,$15,$18,$21,$FF
-.byte $2B,$0A,$1B,$10,$18,$17,$FF,$30,$0A,$15,$1B,$18
-.byte $1D,$11,$FF,$28,$17,$0E
-.byte $16,$12,$0E
-.byte $1C
-.byte $FF
-; indirect data load target (via $802A)
-; Monster list part 2, line 2
-.byte $FF,$36,$15,$1E,$10,$FF,$24,$17,$1D,$FF,$FF,$30,$18,$1E,$1C,$0E
-.byte $FF,$FF,$30,$18,$1E,$1C,$0E,$FF,$FF,$24,$17,$1D,$FF,$FF,$35,$0A
-.byte $1D,$FF,$26,$18,$0B,$1B,$0A,$FF,$24,$17,$1D,$FF,$FF,$FF,$3A,$0A
-.byte $1B,$FF,$29,$15,$22,$FF,$FF,$FF,$35,$0A,$1D,$FF,$FF,$FF,$FF,$36
-.byte $15,$1E,$10,$FF,$25,$0A,$15,$15,$FF,$FF,$30,$0A,$17,$FF,$25,$0A
-.byte $0B,$18,$18,$17,$FF,$FF,$FF,$2F,$12,$15,$22,$FF,$30,$0A,$17,$FF
-.byte $FF,$37,$12,$10,$0E,$1B,$FF,$29,$15,$22,$FF,$37,$1B,$0E,$0E,$FF
-.byte $FF,$FF,$FF,$FF,$30,$0A,$17,$FF,$FF,$37,$1B,$0E,$0E,$FF,$FF,$FF
-.byte $30,$0A,$17,$FF,$FF,$36,$15,$12
-.byte $16,$0E,$FF,$FF
-.byte $28,$22
-.byte $0E
-.byte $FF
-; indirect data load target (via $8036)
-; tiles for redrawing the part of the main COMMAND menu obscured by the EQUIP sub-menu when the EQUIP sub-menu is closed; (only?) read during battle where there is no main COMMAND menu
-.byte $FF,$FF,$32,$1B,$0C,$FF,$26,$15,$18,$20,$17,$FF,$FF,$FF,$2E,$17
-.byte $12,$10,$11,$1D,$FF,$2F,$12,$18,$17,$FF,$2B,$1E,$17,$1D,$0E,$1B
-.byte $FF,$FF,$28,$22,$0E,$FF,$FF,$2E,$12,$17,$10,$FF,$39,$0A,$16,$19
-.byte $12,$1B,$1E,$1C,$FF,$FF,$25,$0A,$0B,$0B,$15,$0E,$FF,$2E,$17,$12
-.byte $10,$11,$1D,$FF,$FF,$FF,$27,$1B,$0A,$10,$18,$17,$FF,$30,$0A,$1C
-.byte $1D,$0E,$1B,$FF,$FF,$25,$0A,$1D,$0B,$18,$18,$17,$FF,$FF,$FF
-.byte $25,$0A,$1D,$0B,$18,$18,$17,$FF
-.byte $FF,$FF,$FF,$FF
-.byte $FF,$FF
-.byte $FF
-; completely useless?
-; indirect data load target (via $802C)
-; indirect data load target (via $802E)
-.byte $24,$31,$5F,$5F,$27,$77,$5F,$5F,$77,$77,$5F,$5F,$77,$7C,$5F,$5F
-.byte $5F,$5F,$5F,$5F,$36,$33,$5F,$5F,$28,$2F,$5F,$5F,$2F,$7B,$5F,$7B
-.byte $5F,$5F,$5F,$5F,$2C,$37,$5F,$5F,$28,$30,$5F,$5F,$5F,$7B,$5F,$7B
-.byte $5F,$5F,$7D,$7D,$28,$34,$7D,$7D
-.byte $38,$2C,$7D,$7D
-.byte $33,$7B
-.byte $7D
-.byte $7E
 
-.byte $77,$77,$77,$77,$77,$77,$77,$7C,$79,$77,$77,$77,$77,$77,$7C,$7B
-.byte $76,$5F,$5F,$5F,$5F,$5F,$7B,$7B
+; Item list part 1, line 1
+ItemNames1_1:
+.byte "Bamboo",$FF
+.byte "Magic",$FF
+.byte "Wizard's",$FF
+.byte "Staff of",$FF
+.byte "Club",$FF
+.byte "Copper",$FF
+.byte "Chain",$FF
+.byte "Iron",$FF
+.byte "Falcon",$FF
+.byte "Broad",$FF
+.byte "Giant",$FF
+.byte "Sword of",$FF
+.byte "Dragon",$FF
+.byte "Light",$FF
+.byte "Sword of",$FF
+.byte "Thunder",$FF
+.byte "Clothes",$FF
+.byte "Clothes",$FF
+.byte "Water Flying",$FF
+.byte "Mink",$FF
+.byte "Leather",$FF
+.byte "Chain",$FF
+.byte "Gremlin's",$FF
+.byte "Magic",$FF
+.byte "Full Plate",$FF
+.byte "Armor of",$FF
+.byte "Armor of",$FF
+.byte "Leather",$FF
+.byte "Shield of",$FF
+.byte "Steel",$FF
+.byte "Evil",$FF
+.byte "Shield of",$FF
+; Item list part 2, line 1
+ItemNames2_1:
+.byte "Mysterious",$FF
+.byte "Iron",$FF
+.byte "Helmet of",$FF
+.byte "Token of",$FF
+.byte "Tresures",$FF
+.byte "Moon",$FF
+.byte "Charm of",$FF
+.byte "Eye of",$FF
+.byte "Leaf of The",$FF
+.byte "Echoing",$FF
+.byte "Mirror of",$FF
+.byte "Dew's",$FF
+.byte "Magic",$FF
+.byte "Cloak of",$FF
+.byte "Gremlin's",$FF
+.byte "Dragon's",$FF
+.byte "Dragon's",$FF
+.byte "Golden",$FF
+.byte "Lottery",$FF
+.byte "Fairy",$FF
+.byte "Wing of",$FF
+.byte $FF
+.byte "Golden",$FF
+.byte "Silver",$FF
+.byte "Jailor's",$FF
+.byte "Watergate",$FF
+.byte "Antidote",$FF
+.byte "Medical",$FF
+.byte "Wizard's",$FF
+.byte "Perilous",$FF
+.byte $FF
+.byte $FF
+; Item list part 1, line 2
+ItemNames1_2:
+.byte "Stick",$FF
+.byte "Knife",$FF
+.byte "Wand",$FF
+.byte "Thunder",$FF
+.byte $FF
+.byte "Sword",$FF
+.byte "Sickle",$FF
+.byte "Spear",$FF
+.byte "Sword",$FF
+.byte "Sword",$FF
+.byte "Hammer",$FF
+.byte "Destruction",$FF
+.byte "Killer",$FF
+.byte "Sword",$FF
+.byte "Erdrick",$FF
+.byte "Sword",$FF
+.byte $FF
+.byte "Hiding",$FF
+.byte "Cloth",$FF
+.byte "Coat",$FF
+.byte "Armor",$FF
+.byte "Mail",$FF
+.byte "Armor",$FF
+.byte "Armor",$FF
+.byte "Armor",$FF
+.byte "Gaia",$FF
+.byte "Erdrick",$FF
+.byte "Shield",$FF
+.byte "Strength",$FF
+.byte "Shield",$FF
+.byte "Shield",$FF
+.byte "Erdrick",$FF
+; Item list part 2, line 2
+ItemNames2_2:
+.byte "Hat",$FF
+.byte "Helmet",$FF
+.byte "Erdrick",$FF
+.byte "Erdrick",$FF
+.byte $FF
+.byte "Fragment",$FF
+.byte "Rubiss",$FF
+.byte "Malroth",$FF
+.byte "World Tree",$FF
+.byte "Flute",$FF
+.byte "Ra",$FF
+.byte "Yarn",$FF
+.byte "Loom",$FF
+.byte "Wind",$FF
+.byte "Tail",$FF
+.byte "Bane",$FF
+.byte "Potion",$FF
+.byte "Card",$FF
+.byte "Ticket",$FF
+.byte "Water",$FF
+.byte "the Wyvern",$FF
+.byte $FF
+.byte "Key",$FF
+.byte "Key",$FF
+.byte "Key",$FF
+.byte "Key",$FF
+.byte "Herb",$FF
+.byte "Herb",$FF
+.byte "Ring",$FF
+.byte $FF
+.byte $FF
+.byte $FF
+
+; Spell name list
+SpellNames:
+.byte "Firebal",$FF
+.byte "Heal",$FF
+.byte "Stopspell",$FF
+.byte "Healmore",$FF
+.byte "Firebane",$FF
+.byte "Increase",$FF
+.byte "Defeat",$FF
+.byte "Sacrifice",$FF
+.byte "Heal",$FF
+.byte "Antidote",$FF
+.byte "Return",$FF
+.byte "Outside",$FF
+.byte "Healmore",$FF
+.byte "Stepguard",$FF
+.byte "Revive",$FF
+.byte $FF
+.byte "Sleep",$FF
+.byte "Healmore",$FF
+.byte "Infernos",$FF
+.byte "Defence",$FF
+.byte "Surround",$FF
+.byte "Healall",$FF
+.byte "Explodet",$FF
+.byte "Chance",$FF
+.byte "Healmore",$FF
+.byte "Repel",$FF
+.byte "Antidote",$FF
+.byte "Healall",$FF
+.byte "Outside",$FF
+.byte "Stepguard",$FF
+.byte "Open",$FF
+.byte $FF
+
+; Monster list part 1, line 1
+MonsterNames1_1:
+.byte "Slime",$FF
+.byte "Big",$FF
+.byte "Iron",$FF
+.byte "Drakee",$FF
+.byte "Wild",$FF
+.byte "Healer",$FF
+.byte "Ghost",$FF
+.byte "Babble",$FF
+.byte "Army",$FF
+.byte "Magician",$FF
+.byte "Big",$FF
+.byte "Big",$FF
+.byte "Magic",$FF
+.byte "Magidrakee",$FF
+.byte "Centipod",$FF
+.byte "Man O'",$FF
+.byte "Lizard",$FF
+.byte "Zombie",$FF
+.byte "Smoke",$FF
+.byte "Ghost",$FF
+.byte "Baboon",$FF
+.byte "Carnivog",$FF
+.byte "Megapede",$FF
+.byte "Sea",$FF
+.byte "Medusa",$FF
+.byte "Enchanter",$FF
+.byte "Mud",$FF
+.byte "Magic",$FF
+.byte "Demighost",$FF
+.byte "Gremlin",$FF
+.byte "Poison",$FF
+.byte "Mummy",$FF
+.byte "Gorgon",$FF
+.byte "Saber",$FF
+.byte "Dragon",$FF
+.byte "Titan",$FF
+.byte "Undead",$FF
+.byte "Basilisk",$FF
+.byte "Goopi",$FF
+.byte "Orc",$FF
+.byte "Puppet",$FF
+.byte "Mummy",$FF
+.byte "Evil",$FF
+.byte "Gas",$FF
+.byte "Hork",$FF
+.byte "Hawk",$FF
+.byte "Sorcerer",$FF
+.byte "Metal",$FF
+.byte "Hunter",$FF
+.byte "Evil",$FF
+; Monster list part 2, line 1
+MonsterNames2_1:
+.byte "Hibabango",$FF
+.byte "Graboopi",$FF
+.byte "Gold",$FF
+.byte "Evil",$FF
+.byte "Ghoul",$FF
+.byte "Vampirus",$FF
+.byte "Mega",$FF
+.byte "Saber",$FF
+.byte "Metal",$FF
+.byte "Ozwarg",$FF
+.byte "Dark",$FF
+.byte "Gargoyle",$FF
+.byte "Orc",$FF
+.byte "Magic",$FF
+.byte "Berserker",$FF
+.byte "Metal",$FF
+.byte "Hargon's",$FF
+.byte "Cyclops",$FF
+.byte "Attackbot",$FF
+.byte "Green",$FF
+.byte "Mace",$FF
+.byte "Flame",$FF
+.byte "Silver",$FF
+.byte "Blizzard",$FF
+.byte "Giant",$FF
+.byte "Gold",$FF
+.byte "Bullwong",$FF
+.byte "Atlas",$FF
+.byte "Bazuzu",$FF
+.byte "Zarlox",$FF
+.byte "Hargon",$FF
+.byte "Malroth",$FF
+.byte "Enemies",$FF
+; Monster list part 1, line 2
+MonsterNames1_2:
+.byte $FF
+.byte "Slug",$FF
+.byte "Ant",$FF
+.byte $FF
+.byte "Mouse",$FF
+.byte $FF
+.byte "Mouse",$FF
+.byte $FF
+.byte "Ant",$FF
+.byte $FF
+.byte "Rat",$FF
+.byte "Cobra",$FF
+.byte "Ant",$FF
+.byte $FF
+.byte $FF
+.byte "War",$FF
+.byte "Fly",$FF
+.byte $FF
+.byte $FF
+.byte "Rat",$FF
+.byte $FF
+.byte $FF
+.byte $FF
+.byte "Slug",$FF
+.byte "Ball",$FF
+.byte $FF
+.byte "Man",$FF
+.byte "Baboon",$FF
+.byte $FF
+.byte $FF
+.byte "Lily",$FF
+.byte "Man",$FF
+.byte $FF
+.byte "Tiger",$FF
+.byte "Fly",$FF
+.byte "Tree",$FF
+.byte $FF
+.byte $FF
+.byte $FF
+.byte $FF
+.byte "Man",$FF
+.byte $FF
+.byte "Tree",$FF
+.byte $FF
+.byte $FF
+.byte "Man",$FF
+.byte $FF
+.byte "Slime",$FF
+.byte $FF
+.byte "Eye",$FF
+; Monster list part 2, line 2
+MonsterNames2_2:
+.byte $FF
+.byte $FF
+.byte "Orc",$FF
+.byte "Clown",$FF
+.byte $FF
+.byte $FF
+.byte "Knight",$FF
+.byte "Lion",$FF
+.byte "Hunter",$FF
+.byte $FF
+.byte "Eye",$FF
+.byte $FF
+.byte "King",$FF
+.byte "Vampirus",$FF
+.byte $FF
+.byte "Babble",$FF
+.byte "Knight",$FF
+.byte $FF
+.byte $FF
+.byte "Dragon",$FF
+.byte "Master",$FF
+.byte $FF
+.byte "Batboon",$FF
+.byte $FF
+.byte $FF
+.byte "Batboon",$FF
+.byte $FF
+.byte $FF
+.byte $FF
+.byte $FF
+.byte $FF
+.byte $FF
+.byte $FF
+
+; tiles for redrawing the part of the main COMMAND menu obscured by the EQUIP sub-menu when the EQUIP sub-menu is closed; (only?) read during battle where there is no main COMMAND menu
+; completely useless?
+CommandTileRedraw:
+.byte $24,$31,$5F,$5F
+.byte $27,$77,$5F,$5F
+.byte $77,$77,$5F,$5F
+.byte $77,$7C,$5F,$5F
+.byte $5F,$5F,$5F,$5F
+.byte $36,$33,$5F,$5F
+.byte $28,$2F,$5F,$5F
+.byte $2F,$7B,$5F,$7B
+.byte $5F,$5F,$5F,$5F
+.byte $2C,$37,$5F,$5F
+.byte $28,$30,$5F,$5F
+.byte $5F,$7B,$5F,$7B
+.byte $5F,$5F,$7D,$7D
+.byte $28,$34,$7D,$7D
+.byte $38,$2C,$7D,$7D
+.byte $33,$7B,$7D,$7E
+CommandTileRedraw2:
+.byte $77,$77,$77,$77
+.byte $77,$77,$77,$7C
+.byte $79,$77,$77,$77
+.byte $77,$77,$7C,$7B
+.byte $76,$5F,$5F,$5F
+.byte $5F,$5F,$7B,$7B
 .byte $7A,$7D,$7D,$7D
-.byte $7D,$7D
-.byte $7E
-.byte $7B
-; data -> code
-; indirect control flow target (via $803A)
+.byte $7D,$7D,$7E,$7B
+
+B06_BAA3:
     lda #$05
     sta $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
@@ -12569,11 +10063,9 @@ B06_B2B0:
     cmp #$03 ; Map ID #$03: Midenhall 1F
 
     beq B06_BAAE
-; control flow target (from $BAB3, $BAB9, $BABF, $BAC3)
 B06_BAAD:
     rts
 
-; control flow target (from $BAAB)
 B06_BAAE:
     lda $0549 ; NPC #$01 sprite ID
 
@@ -12593,55 +10085,17 @@ B06_BAAE:
 
     cmp #$7F
     bne B06_BAD5
-; call to code in a different bank ($0F:$CCF1)
-    jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $82
-; indirect data load target
-.byte $21
-
-.byte $D5
-.byte $80
-; data -> code
+    jsr B0F_CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
+    .byte $82,$21,$D5,$80
     bcc B06_BADF
-; control flow target (from $BACA)
-; call to code in a different bank ($0F:$CCF1)
 B06_BAD5:
-    jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $82
-; indirect data load target
-.byte $21
-
-.byte $DB
-.byte $80
-; data -> code
+    jsr B0F_CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
+    .byte $82,$21,$DB,$80
     inc $0565 ; NPC #$05 Y-pos
 
-; control flow target (from $BAD3)
-; call to code in a different bank ($0F:$CCF1)
 B06_BADF:
-    jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $81
-; indirect data load target
-.byte $21
-
-.byte $CF
-.byte $80
-; data -> code
+    jsr B0F_CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
+    .byte $81,$21,$CF,$80
     lda $16 ; current map X-pos (1)
 
     cmp #$0E
@@ -12651,7 +10105,6 @@ B06_BADF:
     dec $055C ; NPC #$04 X-pos
 
     bne B06_BAFE
-; control flow target (from $BAEA)
 B06_BAF4:
     cmp #$10
     bne B06_BAFE
@@ -12659,7 +10112,6 @@ B06_BAF4:
 
     inc $055C ; NPC #$04 X-pos
 
-; control flow target (from $BAF2, $BAF6)
 B06_BAFE:
     lda $16 ; current map X-pos (1)
 
@@ -12676,7 +10128,6 @@ B06_BAFE:
     dec $0564 ; NPC #$05 X-pos
 
     bne B06_BB1E
-; control flow target (from $BB0A)
 B06_BB14:
     cmp #$10
     bne B06_BB1E
@@ -12684,13 +10135,11 @@ B06_BB14:
 
     inc $0564 ; NPC #$05 X-pos
 
-; control flow target (from $BB12, $BB16)
 B06_BB1E:
     lda #$00
     tay
-; control flow target (from $BB27)
 B06_BB21:
-    sta $0542,Y ; NPC #$00 ?
+    sta $0542, y ; NPC #$00 ?
 
     iny
     cpy #$10
@@ -12706,26 +10155,15 @@ B06_BB21:
     inx
     stx $0569 ; NPC #$05 sprite ID
 
-; call to code in a different bank ($0F:$CCD2)
-    jmp $CCD2 ; execute scripted motion
+    jmp B0F_CCD2 ; execute scripted motion
 
 
-; indirect control flow target (via $8038)
-; call to code in a different bank ($0F:$CD26)
-    jsr $CD26 ; set Z if your current map position is the (X, Y) co-ordinates given by the next 2 bytes
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $0F
-
-.byte $03
-; data -> code
+B06_BB3D:
+    jsr B0F_CD26 ; set Z if your current map position is the (X, Y) co-ordinates given by the next 2 bytes
+    .byte $0F,$03
     beq B06_BB45
     rts
 
-; control flow target (from $BB42)
 B06_BB45:
     lda #$FF
     sta $35 ; flag indicating whether any menu is currently open
@@ -12733,297 +10171,139 @@ B06_BB45:
     lda #$46
     sta $062C ; current battle message delay
 
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $04
     lda #$00
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $B5
-; data -> code
-; control flow target (from $BB6B)
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $B6
-; data -> code
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $19
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $B5
+B06_BB5B:
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $B6
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $19
     cmp #$00
     beq B06_BB6E
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $B7
+    jmp B06_BB5B
 
-
-; code -> data
-; indirect data load target
-
-.byte $B7
-; data -> code
-    jmp $BB5B
-
-; control flow target (from $BB65)
 B06_BB6E:
     lda #$01
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $B8
-; data -> code
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $B8
     lda #$02
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $BC
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
-
-; code -> data
-; indirect data load target
-
-.byte $BC
-; data -> code
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
-
-; call to code in a different bank ($0F:$CCF1)
-    jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $85
-; indirect data load target
-.byte $20
-
-.byte $BE
-.byte $80
-; data -> code
-; call to code in a different bank ($0F:$CCF1)
-    jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $84
-; indirect data load target
-.byte $20
-
-.byte $BE
-.byte $80
-; data -> code
-; call to code in a different bank ($0F:$CCE7)
-    jsr $CCE7
-    jsr $BC38
-; call to code in a different bank ($0F:$CCF1)
-    jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $82
-; indirect data load target
-.byte $20
-
-.byte $55
-.byte $80
-; data -> code
-; call to code in a different bank ($0F:$CCF1)
-    jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
-
-
-; code -> data
-; indirect data load target
-; indirect data load target
-.byte $81
-; indirect data load target
-.byte $20
-
-.byte $55
-.byte $80
-; data -> code
-; call to code in a different bank ($0F:$CCE7)
-    jsr $CCE7
-    jsr $BC38
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $B9
-; data -> code
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
+    .byte $85,$20,$BE,$80
+    jsr B0F_CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
+    .byte $84,$20,$BE,$80
+    jsr B0F_CCE7
+    jsr B06_BC38
+    jsr B0F_CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
+    .byte $82,$20,$55,$80
+    jsr B0F_CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
+    .byte $81,$20,$55,$80
+    jsr B0F_CCE7
+    jsr B06_BC38
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $04
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $B9
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     ldy #$38
-; control flow target (from $BBC2)
 B06_BBB8:
     lda #$02
-    sta $0578,Y ; NPC #$07 motion nybble + direction nybble
+    sta $0578, y ; NPC #$07 motion nybble + direction nybble
 
     tya
     sec
     sbc #$08
     tay
     bpl B06_BBB8
-; call to code in a different bank ($0F:$CF64)
-    jsr $CF64
-    jsr $BC38
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
+    jsr B0F_CF64
+    jsr B06_BC38
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $04
     lda #$00
-; call to code in a different bank ($0F:$FC50)
-    jsr $FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
+    jsr B0F_FC50 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $BA
-; data -> code
-; call to code in a different bank ($0F:$D0F5)
-    jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $BA
+    jsr B0F_D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     lda #$01
     sta $0568 ; NPC #$05 motion nybble + direction nybble
 
-    jsr $BC2D
+    jsr B06_BC2D
     lda #$02
     sta $0568 ; NPC #$05 motion nybble + direction nybble
 
-    jsr $BC2D
+    jsr B06_BC2D
     ldx #$0A
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda #$03
     sta $0560 ; NPC #$04 motion nybble + direction nybble
 
-    jsr $BC2D
+    jsr B06_BC2D
     lda #$02
     sta $0560 ; NPC #$04 motion nybble + direction nybble
 
-    jsr $BC2D
-    jsr $BC34
+    jsr B06_BC2D
+    jsr B06_BC34
     lda #$01
     sta $0540 ; NPC #$00 ? + direction nybble
 
-    jsr $BC2D
+    jsr B06_BC2D
     lda #$02
     sta $0540 ; NPC #$00 ? + direction nybble
 
-    jsr $BC2D
-    jsr $BC34
+    jsr B06_BC2D
+    jsr B06_BC34
     lda #$19 ; Music ID #$19: end credits BGM
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-    jsr $BC38
+    jsr B06_BC38
     lda #$FF ; SLOW
 
     sta $062C ; current battle message delay
 
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $04
+    jsr B0F_FA2E ; display string ID specified by next byte + #$0100
+    .byte $93
+    jmp B0F_D343
 
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
-; call to code in a different bank ($0F:$FA2E)
-    jsr $FA2E ; display string ID specified by next byte + #$0100
-
-
-; code -> data
-; indirect data load target
-
-.byte $93
-; data -> code
-; call to code in a different bank ($0F:$D343)
-    jmp $D343
-
-; control flow target (from $BBDF, $BBE7, $BBF4, $BBFC, $BC07, $BC0F)
-; call to code in a different bank ($0F:$CF64)
-    jsr $CF64
+B06_BC2D:
+    jsr B0F_CF64
     ldx #$0A
     bne B06_BC3A
-; control flow target (from $BBFF, $BC12)
+B06_BC34:
     ldx #$1E
     bne B06_BC3A
-; control flow target (from $BB94, $BBA8, $BBC7, $BC1A)
+B06_BC38:
     ldx #$3C
-; control flow target (from $BC32, $BC36)
-; call to code in a different bank ($0F:$C1EE)
 B06_BC3A:
-    jmp $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jmp B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
 
-; indirect control flow target (via $803E)
+B06_BC3D:
     ldx #$3D
-; control flow target (from $BC46)
 B06_BC3F:
-    lda $BC4F,X ; code copied to and executed in RAM
+    lda B06_BC4F, x ; code copied to and executed in RAM
 
-    sta $0400,X ; menu-based palette overrides start
+    sta $0400, x ; menu-based palette overrides start
 
     dex
     bpl B06_BC3F
@@ -13034,7 +10314,6 @@ B06_BC3F:
     jmp $0433
 
 ; code copied to and executed in RAM
-; control flow target (from $BC8B)
 ; indexed data load target (from $BC3F)
 B06_BC4F:
     ldy $05F6 ; current bank
@@ -13046,68 +10325,55 @@ B06_BC4F:
     ldx $43
     cpx #$03
     bne B06_BC66
-; call to code in a different bank ($0F:$C476)
-    jsr $C476 ; read joypad 1 data into $2F
+    jsr B0F_C476 ; read joypad 1 data into $2F
 
     lsr $2F ; joypad 1 data
 
     ldx $43
     bcc B06_BC84
-; control flow target (from $BC5B)
 B06_BC66:
     inx
     cpx #$14
     bcc B06_BC84
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
     and #$24
     bne B06_BC84
-; control flow target (from $BC79)
-; call to code in a different bank ($0F:$C476)
 B06_BC74:
-    jsr $C476 ; read joypad 1 data into $2F
+    jsr B0F_C476 ; read joypad 1 data into $2F
 
     lsr $2F ; joypad 1 data
 
     bcc B06_BC74
-; control flow target (from $BC80)
-; call to code in a different bank ($0F:$C476)
 B06_BC7B:
-    jsr $C476 ; read joypad 1 data into $2F
+    jsr B0F_C476 ; read joypad 1 data into $2F
 
     lsr $2F ; joypad 1 data
 
     bcs B06_BC7B
     ldx #$03
-; control flow target (from $BC64, $BC69, $BC72)
 B06_BC84:
     pla
-; call to code in a different bank ($0F:$C3D5)
-    jsr $C3D5 ; save A to $05F6, X to $43, and load bank specified by A
+    jsr B0F_C3D5 ; save A to $05F6, X to $43, and load bank specified by A
 
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     beq B06_BC4F ; code copied to and executed in RAM
 
-
-; indirect control flow target (via $8040)
+B06_BC8D:
     lda $17 ; current map Y-pos (1)
 
     cmp #$07
     beq B06_BC94
     rts
 
-; control flow target (from $BC91)
 B06_BC94:
     ldy #$50
     lda #$00
-; control flow target (from $BC9E)
 B06_BC98:
-    sta $053A,Y
+    sta $053A, y
     iny
     cpy #$68
     bne B06_BC98
@@ -13143,22 +10409,20 @@ B06_BC98:
     lda #$04
     sta $0591 ; NPC #$0A sprite ID
 
-    jsr $BD6C
+    jsr B06_BD6C
     sta $0599 ; NPC #$0B sprite ID
 
-    jsr $BD6C
+    jsr B06_BD6C
     sta $05A1 ; NPC #$0C sprite ID
 
-    jsr $BD6C
-    jsr $BD7C
-    jsr $BD7C
+    jsr B06_BD6C
+    jsr B06_BD7C
+    jsr B06_BD7C
     lda #$0A
     sta $D0 ; Malroth status flag (#$FF = defeated, #$00 = alive, others = countdown to battle)
 
-; control flow target (from $BD23)
-; call to code in a different bank ($0F:$C3AB)
 B06_BCE8:
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
@@ -13166,8 +10430,7 @@ B06_BCE8:
     sec
     sbc #$08
     sta $18
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
@@ -13180,42 +10443,33 @@ B06_BCE8:
     sta $1E
     lda #$87 ; Music ID #$87: hit 2 SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-; call to code in a different bank ($0F:$D325)
-    jsr $D325
-; call to code in a different bank ($0F:$C3AB)
-    jsr $C3AB ; generate a random number and store it in $32-$33 (two passes)
+    jsr B0F_D325
+    jsr B0F_C3AB ; generate a random number and store it in $32-$33 (two passes)
 
     lda $32 ; RNG byte 0
 
     and #$07
     bne B06_BD1D
-; call to code in a different bank ($0F:$C511)
-    jsr $C511 ; flash screen 5 times
+    jsr B0F_C511 ; flash screen 5 times
 
-    jmp $BD21
+    jmp B06_BD21
 
-; control flow target (from $BD15)
 B06_BD1D:
     tax
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
-; control flow target (from $BD1A)
+B06_BD21:
     dec $D0 ; Malroth status flag (#$FF = defeated, #$00 = alive, others = countdown to battle)
 
     bne B06_BCE8
-; control flow target (from $BD31)
 B06_BD25:
     lda #$94 ; Music ID #$94: burning SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-; call to code in a different bank ($0F:$D200)
-    jsr $D200
+    jsr B0F_D200
     lda $98 ; outcome of last fight?
 
     cmp #$FE
@@ -13223,20 +10477,11 @@ B06_BD25:
     lda #$06
     sta $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $E8
+    jsr B0F_C515 ; flash screen 10 times
 
-
-; code -> data
-; indirect data load target
-
-.byte $E8
-; data -> code
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
-
-; call to code in a different bank ($0F:$C515)
-    jsr $C515 ; flash screen 10 times
+    jsr B0F_C515 ; flash screen 10 times
 
     lda #$84
     sta $062D ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
@@ -13245,86 +10490,59 @@ B06_BD25:
 
     sta $0651 ; Moonbrooke status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-; call to code in a different bank ($0F:$C77B)
-    jsr $C77B ; restore full HP/MP to all living party members
+    jsr B0F_C77B ; restore full HP/MP to all living party members
 
-; call to code in a different bank ($0F:$EB76)
-    jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $01
-; data -> code
-; call to code in a different bank ($0F:$C22C)
-    jsr $C22C
-; call to code in a different bank ($0F:$FA32)
-    jsr $FA32 ; display string ID specified by next byte + #$0200
-
-
-; code -> data
-; indirect data load target
-
-.byte $E9
-; data -> code
+    jsr B0F_EB76 ; open menu specified by next byte
+    .byte $01
+    jsr B0F_C22C
+    jsr B0F_FA32 ; display string ID specified by next byte + #$0200
+    .byte $E9
     lda #$FF
     sta $D0 ; Malroth status flag (#$FF = defeated, #$00 = alive, others = countdown to battle)
 
     sta $44 ; non-saved event status (#$00 = event start, #$01 = Lianport Gremlins defeated, #$02 = met with Lianport grandfather/have no friends at Shrine SW of Cannock, #$03 = King Midenhall moved to stairs, #$04 = King Midenhall moved down stairs, #$05 = King Midenhall spoke on Midenhall 1F, #$0B = Lighthouse Wizard 7F, #$1B Lighthouse Wizard 2F spoke, #$64 = Hargon dead, #$FF = event end)
 
     ldx #$01
-; call to code in a different bank ($0F:$D2F1)
-    jsr $D2F1
+    jsr B0F_D2F1
     lda #$00
     sta $8E ; flag for in battle or not (#$FF)?
 
-; call to code in a different bank ($0F:$D88F)
-    jmp $D88F ; warp to warp point given by ($0C)
+    jmp B0F_D88F ; warp to warp point given by ($0C)
 
 
-; control flow target (from $BCCF, $BCD5, $BCDB)
+B06_BD6C:
     lda #$91 ; Music ID #$91: swamp SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-; call to code in a different bank ($0F:$D32E)
-    jsr $D32E
+    jsr B0F_D32E
     ldx #$28
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda #$04
     rts
 
-; control flow target (from $BCDE, $BCE1)
+B06_BD7C:
     lda #$94 ; Music ID #$94: burning SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-; call to code in a different bank ($0F:$C511)
-    jsr $C511 ; flash screen 5 times
+    jsr B0F_C511 ; flash screen 5 times
 
     ldx #$11
-; call to code in a different bank ($0F:$C1EE)
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda #$94 ; Music ID #$94: burning SFX
 
-; call to code in a different bank ($0F:$C561)
-    jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
+    jsr B0F_C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
-; call to code in a different bank ($0F:$C511)
-    jsr $C511 ; flash screen 5 times
+    jsr B0F_C511 ; flash screen 5 times
 
     ldx #$32
-; call to code in a different bank ($0F:$C1EE)
-    jmp $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jmp B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
 
-; indirect control flow target (via $8044)
+B06_BD96:
     lda $61AD
     bne B06_BDEC
     lda #$FF
@@ -13342,37 +10560,33 @@ B06_BD25:
     sta $0541 ; NPC #$00 sprite ID
 
     bne B06_BDC6
-; control flow target (from $BDAA)
 B06_BDB3:
     ldx #$07
     lda #$84
     sta $0E
-    jsr $BDED
+    jsr B06_BDED
     lda #$04
     sta $0E
-    jsr $BDED
-    jsr $BE10
-; control flow target (from $BDB1)
+    jsr B06_BDED
+    jsr B06_BE10
 B06_BDC6:
     ldy #$00
-; control flow target (from $BDEA)
 B06_BDC8:
-    lda $0541,Y ; NPC #$00 sprite ID
+    lda $0541, y ; NPC #$00 sprite ID
 
     cmp #$FF
     bne B06_BDE3
     lda #$00
-    sta $053A,Y
-    sta $053B,Y
-    sta $053C,Y ; NPC #$00 ?
+    sta $053A, y
+    sta $053B, y
+    sta $053C, y ; NPC #$00 ?
 
-    sta $053D,Y ; NPC #$00 ?
+    sta $053D, y ; NPC #$00 ?
 
-    sta $053E,Y ; NPC #$00 ?
+    sta $053E, y ; NPC #$00 ?
 
-    sta $053F,Y ; NPC #$00 ?
+    sta $053F, y ; NPC #$00 ?
 
-; control flow target (from $BDCD)
 B06_BDE3:
     tya
     clc
@@ -13380,27 +10594,24 @@ B06_BDE3:
     tay
     cmp #$18
     bne B06_BDC8
-; control flow target (from $BD99)
 B06_BDEC:
     rts
 
-; control flow target (from $BDB9, $BDC0)
+B06_BDED:
     ldy #$00
     sty $0C
-; control flow target (from $BE0D)
 B06_BDF1:
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$84
     cmp $0E
     bne B06_BE04
     lda $0C
-    sta $053A,X
+    sta $053A, x
     txa
     clc
     adc #$08
     tax
-; control flow target (from $BDF8)
 B06_BE04:
     inc $0C
     tya
@@ -13411,28 +10622,25 @@ B06_BE04:
     bne B06_BDF1
     rts
 
-; control flow target (from $BDC3)
+B06_BE10:
     lda $45
     cmp #$FF
     bne B06_BE17
     rts
 
-; control flow target (from $BE14)
 B06_BE17:
     cmp #$00
     bne B06_BE23
     lda #$02
-; control flow target (from $BE57, $BE5F, $BE67, $BE6F)
 B06_BE1D:
     sta $0540 ; NPC #$00 ? + direction nybble
 
-    jmp $BE27
+    jmp B06_BE27
 
-; control flow target (from $BE19)
 B06_BE23:
     cmp #$01
     bne B06_BE51
-; control flow target (from $BE20)
+B06_BE27:
     lda $053A
     sta $0542 ; NPC #$00 ?
 
@@ -13460,67 +10668,55 @@ B06_BE23:
 
     rts
 
-; control flow target (from $BE25)
 B06_BE51:
     cmp #$03
     bne B06_BE59
     lda #$03
     bne B06_BE1D
-; control flow target (from $BE53)
 B06_BE59:
     cmp #$04
     bne B06_BE61
     lda #$01
     bne B06_BE1D
-; control flow target (from $BE5B)
 B06_BE61:
     cmp #$09
     bne B06_BE69
     lda #$00
     beq B06_BE1D
-; control flow target (from $BE63)
 B06_BE69:
     cmp #$0A
     bne B06_BE71
     lda #$02
     bne B06_BE1D
-; control flow target (from $BE6B)
 B06_BE71:
     cmp #$02
     bne B06_BEBC
     lda $17 ; current map Y-pos (1)
 
     bne B06_BE7D
-; control flow target (from $BEC6)
 B06_BE79:
     lda #$02
     bne B06_BE93
-; control flow target (from $BE77)
 B06_BE7D:
     lda $16 ; current map X-pos (1)
 
     cmp $21 ; map width
 
     bne B06_BE87
-; control flow target (from $BECA)
 B06_BE83:
     lda #$03
     bne B06_BE93
-; control flow target (from $BE81)
 B06_BE87:
     lda $16 ; current map X-pos (1)
 
     bne B06_BE8F
-; control flow target (from $BEC2)
 B06_BE8B:
     lda #$01
     bne B06_BE93
-; control flow target (from $BE89, $BEBE)
 B06_BE8F:
     lda #$00
     beq B06_BE93 ; useless op
 
-; control flow target (from $BE7B, $BE85, $BE8D, $BE91)
 B06_BE93:
     sta $0540 ; NPC #$00 ? + direction nybble
 
@@ -13533,14 +10729,12 @@ B06_BE93:
     asl
     tax
     ldy #$08
-; control flow target (from $BEB9)
 B06_BEA2:
     lda #$04
     sta $2E
-; control flow target (from $BEB0)
 B06_BEA6:
-    lda $BECD,X
-    sta $053A,Y
+    lda B06_BECD, x
+    sta $053A, y
     iny
     inx
     dec $2E
@@ -13553,7 +10747,6 @@ B06_BEA6:
     bne B06_BEA2
     rts
 
-; control flow target (from $BE73)
 B06_BEBC:
     cmp #$05
     beq B06_BE8F
@@ -13565,23 +10758,19 @@ B06_BEBC:
     beq B06_BE83
     rts
 
-
-; code -> data
-; indexed data load target (from $BEA6)
-; indirect data load target
-.byte $80,$7F,$00,$01,$80,$8F,$00,$01,$70,$6F,$FF,$00
-.byte $60,$6F,$FF,$00,$80,$5F
-.byte $00,$FF,$80
-.byte $4F,$00
-.byte $FF
+B06_BECD:
+.byte $80,$7F,$00,$01
+.byte $80,$8F,$00,$01
+.byte $70,$6F,$FF,$00
+.byte $60,$6F,$FF,$00
+.byte $80,$5F,$00,$FF
+.byte $80,$4F,$00,$FF
 
 .byte $90,$6F,$01,$00
-.byte $A0,$6F
-.byte $01
-.byte $00
-; data -> code
+.byte $A0,$6F,$01,$00
+
 ; X = 1 => CLC and update $0C-$0D to warp point data to use if Outside allowed from current map, SEC otherwise, X = 2 => CLC and update $0C-$0D to warp point data to use if Return allowed from current map, SEC otherwise, X = 3 => disembark from ship and update ship position based on last save point ID $48
-; indirect control flow target (via $8046)
+B06_BEED:
     dex
     beq B06_BEF8 ; CLC and update $0C-$0D to warp point data to use if Outside allowed from current map
 
@@ -13595,7 +10784,6 @@ B06_BEBC:
     rts
 
 ; CLC and update $0C-$0D to warp point data to use if Outside allowed from current map
-; control flow target (from $BEEE)
 B06_BEF8:
     lda $31 ; current map ID
 
@@ -13613,7 +10801,6 @@ B06_BEF8:
     beq B06_BF23 ; SEC to flag Outside not allowed for calling code
 
 ; Outside from Hargon's Castle 7F is okay
-; control flow target (from $BF00)
 B06_BF09:
     lda #$44 ; Map ID #$44: Hargon's Castle 2F
 
@@ -13621,7 +10808,6 @@ B06_BF09:
 
     bne B06_BF25 ; Outside is allowed
 
-; control flow target (from $BEFC)
 B06_BF0F:
     cmp #$18 ; Map ID #$18: Charlock Castle B8
 
@@ -13633,13 +10819,11 @@ B06_BF0F:
 
     bne B06_BF25 ; Outside is allowed
 
-; control flow target (from $BF11)
 B06_BF19:
     ldy #$0C ; for everything else, start scanning the first floor list
 
-; control flow target (from $BF21)
 B06_BF1B:
-    cmp $BF82,Y ; dungeon first floors
+    cmp B06_BF82, y ; dungeon first floors
 
     bcs B06_BF25 ; Outside is allowed
 
@@ -13647,32 +10831,28 @@ B06_BF1B:
     bpl B06_BF1B ; if more first floors to check, check them
 
 ; SEC to flag Outside not allowed for calling code
-; control flow target (from $BF07)
 B06_BF23:
     sec
     rts
 
 ; Outside is allowed
-; control flow target (from $BF0D, $BF17, $BF1E)
 B06_BF25:
     sec
-    sbc $BF82,Y ; dungeon first floors
+    sbc B06_BF82, y ; dungeon first floors
 
     sta $0E ; floor number
 
     tya
     asl
     tay
-    lda $BF8F,Y ; pointer to warp point data used when casting Outside
-
+    lda B06_BF8F, y ; pointer to warp point data used when casting Outside
     sta $0C
-    lda $BF90,Y
+    lda B06_BF8F+1, y
     sta $0D
     clc
     rts
 
 ; CLC and update $0C-$0D to warp point data to use if Return allowed from current map
-; control flow target (from $BEF1)
 B06_BF3A:
     lda $31 ; current map ID
 
@@ -13690,29 +10870,26 @@ B06_BF3A:
 
     beq B06_BF5D ; SEC to flag Return disallowed for calling code
 
-    jsr $BF5F ; disembark from ship and update ship position based on last save point ID $48
+    jsr B06_BF5F ; disembark from ship and update ship position based on last save point ID $48
 
     lda $48 ; last save point ID
 
     asl
     tay
-    lda $BFA9,Y ; pointer to warp point data used when casting Return
-
+    lda B06_BFA9, y ; pointer to warp point data used when casting Return
     sta $0C
-    lda $BFAA,Y
+    lda B06_BFA9+1, y
     sta $0D
     clc ; CLC to flag Return allowed for calling code
 
     rts
 
 ; SEC to flag Return disallowed for calling code
-; control flow target (from $BF3C, $BF40, $BF44, $BF48)
 B06_BF5D:
     sec
     rts
 
 ; disembark from ship and update ship position based on last save point ID $48
-; control flow target (from $BEF4, $BF4A)
 B06_BF5F:
     lda $CF ; ship status (#$04 = on ship, #$02 = own ship, #$01 = beat Lianport Gremlins)
 
@@ -13723,65 +10900,69 @@ B06_BF5F:
 
     asl
     tay
-    lda $BF74,Y ; ship X-pos after warp
-
+    lda B06_BF74, y ; ship X-pos after warp
     sta $D2 ; ship X-pos (when you aren't on it)
-
-    lda $BF75,Y ; ship Y-pos after warp
-
+    lda B06_BF74+1, y ; ship Y-pos after warp
     sta $D3 ; ship Y-pos (when you aren't on it)
 
     rts
 
 
-; code -> data
-; ship X-pos after warp
-; indexed data load target (from $BF69)
-; ship Y-pos after warp
-.byte $D4
-; indexed data load target (from $BF6E)
-; indirect data load target
-.byte $3C,$A4
-.byte $09
+; ship X, y-pos after warp
+B06_BF74:
+.byte $D4,$3C	 ; Save Point ID #$00: Midenhall 2F
+.byte $A4,$09	 ; Save Point ID #$01: Cannock
+.byte $3B,$2E	 ; Save Point ID #$02: Tantegel
+.byte $DA,$91	 ; Save Point ID #$03: Osterfair
+.byte $1F,$C5	 ; Save Point ID #$04: Beran
+.byte $1F,$C5	 ; Save Point ID #$05: Rhone Shrine
+.byte $78,$58	 ; Save Point ID #$06: Hamlin
+
 ; dungeon first floors
-.byte $3B,$2E,$DA,$91,$1F
-.byte $C5,$1F,$C5
-.byte $78
-.byte $58
-; indexed data load target (from $BF1B, $BF26)
+B06_BF82:
+.byte $2B	 ; Map ID #$2B: Cave to Hamlin
+.byte $2C	 ; Map ID #$2C: Lake Cave B1
+.byte $2E	 ; Map ID #$2E: Sea Cave B1
+.byte $34	 ; Map ID #$34: Charlock Castle B1/B2
+.byte $37	 ; Map ID #$37: Cave to Rhone B1
+.byte $40	 ; Map ID #$40: Spring of Bravery
+.byte $43	 ; Map ID #$43: Cave to Rimuldar
+.byte $44	 ; Map ID #$44: Hargon's Castle 2F
+.byte $49	 ; Map ID #$49: Moon Tower 1F
+.byte $50	 ; Map ID #$50: Lighthouse 1F
+.byte $58	 ; Map ID #$58: Wind Tower 1F
+.byte $60	 ; Map ID #$60: Dragon Horn South 1F
+.byte $66	 ; Map ID #$66: Dragon Horn North 1F
+
 ; pointer to warp point data used when casting Outside
-.byte $2B,$2C,$2E,$34,$37,$40,$43
-.byte $44,$49,$50
-.byte $58,$60
-.byte $66
-; indexed data load target (from $BF2E)
-; indirect data load target
-; indexed data load target (from $BF33)
-.byte $A8
+B06_BF8F:
+.addr $A2A8      ; $02:$A2A8; Map ID #$2B: Cave to Hamlin
+.addr $A2CF      ; $02:$A2CF; Map ID #$2C: Lake Cave B1
+.addr $A2D2      ; $02:$A2D2; Map ID #$2E: Sea Cave B1
+.addr $A2D8      ; $02:$A2D8; Map ID #$34: Charlock Castle B1/B2
+.addr $A2DE      ; $02:$A2DE; Map ID #$37: Cave to Rhone B1
+.addr $A2ED      ; $02:$A2ED; Map ID #$40: Spring of Bravery
+.addr $A2EA      ; $02:$A2EA; Map ID #$43: Cave to Rimuldar
+.addr $A2A2      ; $02:$A2A2; Map ID #$44: Hargon's Castle 2F
+.addr $A2E1      ; $02:$A2E1; Map ID #$49: Moon Tower 1F
+.addr $A2DB      ; $02:$A2DB; Map ID #$50: Lighthouse 1F
+.addr $A2D5      ; $02:$A2D5; Map ID #$58: Wind Tower 1F
+.addr $A2E4      ; $02:$A2E4; Map ID #$60: Dragon Horn South 1F
+.addr $A2E7      ; $02:$A2E7; Map ID #$66: Dragon Horn North 1F
+
 ; pointer to warp point data used when casting Return
-.byte $A2,$CF,$A2,$D2,$A2,$D8,$A2,$DE,$A2,$ED,$A2,$EA,$A2
-.byte $A2,$A2,$E1,$A2,$DB,$A2
-.byte $D5,$A2,$E4
-.byte $A2,$E7
-.byte $A2
-; indexed data load target (from $BF51)
-; indirect data load target
-; indexed data load target (from $BF56)
-.byte $69
+B06_BFA9:
+; warp point data (map ID, X-pos, Y-pos) used when casting Return;
+.addr $A269      ; $02:$A269; Save Point ID #$00: Midenhall 2F
+.addr $A26C      ; $02:$A26C; Save Point ID #$01: Cannock
+.addr $A26F      ; $02:$A26F; Save Point ID #$02: Tantegel
+.addr $A272      ; $02:$A272; Save Point ID #$03: Osterfair
+.addr $A275      ; $02:$A275; Save Point ID #$04: Beran
+.addr $A278      ; $02:$A278; Save Point ID #$05: Rhone Shrine
+.addr $A27B      ; $02:$A27B; Save Point ID #$06: Hamlin
 
-.byte $A2,$6C,$A2,$6F,$A2,$72,$A2
-.byte $75,$A2,$78
-.byte $A2,$7B
-.byte $A2
-; data -> free
-; indirect data load target
-.res $1f
-; ... skipping $1F FF bytes
-.byte $FF
-; indirect data load target
+.res $21
 
-.byte $FF
-; free -> unknown
 .byte $78,$EE,$DF,$BF,$4C,$86,$FF,$80
 .literal "DRAGON WARRIORS2"
 .byte $FF,$FF,$00,$00,$48,$04,$01,$0F

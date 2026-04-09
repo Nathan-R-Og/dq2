@@ -15,70 +15,69 @@
 .charmap $39, $09 ;9 == $09
 
 
-.charmap $61, $E1 ;a == $0a
-.charmap $62, $E2 ;b == $0b
-.charmap $63, $E3 ;c == $0c
-.charmap $64, $E4 ;d == $0d
-.charmap $65, $E5 ;e == $0e
-.charmap $66, $E6 ;f == $0f
-.charmap $67, $E7 ;g == $10
-.charmap $68, $E8 ;h == $11
-.charmap $69, $E9 ;i == $12
-.charmap $6A, $EA ;j == $13
-.charmap $6B, $EB ;k == $14
-.charmap $6C, $EC ;l == $15
-.charmap $6D, $ED ;m == $16
-.charmap $6E, $EE ;n == $17
-.charmap $6F, $EF ;o == $18
-.charmap $70, $F0 ;p == $19
-.charmap $71, $F1 ;q == $1a
-.charmap $72, $F2 ;r == $1b
-.charmap $73, $F3 ;s == $1c
-.charmap $74, $F4 ;t == $1d
-.charmap $75, $F5 ;u == $1e
-.charmap $76, $F6 ;v == $1f
-.charmap $77, $F7 ;w == $20
-.charmap $78, $F8 ;x == $21
-.charmap $79, $F9 ;y == $22
-.charmap $7A, $FA ;z == $23
+.charmap $61, $0A ;a == $0a
+.charmap $62, $0B ;b == $0b
+.charmap $63, $0C ;c == $0c
+.charmap $64, $0D ;d == $0d
+.charmap $65, $0E ;e == $0e
+.charmap $66, $0F ;f == $0f
+.charmap $67, $10 ;g == $10
+.charmap $68, $11 ;h == $11
+.charmap $69, $12 ;i == $12
+.charmap $6A, $13 ;j == $13
+.charmap $6B, $14 ;k == $14
+.charmap $6C, $15 ;l == $15
+.charmap $6D, $16 ;m == $16
+.charmap $6E, $17 ;n == $17
+.charmap $6F, $18 ;o == $18
+.charmap $70, $19 ;p == $19
+.charmap $71, $1A ;q == $1a
+.charmap $72, $1B ;r == $1b
+.charmap $73, $1C ;s == $1c
+.charmap $74, $1D ;t == $1d
+.charmap $75, $1E ;u == $1e
+.charmap $76, $1F ;v == $1f
+.charmap $77, $20 ;w == $20
+.charmap $78, $21 ;x == $21
+.charmap $79, $22 ;y == $22
+.charmap $7A, $23 ;z == $23
 
-.charmap $41, $C1 ;A == $24
-.charmap $42, $C2 ;B == $25
-.charmap $43, $C3 ;C == $26
-.charmap $44, $C4 ;D == $27
-.charmap $45, $C5 ;E == $28
-.charmap $46, $C6 ;F == $29
-.charmap $47, $C7 ;G == $2a
-.charmap $48, $C8 ;H == $2b
-.charmap $49, $C9 ;I == $2c
-.charmap $4A, $CA ;J == $2d
-.charmap $4B, $CB ;K == $2e
-.charmap $4C, $CC ;L == $2f
-.charmap $4D, $CD ;M == $30
-.charmap $4E, $CE ;N == $31
-.charmap $4F, $CF ;O == $32
-.charmap $50, $D0 ;P == $33
-.charmap $51, $D1 ;Q == $34
-.charmap $52, $D2 ;R == $35
-.charmap $53, $D3 ;S == $36
-.charmap $54, $D4 ;T == $37
-.charmap $55, $D5 ;U == $38
-.charmap $56, $D6 ;V == $39
-.charmap $57, $D7 ;W == $3a
-.charmap $58, $D8 ;X == $3b
-.charmap $59, $D9 ;Y == $3c
-.charmap $5A, $DA ;Z == $3d
+.charmap $41, $24 ;A == $24
+.charmap $42, $25 ;B == $25
+.charmap $43, $26 ;C == $26
+.charmap $44, $27 ;D == $27
+.charmap $45, $28 ;E == $28
+.charmap $46, $29 ;F == $29
+.charmap $47, $2A ;G == $2a
+.charmap $48, $2B ;H == $2b
+.charmap $49, $2C ;I == $2c
+.charmap $4A, $2D ;J == $2d
+.charmap $4B, $2E ;K == $2e
+.charmap $4C, $2F ;L == $2f
+.charmap $4D, $30 ;M == $30
+.charmap $4E, $31 ;N == $31
+.charmap $4F, $32 ;O == $32
+.charmap $50, $33 ;P == $33
+.charmap $51, $34 ;Q == $34
+.charmap $52, $35 ;R == $35
+.charmap $53, $36 ;S == $36
+.charmap $54, $37 ;T == $37
+.charmap $55, $38 ;U == $38
+.charmap $56, $39 ;V == $39
+.charmap $57, $3A ;W == $3a
+.charmap $58, $3B ;X == $3b
+.charmap $59, $3C ;Y == $3c
+.charmap $5A, $3D ;Z == $3d
 
 ;symbols
-
-.charmap $20, $A0 ;" " == $A0
+.charmap $20, $5F ;" " == $A0
 .charmap $21, $A1 ;!
 .charmap $3F, $A2 ;?
 .charmap $23, $A3 ;..
 .charmap $24, $A4 ;$
 .charmap $25, $A5 ;.
 .charmap $22, $A6 ;"
-.charmap $27, $A7 ;' == $A7
+.charmap $27, $67 ;' == $A7
 .charmap $28, $A8 ;(
 .charmap $29, $A9 ;)
 .charmap $3A, $AA ;:

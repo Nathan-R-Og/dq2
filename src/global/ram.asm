@@ -5,14 +5,10 @@
 UNK_0: .res $16
 map_xpos: .res 1 ; $16
 map_ypos: .res 1 ; $17
-UNK_18: .res $19 ; $18
-map_id: .res 1 ; $31
-UNK_32: .res $a4
-UNK_D6: .res 2 ;pointer to gfx??
-UNK_D8: .res $28
-
-;UNK_27: .res 1 ;Room ID?
-;UNK_2f: .res 1 ;Input
+UNK_18: .res $f
+UNK_27: .res 1 ;Room ID?
+UNK_28: .res 7
+UNK_2f: .res 1 ;Input
 ; B0: A
 ; B1: B
 ; B2: Select
@@ -21,7 +17,8 @@ UNK_D8: .res $28
 ; B5: Down
 ; B6: Left
 ; B7: Right
-;UNK_31: .res 1;True Room ID
+UNK_30: .res 1
+map_id: .res 1 ; $31 / True Room ID
 ; 00: Initial Menu;
 ; 01: Overworld;
 ; 02: Midenhall throne room;
@@ -54,36 +51,70 @@ UNK_D8: .res $28
 ; 51: Lighthouse (Crest floor);
 ; 59: Eastern Tower (Cape floor);
 ; 65: South Dragon Horn (top floor);
-;UNK_32: .res 2 ;RNG Dice
-;UNK_4d: .res 1 ;X Position of SGTLC
+UNK_32: .res 2 ;RNG Dice
+
+UNK_34: .res $19
+
+UNK_4d: .res 1 ;X Position of SGTLC
 ; Command Menu = 04
 ; SGTLC: selectable grid top left corner
-;UNK_4e: .res 1 ;Y Position of SGTLC
+
+UNK_4e: .res 1 ;Y Position of SGTLC
 ; Command Menu = 02
 ; SGTLC: selectable grid top left corner
-;UNK_59: .res 1 ;Menu ID
+
+UNK_4f: .res $a
+
+UNK_59: .res 1 ;Menu ID
 ; 06: Cammand Menu open
 ; 04: Talk or Search command
-;UNK_7c: .res 1 ;Current Text Character Position
-;UNK_82: .res 1 ;Menu Cursor Horizontal Position
-;UNK_83: .res 1 ;Menu Cursor Vertical Position
-;UNK_94: .res 1 ;Battle Flag
-;B1: Outside battle.
-;UNK_95: .res 1 ;ID of the Name of the Found Item
-;UNK_96: .res 1 ;ID of the Name of the Acquired Item
-;UNK_ca: .res 1 ;Position in Story
-;UNK_cd: .res 1 ;Water Cloth Flag
-;UNK_ce: .res 1 ;Floodgate Flag
-;UNK_cf: .res 1 ;Ship-Flag
-;UNK_d0: .res 1 ;Malroth Flag
-;ff = defeated
-;UNK_d1: .res 1 ;Midenhall Prisioner Flag
-.ifdef VER_JP
-;UNK_de: .res 1
-;Name (J)
-.endif
-;UNK_f7: .res 1 ;Current Song?
 
+UNK_5a: .res $22
+
+UNK_7c: .res 1 ;Current Text Character Position
+
+UNK_7d: .res 5
+
+UNK_82: .res 1 ;Menu Cursor Horizontal Position
+UNK_83: .res 1 ;Menu Cursor Vertical Position
+
+UNK_84: .res $a
+UNK_8E: .res 1 ; flag for in battle or not (#$FF)?
+UNK_8F: .res 5
+
+UNK_94: .res 1 ;Battle Flag
+;B1: Outside battle.
+
+UNK_95: .res 1 ;ID of the Name of the Found Item
+UNK_96: .res 1 ;ID of the Name of the Acquired Item
+
+UNK_97: .res 1
+
+UNK_98: .res 1 ;outcome of last fight?
+
+UNK_99: .res $31
+
+UNK_ca: .res 1 ;Position in Story
+
+UNK_cb: .res 2
+
+UNK_cd: .res 1 ;Water Cloth Flag
+UNK_ce: .res 1 ;Floodgate Flag
+UNK_cf: .res 1 ; ship status (#$04 = on ship, #$02 = own ship, #$01 = beat Lianport Gremlins)
+UNK_d0: .res 1 ;Malroth Flag
+UNK_d1: .res 1 ;Midenhall Prisioner Flag
+
+UNK_d2: .res 4
+
+UNK_D6: .res 2 ;pointer to gfx??
+UNK_D8: .res $1a
+
+UNK_F2: .res 2 ; pulse 1 addr
+UNK_F4: .res 2 ; pulse 2 addr
+UNK_F6: .res 2 ; triangle addr
+UNK_F8: .res 2 ; noise addr?
+
+UNK_Fa: .res 6
 
 ; *** RAM DEFINES ***
 .segment        "RAM": absolute

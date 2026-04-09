@@ -14,9 +14,8 @@
 
 ; PRG Bank 0x0F: the fixed bank, contains a little bit of everything
 
-; [bank start] -> code
 ; NMI vector
-; indirect control flow target (via $FFFA)
+NMI:
     sei
     pha
     tya
@@ -53,11 +52,11 @@ B0F_C020:
     dey
 ; control flow target (from $C07C)
 B0F_C028:
-    lda $C138,Y
+    lda $C138, y
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
     iny
-    lda $C138,Y
+    lda $C138, y
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
     iny
@@ -129,17 +128,17 @@ B0F_C093:
 ; control flow target (from $C0AE)
     cpx $02
     beq B0F_C0B1
-    lda $0300,X ; PPU write buffer start
+    lda $0300, x ; PPU write buffer start
 
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
     inx
-    lda $0300,X ; PPU write buffer start
+    lda $0300, x ; PPU write buffer start
 
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
     inx
-    lda $0300,X ; PPU write buffer start
+    lda $0300, x ; PPU write buffer start
 
     sta $2007 ; VRAM I/O Register
 
@@ -172,19 +171,19 @@ B0F_C0B1:
     tsx
 ; ummm... skipping X/Y/A on stack, if second caller is $FFC0 - $FFD4 inclusive, mess around with stack, pull X/Y/A, clobber A with current bank, and RTI
 ; else pull X/Y/A and RTI
-    lda $0106,X
+    lda $0106, x
     cmp #$FF
     bne B0F_C0FD
-    lda $0105,X
+    lda $0105, x
     cmp #$C0
     bcc B0F_C0FD
     cmp #$D5
     bcs B0F_C0FD
     lda #$04
-    ora $0104,X
-    sta $0104,X
+    ora $0104, x
+    sta $0104, x
     lda #$C0
-    sta $0105,X
+    sta $0105, x
     pla
     tax
     pla
@@ -256,40 +255,40 @@ B0F_C128:
     beq B0F_C19A
 ; control flow target (from $C198)
 B0F_C14E:
-    lda $0300,X ; PPU write buffer start
+    lda $0300, x ; PPU write buffer start
 
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
-    lda $0301,X
+    lda $0301, x
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
-    lda $0302,X
+    lda $0302, x
     sta $2007 ; VRAM I/O Register
 
-    lda $0303,X
+    lda $0303, x
     sta $2007 ; VRAM I/O Register
 
-    lda $0300,X ; PPU write buffer start
+    lda $0300, x ; PPU write buffer start
 
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
-    lda $0301,X
+    lda $0301, x
     ora #$20
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
-    lda $0304,X
+    lda $0304, x
     sta $2007 ; VRAM I/O Register
 
-    lda $0305,X
+    lda $0305, x
     sta $2007 ; VRAM I/O Register
 
-    lda $0306,X
+    lda $0306, x
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
-    lda $0307,X
+    lda $0307, x
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
-    lda $0308,X
+    lda $0308, x
     sta $2007 ; VRAM I/O Register
 
     txa
@@ -312,11 +311,11 @@ B0F_C19A:
 ; control flow target (from $C1CD)
 B0F_C1A9:
     ldy #$01
-    lda $0300,X ; PPU write buffer start
+    lda $0300, x ; PPU write buffer start
 
     bpl B0F_C1B4
     inx
-    ldy $0300,X ; PPU write buffer start
+    ldy $0300, x ; PPU write buffer start
 
 ; control flow target (from $C1AE)
 B0F_C1B4:
@@ -324,14 +323,14 @@ B0F_C1B4:
     and #$3F
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
-    lda $0300,X ; PPU write buffer start
+    lda $0300, x ; PPU write buffer start
 
     inx
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
 
 ; control flow target (from $C1C9)
 B0F_C1C1:
-    lda $0300,X ; PPU write buffer start
+    lda $0300, x ; PPU write buffer start
 
     inx
     sta $2007 ; VRAM I/O Register
@@ -352,8 +351,8 @@ B0F_C1D9:
     jmp $C0B1
 
 ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
-; control flow target (from $C1EE, $C22C, $C23F, $C30A, $C3E8, $C421, $C465, $C595, $C67D, $C747, $C7EC, $C975, $C9A8, $CCD9, $CFA5, $D0E2, $D13D, $D317, $D48C, $D65B, $D6EE, $D72B, $D73F, $E2B8, $E2CE, $E5EC, $E609, $E660, $E69D, $E6D6, $E6EC, $E719, $E743, $E764, $E7B7, $E7EA, $E817, $E841, $E862, $E972, $E980, $E9F9, $EB6D, $F476, $F862, $F868, $FB05, $FD08, $FD9C)
-; external control flow target (from $00:$803C, $00:$807B, $00:$8328, $00:$83A4, $00:$B783, $00:$B80A, $00:$B822, $00:$B95C, $02:$AB9B, $02:$B1FA, $02:$B717, $04:$8CE9, $04:$8D9B, $04:$8DE1, $04:$8E02, $04:$8E05, $04:$8E3F, $04:$8E9A, $04:$8EAE, $04:$8EB1, $04:$8FE7, $04:$902C, $04:$909B, $04:$90B7, $04:$99F9, $04:$9A39, $06:$8048, $06:$8905, $06:$8929, $06:$895F, $06:$8988, $06:$A262, $06:$A270, $06:$A273, $06:$A617, $06:$A620, $06:$A984, $06:$AF9B, $06:$B21B, $07:$81C3, $07:$8654, $07:$86E5, $07:$8715, $07:$8908, $07:$89BD, $07:$89CF, $08:$804F, $08:$8296, $08:$832E, $09:$802D, $09:$8070, $09:$8098, $09:$80CC, $09:$80DD, $09:$82A0, $09:$82EA, $09:$82ED, $09:$8310, $09:$8313, $09:$9E19, $09:$9EFB, $09:$9F59, $09:$9F95, $09:$9FFC, $09:$A02E, $09:$A03F, $09:$A07D, $09:$A0F3, $0A:$8049, $0A:$81DF)
+; control flow target (from B0F_C1EE, $C22C, $C23F, $C30A, $C3E8, $C421, $C465, $C595, $C67D, $C747, $C7EC, $C975, $C9A8, $CCD9, $CFA5, $D0E2, $D13D, $D317, $D48C, $D65B, $D6EE, $D72B, $D73F, $E2B8, $E2CE, $E5EC, $E609, $E660, $E69D, $E6D6, $E6EC, $E719, $E743, $E764, $E7B7, $E7EA, $E817, $E841, $E862, $E972, $E980, $E9F9, $EB6D, $F476, $F862, $F868, $FB05, $FD08, $FD9C)
+B0F_C1DC:
     lda #$00
     sta $6007
     lda #$01
@@ -368,9 +367,8 @@ B0F_C1E5:
 
 ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 ; control flow target (from $C1F2, $C329, $C520, $C592, $C5A5, $C6A5, $C82C, $C83B, $CAE6, $CC4A, $CD74, $CD83, $D0F9, $D5D7, $FC3A)
-; external control flow target (from $00:$B7B5, $00:$B8BF, $04:$9019, $06:$824C, $06:$8A57, $06:$8B01, $06:$96AD, $06:$96C0, $06:$970E, $06:$97CB, $06:$98F5, $06:$9941, $06:$A2EB, $06:$A316, $06:$BBEC, $06:$BC3A, $06:$BC88, $06:$BD1E, $06:$BD76, $06:$BD86, $06:$BD93, $07:$81CB, $07:$81F0, $07:$81F9, $07:$85C8, $07:$863F, $07:$866D, $07:$8672, $07:$867A, $07:$867F, $07:$898F, $09:$8002, $09:$80A4, $09:$80D7, $09:$9E13, $09:$9E4C, $09:$9E5B, $09:$9E62, $09:$9F44, $09:$9FDC, $0A:$801C, $0A:$8024, $0A:$8038)
 B0F_C1EE:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     dex
     bne B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
@@ -379,7 +377,6 @@ B0F_C1EE:
 
 ; wait for battle message delay to expire
 ; control flow target (from $C1F7)
-; external control flow target (from $04:$9A13)
 B0F_C1F5:
     lda $93 ; NMI counter, decremented once per NMI until it reaches 0
 
@@ -389,7 +386,6 @@ B0F_C1F5:
 
 ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 ; control flow target (from $C1FE, $C2C9, $D65E, $D661, $D66F, $D672, $DEBA, $DED7, $DEE7, $DF03, $DF14, $DF3D, $FD26, $FD99)
-; external control flow target (from $00:$83AC, $00:$B95F, $02:$B74F, $04:$8D92, $04:$8DD8, $04:$8E91, $04:$909E, $04:$9A36, $06:$8996, $06:$AF73, $06:$B0A9, $07:$897A, $07:$8A90, $09:$8089, $09:$81ED)
 B0F_C1FA:
     ldx $02
     cpx #$C0
@@ -397,17 +393,17 @@ B0F_C1FA:
 
     lda $08 ; PPU address, high byte
 
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
     inx
     lda $07 ; PPU address, low byte
 
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
     inx
     lda $09 ; PPU tile ID
 
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
     inx
     inc $01
@@ -428,11 +424,11 @@ B0F_C21C:
     lda #$10
     bne B0F_C24C
 ; control flow target (from $C324)
-; external control flow target (from $06:$A284, $07:$8668)
+B0F_C228:
     lda #$00
     beq B0F_C24C
-; external control flow target (from $00:$B92E, $04:$8738, $04:$90D1, $04:$90D7, $04:$A0F5, $06:$866C, $06:$8BF0, $06:$8CC5, $06:$9431, $06:$951F, $06:$95F6, $06:$A1ED, $06:$AEB4, $06:$BD53)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+B0F_C22C:
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$00
     sta $0C
@@ -441,13 +437,13 @@ B0F_C21C:
     ldx #$00
     lda #$10
     jsr $C242
-    jmp $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jmp B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 
 ; control flow target (from $C235, $C23C)
-    ldy $C2E7,X
+    ldy $C2E7, x
     sty $0A
-    ldy $C2E8,X
+    ldy $C2E8, x
     sty $0B
 ; control flow target (from $C226, $C22A)
 B0F_C24C:
@@ -478,7 +474,7 @@ B0F_C254:
     ldx #$00
 ; control flow target (from $C2B1)
 B0F_C277:
-    lda $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     asl
     and #$08
@@ -490,28 +486,28 @@ B0F_C277:
 
 ; control flow target (from $C27F)
 B0F_C287:
-    lda $0630,X ; Midenhall Max HP low byte
+    lda $0630, x ; Midenhall Max HP low byte
 
     pha
-    lda $0631,X ; Midenhall Max HP high byte
+    lda $0631, x ; Midenhall Max HP high byte
 
     lsr
-    ror $0630,X ; Midenhall Max HP low byte
+    ror $0630, x ; Midenhall Max HP low byte
 
     lsr
-    ror $0630,X ; Midenhall Max HP low byte
+    ror $0630, x ; Midenhall Max HP low byte
 
-    cmp $063C,X ; Midenhall Current HP, high byte
+    cmp $063C, x ; Midenhall Current HP, high byte
 
     bne B0F_C2A1
-    lda $0630,X ; Midenhall Max HP low byte
+    lda $0630, x ; Midenhall Max HP low byte
 
-    cmp $063B,X ; Midenhall Current HP, low byte
+    cmp $063B, x ; Midenhall Current HP, low byte
 
 ; control flow target (from $C299)
 B0F_C2A1:
     pla
-    sta $0630,X ; Midenhall Max HP low byte
+    sta $0630, x ; Midenhall Max HP low byte
 
     bcc B0F_C2AA
     plp
@@ -532,7 +528,7 @@ B0F_C2AA:
 
 ; control flow target (from $C25E, $C261, $C26B, $C271, $C2B4)
 B0F_C2BB:
-    lda ($0A),Y
+    lda ($0A), y
 ; control flow target (from $C284, $C2B8)
     iny
 ; control flow target (from $C258)
@@ -544,7 +540,7 @@ B0F_C2BB:
 ; control flow target (from $C2C1)
 B0F_C2C7:
     sta $09
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     rts
 
@@ -553,14 +549,14 @@ B0F_C2C7:
     ldy #$00
 ; control flow target (from $C2DC)
 B0F_C2CF:
-    lda ($0E),Y
-    sta $0500,Y
-    lda ($10),Y
-    sta $050D,Y
+    lda ($0E), y
+    sta $0500, y
+    lda ($10), y
+    sta $050D, y
     iny
     cpy #$0D
     bne B0F_C2CF
-; external control flow target (from $06:$828A)
+B0F_C2DE:
     lda #$30
     sta $0C
     lda #$F0
@@ -568,9 +564,7 @@ B0F_C2CF:
     jmp $C309
 
 
-; code -> data
-; indexed data load target (from $C242, $C2FB)
-; indexed data load target (from $C247)
+B0F_C2E7:
 .byte $00
 ; external data load target (from $06:$A276)
 .byte $05
@@ -578,9 +572,9 @@ B0F_C2CF:
 .byte $0D
 
 .byte $05
-; data -> code
+
 ; control flow target (from $C42E)
-; external control flow target (from $06:$8253, $0A:$8114)
+B0F_C2EB:
     lda $3C
     cmp #$30
     bne B0F_C2F9
@@ -594,8 +588,8 @@ B0F_C2F9:
     ldx #$03
 ; control flow target (from $C301)
 B0F_C2FB:
-    lda $C2E7,X
-    sta $0E,X
+    lda $C2E7, x
+    sta $0E, x
     dex
     bpl B0F_C2FB
     lda #$00
@@ -603,7 +597,7 @@ B0F_C2FB:
     lda #$10
 ; control flow target (from $C2E4)
     pha
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $C335)
 B0F_C30D:
@@ -622,7 +616,7 @@ B0F_C30D:
 ; control flow target (from $C31A)
 B0F_C327:
     ldx #$04
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     pla
     pha
@@ -636,7 +630,7 @@ B0F_C327:
 
 ; 16-bit multiplication: ($10-$11) = ($0C-$0D) * ($0E-$0F); consumes $0C-$0F
 ; control flow target (from $D692, $E19F, $E472)
-; external control flow target (from $02:$B03E, $06:$86B4, $0A:$8171)
+B0F_C339:
     lda #$00
     sta $10
     sta $11
@@ -726,7 +720,7 @@ B0F_C3A5:
 
 ; generate a random number and store it in $32-$33 (two passes)
 ; control flow target (from $C490, $D685, $D99C)
-; external control flow target (from $04:$802D, $04:$80DC, $04:$824F, $04:$97CC, $04:$9880, $04:$A005, $04:$A044, $04:$AEDF, $04:$B078, $04:$B6C1, $04:$B793, $06:$846C, $06:$8744, $06:$8847, $06:$921E, $06:$9B5D, $06:$9BBE, $06:$9C41, $06:$BC6B, $06:$BCE8, $06:$BCF4, $06:$BD0E, $09:$9E5E)
+B0F_C3AB:
     lda #$FF
     sta $0C
     jsr $C3B6 ; generate a random number and store it in $32-$33 (one pass)
@@ -735,7 +729,7 @@ B0F_C3A5:
     sta $0C
 ; generate a random number and store it in $32-$33 (one pass)
 ; control flow target (from $C3AF)
-; external control flow target (from $06:$ACC6)
+B0F_C3B6:
     ldy #$08
 ; control flow target (from $C3D2)
 B0F_C3B8:
@@ -767,7 +761,7 @@ B0F_C3D1:
 
 ; save A to $05F6, X to $43, and load bank specified by A
 ; control flow target (from $C2F3, $C3DC, $C4E8, $C4FA, $C506, $C50E, $C544, $C55E, $C569, $C574, $C57F, $C58A, $C688, $C690, $CCEE, $CFA2, $D09B, $D0E7, $D2FF, $D31C, $D34A, $F782, $F86D, $FCFA)
-; external control flow target (from $02:$B205, $06:$BC85)
+B0F_C3D5:
     jmp $FFBB ; save A to $05F6, X to $43, and load bank specified by A
 
 
@@ -791,7 +785,7 @@ B0F_C3D1:
 ; control flow target (from $C3DF, $C446)
 ; external control flow target (from $00:$803F, $00:$807E, $00:$823A, $04:$8715, $08:$801B, $0A:$8010, $0A:$80BC, $0A:$81E2, $0B:$8087)
 B0F_C3E8:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$FF
     sta $6007
@@ -803,7 +797,7 @@ B0F_C3E8:
 
 ; copy ($0C) inclusive - ($0E) exclusive to PPU at ($10)
 ; control flow target (from $C3E2)
-; external control flow target (from $00:$8081, $00:$80C0, $00:$8396, $04:$8A84, $0A:$81E5, $0B:$808A)
+B0F_C3F6:
     lda $11 ; PPU address high byte; PPU address low byte
 
     sta $2006 ; VRAM Address Register #2 (write twice; $2007 address)
@@ -814,7 +808,7 @@ B0F_C3E8:
     ldy #$00
 ; control flow target (from $C416, $C41A)
 B0F_C402:
-    lda ($0C),Y ; CHR data
+    lda ($0C), y ; CHR data
 
     sta $2007 ; VRAM I/O Register
 
@@ -839,12 +833,12 @@ B0F_C414:
     bne B0F_C402
 ; wait for interrupt, turn screen sprites and backround on
 ; control flow target (from $C3E5, $C462)
-; external control flow target (from $00:$8078, $00:$80E2, $00:$8325, $04:$8730, $06:$A98C)
+B0F_C41C:
     lda #$00 ; useless op
 
     sta $6007 ; useless op
 
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$18 ; turn sprites and backround on
 
@@ -853,7 +847,7 @@ B0F_C414:
     rts
 
 ; control flow target (from $C52D, $C6F3, $C97B, $D2B6, $D2DE, $E27E, $E287)
-; external control flow target (from $04:$870F, $06:$A97E, $07:$81BD, $07:$81D6, $07:$84DD, $07:$851F, $07:$853B, $07:$85F6, $07:$88FF, $08:$8018, $09:$8005, $0A:$800D)
+B0F_C42A:
     lda #$FF
     sta $0D
     jsr $C2EB
@@ -861,23 +855,23 @@ B0F_C414:
     txa
 ; control flow target (from $C438)
 B0F_C434:
-    sta $0400,X ; menu-based palette overrides start
+    sta $0400, x ; menu-based palette overrides start
 
     inx
     bne B0F_C434
     ldx #$C0
 ; control flow target (from $C443)
 B0F_C43C:
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
-    sta $0700,X
+    sta $0700, x
     inx
     bne B0F_C43C
     rts
 
 ; turn screen off, write $800 [space] tiles to PPU $2000, turn screen on
 ; control flow target (from $C533, $D2E1)
-; external control flow target (from $04:$870C, $06:$A981, $07:$81C0, $07:$8902, $08:$801E, $09:$8008)
+B0F_C446:
     jsr $C3E8 ; wait for interrupt, set $6007 to #$FF, turn screen off
 
     lda #$20
@@ -904,8 +898,8 @@ B0F_C459:
 
 ; wait for interrupt and then set every 4th byte of $0200 - $02FC to #$F0
 ; control flow target (from $C530, $D2E4, $E281, $E28A)
-; external control flow target (from $04:$86FE, $07:$8905, $09:$800B, $0A:$805C)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+B0F_C465:
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; set every 4th byte of $0200 - $02FC to #$F0
 ; control flow target (from $C67A, $D8E0)
@@ -914,7 +908,7 @@ B0F_C459:
     lda #$F0
 ; control flow target (from $C473)
 B0F_C46C:
-    sta $0200,X ; sprite buffer start
+    sta $0200, x ; sprite buffer start
 
     inx
     inx
@@ -925,7 +919,7 @@ B0F_C46C:
 
 ; read joypad 1 data into $2F
 ; control flow target (from $C704, $D140)
-; external control flow target (from $02:$B71A, $04:$9A4D, $06:$8930, $06:$A976, $06:$AFAE, $06:$BC5D, $06:$BC74, $06:$BC7B, $08:$8299, $08:$8335, $0A:$804C)
+B0F_C476:
     lda #$01
     sta $4016 ; Joypad #1 (READ: #$10: Zapper Trigger Not Pulled, #$08: Zapper Sprite Detection, #$01: Joypad Data; WRITE: #$01: Reset Joypad Strobe, set Expansion Port Method to Read)
 
@@ -972,7 +966,7 @@ B0F_C482:
 
 ; control flow target (from $C4AC)
 B0F_C4A2:
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     cmp $9B ; item ID
 
@@ -990,7 +984,7 @@ B0F_C4AF:
     rts
 
 ; given a hero ID in $9C and an item ID in A, SEC if hero has that item, CLC otherwise
-; external control flow target (from $04:$A4ED, $04:$A9E4, $04:$AFCF, $04:$AFE3, $04:$AFEC, $04:$B3D1, $06:$8DC0, $06:$A1C1)
+B0F_C4B0:
     jsr $C496 ; given a hero ID in $9C and an item ID in A, SEC if hero has that item, CLC otherwise
 
     ldx $CB ; restore the original value of X
@@ -998,7 +992,7 @@ B0F_C4AF:
     rts
 
 ; given a hero ID in $9C and an item ID in A, remove that item from hero's inventory if present and SEC, CLC otherwise
-; external control flow target (from $06:$8DC9, $06:$92CF, $06:$92DE, $06:$97A7)
+B0F_C4B6:
     jsr $C496 ; given a hero ID in $9C and an item ID in A, SEC if hero has that item, CLC otherwise
 
     bcs B0F_C4BE ; given a party inventory offset in X and a number of items to be moved up in Y, move that many inventory items up
@@ -1015,9 +1009,9 @@ B0F_C4BE:
     beq B0F_C4CB ; if zero, then done moving items up
 
 ; copy item N+1 to item N
-    lda $0601,X ; Midenhall inventory item 2 (| #$40 if equipped)
+    lda $0601, x ; Midenhall inventory item 2 (| #$40 if equipped)
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     inx
     jmp $C4BE ; given a party inventory offset in X and a number of items to be moved up in Y, move that many inventory items up
@@ -1027,7 +1021,7 @@ B0F_C4BE:
 B0F_C4CB:
     lda #$00 ; set the final inventory slot to #$00 (no item)
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     ldx $CB ; restore the original value of X
 
@@ -1035,7 +1029,7 @@ B0F_C4CB:
     rts
 
 ; given hero ID in A and hero inventory offset in X, remove that item from hero's inventory and move all lower items up 1 slot
-; external control flow target (from $04:$A4F6, $06:$853D, $06:$95FC, $06:$9621, $06:$9706, $06:$9A1C, $06:$9AB7)
+B0F_C4D4:
     stx $CB
     asl
     asl
@@ -1052,17 +1046,17 @@ B0F_C4CB:
     jmp $C4BE ; given a party inventory offset in X and a number of items to be moved up in Y, move that many inventory items up
 
 
-; return 1 byte from bank 1's ($00,Y) in A, INC 16-bit $00,Y-$01,Y
-; external control flow target (from $04:$8F9F)
+; return 1 byte from bank 1's ($00, y) in A, INC 16-bit $00, y-$01, y
+B0F_C4E6:
     lda #$01
     jsr $C3D5 ; save A to $05F6, X to $43, and load bank specified by A
 
     tya
     tax
-    lda ($00,X)
-    inc $00,X
+    lda ($00, x)
+    inc $00, x
     bne B0F_C4F5
-    inc $01,X
+    inc $01, x
 ; control flow target (from $C4F1)
 B0F_C4F5:
     pha
@@ -1083,18 +1077,18 @@ B0F_C504:
     jsr $C3D5 ; save A to $05F6, X to $43, and load bank specified by A
 
 ; call to code in a different bank ($04:$8015)
-    jsr $8015
+    jsr B04_8015
     lda #$00
     jmp $C3D5 ; save A to $05F6, X to $43, and load bank specified by A
 
 
 ; flash screen 5 times
 ; control flow target (from $C501)
-; external control flow target (from $06:$BD17, $06:$BD81, $06:$BD8E, $07:$84F9, $07:$8687)
+B0F_C511:
     ldx #$05
     bne B0F_C517
 ; flash screen 10 times
-; external control flow target (from $04:$86ED, $04:$9CA0, $06:$85AF, $06:$8606, $06:$8BC6, $06:$9172, $06:$940B, $06:$9519, $06:$96C3, $06:$9944, $06:$9947, $06:$BD3B, $06:$BD3E, $07:$8625)
+B0F_C515:
     ldx #$0A
 ; control flow target (from $C513, $C52A)
 B0F_C517:
@@ -1108,7 +1102,7 @@ B0F_C517:
     pha ; new PPU setting
 
     ldx #$03
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     pla ; new PPU setting
 
@@ -1156,6 +1150,7 @@ B0F_C517:
 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 ; control flow target (from $C58D, $C5A0, $CAD2, $CFF6, $D03D, $D0D2, $D21A, $D22E, $D4E8, $D4FE, $D53E, $D6E3, $E383, $F693, $F69C, $FD82)
 ; external control flow target (from $00:$B793, $00:$B7AB, $00:$B8ED, $02:$B728, $04:$86FB, $04:$8AD5, $04:$8AEA, $04:$8FE4, $04:$959A, $04:$969E, $04:$973F, $04:$980B, $04:$98FA, $04:$9B61, $04:$9B71, $04:$9C84, $04:$9C9D, $04:$9CB4, $06:$81AC, $06:$882F, $06:$89F7, $06:$8BC3, $06:$8C5A, $06:$97C6, $06:$A18C, $06:$A254, $06:$A298, $06:$A2BC, $06:$B0D3, $06:$BC17, $06:$BD08, $06:$BD27, $06:$BD6E, $06:$BD7E, $06:$BD8B, $07:$8207, $07:$8218, $07:$83F1, $07:$84DA, $07:$8512, $07:$8538, $07:$85F3, $07:$8605, $07:$8613, $07:$8618, $07:$861D, $07:$8622, $07:$862B, $07:$8635, $07:$8684, $07:$868F, $08:$81E7, $08:$81F6, $08:$820E)
+B0F_C561:
     sei
     tax
     lda $05F6 ; current bank
@@ -1177,7 +1172,7 @@ B0F_C517:
 
 
 ; set $6144 to #$05
-; external control flow target (from $06:$AA60, $07:$81C6, $07:$81FF, $07:$83E9, $07:$84E0, $08:$8015)
+B0F_C577:
     sei
     tax
     lda $05F6 ; current bank
@@ -1196,41 +1191,40 @@ B0F_C517:
 
 
 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM]), wait for it to finish, then play previous BGM
-; external control flow target (from $06:$8111, $06:$8258, $06:$8656, $06:$8735, $06:$8A4F, $06:$9742, $06:$998A, $06:$A956)
+B0F_C58D:
     jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
     ldx #$03
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
 ; control flow target (from $C59B)
-; external control flow target (from $04:$975B, $04:$9902)
 B0F_C595:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda $0156 ; probably music playing flag? set to #$00 when music finishes
 
     bne B0F_C595
 ; control flow target (from $C5A8)
-; external control flow target (from $06:$A2F5)
+B0F_C59D:
     lda $05F7 ; probably BGM for current area
 
     jmp $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
 
 
-; external control flow target (from $04:$968F, $04:$9731)
+B0F_C5A3:
     ldx #$3C
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     jmp $C59D
 
 ; IRQ/BRK vector handler
-; indirect control flow target (via $FFFE)
+IRQ:
     bit $4015 ; READ: pAPU Sound/Vertical Clock Signal Register (#$40: Vertical Clock Signal IRQ Availability, #$10: Delta Modulation, #$08: Noise, #$04: Triangle, #$02: Pulse #2, #$01: Pulse #1), WRITE: pAPU Channel Control (#$10: Delta Modulation, #$08: Noise, #$04: Triangle, #$02: Pulse #2, #$01: Pulse #1)
 
     rti
 
 ; reset vector handler
-; control flow target (from $FFDB)
+Init:
     cld
 ; control flow target (from $C5B3)
 B0F_C5B0:
@@ -1271,7 +1265,7 @@ B0F_C5B5:
     tya
 ; control flow target (from $C5F9)
 B0F_C5ED:
-    sta ($00),Y ; reset all $800 of system RAM to #$00
+    sta ($00), y ; reset all $800 of system RAM to #$00
 
     inc $00
     bne B0F_C5F5
@@ -1370,7 +1364,7 @@ B0F_C5F5:
 
     jsr $C468 ; set every 4th byte of $0200 - $02FC to #$F0
 
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jsr $F775 ; load ROM bank #$03
 
@@ -1386,7 +1380,7 @@ B0F_C5F5:
 
 ; call to code in a different bank ($0B:$8000)
     jsr $8000
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -1399,7 +1393,7 @@ B0F_C5F5:
     lda #$8F
     sta $30
     ldx #$1E
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     jsr $F75C ; load ROM bank #$00
 
@@ -1412,16 +1406,16 @@ B0F_C5F5:
     ldx #$17
 ; control flow target (from $C6BE)
 B0F_C6B7:
-    lda $C78F,X ; hero starting equipment
+    lda $C78F, x ; hero starting equipment
 
-    sta $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    sta $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     dex
     bpl B0F_C6B7
     lda #$FF
     sta $8E ; flag for in battle or not (#$FF)?
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -1437,7 +1431,7 @@ B0F_C6B7:
 
     bne B0F_C6ED
     jsr $C76C
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -1445,7 +1439,7 @@ B0F_C6B7:
 
 .byte $CF
 ; data -> code
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -1469,7 +1463,7 @@ B0F_C6ED:
 
     jsr $C76C
     jsr $C42A
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -1479,7 +1473,7 @@ B0F_C6ED:
 ; data -> code
     jsr $D2B9
 ; call to code in a different bank ($06:$8F4E)
-    jsr $8F4E
+    jsr B06_8F4E
 ; control flow target (from $C6EA, $C716, $C898, $C91E, $C928, $C9BD, $CA4A, $CA91, $CAB0, $CAB7, $CB39, $CB5F, $CBA2, $CBDC, $CC07, $CC5D, $CC9F, $D292)
     lda #$00
     sta $03 ; game clock?
@@ -1494,7 +1488,7 @@ B0F_C6ED:
     jsr $F761 ; load ROM bank #$06
 
 ; call to code in a different bank ($06:$8048)
-    jsr $8048
+    jsr B06_8048
     lda #$00
     sta $35 ; flag indicating whether any menu is currently open
 
@@ -1537,7 +1531,7 @@ B0F_C73D:
 
 ; control flow target (from $C73F, $D426, $E5CD, $E641, $E6BF, $E7A2)
 B0F_C747:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda $03 ; game clock?
 
@@ -1564,8 +1558,8 @@ B0F_C758:
     ldy #$07
 ; control flow target (from $C767)
 B0F_C760:
-    lda $C7A7,Y
-    sta $053A,Y
+    lda $C7A7, y
+    sta $053A, y
     dey
     bpl B0F_C760
     sty $1F ; some kind of map type (#$00: World Map, #$01: other non-dungeon maps, #$02: maps #$2B - #$43 inclusive, #$03: maps >= #$44, #$FF => game menu); $1F = #$FF
@@ -1579,13 +1573,13 @@ B0F_C760:
     jsr $F766 ; load ROM bank #$04
 
 ; call to code in a different bank ($04:$8009)
-    jsr $8009 ; update each hero's stats based on their current EXP
+    jsr B04_8009 ; update each hero's stats based on their current EXP
 
     lda #$0F
     sta $30
 ; restore full HP/MP to all living party members
 ; control flow target (from $D2D5)
-; external control flow target (from $06:$9419, $06:$BD4C)
+B0F_C77B:
     lda #$01 ; make sure each hero has at least 1 HP so that $06:$8DCC will fully heal them
 
     sta $063B ; Midenhall Current HP, low byte
@@ -1597,10 +1591,10 @@ B0F_C760:
     jsr $F761 ; load ROM bank #$06
 
 ; call to code in a different bank ($06:$8DCC)
-    jsr $8DCC ; restore full HP to all living party members
+    jsr B06_8DCC ; restore full HP to all living party members
 
 ; call to code in a different bank ($06:$8DEC)
-    jmp $8DEC ; restore full MP to all living party members
+    jmp B06_8DEC ; restore full MP to all living party members
 
 
 
@@ -1638,11 +1632,11 @@ B0F_C760:
     asl
     asl
     tay
-    lda $C7EF,Y ; save point map ID
+    lda $C7EF, y ; save point map ID
 
     sta $31 ; current map ID
 
-    lda $C7F0,Y ; save point X-pos
+    lda $C7F0, y ; save point X-pos
 
     sta $16 ; current map X-pos (1)
 
@@ -1650,7 +1644,7 @@ B0F_C760:
 
     sta $2A ; current map X-pos pixel, low byte
 
-    lda $C7F1,Y ; save point Y-pos
+    lda $C7F1, y ; save point Y-pos
 
     sta $17 ; current map Y-pos (1)
 
@@ -1658,7 +1652,7 @@ B0F_C760:
 
     sta $2C ; current map Y-pos pixel, low byte
 
-    lda $C7F2,Y ; save point ???
+    lda $C7F2, y ; save point ???
 
     sta $45
     lda #$00
@@ -1682,7 +1676,7 @@ B0F_C7DE:
     dex
     bne B0F_C7DE
     jsr $E28A
-    jmp $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jmp B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 
 
@@ -1715,7 +1709,7 @@ B0F_C7DE:
 
     jsr $D8CB
     ldx #$3C
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
 
@@ -1733,7 +1727,7 @@ B0F_C7DE:
     jsr $CCD2 ; execute scripted motion
 
     ldx #$3C
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     jsr $F6EA ; open main dialogue window and display string ID specified by byte following JSR
 
@@ -1821,7 +1815,7 @@ B0F_C7DE:
     lda $D0 ; Malroth status flag (#$FF = defeated, #$00 = alive, others = countdown to battle)
 
     bpl B0F_C89B
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -1837,7 +1831,7 @@ B0F_C7DE:
     lda #$06
     sta $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -1853,8 +1847,8 @@ B0F_C898:
 B0F_C89B:
     jsr $F761 ; load ROM bank #$06
 
-; call to code in a different bank ($06:$A09E)
-    jsr $A09E
+; call to code in a different bank ($06:B06_A09E)
+    jsr B06_A09E
     nop
     nop
     nop
@@ -1869,29 +1863,29 @@ B0F_C89B:
     ldy #$00
 ; control flow target (from $C8EA)
 B0F_C8AF:
-    cmp $C870,Y ; Hargon's minion map ID
+    cmp $C870, y ; Hargon's minion map ID
 
     bne B0F_C8E3
     lda $16 ; current map X-pos (1)
 
     lsr
-    cmp $C871,Y ; Hargon's minion X-pos
+    cmp $C871, y ; Hargon's minion X-pos
 
     bne B0F_C8EC
     lda $17 ; current map Y-pos (1)
 
     lsr
-    cmp $C872,Y ; Hargon's minion Y-pos
+    cmp $C872, y ; Hargon's minion Y-pos
 
     bne B0F_C8EC
-    lda $C873,Y ; Hargon's minion $05FD value
+    lda $C873, y ; Hargon's minion $05FD value
 
     sta $05FD
     and $D1 ; fixed battle status bits (#$10 = Zarlox, #$08 = Bazuzu, #$04 = Atlas, #$02 = Hamlin Waterway Gremlins, #$01 = Evil Clown)
 
     bne B0F_C8EC ; branch if minion already dead
 
-    lda $C874,Y ; Hargon's minion fixed encounter ID
+    lda $C874, y ; Hargon's minion fixed encounter ID
 
     jsr $D25C ; trigger fixed battle A
 
@@ -1926,13 +1920,13 @@ B0F_C8EC:
     cpx #$00
     beq B0F_C905
 ; call to code in a different bank ($04:$8018)
-    jsr $8018
+    jsr B04_8018
     jmp $C908
 
 ; control flow target (from $C8F1, $C8FD)
 ; call to code in a different bank ($04:$8000)
 B0F_C905:
-    jsr $8000
+    jsr B04_8000
 ; control flow target (from $C902)
     jsr $D262
 ; control flow target (from $C8AB)
@@ -1955,8 +1949,8 @@ B0F_C90B:
     bne B0F_C921
     jsr $D2FB ; load ROM bank 6
 
-; call to code in a different bank ($06:$A2A7)
-    jsr $A2A7
+; call to code in a different bank ($06:B06_A2A7)
+    jsr B06_A2A7
     jmp $C700
 
 ; control flow target (from $C90F, $C916)
@@ -2063,7 +2057,7 @@ B0F_C95C:
 ; control flow target (from $C96C)
 B0F_C972:
     jsr $D262
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jmp $C940
 
@@ -2098,7 +2092,7 @@ B0F_C97B:
 
     lda #$06
     jsr $D29A
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jsr $F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
 
@@ -2467,15 +2461,15 @@ B0F_CAB3:
     bne B0F_CB02
     jmp $C700
 
-; external control flow target (from $06:$91C0)
+B0F_CABA:
     jsr $E6B4
     jsr $E6B4
     jsr $E6B4
     jsr $D058
     lda #$0A
-    sta $052A,Y
+    sta $052A, y
     lda #$09
-    sta $052B,Y
+    sta $052B, y
     lda #$87 ; Music ID #$87: hit 2 SFX
 
     jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
@@ -2488,7 +2482,7 @@ B0F_CAB3:
     sta $1C
     jsr $DEC5
     ldx #$0A
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
 
@@ -2740,23 +2734,23 @@ B0F_CBA5:
     ldy #$00
 ; control flow target (from $CBE2)
 B0F_CBA7:
-    cmp $CCAF,Y
+    cmp $CCAF, y
     bne B0F_CBDF
     lda $31 ; current map ID
 
-    cmp $CCB4,Y
+    cmp $CCB4, y
     bne B0F_CBDC
     lda $16 ; current map X-pos (1)
 
-    cmp $CCB9,Y
+    cmp $CCB9, y
     bcc B0F_CBDC
-    cmp $CCBE,Y
+    cmp $CCBE, y
     bcs B0F_CBDC
     lda $17 ; current map Y-pos (1)
 
-    cmp $CCC3,Y
+    cmp $CCC3, y
     bcc B0F_CBDC
-    cmp $CCC8,Y
+    cmp $CCC8, y
     bcs B0F_CBDC
     lda $0558 ; NPC #$03 motion nybble + direction nybble
 
@@ -2765,7 +2759,7 @@ B0F_CBA7:
     lda #$FF
     sta $0559 ; NPC #$03 sprite ID
 
-    lda $CCCD,Y
+    lda $CCCD, y
     sta $44 ; non-saved event status (#$00 = event start, #$01 = Lianport Gremlins defeated, #$02 = met with Lianport grandfather/have no friends at Shrine SW of Cannock, #$03 = King Midenhall moved to stairs, #$04 = King Midenhall moved down stairs, #$05 = King Midenhall spoke on Midenhall 1F, #$0B = Lighthouse Wizard 7F, #$1B Lighthouse Wizard 2F spoke, #$64 = Hargon dead, #$FF = event end)
 
 ; control flow target (from $CBB1, $CBB8, $CBBD, $CBC4, $CBC9, $CBD0, $CBEC, $CBFA)
@@ -2824,7 +2818,7 @@ B0F_CBFC:
     jmp $C700
 
 ; trigger Stars Crest battle
-; external control flow target (from $06:$9BA0)
+B0F_CC0A:
     jsr $FA2A ; display string ID specified by next byte
 
 
@@ -2868,7 +2862,7 @@ B0F_CBFC:
     and #$02
     bne B0F_CC5C
     ldx #$46
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     jsr $F6F6 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
 
@@ -2964,7 +2958,7 @@ B0F_CC72:
 B0F_CC97:
     cmp #$64
     bne B0F_CC5D
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -2974,7 +2968,7 @@ B0F_CC97:
 ; data -> code
     jmp $C700
 
-; external control flow target (from $06:$90C6)
+B0F_CCA2:
     jsr $CCF1 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
 
 
@@ -3066,10 +3060,11 @@ B0F_CC97:
 .byte $14
 
 .byte $16
+
 ; data -> code
 ; execute scripted motion
 ; control flow target (from $C836, $C864, $C93D, $C959, $CA0C, $CA32, $CA43, $CAF0, $CB2B, $CC85, $CCA9, $CCE7, $FF84)
-; external control flow target (from $06:$BB3A)
+B0F_CCD2:
     lda $35 ; flag indicating whether any menu is currently open
 
     pha
@@ -3078,7 +3073,7 @@ B0F_CC97:
 
 ; control flow target (from $CCE1)
 B0F_CCD9:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jsr $D8CB
     lda $38
@@ -3088,7 +3083,7 @@ B0F_CCD9:
 
     rts
 
-; external control flow target (from $06:$BB91, $06:$BBA5)
+B0F_CCE7:
     jsr $CCD2 ; execute scripted motion
 
     lda #$06
@@ -3099,7 +3094,7 @@ B0F_CCD9:
 
 ; set up scripted motion variables based on next 4 bytes (low 5 bits = NPC index, NPC index + 1's motion + direction byte?, 2-byte pointer to motion script)
 ; control flow target (from $C82F, $C85D, $C932, $C94B, $C952, $C9B2, $C9FC, $CA05, $CA15, $CA22, $CA2B, $CA3C, $CA5F, $CA66, $CAE9, $CB0D, $CB24, $CB54, $CB97, $CC79, $CCA2, $CEC2)
-; external control flow target (from $06:$BACC, $06:$BAD5, $06:$BADF, $06:$BB83, $06:$BB8A, $06:$BB97, $06:$BB9E, $07:$822A, $07:$823B, $07:$8271, $07:$82CB, $07:$82EE, $07:$8329, $07:$8358, $07:$836D, $07:$837E, $07:$83F4, $07:$845C, $07:$8495, $07:$84CE, $07:$84EF, $07:$84FC, $07:$8515, $07:$852C, $07:$8559, $07:$8571, $07:$8578, $07:$85B3, $07:$85BA, $07:$85E7)
+B0F_CCF1:
     pla ; return address low byte
 
     sta $0C ; return address low byte
@@ -3109,7 +3104,7 @@ B0F_CCD9:
     sta $0D ; return address high byte
 
     ldy #$01
-    lda ($0C),Y ; data byte 0
+    lda ($0C), y ; data byte 0
 
     sta $38
     and #$7F ; useless op
@@ -3119,19 +3114,19 @@ B0F_CCD9:
     asl
     tax
     iny
-    lda ($0C),Y ; data byte 1
+    lda ($0C), y ; data byte 1
 
-    sta $0558,X ; NPC #$03 motion nybble + direction nybble
-
-    iny
-    lda ($0C),Y ; data byte 2
-
-    sta $0552,X ; NPC #$02 scripted motion low byte
+    sta $0558, x ; NPC #$03 motion nybble + direction nybble
 
     iny
-    lda ($0C),Y ; data byte 3
+    lda ($0C), y ; data byte 2
 
-    sta $0553,X ; NPC #$02 scripted motion high byte
+    sta $0552, x ; NPC #$02 scripted motion low byte
+
+    iny
+    lda ($0C), y ; data byte 3
+
+    sta $0553, x ; NPC #$02 scripted motion high byte
 
     lda $0C ; return address low byte
 
@@ -3155,7 +3150,7 @@ B0F_CCD9:
 
 ; set Z if your current map position is the (X, Y) co-ordinates given by the next 2 bytes
 ; control flow target (from $C911, $C92B, $C9C7, $C9D2, $C9DD, $CA51, $CA58, $CA73, $CA7A, $CA81, $CA9E, $CB06, $CB16, $CB1D, $CB46, $CB4D, $CB82, $CB89, $CBEE, $CBF5, $CC64, $CC6B)
-; external control flow target (from $06:$96B7, $06:$9793, $06:$BB3D)
+B0F_CD26:
     pla ; original return address, low byte
 
     sta $0C ; original return address, low byte
@@ -3181,26 +3176,26 @@ B0F_CCD9:
 
     lda $16 ; current map X-pos (1)
 
-    cmp ($0C),Y
+    cmp ($0C), y
     bne B0F_CD44 ; not the same X-pos => Z not set
 
     lda $17 ; current map Y-pos (1)
 
     iny ; 2 bytes after the original return address
 
-    cmp ($0C),Y ; set or clear Z based on whether your Y-pos matches
+    cmp ($0C), y ; set or clear Z based on whether your Y-pos matches
 
 ; control flow target (from $CD3D)
 B0F_CD44:
     rts
 
-; external control flow target (from $06:$971D)
+B0F_CD45:
     jsr $CD51
 ; control flow target (from $CD4E)
     jmp $F761 ; load ROM bank #$06
 
 
-; external control flow target (from $06:$9724)
+B0F_CD4B:
     jsr $CD5C
     jmp $CD48
 
@@ -3229,20 +3224,20 @@ B0F_CD68:
     lda $C9
     ldy $97 ; subject hero ID $97
 
-    sta $053A,Y
+    sta $053A, y
     jsr $D8CB
     ldx #$04
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda $96 ; temp storage for item/spell/type/etc. IDs
 
     ldy $97 ; subject hero ID $97
 
-    sta $053A,Y
+    sta $053A, y
     jsr $D8CB
     ldx $49 ; object hero/target/item/string ID $49
 
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     inc $49 ; object hero/target/item/string ID $49
 
@@ -3397,7 +3392,7 @@ B0F_CE24:
     ldy #$00
 ; control flow target (from $CE38)
 B0F_CE2A:
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$04
     beq B0F_CE3F
@@ -3478,36 +3473,36 @@ B0F_CE87:
     ldy #$00
 ; control flow target (from $CEE2)
 B0F_CE89:
-    cmp $CF2C,Y
+    cmp $CF2C, y
     bne B0F_CEDF
     lda $44 ; non-saved event status (#$00 = event start, #$01 = Lianport Gremlins defeated, #$02 = met with Lianport grandfather/have no friends at Shrine SW of Cannock, #$03 = King Midenhall moved to stairs, #$04 = King Midenhall moved down stairs, #$05 = King Midenhall spoke on Midenhall 1F, #$0B = Lighthouse Wizard 7F, #$1B Lighthouse Wizard 2F spoke, #$64 = Hargon dead, #$FF = event end)
 
-    cmp $CF31,Y
+    cmp $CF31, y
     bne B0F_CEA8
-    lda $CF36,Y
+    lda $CF36, y
     sta $0554 ; NPC #$03 X-pos
 
-    lda $CF3B,Y
+    lda $CF3B, y
     sta $0555 ; NPC #$03 Y-pos
 
-    lda $CF40,Y
+    lda $CF40, y
     sta $0558 ; NPC #$03 motion nybble + direction nybble
 
     rts
 
 ; control flow target (from $CE93)
 B0F_CEA8:
-    cmp $CF45,Y
+    cmp $CF45, y
     bne B0F_CED9
     lda $16 ; current map X-pos (1)
 
-    cmp $CF4A,Y
+    cmp $CF4A, y
     bne B0F_CED9
     lda $17 ; current map Y-pos (1)
 
-    cmp $CF4F,Y
+    cmp $CF4F, y
     bne B0F_CED9
-    lda $CF31,Y
+    lda $CF31, y
     sta $44 ; non-saved event status (#$00 = event start, #$01 = Lianport Gremlins defeated, #$02 = met with Lianport grandfather/have no friends at Shrine SW of Cannock, #$03 = King Midenhall moved to stairs, #$04 = King Midenhall moved down stairs, #$05 = King Midenhall spoke on Midenhall 1F, #$0B = Lighthouse Wizard 7F, #$1B Lighthouse Wizard 2F spoke, #$64 = Hargon dead, #$FF = event end)
 
     tya
@@ -3528,11 +3523,11 @@ B0F_CEA8:
     pla
     asl
     tay
-    lda $CF54,Y ; motion script pointers for Lighthouse Wizard
+    lda $CF54, y ; motion script pointers for Lighthouse Wizard
 
     sta $0552 ; NPC #$02 scripted motion low byte
 
-    lda $CF55,Y
+    lda $CF55, y
     sta $0553 ; NPC #$02 scripted motion high byte
 
     rts
@@ -3709,8 +3704,7 @@ B0F_CF27:
     jsr $D8CB
     jmp $F770 ; load ROM bank #$02
 
-
-; external control flow target (from $06:$8053, $06:$827A, $06:$9371, $06:$A311, $06:$BBC4, $06:$BC2D)
+B0F_CF64:
     jsr $D8CB
 ; load ROM bank #$06
 ; control flow target (from $CF6D, $CF73, $CF79)
@@ -3718,23 +3712,20 @@ B0F_CF27:
 
 
 ; wipe selected menu region
-; external control flow target (from $06:$806F, $06:$8097, $06:$84C9, $06:$8A16, $06:$8A5C, $06:$8B09, $06:$9555, $06:$9CE0)
+B0F_CF6A:
     jsr $F78C ; wipe selected menu region
 
     jmp $CF67 ; load ROM bank #$06
 
-
-; external control flow target (from $06:$80AD, $06:$96E1)
+B0F_CF70:
     jsr $F787
     jmp $CF67 ; load ROM bank #$06
 
-
-; external control flow target (from $06:$826D)
+B0F_CF76:
     jsr $D2F7
     jmp $CF67 ; load ROM bank #$06
 
-
-; external control flow target (from $06:$8C6A, $06:$8C77, $06:$8C84, $06:$9775)
+B0F_CF7C:
     lda #$00
     sta $49 ; object hero/target/item/string ID $49
 
@@ -3764,7 +3755,7 @@ B0F_CF27:
 
 
 ; control flow target (from $CF85, $CF8D, $CF95, $CF9D)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jsr $DF89
     lda $1F ; some kind of map type (#$00: World Map, #$01: other non-dungeon maps, #$02: maps #$2B - #$43 inclusive, #$03: maps >= #$44, #$FF => game menu)
@@ -3798,9 +3789,9 @@ B0F_CFB0:
     sta $49 ; object hero/target/item/string ID $49
 
     lda $12
-    sta $052A,Y
+    sta $052A, y
     lda $13
-    sta $052B,Y
+    sta $052B, y
     lda $12
     sec
     sbc $16 ; current map X-pos (1)
@@ -3842,9 +3833,9 @@ B0F_CFFC:
     sta $49 ; object hero/target/item/string ID $49
 
     lda $12
-    sta $052A,Y
+    sta $052A, y
     lda $13
-    sta $052B,Y
+    sta $052B, y
     lda $12
     asl
     sec
@@ -3881,8 +3872,8 @@ B0F_CFFC:
     ldy #$00
 ; control flow target (from $D066)
 B0F_D05A:
-    lda $052A,Y
-    ora $052B,Y
+    lda $052A, y
+    ora $052B, y
     beq B0F_D06A
     iny
     iny
@@ -3915,7 +3906,7 @@ B0F_D06A:
     sta $0E
     jsr $DE2D
     ldy #$00
-    lda ($07),Y
+    lda ($07), y
     beq B0F_D08C
     rts
 
@@ -3926,7 +3917,7 @@ B0F_D08C:
     sta $1E
     jmp $DEC5
 
-; external control flow target (from $06:$9B30)
+B0F_D095:
     lda $1F ; some kind of map type (#$00: World Map, #$01: other non-dungeon maps, #$02: maps #$2B - #$43 inclusive, #$03: maps >= #$44, #$FF => game menu)
 
     bne B0F_D0A0
@@ -3950,9 +3941,9 @@ B0F_D0A0:
     ldy #$00
 ; control flow target (from $D0BA)
 B0F_D0AE:
-    lda $051A,Y ; something to do with whether you've opened the chest containing the Shield of Erdrick
+    lda $051A, y ; something to do with whether you've opened the chest containing the Shield of Erdrick
 
-    ora $051B,Y
+    ora $051B, y
     beq B0F_D0BE
     iny
     iny
@@ -3962,14 +3953,14 @@ B0F_D0AE:
 ; control flow target (from $D0B4)
 B0F_D0BE:
     lda $12
-    sta $051A,Y ; something to do with whether you've opened the chest containing the Shield of Erdrick
+    sta $051A, y ; something to do with whether you've opened the chest containing the Shield of Erdrick
 
     lda $13
-    sta $051B,Y
+    sta $051B, y
     ldy #$00
-    lda ($10),Y
+    lda ($10), y
     and #$E0
-    sta ($10),Y
+    sta ($10), y
     lda #$92 ; Music ID #$92: open chest SFX
 
     jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
@@ -3980,7 +3971,7 @@ B0F_D0BE:
     sta $1C
     sta $1E
     jsr $DEC5
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
@@ -3991,23 +3982,23 @@ B0F_D0BE:
 
 ; update each hero's stats based on their current EXP
 ; control flow target (from $F5AE)
-; external control flow target (from $06:$8B04)
+B0F_D0EC:
     jsr $F766 ; load ROM bank #$04
 
 ; call to code in a different bank ($04:$8009)
-    jsr $8009 ; update each hero's stats based on their current EXP
+    jsr B04_8009 ; update each hero's stats based on their current EXP
 
     jmp $F761 ; load ROM bank #$06
 
 
 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 ; control flow target (from $C84A, $C85A, $C944, $C9AF, $CA39, $CAA9, $CB36, $CB94, $CC00, $CC0E, $CC59, $CC76, $D1A1, $D1C6)
-; external control flow target (from $06:$90C3, $06:$91B7, $06:$935C, $06:$9374, $06:$96A8, $06:$9709, $06:$979E, $06:$98F0, $06:$A1B1, $06:$A2F8, $06:$BB80, $06:$BBB3, $06:$BBD7, $07:$81FC, $07:$8227, $07:$8238, $07:$827F, $07:$82EB, $07:$8355, $07:$8366, $07:$837B, $07:$8402, $07:$84CB, $07:$8595)
+B0F_D0F5:
     txa ; save X on the stack; pointless since X gets overwritten before next use
 
     pha
     ldx #$1E
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     pla ; restore X from the stack
 
@@ -4072,8 +4063,8 @@ B0F_D12B:
 
 ; wait for interrupt, read joypad data into $2F and A
 ; control flow target (from $D115, $D120)
-; external control flow target (from $06:$809D, $06:$80A2)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+B0F_D13D:
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jsr $C476 ; read joypad 1 data into $2F
 
@@ -4082,28 +4073,27 @@ B0F_D12B:
     rts
 
 ; heal hero ID in A by random amount based on healing power in X
-; external control flow target (from $06:$8BED)
+B0F_D146:
     jsr $F766 ; load ROM bank #$04
 
 ; call to code in a different bank ($04:$8006)
-    jsr $8006
+    jsr B04_8006
     jmp $F761 ; load ROM bank #$06
 
 
 ; control flow target (from $FF60)
-; external control flow target (from $06:$A848, $06:$A98F)
+B0F_D14F:
     lda #$00
     sta $27 ; map palette; offset from ($E27C)
 
     jsr $E2F9
     jmp $F761 ; load ROM bank #$06
 
-
-; external control flow target (from $06:$A35D)
+B0F_D159:
     lda $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
     pha
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -4127,11 +4117,11 @@ B0F_D12B:
 
     rts
 
-; external control flow target (from $06:$8F20)
+B0F_D16B:
     lda $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
     pha
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -4141,7 +4131,7 @@ B0F_D12B:
 ; data -> code
     jmp $D164
 
-; external control flow target (from $06:$A882)
+B0F_D175:
     lda #$8F
     sta $30
     jsr $D2DE
@@ -4175,7 +4165,7 @@ B0F_D12B:
 
 
 ; handle Hamlin Waterway Gremlins fight
-; external control flow target (from $06:$906E)
+B0F_D1A1:
     jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     jsr $F766 ; load ROM bank #$04
@@ -4204,7 +4194,7 @@ B0F_D1C0:
     jmp $D2FB ; load ROM bank 6
 
 
-; external control flow target (from $06:$9342)
+B0F_D1C6:
     jsr $D0F5 ; wait for a while and then wipe menu regions #$03, #$00, and #$01
 
     jsr $F766 ; load ROM bank #$04
@@ -4229,7 +4219,7 @@ B0F_D1DF:
 
 
 ; trigger Fixed Battle #$01: 1 Evil Clown (Map ID #$04: Midenhall B1)
-; external control flow target (from $06:$80E5)
+B0F_D1E5:
     lda #$FF
     sta $0569 ; NPC #$05 sprite ID
 
@@ -4246,15 +4236,12 @@ B0F_D1DF:
 
 
 ; trigger Fixed Battle #$0B: 1 Hargon (Map ID #$17: Hargon's Castle 7F)
-; external control flow target (from $06:$935F)
+B0F_D1F8:
     lda #$0B ; Fixed Battle #$0B: 1 Hargon (Map ID #$17: Hargon's Castle 7F)
-
     jsr $D25C ; trigger fixed battle A
-
     jmp $D2FB ; load ROM bank 6
 
-
-; external control flow target (from $06:$BD2A)
+B0F_D200:
     jsr $F766 ; load ROM bank #$04
 
     lda #$0C ; Fixed Battle #$0C: 1 Malroth (Map ID #$17: Hargon's Castle 7F)
@@ -4276,7 +4263,7 @@ B0F_D215:
 
 
 ; open path to Sea Cave
-; external control flow target (from $06:$98FD)
+B0F_D218:
     lda #$97 ; Music ID #$97: shoals submerging SFX
 
     jsr $C561 ; play PCM specified by A (>= #$80 = sound effect [SFX], < #$80 = background music [BGM])
@@ -4303,7 +4290,7 @@ B0F_D215:
     jmp $F761 ; load ROM bank #$06
 
 
-; external control flow target (from $06:$96B0)
+B0F_D23E:
     jsr $F75C ; load ROM bank #$00
 
 ; call to code in a different bank ($00:$8009)
@@ -4319,7 +4306,7 @@ B0F_D215:
 ; call to code in a different bank ($00:$800C)
     jmp $800C
 
-; external control flow target (from $06:$97BA, $06:$97C1)
+B0F_D256:
     jsr $DEC5
     jmp $F761 ; load ROM bank #$06
 
@@ -4329,7 +4316,7 @@ B0F_D215:
     jsr $F766 ; load ROM bank #$04
 
 ; call to code in a different bank ($04:$800F)
-    jsr $800F
+    jsr B04_800F
 ; control flow target (from $C908, $C972, $D1C0, $D1DF)
     lda $98 ; outcome of last fight?
 
@@ -4345,7 +4332,7 @@ B0F_D267:
 
     cmp #$FF
     bne B0F_D295
-; external control flow target (from $06:$A25A)
+B0F_D271:
     lda #$26
     sta $050E
     jsr $D2DE
@@ -4360,11 +4347,11 @@ B0F_D267:
     jsr $D2FB ; load ROM bank 6
 
 ; call to code in a different bank ($06:$8DCC)
-    jsr $8DCC ; restore full HP to all living party members
+    jsr B06_8DCC ; restore full HP to all living party members
 
     jsr $D2B9
 ; call to code in a different bank ($06:$8F39)
-    jsr $8F39
+    jsr B06_8F39
     jmp $C700
 
 ; control flow target (from $D26F)
@@ -4426,29 +4413,29 @@ B0F_D2D8:
 
 ; X = 1 => CLC and update $0C-$0D to warp point data to use if Outside allowed from current map, SEC otherwise, X = 2 => CLC and update $0C-$0D to warp point data to use if Return allowed from current map, SEC otherwise, X = 3 => disembark from ship and update ship position based on last save point ID $48
 ; control flow target (from $D2C1, $D2F1)
-; external control flow target (from $06:$8C53, $06:$8CD6)
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+B0F_D2E7:
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
 ; indirect data load target
 
 .byte $A3
-; data -> code
+
     php
     jsr $F761 ; load ROM bank #$06
 
     plp
     rts
 
-; external control flow target (from $06:$BD62)
+B0F_D2F1:
     jsr $D2E7 ; X = 1 => CLC and update $0C-$0D to warp point data to use if Outside allowed from current map, SEC otherwise, X = 2 => CLC and update $0C-$0D to warp point data to use if Return allowed from current map, SEC otherwise, X = 3 => disembark from ship and update ship position based on last save point ID $48
 
     jmp $F761 ; load ROM bank #$06
 
 
 ; control flow target (from $CF76, $D2A6, $D311, $D3C2, $D4A6, $E4BE, $E9B7)
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -4464,19 +4451,19 @@ B0F_D2D8:
     jmp $C3D5 ; save A to $05F6, X to $43, and load bank specified by A
 
 
-; external control flow target (from $06:$8669, $06:$8CC2, $06:$9420, $06:$9427, $06:$942E, $06:$A225)
+B0F_D302:
     jsr $F75C ; load ROM bank #$00
 
     ldy $97 ; subject hero ID $97
 
-    lda $D31F,Y
+    lda $D31F, y
 ; call to code in a different bank ($00:$8003)
     jsr $8003
     lda #$FF
     sta $45
     jsr $D2F7
     jsr $D8CB
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
@@ -4498,27 +4485,27 @@ B0F_D2D8:
 .byte $59
 
 .byte $5A
-; data -> code
-; external control flow target (from $06:$BD0B)
+
+B0F_D325:
     jsr $DEC5
     jsr $C504
 ; control flow target (from $D331)
     jmp $F761 ; load ROM bank #$06
 
 
-; external control flow target (from $06:$BD71)
+B0F_D32E:
     jsr $D8CB
     jmp $D32B
 
 ; post-Malroth dialogue
-; external control flow target (from $06:$80B9)
+B0F_D334:
     jsr $F75C ; load ROM bank #$00
 
 ; call to code in a different bank ($00:$8012)
     jsr $8012 ; return value for $0D for post-Malroth dialogue
 
     sta $0D
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -4529,7 +4516,7 @@ B0F_D2D8:
     jmp $D2FB ; load ROM bank 6
 
 
-; external control flow target (from $06:$BC2A)
+B0F_D343:
     nop
     nop
     nop
@@ -4546,7 +4533,7 @@ B0F_D350:
 
     bne B0F_D350
     sei
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -4568,7 +4555,7 @@ B0F_D350:
     jsr $F770 ; load ROM bank #$02
 
     ldy #$04
-    lda ($10),Y
+    lda ($10), y
     and #$FC
     sta $3B ; high nybble = terrain ID
 
@@ -4716,16 +4703,16 @@ B0F_D429:
     ldy #$18
 ; control flow target (from $D447)
 B0F_D42B:
-    lda $0541,Y ; NPC #$00 sprite ID
+    lda $0541, y ; NPC #$00 sprite ID
 
     cmp #$FF
     beq B0F_D440
-    lda $053C,Y ; NPC #$00 ?
+    lda $053C, y ; NPC #$00 ?
 
     cmp $28 ; current map X-pos (2)
 
     bne B0F_D440
-    lda $053D,Y ; NPC #$00 ?
+    lda $053D, y ; NPC #$00 ?
 
     cmp $29 ; current map Y-pos (2)
 
@@ -4744,9 +4731,9 @@ B0F_D449:
     jsr $D450
     ldy #$08
 ; control flow target (from $D44B)
-    lda $0542,Y ; NPC #$00 ?
+    lda $0542, y ; NPC #$00 ?
 
-    ora $0543,Y ; NPC #$00 ?
+    ora $0543, y ; NPC #$00 ?
 
     bne B0F_D459
     rts
@@ -4761,9 +4748,9 @@ B0F_D459:
 
 ; control flow target (from $D45C)
     sec
-    sbc $0544,Y ; NPC #$01 ?
+    sbc $0544, y ; NPC #$01 ?
 
-    sta $0546,Y ; NPC #$01 ?
+    sta $0546, y ; NPC #$01 ?
 
     rts
 
@@ -4793,7 +4780,7 @@ B0F_D47B:
 
     bne B0F_D4B1
     jsr $D6DA
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$FF
     sta $05D9 ; NPC #$13 sprite ID
@@ -4908,7 +4895,7 @@ B0F_D517:
     ldy #$00
 ; control flow target (from $D535, $D539)
 B0F_D526:
-    lda ($0C),Y
+    lda ($0C), y
     and #$7F
     cmp $31 ; current map ID
 
@@ -4955,7 +4942,7 @@ B0F_D557:
     ldy #$05
 ; control flow target (from $D561)
 B0F_D55B:
-    cmp $D69B,Y
+    cmp $D69B, y
     beq B0F_D517
     dey
     bpl B0F_D55B
@@ -4965,12 +4952,12 @@ B0F_D55B:
     tax
     asl
     tay
-    lda $D6A9,X
+    lda $D6A9, x
     sta $0F
-    lda $D6A1,Y
+    lda $D6A1, y
     sta $12
     sta $10
-    lda $D6A2,Y
+    lda $D6A2, y
     sta $13
     sta $11
     jsr $F761 ; load ROM bank #$06
@@ -4980,8 +4967,8 @@ B0F_D55B:
     lda $10
     pha
     lda #$6E
-; call to code in a different bank ($06:$A369)
-    jsr $A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
+; call to code in a different bank ($06:B06_A369)
+    jsr B06_A369 ; check for item A in party inventory, returning inventory index of item in A/X if found, #$FF if not
 
     tax
     pla
@@ -4991,14 +4978,14 @@ B0F_D55B:
     cpx #$FF
     bne B0F_D59D
 ; call to code in a different bank ($06:$8CD4)
-    jsr $8CD4 ; handler for Outside spell effect
+    jsr B06_8CD4 ; handler for Outside spell effect
 
     jmp $D5B6
 
 ; control flow target (from $D595)
 ; call to code in a different bank ($06:$8CD4)
 B0F_D59D:
-    jsr $8CD4 ; handler for Outside spell effect
+    jsr B06_8CD4 ; handler for Outside spell effect
 
     lsr $0E
     beq B0F_D5B6
@@ -5019,16 +5006,16 @@ B0F_D5B6:
     jsr $F770 ; load ROM bank #$02
 
     ldy #$00
-    lda ($0C),Y
+    lda ($0C), y
     sta $5A ; Crest/direction name write buffer start
 
     iny
-    lda ($0C),Y
+    lda ($0C), y
     clc
     adc $12
     sta $5B
     iny
-    lda ($0C),Y
+    lda ($0C), y
     clc
     adc $13
     sta $5C
@@ -5037,7 +5024,7 @@ B0F_D5B6:
     pha
     jsr $D6E1
     ldx #$28
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda $D699
     sta $0C
@@ -5080,7 +5067,7 @@ B0F_D5E8:
 
     and #$03
     tay
-    lda $D6A9,Y
+    lda $D6A9, y
     sta $0F
     jmp $D5CF
 
@@ -5102,16 +5089,16 @@ B0F_D61A:
     sbc #$38 ; Map ID #$38: Cave to Rhone 1F
 
     tax
-    lda $D6B2,X
+    lda $D6B2, x
     sta $5A ; Crest/direction name write buffer start
 
-    lda $D6BA,X
+    lda $D6BA, x
     jsr $D683
-    adc $D6CA,X
+    adc $D6CA, x
     sta $5B
-    lda $D6C2,X
+    lda $D6C2, x
     jsr $D683
-    adc $D6D2,X
+    adc $D6D2, x
     sta $5C
     lda $14
     sta $0C
@@ -5120,11 +5107,11 @@ B0F_D61A:
     jsr $DDFC
     lda #$5F
     sta $09
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     lda $07
     clc
@@ -5134,9 +5121,9 @@ B0F_D61A:
     inc $08
 ; control flow target (from $D66B)
 B0F_D66F:
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     jmp $D60C
 
@@ -5329,7 +5316,7 @@ B0F_D6E8:
     lda #$FF
     sta $35 ; flag indicating whether any menu is currently open
 
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$00
     sta $053A
@@ -5366,7 +5353,7 @@ B0F_D721:
     jsr $D769
     ldy #$10
     jsr $D769
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jsr $D8CB
     dec $49 ; object hero/target/item/string ID $49
@@ -5376,39 +5363,39 @@ B0F_D721:
     jsr $D777
     ldy #$08
     jsr $D777
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jmp $D8CB
 
 ; control flow target (from $D770, $D773)
-    lda $053A,Y
+    lda $053A, y
     sec
-    sbc $053C,Y ; NPC #$00 ?
+    sbc $053C, y ; NPC #$00 ?
 
-    sta $053A,Y
+    sta $053A, y
     lda $97 ; subject hero ID $97
 
     cmp #$10
     beq B0F_D75F
-    lda $053A,Y
+    lda $053A, y
     sec
-    sbc $053C,Y ; NPC #$00 ?
+    sbc $053C, y ; NPC #$00 ?
 
-    sta $053A,Y
+    sta $053A, y
 ; control flow target (from $D753)
 B0F_D75F:
     iny
     rts
 
 ; control flow target (from $D7A0, $D7A3)
-    lda $0534,Y
-    sta $053C,Y ; NPC #$00 ?
+    lda $0534, y
+    sta $053C, y ; NPC #$00 ?
 
     iny
     rts
 
 ; control flow target (from $D723, $D728)
-    lda $0541,Y ; NPC #$00 sprite ID
+    lda $0541, y ; NPC #$00 sprite ID
 
     cmp #$FF
     beq B0F_D776
@@ -5419,34 +5406,34 @@ B0F_D776:
     rts
 
 ; control flow target (from $D737, $D73C)
-    lda $0541,Y ; NPC #$00 sprite ID
+    lda $0541, y ; NPC #$00 sprite ID
 
     cmp #$FF
     beq B0F_D776
-    lda $053A,Y
+    lda $053A, y
     cmp #$80
     bne B0F_D79A
-    lda $053B,Y
+    lda $053B, y
     cmp #$6F
     bne B0F_D79A
     lda #$FF
-    sta $0541,Y ; NPC #$00 sprite ID
+    sta $0541, y ; NPC #$00 sprite ID
 
     lda #$00
-    sta $053A,Y
-    sta $053B,Y
+    sta $053A, y
+    sta $053B, y
     rts
 
 ; control flow target (from $D783, $D78A)
 B0F_D79A:
-    lda $0538,Y
-    sta $0540,Y ; NPC #$00 ? + direction nybble
+    lda $0538, y
+    sta $0540, y ; NPC #$00 ? + direction nybble
 
     jsr $D761
     jmp $D761
 
 ; control flow target (from $D4F9, $D501)
-; external control flow target (from $06:$96C6)
+B0F_D7A6:
     jsr $F775 ; load ROM bank #$03
 
     lda $D7EC ; -> $03:$BD13: warp points (map ID, X-pos, Y-pos); other end is same index in $02:$A27E
@@ -5476,13 +5463,13 @@ B0F_D79A:
     jsr $F770 ; load ROM bank #$02
 
     ldy #$00
-    lda ($0C),Y
+    lda ($0C), y
     bpl B0F_D7E0
     tya
     beq B0F_D837
 ; control flow target (from $D7DB)
 B0F_D7E0:
-    lda ($0C),Y
+    lda ($0C), y
     and #$7F
     cmp #$2B
     bcs B0F_D831
@@ -5500,6 +5487,7 @@ B0F_D7E0:
 .byte $13
 
 .byte $BD
+
 ; data -> code
 ; control flow target (from $D4EB)
     jsr $F770 ; load ROM bank #$02
@@ -5529,18 +5517,18 @@ B0F_D7E0:
     lda $0D
     adc $D7ED
     sta $0D
-; external control flow target (from $06:$9956)
+B0F_D81C:
     jsr $F775 ; load ROM bank #$03
 
     ldy #$00
-    lda ($0C),Y ; map ID
+    lda ($0C), y ; map ID
 
     bpl B0F_D829
     lda #$02
     bne B0F_D837
 ; control flow target (from $D823)
 B0F_D829:
-    lda ($0C),Y ; useless op; A hasn't changed since the last LDA
+    lda ($0C), y ; useless op; A hasn't changed since the last LDA
 
     and #$7F ; useless op; we got here from BPL
 
@@ -5557,13 +5545,13 @@ B0F_D835:
 B0F_D837:
     sta $45
     ldy #$00
-    lda ($0C),Y ; warp destination map ID
+    lda ($0C), y ; warp destination map ID
 
     and #$7F
     sta $31 ; current map ID
 
     iny
-    lda ($0C),Y ; warp destination X-pos
+    lda ($0C), y ; warp destination X-pos
 
     sta $16 ; current map X-pos (1)
 
@@ -5572,7 +5560,7 @@ B0F_D837:
     sta $2A ; current map X-pos pixel, low byte
 
     iny
-    lda ($0C),Y ; warp destination Y-pos
+    lda ($0C), y ; warp destination Y-pos
 
     sta $17 ; current map Y-pos (1)
 
@@ -5605,7 +5593,7 @@ B0F_D85B:
 ; control flow target (from $D7B3, $D7FB, $D889, $D88D)
 B0F_D869:
     ldy #$00
-    lda ($0C),Y ; Map ID
+    lda ($0C), y ; Map ID
 
     and #$7F
     cmp $31 ; current map ID
@@ -5615,13 +5603,13 @@ B0F_D869:
     iny
     lda $16 ; current map X-pos (1)
 
-    cmp ($0C),Y
+    cmp ($0C), y
     bne B0F_D882 ; if different map/pos, update $0C-$0D to next index
 
     iny
     lda $17 ; current map Y-pos (1)
 
-    cmp ($0C),Y
+    cmp ($0C), y
     bne B0F_D882 ; if different map/pos, update $0C-$0D to next index
 
     rts
@@ -5641,7 +5629,7 @@ B0F_D882:
 
 ; warp to warp point given by ($0C)
 ; control flow target (from $D4CF, $D5E5)
-; external control flow target (from $06:$8C39, $06:$8C5F, $06:$BD69)
+B0F_D88F:
     pha
     jsr $F770 ; load ROM bank #$02
 
@@ -5658,7 +5646,7 @@ B0F_D882:
     and #$0F
     bne B0F_D8CB
     ldy #$00
-    lda $0549,Y ; NPC #$01 sprite ID
+    lda $0549, y ; NPC #$01 sprite ID
 
     cmp #$FF
     beq B0F_D8B3
@@ -5666,7 +5654,7 @@ B0F_D882:
 ; control flow target (from $D8AE)
 B0F_D8B3:
     ldy #$08
-    lda $0549,Y ; NPC #$01 sprite ID
+    lda $0549, y ; NPC #$01 sprite ID
 
     cmp #$FF
     beq B0F_D8BF
@@ -5741,7 +5729,7 @@ B0F_D910:
     lda #$02
     sta $34
 ; control flow target (from $DB32)
-    lda $0541,X ; NPC #$00 sprite ID
+    lda $0541, x ; NPC #$00 sprite ID
 
     cmp #$FF
     bne B0F_D924
@@ -5764,23 +5752,23 @@ B0F_D92F:
 ; control flow target (from $D95C, $D9F9)
     lda $38
     bpl B0F_D944
-    dec $053A,X
-    lda $053A,X
+    dec $053A, x
+    lda $053A, x
     cmp #$FF
     bne B0F_D944
-    dec $053B,X
+    dec $053B, x
 ; control flow target (from $D935, $D93F, $D997)
 B0F_D944:
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     and #$F3
-    sta $0540,X ; NPC #$00 ? + direction nybble
+    sta $0540, x ; NPC #$00 ? + direction nybble
 
     jmp $DB29
 
 ; control flow target (from $D931)
 B0F_D94F:
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     and #$F0
     cmp #$10
@@ -5791,19 +5779,19 @@ B0F_D94F:
 
 ; control flow target (from $D95A)
 B0F_D95F:
-    lda $053A,X
+    lda $053A, x
     sta $0C
-    lda $053B,X
+    lda $053B, x
     sta $0D
     jsr $F77A ; load ROM bank #$07
 
     ldy #$00
-    lda ($0C),Y
+    lda ($0C), y
     bpl B0F_D983
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     and #$03
-    sta $0540,X ; NPC #$00 ? + direction nybble
+    sta $0540, x ; NPC #$00 ? + direction nybble
 
     lda $38
     and #$7F
@@ -5812,16 +5800,16 @@ B0F_D95F:
 
 ; control flow target (from $D970)
 B0F_D983:
-    inc $053A,X
+    inc $053A, x
     bne B0F_D98B
-    inc $053B,X
+    inc $053B, x
 ; control flow target (from $D986)
 B0F_D98B:
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     and #$F0
-    ora ($0C),Y
-    sta $0540,X ; NPC #$00 ? + direction nybble
+    ora ($0C), y
+    sta $0540, x ; NPC #$00 ? + direction nybble
 
     and #$08
     bne B0F_D944
@@ -5835,11 +5823,11 @@ B0F_D99C:
 
     and #$03
     sta $0C
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     and #$F0
     ora $0C
-    sta $0540,X ; NPC #$00 ? + direction nybble
+    sta $0540, x ; NPC #$00 ? + direction nybble
 
     jsr $DBF8
     jsr $DC03
@@ -5850,7 +5838,7 @@ B0F_D99C:
 ; control flow target (from $D9B7)
 B0F_D9BD:
     jsr $E218
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     and #$03
     bne B0F_D9CC
@@ -5882,7 +5870,7 @@ B0F_D9DE:
 B0F_D9E6:
     lda $31 ; current map ID
 
-    cmp $D9FC,Y
+    cmp $D9FC, y
     beq B0F_D9F2
 ; control flow target (from $D9F7)
 B0F_D9ED:
@@ -5892,7 +5880,7 @@ B0F_D9ED:
 ; control flow target (from $D9EB)
 B0F_D9F2:
     lda $13
-    cmp $DA09,Y
+    cmp $DA09, y
     bne B0F_D9ED
 ; control flow target (from $D9BB, $DA1A, $DA20, $DA2B, $DA37)
 B0F_D9F9:
@@ -6004,15 +5992,15 @@ B0F_DA73:
     ldy #$18
 ; control flow target (from $DA91)
 B0F_DA75:
-    lda $0541,Y ; NPC #$00 sprite ID
+    lda $0541, y ; NPC #$00 sprite ID
 
     cmp #$FF
     beq B0F_DA8A
-    lda $053C,Y ; NPC #$00 ?
+    lda $053C, y ; NPC #$00 ?
 
     cmp $12
     bne B0F_DA8A
-    lda $053D,Y ; NPC #$00 ?
+    lda $053D, y ; NPC #$00 ?
 
     cmp $13
     beq B0F_DA37
@@ -6039,7 +6027,7 @@ B0F_DAA7:
     bne B0F_DA2B
     jsr $DF4A
     ldy #$04
-    lda ($10),Y
+    lda ($10), y
     and #$F0
     beq B0F_DABC
     cmp #$10
@@ -6048,33 +6036,33 @@ B0F_DAA7:
     bne B0F_DAA7
 ; control flow target (from $D999, $DAB2, $DAB6)
 B0F_DABC:
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     ora #$08
-    sta $0540,X ; NPC #$00 ? + direction nybble
+    sta $0540, x ; NPC #$00 ? + direction nybble
 
 ; control flow target (from $D92C)
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     and #$08
     beq B0F_DB29
     lda $35 ; flag indicating whether any menu is currently open
 
     bne B0F_DB29
-    lda $0540,X ; NPC #$00 ? + direction nybble
+    lda $0540, x ; NPC #$00 ? + direction nybble
 
     and #$03
     bne B0F_DAEB
-    lda $053F,X ; NPC #$00 ?
+    lda $053F, x ; NPC #$00 ?
 
     sec
     sbc #$01
     and #$0F
-    sta $053F,X ; NPC #$00 ?
+    sta $053F, x ; NPC #$00 ?
 
     cmp #$0F
     bne B0F_DB29
-    dec $053D,X ; NPC #$00 ?
+    dec $053D, x ; NPC #$00 ?
 
     jmp $DB29
 
@@ -6082,44 +6070,44 @@ B0F_DABC:
 B0F_DAEB:
     cmp #$01
     bne B0F_DB01
-    lda $053E,X ; NPC #$00 ?
+    lda $053E, x ; NPC #$00 ?
 
     clc
     adc #$01
     and #$0F
-    sta $053E,X ; NPC #$00 ?
+    sta $053E, x ; NPC #$00 ?
 
     bne B0F_DB29
-    inc $053C,X ; NPC #$00 ?
+    inc $053C, x ; NPC #$00 ?
 
     bne B0F_DB29
 ; control flow target (from $DAED)
 B0F_DB01:
     cmp #$02
     bne B0F_DB17
-    lda $053F,X ; NPC #$00 ?
+    lda $053F, x ; NPC #$00 ?
 
     clc
     adc #$01
     and #$0F
-    sta $053F,X ; NPC #$00 ?
+    sta $053F, x ; NPC #$00 ?
 
     bne B0F_DB29
-    inc $053D,X ; NPC #$00 ?
+    inc $053D, x ; NPC #$00 ?
 
     bne B0F_DB29
 ; control flow target (from $DB03)
 B0F_DB17:
-    lda $053E,X ; NPC #$00 ?
+    lda $053E, x ; NPC #$00 ?
 
     sec
     sbc #$01
     and #$0F
-    sta $053E,X ; NPC #$00 ?
+    sta $053E, x ; NPC #$00 ?
 
     cmp #$0F
     bne B0F_DB29
-    dec $053C,X ; NPC #$00 ?
+    dec $053C, x ; NPC #$00 ?
 
 ; control flow target (from $D921, $D94C, $D980, $DAC9, $DACD, $DAE3, $DAE8, $DAFA, $DAFF, $DB10, $DB15, $DB24)
 B0F_DB29:
@@ -6135,7 +6123,7 @@ B0F_DB29:
 B0F_DB35:
     ldx $3A
 ; control flow target (from $DBB3)
-    lda $0541,X ; NPC #$00 sprite ID
+    lda $0541, x ; NPC #$00 sprite ID
 
     cmp #$FF
     beq B0F_DB9E
@@ -6230,38 +6218,38 @@ B0F_DBD0:
 ; control flow target (from $D899, $D89E)
     jsr $DBD4
 ; control flow target (from $DBD1)
-    lda $053A,Y
+    lda $053A, y
     clc
-    adc $053E,Y ; NPC #$00 ?
+    adc $053E, y ; NPC #$00 ?
 
-    sta $053A,Y
+    sta $053A, y
     iny
     rts
 
 ; control flow target (from $D8B0, $D8BC)
     jsr $DBE3
 ; control flow target (from $DBE0)
-    lda $0546,Y ; NPC #$01 ?
+    lda $0546, y ; NPC #$01 ?
 
     sec
-    sbc $053E,Y ; NPC #$00 ?
+    sbc $053E, y ; NPC #$00 ?
 
     clc
-    adc $0544,Y ; NPC #$01 ?
+    adc $0544, y ; NPC #$01 ?
 
-    sta $0544,Y ; NPC #$01 ?
+    sta $0544, y ; NPC #$01 ?
 
     lda #$00
-    sta $053E,Y ; NPC #$00 ?
+    sta $053E, y ; NPC #$00 ?
 
     iny
     rts
 
 ; control flow target (from $D9AF, $DB66)
-    lda $053C,X ; NPC #$00 ?
+    lda $053C, x ; NPC #$00 ?
 
     sta $12
-    lda $053D,X ; NPC #$00 ?
+    lda $053D, x ; NPC #$00 ?
 
     sta $13
     rts
@@ -6297,14 +6285,14 @@ B0F_DC16:
 B0F_DC25:
     jsr $DE31
     ldy #$00
-    lda ($07),Y
+    lda ($07), y
     sta $10
     lda #$FF
     sta $11
     rts
 
 ; control flow target (from $DB3E)
-    lda $053C,X ; NPC #$00 ?
+    lda $053C, x ; NPC #$00 ?
 
     sta $0F
     lda #$00
@@ -6316,7 +6304,7 @@ B0F_DC25:
     ror
     lsr $0F
     ror
-    ora $053E,X ; NPC #$00 ?
+    ora $053E, x ; NPC #$00 ?
 
     sec
     sbc $2A ; current map X-pos pixel, low byte
@@ -6338,7 +6326,7 @@ B0F_DC5F:
     rts
 
 ; control flow target (from $DB58)
-    lda $053D,X ; NPC #$00 ?
+    lda $053D, x ; NPC #$00 ?
 
     sta $11
     lda #$00
@@ -6350,7 +6338,7 @@ B0F_DC5F:
     ror
     lsr $11
     ror
-    ora $053F,X ; NPC #$00 ?
+    ora $053F, x ; NPC #$00 ?
 
     sec
     sbc $2C ; current map Y-pos pixel, low byte
@@ -6380,16 +6368,16 @@ B0F_DC94:
 
     pla
     tax
-    lda $053A,Y
-    ora $053B,Y
+    lda $053A, y
+    ora $053B, y
     beq B0F_DCCC
-    lda $053A,Y
+    lda $053A, y
     lsr
     lsr
     lsr
     lsr
     sta $0C
-    lda $053B,Y
+    lda $053B, y
     lsr
     lsr
     lsr
@@ -6399,7 +6387,7 @@ B0F_DC94:
     jsr $DE31
     sty $0C
     ldy #$00
-    lda ($07),Y
+    lda ($07), y
     ldy $0C
     cmp #$00
     beq B0F_DCCD
@@ -6409,9 +6397,9 @@ B0F_DCCC:
 
 ; control flow target (from $DCCA)
 B0F_DCCD:
-    lda $053A,Y
+    lda $053A, y
     sta $0E
-    lda $053B,Y
+    lda $053B, y
     sta $10
     lda #$00
     sta $0F
@@ -6438,17 +6426,17 @@ B0F_DCF1:
     lda $0E
     clc
     adc $0D
-    sta $0203,X
+    sta $0203, x
     lda $0F
     adc #$00
     bne B0F_DD22
     lda $10
     clc
     adc $0C
-    sta $0200,X ; sprite buffer start
+    sta $0200, x ; sprite buffer start
 
-    lda ($12),Y
-    sta $0201,X
+    lda ($12), y
+    sta $0201, x
     iny
     lda $6D
     cmp #$03
@@ -6457,11 +6445,11 @@ B0F_DCF1:
     bcs B0F_DD1A
 ; control flow target (from $DD11)
 B0F_DD18:
-    lda ($12),Y
+    lda ($12), y
 ; control flow target (from $DD16)
 B0F_DD1A:
     dey
-    sta $0202,X
+    sta $0202, x
     inx
     inx
     inx
@@ -6497,11 +6485,11 @@ B0F_DD22:
 ; control flow target (from $DCDD)
     lda #$00
     sta $13
-    lda $0540,Y ; NPC #$00 ? + direction nybble
+    lda $0540, y ; NPC #$00 ? + direction nybble
 
     and #$03
     sta $12
-    lda $0541,Y ; NPC #$00 sprite ID
+    lda $0541, y ; NPC #$00 sprite ID
 
     sta $6D
     asl
@@ -6577,14 +6565,14 @@ B0F_DDAC:
 
     cmp #$68
     beq B0F_DDB8
-    lda ($12),Y
+    lda ($12), y
     and #$FC
     sec
     rts
 
 ; control flow target (from $DDB0)
 B0F_DDB8:
-    lda ($12),Y
+    lda ($12), y
     and #$FC
     ora #$03
     sec
@@ -6614,7 +6602,7 @@ B0F_DDD7:
     clc
     adc $37
     tax
-    lda $DDE2,X
+    lda $DDE2, x
     tax
     inc $37
     rts
@@ -6718,7 +6706,7 @@ B0F_DE65:
     jmp $DE71
 
 ; control flow target (from $DF2F, $EADF)
-; external control flow target (from $04:$8D88)
+B0F_DE6E:
     jsr $DE44
 ; control flow target (from $DE6B)
     tya
@@ -6744,9 +6732,9 @@ B0F_DE88:
     bne B0F_DE88
 ; control flow target (from $DE86)
 B0F_DE8F:
-    and ($07),Y
+    and ($07), y
     ora $09
-    sta ($07),Y
+    sta ($07), y
     sta $09
     pla
     tay
@@ -6765,7 +6753,7 @@ B0F_DE8F:
     tya
     pha
     ldy #$00
-    lda ($07),Y
+    lda ($07), y
     sta $09
     pla
     tay
@@ -6773,7 +6761,7 @@ B0F_DE8F:
     clc
     adc #$20
     sta $08
-    jmp $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jmp B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
 
 
@@ -6798,9 +6786,9 @@ B0F_DECB:
     jsr $F770 ; load ROM bank #$02
 
     ldy #$00
-    lda ($10),Y
+    lda ($10), y
     sta $09
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     lda $1C
     lsr
@@ -6809,9 +6797,9 @@ B0F_DECB:
 ; control flow target (from $DEDD)
 B0F_DEE2:
     iny
-    lda ($10),Y
+    lda ($10), y
     sta $09
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     lda $1C
     and #$02
@@ -6828,9 +6816,9 @@ B0F_DEF3:
     inc $08
 ; control flow target (from $DEFB)
 B0F_DEFF:
-    lda ($10),Y
+    lda ($10), y
     sta $09
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     lda $1C
     and #$04
@@ -6839,9 +6827,9 @@ B0F_DEFF:
 ; control flow target (from $DF0A)
 B0F_DF0F:
     iny
-    lda ($10),Y
+    lda ($10), y
     sta $09
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     lda $1C
     and #$08
@@ -6850,7 +6838,7 @@ B0F_DF0F:
 ; control flow target (from $DF1B)
 B0F_DF20:
     iny
-    lda ($10),Y
+    lda ($10), y
     and #$03
     sta $09
     lda $1A
@@ -6864,7 +6852,7 @@ B0F_DF20:
     clc
     adc #$20
     sta $08
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
 ; control flow target (from $DF34)
 B0F_DF40:
@@ -6886,10 +6874,10 @@ B0F_DF40:
     asl
     asl
     adc $0C
-    adc $DEBD,Y
+    adc $DEBD, y
     sta $10
     iny
-    lda $DEBD,Y
+    lda $DEBD, y
     adc #$00
     sta $11
     rts
@@ -7043,11 +7031,11 @@ B0F_E01F:
     sty $05F4
 ; control flow target (from $E057)
 B0F_E026:
-    lda $E0B4,Y
+    lda $E0B4, y
     clc
     adc $12
     sta $0C
-    lda $E0B8,Y
+    lda $E0B8, y
     clc
     adc $13
     sta $0E
@@ -7059,7 +7047,7 @@ B0F_E026:
     cmp #$0D
     beq B0F_E04F
     ldy $05F4
-    lda $E0BC,Y
+    lda $E0BC, y
     ora $D4
     sta $D4
 ; control flow target (from $E03B, $E03F, $E043)
@@ -7069,17 +7057,17 @@ B0F_E04F:
     cpy #$04
     bne B0F_E026
     ldy $D4
-    lda $E08C,Y
+    lda $E08C, y
     sta $D4
     bmi B0F_E085
     cmp #$15
     bcs B0F_E087
     tay
-    lda $E09C,Y
+    lda $E09C, y
     clc
     adc $12
     sta $0C
-    lda $E0A4,Y
+    lda $E0A4, y
     clc
     adc $13
     sta $0E
@@ -7087,7 +7075,7 @@ B0F_E04F:
     cmp #$04
     bne B0F_E085
     ldy $D4
-    lda $E0AC,Y
+    lda $E0AC, y
     bne B0F_E087
 ; control flow target (from $DFFD, $E060, $E07C, $E191)
 B0F_E085:
@@ -7157,10 +7145,10 @@ B0F_E087:
     adc $DF82
     sta $0F
     ldy #$00
-    lda ($0E),Y
+    lda ($0E), y
     sta $10
     iny
-    lda ($0E),Y
+    lda ($0E), y
     sta $11
     lda $0C
     cmp #$80
@@ -7168,18 +7156,18 @@ B0F_E087:
     eor #$FF
     sta $0C
     iny
-    lda ($0E),Y
+    lda ($0E), y
     clc
     sbc $10
     tay
     lda #$00
     sta $0D
 ; control flow target (from $E10F)
-    lda ($10),Y
+    lda ($10), y
     inc $0D
     and #$E0
     beq B0F_E108
-    lda ($10),Y
+    lda ($10), y
     and #$1F
     clc
     adc $0D
@@ -7197,11 +7185,11 @@ B0F_E112:
     dey
     sty $0D
 ; control flow target (from $E12D)
-    lda ($10),Y
+    lda ($10), y
     inc $0D
     and #$E0
     beq B0F_E126
-    lda ($10),Y
+    lda ($10), y
     and #$1F
     clc
     adc $0D
@@ -7216,10 +7204,10 @@ B0F_E126:
 
 ; control flow target (from $E10C, $E12A)
 B0F_E130:
-    lda ($10),Y
+    lda ($10), y
     and #$E0
     bne B0F_E162
-    lda ($10),Y
+    lda ($10), y
     and #$1F
 ; control flow target (from $E167)
 B0F_E13A:
@@ -7314,13 +7302,13 @@ B0F_E194:
 
     cmp #$02
     bcs B0F_E1C5
-    lda ($10),Y
+    lda ($10), y
     and #$1F
     jmp $E1CB
 
 ; control flow target (from $E1BC)
 B0F_E1C5:
-    lda ($10),Y
+    lda ($10), y
     and #$1F
     asl
     asl
@@ -7332,12 +7320,12 @@ B0F_E1C5:
 ; control flow target (from $E1ED)
 B0F_E1D3:
     lda $12
-    cmp $051A,Y ; something to do with whether you've opened the chest containing the Shield of Erdrick
+    cmp $051A, y ; something to do with whether you've opened the chest containing the Shield of Erdrick
 
     bne B0F_E1E9
     iny
     lda $13
-    cmp $051A,Y ; something to do with whether you've opened the chest containing the Shield of Erdrick
+    cmp $051A, y ; something to do with whether you've opened the chest containing the Shield of Erdrick
 
     bne B0F_E1EA
 ; control flow target (from $E20E)
@@ -7373,11 +7361,11 @@ B0F_E1FD:
 ; control flow target (from $E214)
 B0F_E1FF:
     lda $12
-    cmp $052A,Y
+    cmp $052A, y
     bne B0F_E210
     iny
     lda $13
-    cmp $052A,Y
+    cmp $052A, y
     bne B0F_E211
     beq B0F_E1E2
 ; control flow target (from $E204)
@@ -7448,7 +7436,7 @@ B0F_E256:
 B0F_E259:
     stx $73
     ldy $12
-    lda ($72),Y
+    lda ($72), y
     lsr
     lsr
     lsr
@@ -7547,7 +7535,7 @@ B0F_E2B1:
     sta $19
 ; control flow target (from $E2EC)
 B0F_E2B8:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$EE
     sta $18
@@ -7560,7 +7548,7 @@ B0F_E2BF:
     inc $18
     inc $18
     bne B0F_E2BF
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $E2E2)
 B0F_E2D1:
@@ -7657,7 +7645,7 @@ B0F_E35B:
     sty $0C
 ; control flow target (from $E36D)
 B0F_E35F:
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     bpl B0F_E366
     inc $0C
@@ -7728,7 +7716,7 @@ B0F_E3A6:
     bne B0F_E37B
 ; control flow target (from $E3A8)
 B0F_E3AE:
-    lda $E3B3,X ; map BGM
+    lda $E3B3, x ; map BGM
 
     bne B0F_E37B
 
@@ -7763,7 +7751,7 @@ B0F_E3AE:
     jsr $F770 ; load ROM bank #$02
 
     ldy #$04
-    lda ($10),Y
+    lda ($10), y
     and #$F0
     sta $3C
     jsr $E222
@@ -7834,8 +7822,8 @@ B0F_E432:
     sta $05FC
     jsr $F761 ; load ROM bank #$06
 
-; call to code in a different bank ($06:$A319)
-    jsr $A319 ; if $05FC is #$00, copy battle stats at $015D,Y to field stats at $0600,X, otherwise copy field stats at $0600,X to battle stats at $015D,Y
+; call to code in a different bank ($06:B06_A319)
+    jsr B06_A319 ; if $05FC is #$00, copy battle stats at $015D, y to field stats at $0600, x, otherwise copy field stats at $0600, x to battle stats at $015D, y
 
 ; control flow target (from $E42E)
 B0F_E43B:
@@ -7893,8 +7881,8 @@ B0F_E451:
     ldy #$00
 ; control flow target (from $E48E)
 B0F_E486:
-    lda ($10),Y
-    sta $0020,Y ; map exterior border tile ID (#$00 = Road, #$01 = Grass, #$02 = Sand, #$03 = Tree, #$04 = Water, #$05 = Vertical Wall, #$06 = Shrub, #$07 = Horizontal Wall, #$08 = Swamp, ..., #$20 = Ceiling Alternating?, #$21 = Ceiling Down?, #$24 = Black?, #$28 = Blue?)
+    lda ($10), y
+    sta $0020, y ; map exterior border tile ID (#$00 = Road, #$01 = Grass, #$02 = Sand, #$03 = Tree, #$04 = Water, #$05 = Vertical Wall, #$06 = Shrub, #$07 = Horizontal Wall, #$08 = Swamp, ..., #$20 = Ceiling Alternating?, #$21 = Ceiling Down?, #$24 = Black?, #$28 = Blue?)
 
     iny
     cpy #$08 ; copy 8 byte map header to $20
@@ -7953,7 +7941,7 @@ B0F_E4BE:
 ; control flow target (from $E4DD)
 B0F_E4D1:
     lda #$FF
-    sta $0541,Y ; NPC #$00 sprite ID
+    sta $0541, y ; NPC #$00 sprite ID
 
     tya
     clc
@@ -7971,7 +7959,7 @@ B0F_E4D1:
     cmp #$03 ; Map ID #$03: Midenhall 1F
 
     bne B0F_E4FF
-    jsr $FEDA ; parse byte following JSR for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+    jsr $FEDA ; parse byte following JSR for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 
 
 ; code -> data
@@ -7983,7 +7971,7 @@ B0F_E4D1:
     sta $0C
     lda $D7
     sta $0D
-    jsr $FEFA ; increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+    jsr $FEFA ; increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 
 
 ; code -> data
@@ -8030,10 +8018,10 @@ B0F_E523:
 B0F_E525:
     asl
     tay
-    lda $A539,Y ; pointers to per-map NPC setup (X-pos, Y-pos, ???, sprite ID, dialogue [not string] ID)
+    lda $A539, y ; pointers to per-map NPC setup (X-pos, Y-pos, ???, sprite ID, dialogue [not string] ID)
 
     sta $0C
-    lda $A53A,Y
+    lda $A53A, y
     sta $0D
     ora $0C
     bne B0F_E570 ; zero pointer => no NPCs
@@ -8090,27 +8078,27 @@ B0F_E570:
     ldx #$18
 ; control flow target (from $E5A0)
 B0F_E576:
-    lda ($0C),Y
+    lda ($0C), y
     cmp #$FF
     beq B0F_E56C
-    sta $053C,X ; NPC #$00 ?
+    sta $053C, x ; NPC #$00 ?
 
     iny
-    lda ($0C),Y
-    sta $053D,X ; NPC #$00 ?
+    lda ($0C), y
+    sta $053D, x ; NPC #$00 ?
 
     iny
     lda #$00
-    sta $053E,X ; NPC #$00 ?
+    sta $053E, x ; NPC #$00 ?
 
-    sta $053F,X ; NPC #$00 ?
+    sta $053F, x ; NPC #$00 ?
 
-    lda ($0C),Y
-    sta $0540,X ; NPC #$00 ? + direction nybble
+    lda ($0C), y
+    sta $0540, x ; NPC #$00 ? + direction nybble
 
     iny
-    lda ($0C),Y
-    sta $0541,X ; NPC #$00 sprite ID
+    lda ($0C), y
+    sta $0541, x ; NPC #$00 sprite ID
 
     iny
     iny
@@ -8124,7 +8112,7 @@ B0F_E576:
     txa
 ; control flow target (from $E5AB)
 B0F_E5A5:
-    sta $051A,X ; something to do with whether you've opened the chest containing the Shield of Erdrick
+    sta $051A, x ; something to do with whether you've opened the chest containing the Shield of Erdrick
 
     inx
     cpx #$20
@@ -8180,7 +8168,7 @@ B0F_E5D0:
     sta $19
 ; control flow target (from $E607)
 B0F_E5EC:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$00
     sta $1C
@@ -8195,7 +8183,7 @@ B0F_E5EC:
     lda $19
     cmp #$10
     bne B0F_E5EC
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     inc $05
     bne B0F_E616
@@ -8258,7 +8246,7 @@ B0F_E644:
     sta $19
 ; control flow target (from $E69B)
 B0F_E660:
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$00
     sta $1C
@@ -8299,7 +8287,7 @@ B0F_E694:
     lda $19
     cmp #$10
     bne B0F_E660
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     dec $05
     dec $14
@@ -8337,7 +8325,7 @@ B0F_E6C2:
     sta $0540 ; NPC #$00 ? + direction nybble
 
     jsr $D35B
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     inc $06
     inc $2C ; current map Y-pos pixel, low byte
@@ -8351,7 +8339,7 @@ B0F_E6C2:
 B0F_E6E8:
     lda #$03
     sta $2E
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $E6FE)
 B0F_E6EF:
@@ -8378,7 +8366,7 @@ B0F_E6EF:
 B0F_E715:
     lda #$05
     sta $2E
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $E728)
 B0F_E71C:
@@ -8404,7 +8392,7 @@ B0F_E71C:
 B0F_E73F:
     lda #$03
     sta $2E
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $E755)
 B0F_E746:
@@ -8423,7 +8411,7 @@ B0F_E746:
     lda $18
     cmp #$12
     bne B0F_E73F
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     inc $06
     lda $06
@@ -8484,7 +8472,7 @@ B0F_E7A5:
     sta $053D ; NPC #$00 ?
 
     jsr $D35B
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     dec $06
     lda $06
@@ -8522,7 +8510,7 @@ B0F_E7DB:
 B0F_E7E6:
     lda #$03
     sta $2E
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $E7FC)
 B0F_E7ED:
@@ -8549,7 +8537,7 @@ B0F_E7ED:
 B0F_E813:
     lda #$05
     sta $2E
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $E826)
 B0F_E81A:
@@ -8575,7 +8563,7 @@ B0F_E81A:
 B0F_E83D:
     lda #$03
     sta $2E
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $E853)
 B0F_E844:
@@ -8594,7 +8582,7 @@ B0F_E844:
     lda $18
     cmp #$12
     bne B0F_E83D
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     dec $06
     dec $15
@@ -8667,10 +8655,10 @@ B0F_E8B2:
 
     asl
     tay
-    lda $A3E1,Y ; pointers to warp spaces for irregularly-shaped maps
+    lda $A3E1, y ; pointers to warp spaces for irregularly-shaped maps
 
     sta $10
-    lda $A3E2,Y
+    lda $A3E2, y
     sta $11
     ora $10
     beq B0F_E934 ; no irregularity => skip over handling irregularities
@@ -8693,7 +8681,7 @@ B0F_E8B2:
 B0F_E8D8:
     iny ; offset for destination map ID
 
-    lda ($10),Y ; destination map ID
+    lda ($10), y ; destination map ID
 
     cmp #$FF ; #$FF => end of list
 
@@ -8704,14 +8692,14 @@ B0F_E8D8:
 
     iny ; offset for transition X-pos
 
-    lda ($10),Y ; transition X-pos
+    lda ($10), y ; transition X-pos
 
     iny
     cmp $0C ; current X-pos, 2-tile granularity
 
     bne B0F_E8D8 ; not the right X-pos space => loop to next irregularity
 
-    lda ($10),Y ; transition Y-pos
+    lda ($10), y ; transition Y-pos
 
     cmp $0E ; current Y-pos, 2-tile granularity
 
@@ -8725,7 +8713,7 @@ B0F_E8D8:
 
     and #$01 ; pick out difference between real position and 2-tile granularity
 
-    ora ($10),Y ; set low bit of destination Y-pos
+    ora ($10), y ; set low bit of destination Y-pos
 
     sta $17 ; current map Y-pos (1)
 
@@ -8740,7 +8728,7 @@ B0F_E8D8:
 
     and #$01 ; pick out difference between real position and 2-tile granularity
 
-    ora ($10),Y ; set low bit of destination X-pos
+    ora ($10), y ; set low bit of destination X-pos
 
     sta $16 ; current map X-pos (1)
 
@@ -8751,7 +8739,7 @@ B0F_E8D8:
 
     dey ; offset for destination map ID
 
-    lda ($10),Y
+    lda ($10), y
     sta $31 ; current map ID
 
     lda #$00
@@ -8784,7 +8772,7 @@ B0F_E934:
     lda #$FF
     sta $41
 ; control flow target (from $D229, $D24D)
-; external control flow target (from $06:$97D2)
+B0F_E938:
     lda #$00
     sta $18
     sta $19
@@ -8800,16 +8788,16 @@ B0F_E934:
 
     asl
     tay
-    lda $DEBD,Y
+    lda $DEBD, y
     sta $6F
     iny
-    lda $DEBD,Y
+    lda $DEBD, y
     sta $70
     ldy #$00
 ; control flow target (from $E964)
 B0F_E95E:
-    lda ($6F),Y
-    sta $6E00,Y
+    lda ($6F), y
+    sta $6E00, y
     dey
     bne B0F_E95E
     jsr $EB6D
@@ -8817,7 +8805,7 @@ B0F_E95E:
     lda $41
     cmp #$32
     beq B0F_E9BA
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$FF
     sta $35 ; flag indicating whether any menu is currently open
@@ -8826,7 +8814,7 @@ B0F_E95E:
     lda #$00
     sta $35 ; flag indicating whether any menu is currently open
 
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$F2
     sta $19
@@ -8896,7 +8884,7 @@ B0F_E9DB:
     sta $18
     cmp #$32
     bne B0F_E9BE
-    jmp $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jmp B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 
 ; control flow target (from $E969, $EA08, $EA6D, $EA73)
@@ -9020,19 +9008,19 @@ B0F_EAA5:
     tay
     ldx $02
     lda $08
-    sta $0300,X ; PPU write buffer start
+    sta $0300, x ; PPU write buffer start
 
     lda $07
-    sta $0301,X
-    lda $6E00,Y
-    sta $0302,X
-    lda $6E01,Y
-    sta $0303,X
-    lda $6E02,Y
-    sta $0304,X
-    lda $6E03,Y
-    sta $0305,X
-    lda $6E04,Y
+    sta $0301, x
+    lda $6E00, y
+    sta $0302, x
+    lda $6E01, y
+    sta $0303, x
+    lda $6E02, y
+    sta $0304, x
+    lda $6E03, y
+    sta $0305, x
+    lda $6E04, y
     and #$03
     sta $09
     lda $1A
@@ -9042,11 +9030,11 @@ B0F_EAA5:
     jsr $DE6E
     lda $08
     ora #$20
-    sta $0306,X
+    sta $0306, x
     lda $07
-    sta $0307,X
+    sta $0307, x
     lda $09
-    sta $0308,X
+    sta $0308, x
     txa
     clc
     adc #$09
@@ -9136,7 +9124,7 @@ B0F_EB6B:
     rts
 
 ; control flow target (from $E966, $E9BE, $E9D8, $EA97)
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     lda #$FF
     sta $6145
@@ -9144,7 +9132,7 @@ B0F_EB6B:
 
 ; open menu specified by next byte
 ; control flow target (from $C750, $C84D, $F6FC)
-; external control flow target (from $02:$B29D, $06:$8061, $06:$8065, $06:$8232, $06:$8242, $06:$8374, $06:$83A3, $06:$8455, $06:$84BB, $06:$8540, $06:$855B, $06:$867D, $06:$868D, $06:$8BFC, $06:$8C29, $06:$9584, $06:$95FF, $06:$9ACB, $06:$9AD0, $06:$9B17, $06:$A0CA, $06:$A204, $06:$BB4E, $06:$BB5F, $06:$BBAB, $06:$BBCA, $06:$BC22, $06:$BD4F)
+B0F_EB76:
     pla ; low byte of return address
 
     clc
@@ -9164,11 +9152,11 @@ B0F_EB6B:
     pha ; push the new return address's low byte
 
     ldy #$00
-    lda ($0E),Y ; read the byte following the original JSR
+    lda ($0E), y ; read the byte following the original JSR
 
 ; open menu specified by A
 ; control flow target (from $D188, $F494, $F49B, $F4A2, $F4BE, $F514, $F521, $F526, $F531, $F53F, $F54F, $F565, $F573, $F581, $F58F, $F59D, $F5CF, $F5D8, $F5DC, $F5F0, $F60C, $F620, $F625, $F63F, $F648, $F652, $F657)
-; external control flow target (from $04:$9AB1, $04:$9AC4, $06:$A997, $06:$AEAC, $06:$AEB1)
+B0F_EB89:
     jsr $F66E ; do special effects for certain menus; sets A to menu ID
 
     bcc B0F_EB91 ; all $F66E code paths end with SEC, so this branch is never taken
@@ -9211,12 +9199,12 @@ B0F_EB91:
     asl ; 2 bytes per pointer
 
     tay
-    lda ($57),Y ; pointer to start of main pointer table, low byte; copy menu pointer to $55-$56
+    lda ($57), y ; pointer to start of main pointer table, low byte; copy menu pointer to $55-$56
 
     sta $55 ; pointer to start of sub pointer data, low byte
 
     iny
-    lda ($57),Y ; pointer to start of main pointer table, low byte
+    lda ($57), y ; pointer to start of main pointer table, low byte
 
     sta $56 ; pointer to start of sub pointer data, high byte
 
@@ -9226,12 +9214,12 @@ B0F_EB91:
 ; control flow target (from $EBAB)
     ldy #$00 ; start at the start
 
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $60AA ; menu format (#$80 = has cursor, #$40 = is linked, #$20 = is single spaced, #$02 = only display equipped items, #$01 = display [left border, equipped] if equipped)
 
     iny
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $60A2 ; menu window height (from ROM)
 
@@ -9239,12 +9227,12 @@ B0F_EB91:
     sta $60A3 ; menu window height (ROM value * 2)
 
     iny
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $60A1 ; menu window width
 
     iny
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $60A4 ; menu window position (from ROM; X-pos = low nybble * 2, Y-pos = high nybble * 2)
 
@@ -9265,12 +9253,12 @@ B0F_EB91:
 
     bpl B0F_EC02 ; if no cursor, skip ahead
 
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $60A5 ; menu cursor second column X-offset (from left edge of menu)
 
     iny
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $60A9 ; menu cursor initial position (from ROM; X-pos = low nybble, Y-pos = high nybble)
 
@@ -9281,7 +9269,7 @@ B0F_EC02:
 
     bvc B0F_EC0D ; if menu is not linked, skip ahead
 
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $60AE ; menu link ID
 
@@ -9368,7 +9356,7 @@ B0F_EC6D:
     ldx #$0F
 ; control flow target (from $EC75)
 B0F_EC71:
-    sta $606B,X
+    sta $606B, x
     dex
     bpl B0F_EC71
     rts
@@ -9504,7 +9492,7 @@ B0F_ECF5:
 
     inc $60A6 ; current menu read index
 
-    jsr $FEFA ; increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+    jsr $FEFA ; increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 
 
 ; code -> data
@@ -9512,7 +9500,7 @@ B0F_ECF5:
 
 .byte $20
 ; data -> code
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     bpl B0F_ED13 ; high bit determines whether byte is function (set) or text (clear)
 
@@ -9552,11 +9540,11 @@ B0F_ED16:
 
     asl
     tax
-    lda $F0CC,X ; menu control code jump table low byte
+    lda $F0CC, x ; menu control code jump table low byte
 
     sta $57 ; pointer to start of main pointer table, low byte
 
-    lda $F0CD,X ; menu control code jump table high byte
+    lda $F0CD, x ; menu control code jump table high byte
 
     sta $58 ; pointer to start of main pointer table, high byte
 
@@ -9672,7 +9660,7 @@ B0F_ED96:
     bcc B0F_ED9F ; branch if crest not found
 
     tya
-    sta $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    sta $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
     dex
 ; control flow target (from $ED98)
@@ -9705,9 +9693,9 @@ B0F_EDAD:
     tax
 ; control flow target (from $EDBA)
 B0F_EDB3:
-    lda $EDBE,X ; built-in offset from $EDBF: "GOL ERUTNEVDA", i.e. "ADVENTRUE LOG" backwards
+    lda $EDBE, x ; built-in offset from $EDBF: "GOL ERUTNEVDA", i.e. "ADVENTRUE LOG" backwards
 
-    sta a:$FF,X ; built-in offset from string copy buffer start at $0100
+    sta a:$FF, x ; built-in offset from string copy buffer start at $0100
 
     dex
     bne B0F_EDB3
@@ -9774,7 +9762,7 @@ B0F_EDF4:
 ; control flow target (from $EDF2)
 B0F_EDF8:
     sta $0101
-    stx $0100 ; string copy buffer start (often referenced as $00FF,X)
+    stx $0100 ; string copy buffer start (often referenced as $00FF, x)
 
     jmp $F0A5 ; print string at $0100 in reverse to current menu position
 
@@ -9785,7 +9773,7 @@ B0F_EE01:
     lda #$02
     sta $60A0 ; maximum string length
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -9842,9 +9830,9 @@ B0F_EE01:
 
 ; control flow target (from $EE48)
 B0F_EE40:
-    lda $0113,X ; Midenhall name bytes 0-3 + terminator
+    lda $0113, x ; Midenhall name bytes 0-3 + terminator
 
-    sta a:$FF,Y ; built-in offset from string copy buffer start at $0100
+    sta a:$FF, y ; built-in offset from string copy buffer start at $0100
 
     inx ; read index
 
@@ -9877,9 +9865,9 @@ B0F_EE4D:
 
 ; control flow target (from $EE6B)
 B0F_EE63:
-    lda $0186,X ; Midenhall name bytes 4-7
+    lda $0186, x ; Midenhall name bytes 4-7
 
-    sta a:$FF,Y ; built-in offset from string copy buffer start at $0100
+    sta a:$FF, y ; built-in offset from string copy buffer start at $0100
 
     inx ; read index
 
@@ -9901,7 +9889,7 @@ B0F_EE70:
     sec
     sbc #$05 ; #$05-#$07 -> #$00-#$02
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -9932,7 +9920,7 @@ B0F_EE93:
     cmp #$05
     bcs B0F_EEA6 ; menu control code #$BD-#$BF handler: given shop ID in $60AF and menu list index in $60AC, print name of the corresponding item ID or #$00 if it's the Jailor's Key to $0100; depending on settings, possibly update menu's [left border] to [left border, equipped], then toggle list segment $60AB; if list segment becomes #$01, INC menu list index $60AC
 
-    jsr $F219 ; return the $60AC'th item of item type $609D in A and the party inventory index of that item in X, or #$00 in A and #$FF in X if no such item exists; also sets $60BA,X to #$FF if found and #$00 otherwise
+    jsr $F219 ; return the $60AC'th item of item type $609D in A and the party inventory index of that item in X, or #$00 in A and #$FF in X if no such item exists; also sets $60BA, x to #$FF if found and #$00 otherwise
 
     jsr $F29D ; given party inventory offset in X, print name of that item ID to $0100 in reverse; depending on settings, possibly update menu's [left border] to [left border, equipped]
 
@@ -9981,10 +9969,10 @@ B0F_EEA6:
     beq B0F_EEE4
     asl
     tax
-    lda $9FFC,X ; Item Prices, low byte
+    lda $9FFC, x ; Item Prices, low byte
 
     sta $10
-    lda $9FFD,X ; Item Prices, high byte
+    lda $9FFD, x ; Item Prices, high byte
 
     sta $11
     lda #$00
@@ -10044,7 +10032,7 @@ B0F_EF13:
 
     ldx $4A ; hero ID
 
-    lda $061A,X ; Cannock's learned field spell list
+    lda $061A, x ; Cannock's learned field spell list
 
 ; control flow target (from $EF1F)
 B0F_EF1A:
@@ -10070,7 +10058,7 @@ B0F_EF25:
 
 ; control flow target (from $EF30)
 B0F_EF27:
-    lda $061C,X ; monster group 1 monster ID
+    lda $061C, x ; monster group 1 monster ID
 
     beq B0F_EF32
     inx ; this part of monster group data is 2 bytes each
@@ -10118,7 +10106,7 @@ B0F_EF53:
     lda #$08
     sta $60A0 ; maximum string length
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -10171,7 +10159,7 @@ B0F_EF8D:
 ; indirect control flow target (via $F0E2)
     ldx $609D ; menu function parameter
 
-    lda $F0EE,X ; stat offsets
+    lda $F0EE, x ; stat offsets
 
     pha ; stat offset
 
@@ -10210,7 +10198,7 @@ B0F_EFB9:
 
     asl
     tax
-    lda $061C,X ; monster group 1 monster ID
+    lda $061C, x ; monster group 1 monster ID
 
     ldx #$00
     jsr $F3B7 ; given monster ID in A, copy monster name segment to $0100 in reverse
@@ -10229,7 +10217,7 @@ B0F_EFCC:
 
     asl
     tax
-    lda $061D,X ; monster group 1 monster count
+    lda $061D, x ; monster group 1 monster count
 
     sta $10
     jsr $F17C ; given a 24-bit number N in $10-$12, print its base 10 digits in reverse to $0100 up to maximum string length $60A0
@@ -10262,12 +10250,12 @@ B0F_EFF3:
     tax
     lda $609B ; menu text
 
-    sta $600B,X
+    sta $600B, x
     cmp #$76 ; [left border]
 
     bcs B0F_F013 ; update menu current column and row
 
-    lda $600A,X
+    lda $600A, x
     cmp #$77 ; [top border]
 
     bne B0F_F013 ; update menu current column and row
@@ -10278,7 +10266,7 @@ B0F_EFF3:
 
     lda #$78 ; [top border short]
 
-    sta $600A,X
+    sta $600A, x
 ; update menu current column and row
 ; control flow target (from $ED36, $EFE7, $F000, $F007, $F00C)
 B0F_F013:
@@ -10326,7 +10314,7 @@ B0F_F02A:
     adc #$10
     sta $60A4 ; menu window position (from ROM; X-pos = low nybble * 2, Y-pos = high nybble * 2)
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -10422,7 +10410,7 @@ B0F_F089:
 B0F_F0A5:
     ldx $60A0 ; maximum string length
 
-    lda a:$FF,X ; built-in offset from string copy buffer start at $0100
+    lda a:$FF, x ; built-in offset from string copy buffer start at $0100
 
     sta $609B ; menu text
 
@@ -10438,7 +10426,7 @@ B0F_F0A5:
     lda $60AA ; menu format (#$80 = has cursor, #$40 = is linked, #$20 = is single spaced, #$02 = only display equipped items, #$01 = display [left border, equipped] if equipped)
 
     bpl B0F_F0C0
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -10456,7 +10444,7 @@ B0F_F0C0:
     ldx #$3B
 ; control flow target (from $F0C9)
 B0F_F0C5:
-    sta $600B,X
+    sta $600B, x
     dex
     bpl B0F_F0C5
     rts
@@ -10480,10 +10468,11 @@ B0F_F0C5:
 .byte $09,$0A,$0B
 .byte $0C,$03
 .byte $05
+
 ; data -> code
-; 16-bit multiplication: set 16-bit ($00,X-$01,X) = ($00,X-$01,X) * A
+; 16-bit multiplication: set 16-bit ($00, x-$01, x) = ($00, x-$01, x) * A
 ; control flow target (from $FDAC)
-; external control flow target (from $06:$B2A8)
+B0F_F0F4:
     sta $6084
     lda #$00
     sta $6085
@@ -10492,23 +10481,23 @@ B0F_F0C5:
 B0F_F0FF:
     lsr $6084
     bcc B0F_F115
-    lda $00,X
+    lda $00, x
     clc
     adc $6085
     sta $6085
-    lda $01,X
+    lda $01, x
     adc $6086
     sta $6086
 ; control flow target (from $F102)
 B0F_F115:
-    asl $00,X
-    rol $01,X
+    asl $00, x
+    rol $01, x
     lda $6084
     bne B0F_F0FF
     lda $6085
-    sta $00,X
+    sta $00, x
     lda $6086
-    sta $01,X
+    sta $01, x
     rts
 
 ; given a 24-bit number N in $10-$12, set $10-$12 to quotient of N / 10 and $13 to the remainder of N / 10, i.e. for base 10 N, $13 = the low digit, $10-$12 = the high digits
@@ -10584,9 +10573,9 @@ B0F_F161:
     tay
 ; control flow target (from $F179)
 B0F_F16E:
-    lda $062D,X ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, x ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
-    sta $0010,Y
+    sta $0010, y
     inx
     iny
     cpy $6084
@@ -10603,7 +10592,7 @@ B0F_F17E:
 
     lda $13 ; remainder
 
-    sta $0100,Y ; string copy buffer start (often referenced as $00FF,X)
+    sta $0100, y ; string copy buffer start (often referenced as $00FF, x)
 
     iny
     cpy $60A0 ; maximum string length
@@ -10620,11 +10609,11 @@ B0F_F17E:
     dex
 ; control flow target (from $F19C)
 B0F_F191:
-    lda $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    lda $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
     bne B0F_F19E
     lda #$5F
-    sta $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    sta $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
     dex
     bne B0F_F191
@@ -10642,7 +10631,7 @@ B0F_F19E:
 
 ; control flow target (from $F1AA)
 B0F_F1A6:
-    sta $0100,X ; string copy buffer start (often referenced as $00FF,X)
+    sta $0100, x ; string copy buffer start (often referenced as $00FF, x)
 
     dex
     bpl B0F_F1A6
@@ -10653,7 +10642,7 @@ B0F_F1A6:
 
 ; given a hero ID in $4A, set A and X to hero ID * 8, a.k.a. offset for start of hero's inventory
 ; control flow target (from $F1B7, $F22D)
-; external control flow target (from $06:$AE05)
+B0F_F1B0:
     lda $4A
     asl
     asl
@@ -10670,7 +10659,7 @@ B0F_F1A6:
 
 ; control flow target (from $F1D1)
 B0F_F1BE:
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     beq B0F_F1CD ; branch if no item
 
@@ -10698,7 +10687,7 @@ B0F_F1CD:
 
 ; determine item type (#$00 = weapon, #$01 = armour, #$02 = shield, #$03 = helmet, #$04 = menu function wants all items or item is non-equipment, #$05 = menu format wants equipped items only and item not equipped)
 ; control flow target (from $F1C3, $F235)
-; external control flow target (from $06:$AE10)
+B0F_F1D6:
     pha ; item ID
 
     lda $60AA ; menu format (#$80 = has cursor, #$40 = is linked, #$20 = is single spaced, #$02 = only display equipped items, #$01 = display [left border, equipped] if equipped)
@@ -10788,14 +10777,14 @@ B0F_F216:
     lda #$04
     rts
 
-; return the $60AC'th item of item type $609D in A and the party inventory index of that item in X, or #$00 in A and #$FF in X if no such item exists; also sets $60BA,X to #$FF if found and #$00 otherwise
+; return the $60AC'th item of item type $609D in A and the party inventory index of that item in X, or #$00 in A and #$FF in X if no such item exists; also sets $60BA, x to #$FF if found and #$00 otherwise
 ; control flow target (from $EE9A)
     lda $60AC ; menu list index
 
     and #$03
     tax
     lda #$FF
-    sta $60BA,X
+    sta $60BA, x
     lda $60AC ; menu list index
 
     and #$07
@@ -10805,7 +10794,7 @@ B0F_F216:
 
 ; control flow target (from $F245)
 B0F_F230:
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
     beq B0F_F247
     jsr $F1D6 ; determine item type (#$00 = weapon, #$01 = armour, #$02 = shield, #$03 = helmet, #$04 = menu function wants all items or item is non-equipment, #$05 = menu format wants equipped items only and item not equipped)
@@ -10828,7 +10817,7 @@ B0F_F247:
     and #$03
     tax
     lda #$00
-    sta $60BA,X
+    sta $60BA, x
     ldx #$FF
 ; control flow target (from $F23F)
 B0F_F254:
@@ -10852,7 +10841,7 @@ B0F_F254:
 
 ; control flow target (from $F26F)
 B0F_F266:
-    lda $9F8A,Y ; Weapon Shop inventories
+    lda ShopInventories, y ; Weapon Shop inventories
 
     beq B0F_F271 ; #$00 marks the end of shop's item list
 
@@ -10871,7 +10860,7 @@ B0F_F271:
 
     tay ; selected item
 
-    lda $9F8A,Y ; Weapon Shop inventories
+    lda ShopInventories, y ; Weapon Shop inventories
 
     rts
 
@@ -10907,7 +10896,7 @@ B0F_F288:
     adc $60AC ; menu list index
 
     tax
-    lda $9F8A,X ; Weapon Shop inventories
+    lda ShopInventories, x ; Weapon Shop inventories
 
     rts
 
@@ -10917,7 +10906,7 @@ B0F_F288:
 
     cpx #$FF
     beq B0F_F2EF
-    lda $0600,X ; Midenhall inventory item 1 (| #$40 if equipped)
+    lda $0600, x ; Midenhall inventory item 1 (| #$40 if equipped)
 
 ; print name of item ID in A to $0100 in reverse; depending on settings, possibly update menu's [left border] to [left border, equipped]
 ; control flow target (from $EEA9)
@@ -11029,7 +11018,7 @@ B0F_F2FE:
 
 ; control flow target (from $F302)
 B0F_F30A:
-    lda $F316,Y ; item list bank/pointers
+    lda $F316, y ; item list bank/pointers
 
     jsr $F3E2 ; parse bank/pointer indices from A, load desired bank, set $57-$58 to desired pointer value
 
@@ -11037,7 +11026,7 @@ B0F_F30A:
 
     beq B0F_F31A ; load bank specified by $60D7 (set by last call to $F3E2)
 
-    jmp $F3F8 ; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF,X) in reverse; set Y to length of string copied, then load bank specified by $60D7 (set by last call to $F3E2)
+    jmp $F3F8 ; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF, x) in reverse; set Y to length of string copied, then load bank specified by $60D7 (set by last call to $F3E2)
 
 
 
@@ -11083,7 +11072,7 @@ B0F_F32B:
     ldx $60AC ; menu list index
 
     lda #$FF
-    sta $60BA,X
+    sta $60BA, x
     lda $609D ; menu function parameter
 
     asl ; A is either #$00 (battle spells) or #$01 (field spells), so this is either #$00 or #$02
@@ -11091,7 +11080,7 @@ B0F_F32B:
     adc $4A ; hero ID - 1
 
     tax
-    lda $0618,X ; Cannock's learned battle spell list
+    lda $0618, x ; Cannock's learned battle spell list
 
     sta $10 ; selected hero's learned spell list
 
@@ -11126,7 +11115,7 @@ B0F_F362:
 
     and #$01
     tax
-    lda $F39D,X
+    lda $F39D, x
     and $11
     sta $11
 ; control flow target (from $F367)
@@ -11159,7 +11148,7 @@ B0F_F392:
     lda #$00
     ldx $60AC ; menu list index
 
-    sta $60BA,X
+    sta $60BA, x
     lda #$FF
     rts
 
@@ -11193,7 +11182,7 @@ B0F_F392:
     inx ; $F3F8 is one-based, so convert from zero-based
 
     txa
-    jsr $F3F8 ; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF,X) in reverse; set Y to length of string copied, then load bank specified by $60D7 (set by last call to $F3E2)
+    jsr $F3F8 ; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF, x) in reverse; set Y to length of string copied, then load bank specified by $60D7 (set by last call to $F3E2)
 
 ; control flow target (from $F3A8)
 B0F_F3B6:
@@ -11236,7 +11225,7 @@ B0F_F3C4:
 
 ; control flow target (from $F3C9)
 B0F_F3D1:
-    lda $F3DE,Y ; monster list bank/pointers
+    lda $F3DE, y ; monster list bank/pointers
 
     jsr $F3E2 ; parse bank/pointer indices from A, load desired bank, set $57-$58 to desired pointer value
 
@@ -11244,7 +11233,7 @@ B0F_F3D1:
 
     pla ; monster index
 
-    jmp $F3F8 ; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF,X) in reverse; set Y to length of string copied, then load bank specified by $60D7 (set by last call to $F3E2)
+    jmp $F3F8 ; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF, x) in reverse; set Y to length of string copied, then load bank specified by $60D7 (set by last call to $F3E2)
 
 
 
@@ -11266,22 +11255,22 @@ B0F_F3D1:
     pla
     jsr $FF33 ; parse A into bank and pointer indices and load specified bank
 
-    lda $8000,X
+    lda $8000, x
     sta $57 ; pointer to start of main pointer table, low byte
 
-    lda $8001,X
+    lda $8001, x
     sta $58 ; pointer to start of main pointer table, high byte
 
     rts
 
-; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF,X) in reverse; set Y to length of string copied, then load bank specified by $60D7 (set by last call to $F3E2)
+; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF, x) in reverse; set Y to length of string copied, then load bank specified by $60D7 (set by last call to $F3E2)
 ; control flow target (from $F313, $F3B3, $F3DB)
-    jsr $F3FE ; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF,X) in reverse; set Y to length of string copied
+    jsr $F3FE ; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF, x) in reverse; set Y to length of string copied
 
     jmp $F31A ; load bank specified by $60D7 (set by last call to $F3E2)
 
 
-; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF,X) in reverse; set Y to length of string copied
+; find desired list item A (one-based) in ($57), copy it to $0100 (referenced as $00FF, x) in reverse; set Y to length of string copied
 ; control flow target (from $F3F8)
     tax
     ldy #$00
@@ -11291,7 +11280,7 @@ B0F_F401:
     beq B0F_F418
 ; control flow target (from $F40B, $F40F)
 B0F_F404:
-    lda ($57),Y ; pointer to start of main pointer table, low byte; scan through ($57),Y, counting #$FF bytes until we've reached the right list item
+    lda ($57), y ; pointer to start of main pointer table, low byte; scan through ($57), y, counting #$FF bytes until we've reached the right list item
 
     cmp #$FF
     beq B0F_F411
@@ -11325,11 +11314,11 @@ B0F_F422:
 
 ; control flow target (from $F432)
 B0F_F427:
-    lda ($57),Y ; pointer to start of main pointer table, low byte
+    lda ($57), y ; pointer to start of main pointer table, low byte
 
     cmp #$FF
     beq B0F_F434
-    sta a:$FF,X ; built-in offset from string copy buffer start at $0100
+    sta a:$FF, x ; built-in offset from string copy buffer start at $0100
 
     iny
     dex
@@ -11362,7 +11351,7 @@ B0F_F44E:
     lda #$01
 ; control flow target (from $F45B)
 B0F_F456:
-    sta ($07),Y ; mark menu open
+    sta ($07), y ; mark menu open
 
     iny
     dec $11
@@ -11384,7 +11373,7 @@ B0F_F456:
     pla
     sta $35 ; flag indicating whether any menu is currently open
 
-    jmp $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jmp B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 
 ; print party gold to $0100 in decimal in reverse, replacing leading (now trailing) zeroes with spaces, leaving X at most significant digit
@@ -11406,21 +11395,21 @@ B0F_F456:
 
 
 ; display Menu ID #$02: Main menu: gold/crests
-; external control flow target (from $06:$89DC)
+B0F_F492:
     lda #$02 ; Menu ID #$02: Main menu: gold/crests
 
     jmp $EB89 ; open menu specified by A
 
 
 ; display Menu ID #$03: Main menu: selected hero's status
-; external control flow target (from $06:$89D6)
+B0F_F497:
     sta $4A
     lda #$03 ; Menu ID #$03: Main menu: selected hero's status
 
     jmp $EB89 ; open menu specified by A
 
 
-; external control flow target (from $04:$B5D8)
+B0F_F49E:
     sta $4A
     lda #$07 ; Menu ID #$07: Battle menu: spell list
 
@@ -11428,7 +11417,7 @@ B0F_F456:
 
     cmp #$FF
     beq B0F_F4AD
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -11442,7 +11431,7 @@ B0F_F4AD:
 
 
 ; given hero ID in A, display that hero's battle item list window and return the selected item ID in A
-; external control flow target (from $04:$B5E1)
+B0F_F4B0:
     sta $4A ; hero ID
 
     lda #$04 ; count all items
@@ -11486,7 +11475,7 @@ B0F_F4DD:
 
     cmp #$FE
     bcs B0F_F4E9
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -11507,7 +11496,7 @@ B0F_F4EC:
     rts
 
 ; open battle command menu for hero A
-; external control flow target (from $04:$B56E)
+B0F_F4EF:
     sta $4A
     tax
     beq B0F_F511 ; if it's Midenhall, just display Midenhall's command menu
@@ -11545,22 +11534,20 @@ B0F_F50D:
 
 ; control flow target (from $F4F2, $F504, $F50B, $F50F)
 B0F_F511:
-    lda $F517,X ; Battle command menus
+    lda $F517, x ; Battle command menus
 
     jmp $EB89 ; open menu specified by A
 
 
 
-; code -> data
 ; Battle command menus
 ; indexed data load target (from $F511)
-
 .byte $09,$23
 .byte $23
 .byte $49
-; data -> code
+
 ; display appropriate battle menu monster list
-; external control flow target (from $04:$B5A9)
+B0F_F51B:
     lda $4B ; flag for whether to display the selectable or non-selectable monster list
 
     bne B0F_F524 ; display Menu ID #$05: Battle menu: monster list, non-selectable
@@ -11579,12 +11566,12 @@ B0F_F524:
 
 
 ; display appropriate battle menu item/spell target
-; external control flow target (from $04:$B5E8)
+B0F_F529:
     jsr $F65A ; set A and X to the current number of party members
 
     beq B0F_F534 ; if just Midenhall, no need to display hero select menu
 
-    lda $F534,X
+    lda $F534, x
     jsr $EB89 ; open menu specified by A
 
 ; control flow target (from $F52C)
@@ -11598,14 +11585,14 @@ B0F_F534:
 
 .byte $0B
 .byte $24
-; data -> code
+
 ; display hero select STATUS menu if necessary
-; external control flow target (from $06:$89CA)
+B0F_F537:
     jsr $F65A ; set A and X to the current number of party members
 
     beq B0F_F542 ; if just Midenhall, no need to display hero select menu
 
-    lda $F542,X
+    lda $F542, x
     jsr $EB89 ; open menu specified by A
 
 ; control flow target (from $F53A)
@@ -11619,9 +11606,9 @@ B0F_F542:
 
 .byte $0C
 .byte $25
-; data -> code
+
 ; depending on number of casters in party, maybe open caster select menu
-; external control flow target (from $06:$8B36)
+B0F_F545:
     jsr $F65A ; set A and X to the current number of party members
 
     beq B0F_F55A ; if just Midenhall, no need to display hero select menu
@@ -11651,12 +11638,12 @@ B0F_F55A:
     rts
 
 ; display appropriate main ITEM hero select menu
-; external control flow target (from $06:$955B, $06:$9CC9)
+B0F_F55D:
     jsr $F65A ; set A and X to the current number of party members
 
     beq B0F_F568 ; if just Midenhall, no need to display hero select menu
 
-    lda $F568,X
+    lda $F568, x
     jsr $EB89 ; open menu specified by A
 
 ; control flow target (from $F560)
@@ -11665,19 +11652,17 @@ B0F_F568:
     rts
 
 
-; code -> data
 ; main ITEM hero select menus
-
 .byte $0E
 .byte $26
-; data -> code
+
 ; display appropriate main EQUIP hero select menu
-; external control flow target (from $06:$8A02)
+B0F_F56B:
     jsr $F65A ; set A and X to the current number of party members
 
     beq B0F_F576 ; if just Midenhall, no need to display hero select menu
 
-    lda $F576,X
+    lda $F576, x
     jsr $EB89 ; open menu specified by A
 
 ; control flow target (from $F56E)
@@ -11685,20 +11670,17 @@ B0F_F568:
 B0F_F576:
     rts
 
-
-; code -> data
 ; main EQUIP hero select menus
-
 .byte $0F
 .byte $27
-; data -> code
+
 ; display appropriate main SPELL target menu
-; external control flow target (from $06:$8B98)
+B0F_F579:
     jsr $F65A ; set A and X to the current number of party members
 
     beq B0F_F584 ; if just Midenhall, no need to display hero select menu
 
-    lda $F584,X
+    lda $F584, x
     jsr $EB89 ; open menu specified by A
 
 ; control flow target (from $F57C)
@@ -11707,19 +11689,17 @@ B0F_F584:
     rts
 
 
-; code -> data
 ; main COMMAND menu SPELL target menus
-
 .byte $10
 .byte $28
-; data -> code
+
 ; display appropriate main ITEM target menu
-; external control flow target (from $06:$95B1, $06:$9629, $06:$99C1)
+B0F_F587:
     jsr $F65A ; set A and X to the current number of party members
 
     beq B0F_F592 ; if just Midenhall, no need to display hero select menu
 
-    lda $F592,X
+    lda $F592, x
     jsr $EB89 ; open menu specified by A
 
 ; control flow target (from $F58A)
@@ -11728,19 +11708,17 @@ B0F_F592:
     rts
 
 
-; code -> data
 ; main COMMAND menu ITEM target menus
-
 .byte $11
 .byte $29
-; data -> code
+
 ; display appropriate shop BUY/SELL hero select menu
-; external control flow target (from $06:$830E, $06:$8427, $06:$8490, $06:$8589, $06:$85D2, $06:$862B)
+B0F_F595:
     jsr $F65A ; set A and X to the current number of party members
 
     beq B0F_F5A0 ; if just Midenhall, no need to display hero select menu
 
-    lda $F5A0,X
+    lda $F5A0, x
     jsr $EB89 ; open menu specified by A
 
 ; control flow target (from $F598)
@@ -11748,20 +11726,17 @@ B0F_F592:
 B0F_F5A0:
     rts
 
-
-; code -> data
 ; shop menu BUY/SELL hero select menus
-
 .byte $12
 .byte $2A
-; data -> code
+
 ; given a hero ID in A and an item type in X, display the EQUIP sub-menu for hero A and item type X, returning the selected item ID in A
 ; ##>hero ID
-; external control flow target (from $06:$8A1D, $06:$8A2E)
+B0F_F5A3:
     sta $4A
     stx $96 ; temp storage for item/spell/type/etc. IDs; item type
 
-    lda $F5E8,X ; EQUIP sub-menu IDs
+    lda $F5E8, x ; EQUIP sub-menu IDs
 
     pha ; EQUIP sub-menu ID
 
@@ -11812,31 +11787,24 @@ B0F_F5D6:
 
     ldx $96 ; temp storage for item/spell/type/etc. IDs; item type
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
-; code -> data
 ; indirect data load target
-
 .byte $C8
-; data -> code
 ; load bank specified by $94
 ; control flow target (from $F5D4, $F5F5)
 B0F_F5E5:
     jmp $F6C2 ; load bank specified by $94
 
-
-
-; code -> data
 ; EQUIP sub-menu IDs
 ; indexed data load target (from $F5A7)
-
 .byte $13,$2D
 .byte $2E
 .byte $2F
-; data -> code
+
 ; given hero ID - 1 in A, open hero's spell list and return selected spell ID in A
-; external control flow target (from $06:$8B6E)
+B0F_F5EC:
     sta $4A ; hero ID - 1
 
     lda #$14 ; Menu ID #$14: Main menu: spell list
@@ -11846,19 +11814,17 @@ B0F_F5E5:
     cmp #$FF
     beq B0F_F5E5 ; load bank specified by $94
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
-; code -> data
 ; indirect data load target
-
 .byte $C9
-; data -> code
+
     jmp $F6C2 ; load bank specified by $94
 
 
 ; given a hero ID in A, open hero's item list and return selected item ID (or #$FE if they have no items)
-; external control flow target (from $06:$84C1, $06:$9564, $06:$9CD8)
+B0F_F5FE:
     sta $4A ; hero ID
 
     lda #$04 ; count all items
@@ -11875,14 +11841,12 @@ B0F_F5E5:
 
     ldx #$04 ; parameter for $06:$ADFC: count all items
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
-; code -> data
 ; indirect data load target
-
 .byte $C8
-; data -> code
+
     jmp $F6C2 ; load bank specified by $94
 
 
@@ -11913,7 +11877,7 @@ B0F_F638:
 
 
 ; display Menu ID #$1C: Main menu: status screen equipped items
-; external control flow target (from $06:$89E1)
+B0F_F63B:
     sta $4A
     lda #$1C ; Menu ID #$1C: Main menu: status screen equipped items
 
@@ -11921,24 +11885,22 @@ B0F_F638:
 
 
 ; display appropriate battle EXP + Gold menu
-; external control flow target (from $04:$9940)
+B0F_F642:
     jsr $F65A ; set A and X to the current number of party members
 
-    lda $F64B,X ; Battle menu EXP + Gold
+    lda $F64B, x ; Battle menu EXP + Gold
 
     jmp $EB89 ; open menu specified by A
 
 
 
-; code -> data
 ; Battle menu EXP + Gold
 ; indexed data load target (from $F645)
-
 .byte $1D,$2B
 .byte $2C
-; data -> code
+
 ; display spell lists
-; external control flow target (from $06:$89FC)
+B0F_F64E:
     sta $4A
     lda #$30 ; Menu ID #$30: Main menu: out-of-battle spell list
 
@@ -12004,7 +11966,7 @@ B0F_F66C:
     adc $10 ; add number of party members to menu type offset
 
     tax
-    lda $F6C8,X ; mini status menu IDs
+    lda $F6C8, x ; mini status menu IDs
 
 ; control flow target (from $F67C)
 B0F_F68F:
@@ -12044,7 +12006,7 @@ B0F_F6A3:
     lda #$5F
 ; control flow target (from $F6B3)
 B0F_F6AF:
-    sta $06F7,X
+    sta $06F7, x
     dex
     bne B0F_F6AF
     lda #$00
@@ -12064,18 +12026,15 @@ B0F_F6AF:
     jmp $F782 ; load bank specified by A then PLA
 
 
-
-; code -> data
 ; mini status menu IDs
 ; indexed data load target (from $F68C)
-
 .byte $00,$1E,$1F
 .byte $01,$20
 .byte $21
-; data -> code
+
 ; return number of party members - 1 in A/X
 ; control flow target (from $CDB5)
-; external control flow target (from $06:$8223, $06:$82F1, $06:$83EE, $06:$8485, $06:$857E, $06:$85C7, $06:$8620, $06:$8FD2, $06:$9023, $06:$93A3, $06:$99AF, $06:$9C80, $06:$A241)
+B0F_F6CE:
     ldy #$00 ; status index
 
     ldx #$00 ; party member counter
@@ -12086,7 +12045,7 @@ B0F_F6AF:
 
 ; control flow target (from $F6E5)
 B0F_F6D6:
-    lda $062D,Y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
+    lda $062D, y ; Midenhall status (80 = Alive, 40 = Sleep, 20 = Poison, 10 = ?, 08 = ?, 04 = In Party, 02 = Surround, 01 = Silence)
 
     and #$04 ; pick out the "In Party" bit
 
@@ -12111,37 +12070,25 @@ B0F_F6DE:
 
 ; open main dialogue window and display string ID specified by byte following JSR
 ; control flow target (from $C83E, $CAA5, $CB90, $CBFC, $CC72)
-; external control flow target (from $06:$80EF, $06:$8B83, $07:$81F3, $07:$8223, $07:$8234, $07:$827B, $07:$82E7, $07:$8351, $07:$8362, $07:$8369, $07:$83FE, $07:$84C7, $07:$8582)
+B0F_F6EA:
     jsr $F6FC ; open main dialogue window, set A to string ID specified by byte following second JSR
-
     jmp $FA4A ; display string ID specified by A
 
-
 ; open main dialogue window and display string ID specified by byte following JSR + #$0100
-; external control flow target (from $06:$80C3, $06:$822E, $06:$82C3, $06:$839F, $06:$8553, $06:$86C0, $06:$8A49)
+B0F_F6F0:
     jsr $F6FC ; open main dialogue window, set A to string ID specified by byte following second JSR
-
     jmp $FA4E ; display string ID specified by A + #$0100
-
 
 ; open main dialogue window and display string ID specified by byte following JSR + #$0200
 ; control flow target (from $C940, $C9AB, $C9F2, $CB2E, $CC4D)
-; external control flow target (from $06:$80E1, $06:$81A6, $06:$82BC, $06:$9368, $06:$A2C6)
+B0F_F6F6:
     jsr $F6FC ; open main dialogue window, set A to string ID specified by byte following second JSR
-
     jmp $FA52 ; display string ID specified by A + #$0200
-
 
 ; open main dialogue window, set A to string ID specified by byte following second JSR
 ; control flow target (from $F6EA, $F6F0, $F6F6)
     jsr $EB76 ; open menu specified by next byte
-
-
-; code -> data
-; indirect data load target
-
-.byte $04
-; data -> code
+    .byte $04
     pla ; first JSR's return address, low byte
 
     sta $0C ; first JSR's return address, low byte
@@ -12169,7 +12116,7 @@ B0F_F6DE:
     pha ; second JSR's new return address, low byte
 
     ldy #$00
-    lda ($0E),Y ; read byte following second JSR
+    lda ($0E), y ; read byte following second JSR
 
     tay ; stash in Y for now
 
@@ -12186,71 +12133,62 @@ B0F_F6DE:
     rts
 
 ; restore the hero ID in A's MP by a random amount based on the Wizard's Ring's power; returns a random number between $03 and #$0A in A and $99
-; external control flow target (from $06:$97FE)
+B0F_F722:
     jsr $F766 ; load ROM bank #$04
-
-; call to code in a different bank ($04:$8003)
-    jsr $8003 ; restore the hero ID in A's MP by a random amount based on the Wizard's Ring's power; returns a random number between $03 and #$0A in A and $99
+    jsr B04_8003 ; restore the hero ID in A's MP by a random amount based on the Wizard's Ring's power; returns a random number between $03 and #$0A in A and $99
 
     jmp $F761 ; load ROM bank #$06
 
 
 ; heal hero ID in A by random amount based on healing power in X
 ; identical to $0F:$D146
-; external control flow target (from $06:$95F3)
+B0F_F72B:
     jsr $F766 ; load ROM bank #$04
 
 ; call to code in a different bank ($04:$8006)
-    jsr $8006
+    jsr B04_8006
     jmp $F761 ; load ROM bank #$06
 
 
 ; set $8F-$90 to EXP required to reach next level
-; external control flow target (from $06:$9473)
+B0F_F734:
     jsr $F766 ; load ROM bank #$04
 
 ; call to code in a different bank ($04:$800C)
-    jsr $800C ; set $8F-$90 to EXP required to reach next level
+    jsr B04_800C ; set $8F-$90 to EXP required to reach next level
 
     jmp $F761 ; load ROM bank #$06
 
 
 ; calls $04:$99E6
-; external control flow target (from $06:$9900, $06:$990C, $06:$995B, $06:$99A0)
+B0F_F73D:
     jsr $F766 ; load ROM bank #$04
 
 ; call to code in a different bank ($04:$8012)
-    jsr $8012
+    jsr B04_8012
     jmp $F761 ; load ROM bank #$06
 
 
-; external control flow target (from $04:$A176)
+B0F_F746:
     jsr $F761 ; load ROM bank #$06
 
     ldy #$06
     sty $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
 ; call to code in a different bank ($06:$9829)
-    jsr $9829
+    jsr B06_9829
     ldy #$04
     sty $94 ; return bank for various function calls, doubles as index of selected option for multiple-choice menus
 
     jmp $F766 ; load ROM bank #$04
 
 
-
-; code -> data
 ; table of first item IDs for each item type
-; external indexed data load target (from $06:$8A68)
-; external indexed data load target (from $06:$8A6D)
-.byte $01
+B0F_F757:
+.byte $01,$11,$1C,$21,$24
 
-.byte $11,$1C
-.byte $21
-.byte $24
-; data -> code
 ; load ROM bank #$00
-; control flow target (from $C6A8, $D21D, $D231, $D23E, $D250, $D29C, $D2A9, $D302, $D334, $D494, $E41D, $E43F)
+B0F_F75C:
     pha
     lda #$00
     beq B0F_F782 ; load bank specified by A then PLA
@@ -12302,19 +12240,13 @@ B0F_F782:
     rts
 
 ; control flow target (from $CF70)
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
-
-
-; code -> data
-; indirect data load target
-
-.byte $41
-; data -> code
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
+    .byte $41
     rts
 
 ; wipe selected menu region
 ; control flow target (from $CF6A, $D130, $D135, $D13A, $E5BB, $F5B6)
-; external control flow target (from $04:$9ACC)
+B0F_F78C:
     sta $0C ; A values of #$00, #$01, #$02, and #$05 wipe all menus; #$03, #$04, #$06, and #$07 do not
 
     cmp #$05
@@ -12332,14 +12264,14 @@ B0F_F798:
     asl
     asl
     tay
-    lda $F8DB,Y
+    lda $F8DB, y
     and #$0F
     sta $0C
     sec
     sbc #$08
     asl
     sta $18
-    lda $F8DC,Y
+    lda $F8DC, y
     sta $0E
     pha
     asl
@@ -12353,10 +12285,10 @@ B0F_F798:
     sbc #$07
     asl
     sta $19
-    lda $F8DD,Y
+    lda $F8DD, y
     sta $53
     sta $4E
-    lda $F8DE,Y
+    lda $F8DE, y
     sta $54
     lda $53
     asl
@@ -12398,7 +12330,7 @@ B0F_F7F4:
 B0F_F808:
     lda #$00
     sta $1E
-    lda ($4F),Y ; screen map of background vs. menu tile
+    lda ($4F), y ; screen map of background vs. menu tile
 
     beq B0F_F825 ; display background tiles
 
@@ -12421,7 +12353,7 @@ B0F_F816:
 B0F_F825:
     lda #$00
     ldy $53
-    sta ($4F),Y ; update screen map to show background tiles
+    sta ($4F), y ; update screen map to show background tiles
 
     sta $1C
     sta $1E
@@ -12432,7 +12364,7 @@ B0F_F825:
     dec $18
     dec $53
     bpl B0F_F7F4
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -12459,10 +12391,10 @@ B0F_F825:
     lda $35 ; flag indicating whether any menu is currently open
 
     beq B0F_F86B
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jsr $D8CB
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $F860)
 B0F_F86B:
@@ -12517,10 +12449,10 @@ B0F_F89B:
     clc
     adc #$07
     tax
-    lda $06F8,X ; start of main dialogue window
+    lda $06F8, x ; start of main dialogue window
 
     sta $60B7
-    lda $06F9,X
+    lda $06F9, x
     sta $60B8
     cpx #$15
     bne B0F_F8D7
@@ -12660,10 +12592,10 @@ B0F_F9A7:
     ldy #$00
     sty $609F ; menu current row
 
-    lda ($10),Y
+    lda ($10), y
     jsr $FA0E
     iny
-    lda ($10),Y
+    lda ($10), y
     jsr $FA0E
     iny
     dec $609E ; menu current column
@@ -12673,16 +12605,16 @@ B0F_F9A7:
     lda #$01
     sta $609F ; menu current row
 
-    lda ($10),Y
+    lda ($10), y
     jsr $FA0E
     iny
-    lda ($10),Y
+    lda ($10), y
     jsr $FA0E
     iny
     lda #$00
     ldx $1E
     bne B0F_F9DF
-    lda ($10),Y
+    lda ($10), y
     and #$03
 ; control flow target (from $F9D9)
 B0F_F9DF:
@@ -12694,7 +12626,7 @@ B0F_F9DF:
     lsr
     tax
     pla
-    sta $606B,X
+    sta $606B, x
     lda $609E ; menu current column
 
     sec
@@ -12712,10 +12644,10 @@ B0F_F9DF:
     asl
     asl
     adc $0C
-    adc $F93F,Y
+    adc $F93F, y
     sta $10
     iny
-    lda $F93F,Y
+    lda $F93F, y
     adc #$00
     sta $11
     rts
@@ -12738,23 +12670,23 @@ B0F_FA1C:
 
     tax
     pla
-    sta $600B,X
+    sta $600B, x
     inc $609E ; menu current column
 
     rts
 
 ; display string ID specified by next byte
 ; control flow target (from $C856, $CC0A, $D160)
-; external control flow target (from $06:$80D6, $06:$8BBD, $06:$8BF8, $06:$8C18, $06:$8CCD, $06:$947F, $06:$94ED, $06:$94FB, $06:$950E, $06:$9515, $06:$9534, $06:$9538, $06:$9BEB, $06:$9C5B, $06:$A228, $07:$8377, $07:$8591)
+B0F_FA2A:
     ldx #$00
     beq B0F_FA34
 ; display string ID specified by next byte + #$0100
-; external control flow target (from $02:$B2D2, $06:$8102, $06:$810B, $06:$8246, $06:$828D, $06:$8291, $06:$8298, $06:$829C, $06:$82CE, $06:$82D5, $06:$82EA, $06:$82FF, $06:$830A, $06:$8327, $06:$8341, $06:$8348, $06:$8358, $06:$835C, $06:$837C, $06:$83B2, $06:$83B9, $06:$83C4, $06:$83E7, $06:$83FF, $06:$840D, $06:$8423, $06:$843B, $06:$843F, $06:$844A, $06:$8451, $06:$8465, $06:$847E, $06:$848C, $06:$84B0, $06:$84B7, $06:$84FE, $06:$8502, $06:$8514, $06:$851F, $06:$8532, $06:$8547, $06:$8557, $06:$8563, $06:$856A, $06:$8585, $06:$859C, $06:$85AB, $06:$85CE, $06:$85F3, $06:$8602, $06:$8627, $06:$8641, $06:$8650, $06:$8672, $06:$8679, $06:$8694, $06:$869D, $06:$86CB, $06:$86DE, $06:$86EA, $06:$86F5, $06:$86FC, $06:$8707, $06:$871F, $06:$8738, $06:$8AB6, $06:$8ADC, $06:$8AF8, $06:$8B4E, $06:$8B62, $06:$8C3C, $06:$8C8D, $06:$91DC, $06:$9529, $06:$9577, $06:$95A0, $06:$95C9, $06:$963D, $06:$9647, $06:$965A, $06:$9668, $06:$9673, $06:$9685, $06:$96C9, $06:$96D7, $06:$96F2, $06:$96FE, $06:$973C, $06:$9750, $06:$979A, $06:$97ED, $06:$97F8, $06:$9805, $06:$9813, $06:$981E, $06:$988E, $06:$98CB, $06:$9903, $06:$9908, $06:$990F, $06:$992F, $06:$993B, $06:$995E, $06:$9963, $06:$999C, $06:$99A3, $06:$99BA, $06:$99E8, $06:$99F5, $06:$99F9, $06:$9A10, $06:$9A29, $06:$9A5B, $06:$9A62, $06:$9A72, $06:$9A7D, $06:$9AA2, $06:$9AAF, $06:$9ABD, $06:$9AC4, $06:$9AF4, $06:$9B7D, $06:$9B8A, $06:$9B92, $06:$9BAF, $06:$9BB3, $06:$9BBA, $06:$9BFE, $06:$9C30, $06:$9C62, $06:$9CAA, $06:$9CBA, $06:$9CC5, $06:$9CD2, $06:$9CF9, $06:$9D0E, $06:$9D30, $06:$9D3F, $06:$A24B, $06:$BB57, $06:$BB5B, $06:$BB67, $06:$BB73, $06:$BB7C, $06:$BBAF, $06:$BBD3, $06:$BC26)
+B0F_FA2E:
     ldx #$20
     bne B0F_FA34
 ; display string ID specified by next byte + #$0200
 ; control flow target (from $CA35)
-; external control flow target (from $02:$B2EB, $06:$8163, $06:$83D5, $06:$841A, $06:$8E39, $06:$8E3D, $06:$8ED5, $06:$8EF6, $06:$8EFA, $06:$8F05, $06:$8F11, $06:$8F1C, $06:$8F29, $06:$8F32, $06:$8F47, $06:$8F58, $06:$8F63, $06:$8F94, $06:$8FB1, $06:$8FD7, $06:$8FEF, $06:$8FFE, $06:$9002, $06:$9012, $06:$9028, $06:$9055, $06:$905E, $06:$9065, $06:$907C, $06:$908E, $06:$909A, $06:$90A1, $06:$90BF, $06:$9102, $06:$910B, $06:$9117, $06:$916E, $06:$917E, $06:$9185, $06:$9190, $06:$91A8, $06:$91B3, $06:$91D0, $06:$91E6, $06:$91ED, $06:$91FA, $06:$9201, $06:$920C, $06:$9213, $06:$928B, $06:$9292, $06:$92E7, $06:$930B, $06:$933E, $06:$9348, $06:$9384, $06:$93EB, $06:$93F2, $06:$93F9, $06:$9407, $06:$9437, $06:$9446, $06:$9458, $06:$945F, $06:$9486, $06:$9817, $06:$A2E5, $06:$BD37, $06:$BD56)
+B0F_FA32:
     ldx #$40
 ; control flow target (from $FA2C, $FA30)
 B0F_FA34:
@@ -12777,23 +12709,23 @@ B0F_FA34:
     pha ; push the new return address's low byte
 
     ldy #$00
-    lda ($0E),Y ; load the byte following the original JSR
+    lda ($0E), y ; load the byte following the original JSR
 
     jmp $FA54
 
 ; display string ID specified by A
 ; control flow target (from $D196, $F6ED)
-; external control flow target (from $04:$97F4, $04:$98C3, $04:$9CC7, $06:$94B8, $06:$94CB, $06:$94DE, $06:$A99F)
+B0F_FA4A:
     ldx #$00
     beq B0F_FA54
 ; display string ID specified by A + #$0100
 ; control flow target (from $F6F3)
-; external control flow target (from $02:$B334, $04:$9CC4, $06:$95D8, $06:$97E3, $06:$98AC, $06:$98C7, $06:$992B, $06:$9A41, $06:$9B2D, $06:$9D49, $06:$A0CF)
+B0F_FA4E:
     ldx #$20
     bne B0F_FA54
 ; display string ID specified by A + #$0200
 ; control flow target (from $F6F9)
-; external control flow target (from $06:$8E30, $06:$8E51, $06:$8E64, $06:$8F7F, $06:$8FA6, $06:$8FC6, $06:$9039, $06:$90B9, $06:$90E9, $06:$90FC, $06:$9147, $06:$9168, $06:$9248, $06:$92F8, $06:$9326, $06:$9338, $06:$9359, $06:$9395, $06:$93B8, $06:$93DB)
+B0F_FA52:
     ldx #$40
 ; control flow target (from $FA47, $FA4C, $FA50)
 B0F_FA54:
@@ -12858,7 +12790,7 @@ B0F_FA85:
     pla ; restore the original string index in A
 
 ; control flow target (from $D12B)
-; external control flow target (from $06:$9542, $06:$9550)
+B0F_FA89:
     rts
 
 ; given a string ID in X (high, << 5) + A (low), scan to start of string
@@ -12878,11 +12810,11 @@ B0F_FA85:
     adc $11 ; add high byte of string index to get pointer index
 
     tay
-    lda $B752,Y ; -> $05:$8000: main script strings, part 1
+    lda $B752, y ; -> $05:$8000: main script strings, part 1
 
     sta $55 ; pointer to start of sub pointer data, low byte
 
-    lda $B753,Y
+    lda $B753, y
     sta $56 ; pointer to start of sub pointer data, high byte
 
     jmp $FDB3 ; scan through group of strings until we find the start of the desired string
@@ -12954,7 +12886,7 @@ B0F_FAEC:
 ; control flow target (from $FAFD)
 B0F_FB02:
     jsr $FB0D
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     jmp $FAF1
 
@@ -12992,7 +12924,7 @@ B0F_FB0B:
 B0F_FB36:
     ldx $6089 ; string word buffer index 2
 
-    lda $60D9,X ; start of string word buffer
+    lda $60D9, x ; start of string word buffer
 
     inc $6089 ; string word buffer index 2
 
@@ -13004,7 +12936,7 @@ B0F_FB36:
     bcs B0F_FB50
     inc $609E ; menu current column
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13026,7 +12958,7 @@ B0F_FB50:
 
 ; control flow target (from $FB56)
 B0F_FB5E:
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13046,7 +12978,7 @@ B0F_FB62:
 B0F_FB68:
     ldx $60CB ; string word buffer index 1
 
-    lda $60D9,X ; start of string word buffer
+    lda $60D9, x ; start of string word buffer
 
     inc $60CB ; string word buffer index 1
 
@@ -13055,7 +12987,7 @@ B0F_FB68:
     pha
     jsr $FD37
     pla
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13093,7 +13025,7 @@ B0F_FB97:
     lda $8E ; flag for in battle or not (#$FF)?
 
     bmi B0F_FBA7
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13101,7 +13033,7 @@ B0F_FB97:
 
 .byte $46
 ; data -> code
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13112,7 +13044,7 @@ B0F_FB97:
 ; FE handler: [line]
 ; control flow target (from $FB8F)
 B0F_FBA3:
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13127,7 +13059,7 @@ B0F_FBA7:
 ; FD handler
 ; control flow target (from $FB8B)
 B0F_FBA8:
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13140,7 +13072,7 @@ B0F_FBA8:
 ; FC handler: [end-FC]
 ; control flow target (from $FB87)
 B0F_FBAD:
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13179,11 +13111,11 @@ B0F_FBC4:
 B0F_FBCD:
     ldx $60CB ; string word buffer index 1
 
-    sta $60D9,X ; start of string word buffer
+    sta $60D9, x ; start of string word buffer
 
     inc $60CB ; string word buffer index 1
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13202,7 +13134,7 @@ B0F_FBCD:
     beq B0F_FBF4 ; if we're not in "read from $60F1" mode, read next string byte from ROM
 
 ; control flow target (from $FBFC)
-    lda $60F1,X ; start of text variable buffer
+    lda $60F1, x ; start of text variable buffer
 
     inc $60C9 ; count (only used as flag) of interpolated variable bytes read from $60F1
 
@@ -13222,14 +13154,9 @@ B0F_FBF3:
 
 ; control flow target (from $FBE0, $FBF1)
 B0F_FBF4:
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
+    .byte $4A
 
-
-; code -> data
-; indirect data load target
-
-.byte $4A
-; data -> code
     bcc B0F_FBF3 ; CLC means to use value in A, so RTS
 
     ldx #$00 ; else, SEC means to read from $60F1, so initialize read index to #$00
@@ -13237,7 +13164,7 @@ B0F_FBF4:
     jmp $FBE2 ; and start reading
 
 
-; external control flow target (from $04:$9ADB, $04:$9B46)
+B0F_FBFF:
     and #$0F
     cmp #$0F
     beq B0F_FC13
@@ -13274,7 +13201,7 @@ B0F_FC30:
     lda #$FF
     sta $00
     ldx #$08
-    jsr $C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
+    jsr B0F_C1EE ; set $6007 = #$00, set $00 = #$01, wait for X interrupts, set $00 = #$FF
 
     lda $7D
     jsr $FDA2 ; 16-bit multiplication: set 16-bit ($10-$11) = A * #$16; returns low byte in A and clears C
@@ -13284,7 +13211,7 @@ B0F_FC30:
     lda #$5F
 ; control flow target (from $FC4D)
 B0F_FC47:
-    sta $06F8,X ; start of main dialogue window
+    sta $06F8, x ; start of main dialogue window
 
     inx
     cpx #$B0
@@ -13293,7 +13220,7 @@ B0F_FC47:
 
 ; print name of hero given by low 2 bits of A to $6119, terminated by #$FA
 ; control flow target (from $C853)
-; external control flow target (from $02:$B2CF, $02:$B2E8, $02:$B330, $04:$9CD3, $06:$80D3, $06:$80FF, $06:$8108, $06:$8B4B, $06:$8BF5, $06:$8C15, $06:$8CCA, $06:$8D27, $06:$8E11, $06:$8E2C, $06:$8ED2, $06:$8EDE, $06:$8F0E, $06:$8F2F, $06:$8F44, $06:$8F55, $06:$8F60, $06:$8F6C, $06:$8F87, $06:$8FCF, $06:$8FE0, $06:$900F, $06:$9079, $06:$908B, $06:$91F7, $06:$9381, $06:$93E8, $06:$9404, $06:$9443, $06:$9574, $06:$95CF, $06:$9644, $06:$96FB, $06:$9739, $06:$9CA7, $06:$A21B, $06:$A248, $06:$BB54, $06:$BB70, $06:$BB79, $06:$BBD0, $07:$82E4)
+B0F_FC50:
     pha
     and #$03
     sta $10
@@ -13308,14 +13235,14 @@ B0F_FC47:
 ; control flow target (from $FC76)
 B0F_FC5F:
     ldx $11
-    lda $0113,X ; Midenhall name bytes 0-3 + terminator
+    lda $0113, x ; Midenhall name bytes 0-3 + terminator
 
-    sta $6119,Y ; start of buffer for [monster(s)], [name], maybe more
+    sta $6119, y ; start of buffer for [monster(s)], [name], maybe more
 
     ldx $12
-    lda $0186,X ; Midenhall name bytes 4-7
+    lda $0186, x ; Midenhall name bytes 4-7
 
-    sta $611D,Y
+    sta $611D, y
     inc $11
     inc $12
     iny
@@ -13332,14 +13259,14 @@ B0F_FC5F:
 B0F_FC80:
     lda #$FA ; [end-FA]
 
-    sta $6119,Y ; start of buffer for [monster(s)], [name], maybe more
+    sta $6119, y ; start of buffer for [monster(s)], [name], maybe more
 
     jsr $F6C2 ; load bank specified by $94
 
     rts
 
 ; write monster name in A (+ monster number within its group in X, if > 0) to $6119
-; external control flow target (from $04:$9CD9)
+B0F_FC89:
     stx $608B ; monster number within its group
 
     pha ; monster ID
@@ -13364,7 +13291,7 @@ B0F_FC80:
 
     lda #$5F ; [space]
 
-    sta $6119,Y ; start of buffer for [monster(s)], [name], maybe more; write [space] to $6119,Y
+    sta $6119, y ; start of buffer for [monster(s)], [name], maybe more; write [space] to $6119, y
 
     iny ; increment write index
 
@@ -13396,7 +13323,7 @@ B0F_FC80:
 
     lda #$6A ; "-"
 
-    sta $6119,Y ; start of buffer for [monster(s)], [name], maybe more
+    sta $6119, y ; start of buffer for [monster(s)], [name], maybe more
 
     iny
     txa ; monster number within its group
@@ -13404,7 +13331,7 @@ B0F_FC80:
     clc
     adc #$23 ; #$23 == "z" and A > 0, so this is the uppercase letter corresponding to the monster number within its group; net effect is e.g. "-A", "-B", etc.
 
-    sta $6119,Y ; start of buffer for [monster(s)], [name], maybe more
+    sta $6119, y ; start of buffer for [monster(s)], [name], maybe more
 
     iny
     bne B0F_FC80 ; append [end-FA] to string and swap return bank $94 back in
@@ -13412,7 +13339,7 @@ B0F_FC80:
 ; update write index to trim trailing spaces
 ; control flow target (from $FC7A, $FCA0, $FCBD, $FCE5)
 B0F_FCD7:
-    lda $6118,Y ; last byte written
+    lda $6118, y ; last byte written
 
     cmp #$60 ; [no voice]
 
@@ -13448,9 +13375,9 @@ B0F_FCE7:
 
 ; control flow target (from $FCF3)
 B0F_FCEB:
-    lda a:$FF,X ; built-in offset from string copy buffer start at $0100
+    lda a:$FF, x ; built-in offset from string copy buffer start at $0100
 
-    sta $6119,Y ; start of buffer for [monster(s)], [name], maybe more; write data to $6119,Y
+    sta $6119, y ; start of buffer for [monster(s)], [name], maybe more; write data to $6119, y
 
     iny ; increment write index
 
@@ -13475,7 +13402,7 @@ B0F_FCEB:
     jsr $FD0F
     inc $6084
     jsr $FD0F
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
     inc $6084
     rts
@@ -13488,10 +13415,10 @@ B0F_FCEB:
 ; control flow target (from $FD34)
 B0F_FD1A:
     ldx $6085
-    lda $06F8,X ; start of main dialogue window
+    lda $06F8, x ; start of main dialogue window
 
     sta $09
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13499,7 +13426,7 @@ B0F_FD1A:
 
 .byte $C1
 ; data -> code
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
     inc $6085
     inc $608B
@@ -13513,7 +13440,7 @@ B0F_FD1A:
     lda $7C
     sta $609E ; menu current column
 
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13548,14 +13475,14 @@ B0F_FD5F:
 ; control flow target (from $FD50, $FD56, $FD5C)
 B0F_FD66:
     pha
-    lda $06F8,X ; start of main dialogue window
+    lda $06F8, x ; start of main dialogue window
 
     sta $09
     tay
     pla
     cpy #$5F
     bne B0F_FD77
-    sta $06F8,X ; start of main dialogue window
+    sta $06F8, x ; start of main dialogue window
 
     sta $09
 ; control flow target (from $FD70)
@@ -13580,7 +13507,7 @@ B0F_FD85:
     clc
     adc #$13
     sta $608C
-    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+    jsr $FE97 ; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 
 
 ; code -> data
@@ -13588,9 +13515,9 @@ B0F_FD85:
 
 .byte $C1
 ; data -> code
-    jsr $C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
+    jsr B0F_C1FA ; wait for $02 to not be #$C0, write PPU address in $07-$08 and data in $09 to PPU write buffer at $0300,$02, $01 += 1, $02 += 3, and set $0183 to #$00
 
-    jsr $C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
+    jsr B0F_C1DC ; set $6007 = #$00, set $00 = #$01, wait for interrupt, set $00 = #$FF
 
 ; control flow target (from $FD79)
 B0F_FD9F:
@@ -13606,7 +13533,7 @@ B0F_FDA1:
     sta $11
     ldx #$10
     lda #$16
-    jsr $F0F4 ; 16-bit multiplication: set 16-bit ($00,X-$01,X) = ($00,X-$01,X) * A
+    jsr $F0F4 ; 16-bit multiplication: set 16-bit ($00, x-$01, x) = ($00, x-$01, x) * A
 
     lda $10
     clc
@@ -13759,21 +13686,21 @@ B0F_FE25:
 
     asl
     tay
-    lda $FE5C,Y ; jump table for functions to convert the current 5-bit text token into a dictionary index in A
+    lda $FE5C, y ; jump table for functions to convert the current 5-bit text token into a dictionary index in A
 
     sta $57 ; pointer to start of main pointer table, low byte
 
-    lda $FE5D,Y
+    lda $FE5D, y
     sta $58 ; pointer to start of main pointer table, high byte
 
 ; BUG: this reads the first 2 bytes of ($55) *before* the code for checking whether the read position needs to jump to bank 2 runs
     ldy #$01
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $608C ; text engine: $608C = string byte #2
 
     dey
-    lda ($55),Y ; pointer to start of sub pointer data, low byte
+    lda ($55), y ; pointer to start of sub pointer data, low byte
 
     sta $608B ; text engine: $608B = string byte #1
 
@@ -13791,6 +13718,7 @@ B0F_FE25:
 .byte $FE,$7E,$FE,$78
 .byte $FE,$72
 .byte $FE
+
 ; data -> code
 ; token is in bits 7-3 of A
 ; indirect control flow target (via $FE5C)
@@ -13841,10 +13769,10 @@ B0F_FE25:
 
     rts
 
-; read byte following JSR, parse it for bank and pointer index, execute ($8000,X) in selected bank, swap back in original bank
+; read byte following JSR, parse it for bank and pointer index, execute ($8000, x) in selected bank, swap back in original bank
 ; BUG: does LDA before PHP, so status of N and Z flags are lost
 ; control flow target (from $C696, $C6C4, $C6D7, $C6DB, $C6F6, $C886, $C894, $CC9B, $D15C, $D16E, $D2E7, $D2F7, $D33C, $D356, $EE06, $EE7B, $EF58, $F04F, $F0BC, $F4A9, $F4E3, $F5E1, $F5F7, $F611, $F787, $F83A, $FB4A, $FB5E, $FB7A, $FB9B, $FB9F, $FBA3, $FBA8, $FBAD, $FBD6, $FBF4, $FD22, $FD3D, $FD95)
-; external control flow target (from $02:$B74B, $02:$BE00, $02:$BE2C, $02:$BE34, $02:$BEA1, $06:$B0A5, $07:$87F1, $08:$80C9, $0A:$80F2, $0A:$813B)
+B0F_FE97:
     sta $0194
     stx $0195
     sty $0196
@@ -13852,7 +13780,7 @@ B0F_FE25:
 
     pha
     php
-    jsr $FF0E ; from the perspective of the caller (which always pushes 2 extra bytes to the stack before calling us), increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+    jsr $FF0E ; from the perspective of the caller (which always pushes 2 extra bytes to the stack before calling us), increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 
     plp
     ldy $0196
@@ -13888,7 +13816,7 @@ B0F_FE25:
 .byte $94,$01
 .byte $60
 ; unknown -> code
-; parse byte following JSR for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+; parse byte following JSR for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 ; control flow target (from $E4EC)
 ; external control flow target (from $02:$B1C0)
     sta $0194
@@ -13898,7 +13826,7 @@ B0F_FE25:
 
     pha
     pha
-    jsr $FF0E ; from the perspective of the caller (which always pushes 2 extra bytes to the stack before calling us), increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+    jsr $FF0E ; from the perspective of the caller (which always pushes 2 extra bytes to the stack before calling us), increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 
     pla
     pla
@@ -13909,13 +13837,13 @@ B0F_FE25:
     lda $0194
     rts
 
-; increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+; increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 ; control flow target (from $E4F8, $ECFB)
     php
     pha
     stx $0195
     sty $0196
-    jsr $FF0E ; from the perspective of the caller (which always pushes 2 extra bytes to the stack before calling us), increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+    jsr $FF0E ; from the perspective of the caller (which always pushes 2 extra bytes to the stack before calling us), increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 
     ldy $0196
     ldx $0195
@@ -13923,25 +13851,25 @@ B0F_FE25:
     plp
     rts
 
-; from the perspective of the caller (which always pushes 2 extra bytes to the stack before calling us), increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000,X-$8001,X in selected bank
+; from the perspective of the caller (which always pushes 2 extra bytes to the stack before calling us), increment JSR's return address, read byte following JSR, parse it for bank and pointer index, set $D6-$D7 to $8000, x-$8001, x in selected bank
 ; control flow target (from $FEA5, $FEE8, $FF02)
     tsx
-    inc $0105,X
+    inc $0105, x
     bne B0F_FF17
-    inc $0106,X
+    inc $0106, x
 ; control flow target (from $FF12)
 B0F_FF17:
-    lda $0105,X
+    lda $0105, x
     sta $D6
-    lda $0106,X
+    lda $0106, x
     sta $D7
     ldy #$00
-    lda ($D6),Y
+    lda ($D6), y
     jsr $FF33 ; parse A into bank and pointer indices and load specified bank
 
-    lda $8000,X
+    lda $8000, x
     sta $D6
-    lda $8001,X
+    lda $8001, x
     sta $D7
     rts
 
@@ -14039,18 +13967,8 @@ B0F_FF57:
     jmp $F6C2 ; load bank specified by $94
 
 
+.res $24
 
-; code -> free
-.res $21
-; ... skipping $21 FF bytes
-.byte $FF
-
-.byte $FF
-; free -> data
-; data load target (from $D37A)
-
-.byte $FF
-; data -> code
 ; save A to $05F6, X to $43, and load bank specified by A
 ; control flow target (from $C3D5, $FEBD, $FEED, $FF46)
     sta $05F6 ; current bank
@@ -14073,27 +13991,25 @@ B0F_FF57:
     rts
 
 ; reset vector
-; indirect control flow target (via $FFFC)
+Reset:
     sei
     inc $FFDE ; #$80; used to reset MMC1 shift register and switch to last-fixed-bank mode
 
-    jmp $C5AF ; reset vector handler
+    jmp Init ; reset vector handler
 
 
 
-; code -> data
 ; #$80; used to reset MMC1 shift register and switch to last-fixed-bank mode
 ; data load target (from $C60B, $FFD8)
 
 .byte $80
-; data -> unknown
 
 .byte $44,$52,$41,$47,$4F,$4E,$20,$57,$41,$52,$52,$49,$4F,$52
 .byte $20,$49,$49,$C7,$AA,$00,$00
 .byte $48,$04,$01
 .byte $0F,$07
 .byte $9D
-; unknown -> data
-.byte $00,$C0,$D7
-.byte $FF,$AB
-.byte $C5
+
+.addr NMI ; NMI
+.addr Reset ; Reset
+.addr IRQ ; IRQ
